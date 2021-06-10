@@ -4,7 +4,7 @@ You will need one workspace recorded in the Niryo studio
 """
 
 # Imports
-from pyniryo import *
+from pyniryo2 import *
 
 # -- MUST Change these variables
 simulation_mode = True

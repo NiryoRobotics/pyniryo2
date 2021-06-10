@@ -1,4 +1,4 @@
-from pyniryo import NiryoRobot  # Niryo's Python Package
+from pyniryo2 import NiryoRobot  # Niryo's Python Package
 import time
 from pynput.mouse import Button, Listener, Controller  # Package to get mouse inputs
 

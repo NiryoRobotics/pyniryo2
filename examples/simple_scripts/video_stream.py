@@ -3,8 +3,8 @@ This script allows to capture Ned's video streaming and to make some image proce
 """
 
 # Imports
-from pyniryo.api import *
-import pyniryo.vision as vision
+from pyniryo2.api import *
+import pyniryo2.vision as vision
 
 simulation_mode = True
 # Set robot address

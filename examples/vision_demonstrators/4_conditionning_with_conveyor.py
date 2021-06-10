@@ -1,4 +1,4 @@
-from pyniryo import *
+from pyniryo2 import *
 
 # -- MUST Change these variables
 robot_ip_address = "192.168.1.200"

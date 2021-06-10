@@ -2,7 +2,7 @@
 This script shows few functions you can use with PyNiryo
 """
 
-from pyniryo import *
+from pyniryo2 import *
 
 simulation_mode = True
 

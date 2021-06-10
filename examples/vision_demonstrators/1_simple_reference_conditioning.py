@@ -13,7 +13,7 @@ The objects will be conditioned in a grid of dimension grid_dimension. If the gr
 objects will be pack over the lower level
 """
 
-from pyniryo import *
+from pyniryo2 import *
 
 # -- MUST Change these variables
 robot_ip_address = "10.10.10.10"  # IP address of Ned

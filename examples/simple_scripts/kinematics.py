@@ -2,7 +2,7 @@
 This script shows how to use kinematics with PyNiryo
 """
 
-from pyniryo import NiryoRobot
+from pyniryo2 import NiryoRobot
 
 simulation_mode = True
 robot_ip_address_rpi = "10.10.10.10"

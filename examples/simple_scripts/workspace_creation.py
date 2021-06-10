@@ -3,7 +3,7 @@ This script allows to take 4 positions and to create a workspace from them
 """
 
 # Imports
-from pyniryo import NiryoRobot
+from pyniryo2 import NiryoRobot
 
 import sys
 

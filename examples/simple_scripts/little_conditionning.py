@@ -1,5 +1,5 @@
 # Imports
-from pyniryo import *
+from pyniryo2 import *
 
 simulation_mode = True
 

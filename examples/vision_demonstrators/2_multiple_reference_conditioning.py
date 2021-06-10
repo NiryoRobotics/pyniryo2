@@ -9,7 +9,7 @@ the conditioning height.
 Once a line is completed, objects will be pack over the lower level
 """
 
-from pyniryo import *
+from pyniryo2 import *
 
 # -- MUST Change these variables
 robot_ip_address = "10.10.10.10"  # IP address of Ned

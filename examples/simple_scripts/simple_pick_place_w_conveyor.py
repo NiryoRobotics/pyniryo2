@@ -4,7 +4,7 @@ with Ned using a conveyor
 """
 
 # Imports
-from pyniryo import *
+from pyniryo2 import *
 
 # -- MUST Change these variables
 simulation_mode = True

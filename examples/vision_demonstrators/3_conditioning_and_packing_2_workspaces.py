@@ -7,7 +7,7 @@ from the picking area. This object will be pack and then, the pack will be
 place on the side of the working area
 """
 
-from pyniryo import *
+from pyniryo2 import *
 
 # -- MUST Change these variables
 robot_ip_address = "10.10.10.10"  # IP address of Ned

@@ -5,7 +5,7 @@ import sys
 
 import unittest
 
-from pyniryo import *
+from pyniryo2 import *
 
 simulation = "-rpi" not in sys.argv
 tool_used = ToolID.GRIPPER_1

@@ -11,7 +11,7 @@ import sys
 from .enums_communication import *
 from .communication_functions import dict_to_packet, receive_dict, receive_dict_w_payload
 
-from .exceptions import *
+from pyniryo2.exceptions import *
 from .objects import PoseObject, HardwareStatusObject, DigitalPinObject
 
 

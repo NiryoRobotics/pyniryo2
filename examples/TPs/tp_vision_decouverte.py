@@ -1,5 +1,5 @@
 # Imports
-from pyniryo import *
+from pyniryo2 import *
 
 # Connecting to robot
 niryo_robot = NiryoRobot("10.10.10.10")  # =< Replace by robot ip address

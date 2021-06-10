@@ -3,7 +3,7 @@ Little Script which shows how to read a position with PyNiryo
 """
 # !/usr/bin/env python
 
-from pyniryo import NiryoRobot
+from pyniryo2 import NiryoRobot
 import sys
 
 if sys.version_info[0] == 2:

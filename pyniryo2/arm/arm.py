@@ -67,9 +67,7 @@ class Arm(RobotCommander):
         hardware_status = self.__topics.hardware_status_topic()
         return hardware_status["calibration_needed"]
 
-    def get_hardware_status(self, callback=None):
-        if callback:
-            self.__topics.hardware_status_topic()
+    def get_hardware_status(self):
         hardware_status = self.__topics.hardware_status_topic()
         return hardware_status["calibration_needed"]
 

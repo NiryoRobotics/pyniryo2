@@ -58,4 +58,4 @@ class ArmServices(object):
 /niryo_robot_arm_commander/linear_trajectory/activate
 /niryo_robot_arm_commander/set_max_velocity_scaling_factor
 /niryo_robot_arm_commander/stop_command
-""""""
+"""

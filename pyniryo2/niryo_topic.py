@@ -57,6 +57,10 @@ class NiryoTopic(object):
     def is_subscribed(self):
         return self.__topic.is_subscribed
 
+    @property
+    def value(self):
+        return self.__call__()
+
     def subscribe(self, callback):
         """
         Subscribe a callback to the topic. A TopicException will be thrown if the topic is already subscribed.

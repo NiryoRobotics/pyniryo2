@@ -12,6 +12,10 @@ class RobotCommander(object):
     def __init__(self, client):
         self._client = client
 
+        self._services = None
+        self._topics = None
+        self._actions = None
+
     def __str__(self):
         return "NiryoRobot"
 

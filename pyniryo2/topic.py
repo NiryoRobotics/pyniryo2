@@ -1,45 +1,105 @@
-from threading import Event
 import roslibpy
+from threading import Event
+from pyniryo2.exceptions import TopicException
 
 
-class Topic(object):
+class NiryoTopic(object):
+    """
+    Represent a Ros Topic instance. It supports both the request of a single value and/or callbacks.
+    """
 
-    def __init__(self, client, topic_name, topic_type, ):
-        self.topic_name = topic_name
-        self.topic_type = topic_type
-        self.topic = roslibpy.Topic(client, self.topic_name, self.topic_type)
+    def __init__(self, client, topic_name, topic_type):
+        """
 
-        self.user_callback = None
+        :param client: Instance of the ROS connection.
+        :type client: roslibpy.Ros
+        :param topic_name: Topic name.
+        :type topic_name: string
+        :param topic_type: Topic type.
+        :type topic_type: string
+        """
+        self.__topic_name = topic_name
+        self.__topic_type = topic_type
+        self.__topic = roslibpy.Topic(client, self.__topic_name, self.__topic_type)
 
-        self.sync_topic_value = None
-        self.sync_event = Event()
-        self.sync_event.clear()
+        self.__user_callback = None
+
+        self.__timeout = 0.5
+
+        self.__sync_topic_value = None
+        self.__sync_event = Event()
+        self.__sync_event.clear()
+
+    def __del__(self):
+        self.unsubscribe()
 
     def __call__(self):
-        if self.topic.is_subscribed:
+        if self.__topic.is_subscribed:
+            self.__sync_event.wait(timeout=self.__timeout)
             return self.sync_topic_value
 
-        self.subscribe(self.__internal_callback)
-        self.sync_event.wait()  # Mettre un timeout au KAZOU
-        self.unsubscribe()
-        self.sync_event.clear()
+        self.sync_topic_value = None
+        self.__sync_event.clear()
+        self.__topic.subscribe(self.__internal_callback)
+        self.__sync_event.wait(timeout=self.__timeout)
+        self.__topic.unsubscribe()
         return self.sync_topic_value
 
-    def subscribe(self, callback=None):
-        if self.topic.is_subscribed:
-            self.topic.subscribe(self.__internal_callback)
-            return True
-        if callback:
-            self.user_callback = callback
-        return False
+    def __str__(self):
+        return "Name: {}\nType: {}\nSubscribed: {}\nValue: {}".format(self.__topic_name, self.__topic_type,
+                                                                      self.__topic.is_subscribed,
+                                                                      self.__sync_topic_value)
+
+    def __repr__(self):
+        return self.__str__()
+
+    @property
+    def is_subscribed(self):
+        return self.__topic.is_subscribed
+
+    def subscribe(self, callback):
+        """
+        Subscribe a callback to the topic. A TopicException will be thrown if the topic is already subscribed.
+
+        :param callback: The callback function which is called at each incoming topic message.
+        :type callback: function(dict, )
+        :return: None
+        :rtype: None
+        """
+        if not callback:
+            raise TopicException("Empty callback on {} topic subscription".format(self.__topic_name))
+
+        if not self.__topic.is_subscribed:
+            self.__user_callback = callback
+            self.__sync_event.clear()
+            self.__topic.subscribe(self.__internal_callback)
+        else:
+            raise TopicException("Topic {} already subscribed".format(self.__topic_name))
 
     def unsubscribe(self):
-        if self.topic.is_subscribed:
-            self.topic.unsubscribe()
+        """
+        Unsubscribe to the topic.
+
+        :return:
+        :rtype:
+        """
+        if self.__topic.is_subscribed:
+            self.__topic.unsubscribe()
+            self.__user_callback = None
 
     def __internal_callback(self, topic_value):
-        self.sync_topic_value = topic_value
-        self.sync_event.set()
+        """
+        This function is an internal callback that stores the last value of the subject
+        and calls the user's callback if it is registered.
 
-        if self.user_callback:
-            self.user_callback(self.sync_topic_value)
+        :param topic_value: Message returned by the topic.
+        :type topic_value: dict
+        :return: None
+        :rtype: None
+        """
+        self.sync_topic_value = topic_value
+        self.__sync_event.set()
+
+        if self.__user_callback:
+            self.__user_callback(self.sync_topic_value)
+

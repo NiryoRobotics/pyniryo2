@@ -27,3 +27,6 @@ class TcpCommandException(Exception):
 class HostNotReachableException(Exception):
     def __init__(self):
         super(Exception, self).__init__("Unable to communicate with robot server, please verify your network.")
+
+class TopicException(Exception):
+    pass

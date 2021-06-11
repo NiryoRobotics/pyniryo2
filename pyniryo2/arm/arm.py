@@ -7,6 +7,7 @@ import roslibpy
 # Communication imports
 from pyniryo2.robot_commander import RobotCommander
 from pyniryo2.arm.services import ArmServices
+from pyniryo2.arm.topics import ArmTopics
 from pyniryo2.arm.enums import CalibrateMode, RobotAxis
 
 class Arm(RobotCommander):
@@ -15,7 +16,7 @@ class Arm(RobotCommander):
         super(Arm, self).__init__(client)
 
         self.__services = ArmServices(self._client)
-        self.__topics = None
+        self.__topics = ArmTopics(self._client)
 
     # - Main purpose
     def calibrate(self, calibrate_mode, callback=None, errback=None, timeout=None):
@@ -56,14 +57,24 @@ class Arm(RobotCommander):
             calibrate()
 
 
-    # def need_calibration(self):
-    #     """
-    #     Return a bool indicating whereas the robot motors need to be calibrate
-    #
-    #     :rtype: bool
-    #     """
-    #     hardware_status = self.get_hardware_status()
-    #     return hardware_status.calibration_needed
+    def need_calibration(self):
+        """
+        Return a bool indicating whereas the robot motors need to be calibrate
+
+
+        :rtype: bool
+        """
+        hardware_status = self.__topics.hardware_status_topic()
+        return hardware_status["calibration_needed"]
+
+    def get_hardware_status(self, callback=None):
+        if callback:
+            self.__topics.hardware_status_topic()
+        hardware_status = self.__topics.hardware_status_topic()
+        return hardware_status["calibration_needed"]
+
+    def subscribe_hardware_status(self, callback):
+        self.__topics.hardware_status_topic.subscribe(callback)
     #
     # @property
     # def learning_mode(self):

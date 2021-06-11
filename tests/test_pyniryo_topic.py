@@ -6,7 +6,7 @@ import unittest
 import roslibpy
 from threading import Event
 
-from pyniryo2.topic import NiryoTopic
+from pyniryo2.niryo_topic import NiryoTopic
 from pyniryo2.exceptions import TopicException
 
 simulation = "-simu" in sys.argv

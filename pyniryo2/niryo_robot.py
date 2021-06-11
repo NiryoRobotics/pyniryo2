@@ -3,6 +3,7 @@ from __future__ import print_function
 
 # Python libraries
 import roslibpy
+import time
 
 # Communication imports
 from .exceptions import *
@@ -38,6 +39,17 @@ class NiryoRobot(object):
 
     def disconnect(self):
         self.__client.terminate()
+
+    @staticmethod
+    def wait(duration):
+        """
+        Wait for a certain time
+
+        :param duration: duration in seconds
+        :type duration: float
+        :rtype: None
+        """
+        time.sleep(duration)
 
     @property
     def arm(self):

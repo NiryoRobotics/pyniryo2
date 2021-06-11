@@ -19,6 +19,9 @@ class Arm(RobotCommander):
         self.__topics = ArmTopics(self._client)
 
     # - Main purpose
+
+    # -- Calibration
+
     def calibrate(self, calibrate_mode, callback=None, errback=None, timeout=None):
         """
         Calibrate (manually or automatically) motors. Automatic calibration will do nothing
@@ -31,7 +34,7 @@ class Arm(RobotCommander):
         self._check_enum_belonging(calibrate_mode, CalibrateMode)
         request = roslibpy.ServiceRequest()
         request["value"] = calibrate_mode.value
-        self.__services.request_calibration_service.call(request, callback=callback, errback=errback, timeout=timeout)
+        self.__services.request_calibration_service.call(request, callback, errback, timeout)
 
     def calibrate_auto(self, callback=None, errback=None, timeout=None):
         """
@@ -51,21 +54,21 @@ class Arm(RobotCommander):
             self.calibrate_auto(callback, errback, timeout)
 
         request = roslibpy.ServiceRequest()
-        self.__services.request_new_calibration_service.call(request, callback=calibrate, errback=errback, timeout=timeout)
+        self.__services.request_new_calibration_service.call(request, callback, errback, timeout)
 
         if not callback:
             calibrate()
-
 
     def need_calibration(self):
         """
         Return a bool indicating whereas the robot motors need to be calibrate
 
-
         :rtype: bool
         """
         hardware_status = self.__topics.hardware_status_topic()
         return hardware_status["calibration_needed"]
+
+    # - Hardware Status
 
     def get_hardware_status(self):
         hardware_status = self.__topics.hardware_status_topic()
@@ -73,68 +76,64 @@ class Arm(RobotCommander):
 
     def subscribe_hardware_status(self, callback):
         self.__topics.hardware_status_topic.subscribe(callback)
-    #
-    # @property
-    # def learning_mode(self):
-    #     return self.get_learning_mode()
-    #
-    # def get_learning_mode(self):
-    #     """
-    #     Get learning mode state
-    #
-    #     :return: ``True`` if learning mode is on
-    #     :rtype: bool
-    #     """
-    #     return eval(self.__send_n_receive(Command.GET_LEARNING_MODE))
-    #
-    # @learning_mode.setter
-    # def learning_mode(self, value):
-    #     self.set_learning_mode(value)
-    #
-    # def set_learning_mode(self, enabled):
-    #     """
-    #     Set learning mode if param is ``True``, else turn it off
-    #
-    #     :param enabled: ``True`` or ``False``
-    #     :type enabled: bool
-    #     :rtype: None
-    #     """
-    #     self.__check_type(enabled, bool)
-    #     self.__send_n_receive(Command.SET_LEARNING_MODE, enabled)
-    #
-    # def set_arm_max_velocity(self, percentage_speed):
-    #     """
-    #     Limit arm max velocity to a percentage of its maximum velocity
-    #
-    #     :param percentage_speed: Should be between 1 & 100
-    #     :type percentage_speed: int
-    #     :rtype: None
-    #     """
-    #     self.__check_range_belonging(percentage_speed, 1, 100)
-    #     self.__send_n_receive(Command.SET_ARM_MAX_VELOCITY, percentage_speed)
-    #
-    # def set_jog_control(self, enabled):
-    #     """
-    #     Set jog control mode if param is True, else turn it off
-    #
-    #     :param enabled: ``True`` or ``False``
-    #     :type enabled: bool
-    #     :rtype: None
-    #     """
-    #     self.__check_type(enabled, bool)
-    #     self.__send_n_receive(Command.SET_JOG_CONTROL, enabled)
-    #
-    # @staticmethod
-    # def wait(duration):
-    #     """
-    #     Wait for a certain time
-    #
-    #     :param duration: duration in seconds
-    #     :type duration: float
-    #     :rtype: None
-    #     """
-    #     time.sleep(duration)
-    #
+
+    # -- Learning mode
+
+    @property
+    def learning_mode(self):
+        return self.get_learning_mode()
+
+    def get_learning_mode(self):
+        """
+        Get learning mode state
+
+        :return: ``True`` if learning mode is on
+        :rtype: bool
+        """
+        return self.__topics.learning_mode_state_topic()
+
+    @learning_mode.setter
+    def learning_mode(self, value):
+        self.set_learning_mode(value)
+
+    def set_learning_mode(self, enabled,  callback=None, errback=None, timeout=None):
+        """
+        Set learning mode if param is ``True``, else turn it off
+
+        :param enabled: ``True`` or ``False``
+        :type enabled: bool
+        :rtype: None
+        """
+        self._check_type(enabled, bool)
+        req = self.__services.get_learning_mode_request(enabled)
+        self.__services.activate_learning_mode_service.call(req, callback, errback, timeout)
+
+    # -- Movement Parameters
+
+    def set_arm_max_velocity(self, percentage_speed, callback=None, errback=None, timeout=None):
+        """
+        Limit arm max velocity to a percentage of its maximum velocity
+
+        :param percentage_speed: Should be between 1 & 100
+        :type percentage_speed: int
+        :rtype: None
+        """
+        self._check_range_belonging(percentage_speed, 1, 100)
+        req = self.__services.get_max_velocity_scaling_factor_request(percentage_speed)
+        self.__services.set_max_velocity_scaling_factor_service.call(req, callback, errback, timeout)
+
+    def set_jog_control(self, enabled,  callback, errback, timeout):
+        """
+        Set jog control mode if param is True, else turn it off
+
+        :param enabled: ``True`` or ``False``
+        :type enabled: bool
+        :rtype: None
+        """
+        self._check_type(enabled, bool)
+        req = self.__services.get_enable_jog_request(enabled)
+        self.__services.enable_jog_controller_service.call(req, callback, errback, timeout)
+
     # # - Joints/Pose
     #
     # @property

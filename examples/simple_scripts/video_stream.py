@@ -3,7 +3,7 @@ This script allows to capture Ned's video streaming and to make some image proce
 """
 
 # Imports
-from pyniryo2.api import *
+from pyniryo2.api_old import *
 import pyniryo2.vision as vision
 
 simulation_mode = True

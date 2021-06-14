@@ -28,6 +28,28 @@ class PoseObject:
     def __repr__(self):
         return self.__str__()
 
+    def __add__(self, other):
+        x = self.x + other.x
+        y = self.y + other.y
+        z = self.z + other.z
+        roll = self.roll + other.roll
+        pitch = self.pitch + other.pitch
+        yaw = self.yaw + other.yaw
+        return PoseObject(x, y, z, roll, pitch, yaw)
+
+    def __sub__(self, other):
+        x = self.x - other.x
+        y = self.y - other.y
+        z = self.z - other.z
+        roll = self.roll - other.roll
+        pitch = self.pitch - other.pitch
+        yaw = self.yaw - other.yaw
+        return PoseObject(x, y, z, roll, pitch, yaw)
+
+    def __eq__(self, other):
+        return self.x == other.x and  self.y == other.y and self.z == other.z \
+               and self.roll == other.roll and self.pitch == other.pitch and  self.yaw == other.yaw
+
     def copy_with_offsets(self, x_offset=0., y_offset=0., z_offset=0., roll_offset=0., pitch_offset=0., yaw_offset=0.):
         """
         Create a new pose from copying from copying actual pose with offsets

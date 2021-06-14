@@ -5,7 +5,7 @@ from __future__ import print_function
 # /
 
 # Communication imports
-from .exceptions import *
+from .exceptions import RobotCommandException
 
 
 class RobotCommander(object):
@@ -87,14 +87,14 @@ class RobotCommander(object):
 
     # Error Handlers
     def _raise_exception_expected_choice(self, expected_choice, given):
-        raise TcpCommandException("Expected one of the following: {}.\nGiven: {}".format(expected_choice, given))
+        raise RobotCommandException("Expected one of the following: {}.\nGiven: {}".format(expected_choice, given))
 
     def _raise_exception_expected_type(self, expected_type, given):
-        raise TcpCommandException("Expected type: {}.\nGiven: {}".format(expected_type, given))
+        raise RobotCommandException("Expected type: {}.\nGiven: {}".format(expected_type, given))
 
     def _raise_exception_expected_range(self, range_min, range_max, given):
-        raise TcpCommandException(
+        raise RobotCommandException(
             "Expected the following condition: {} <= value <= {}\nGiven: {}".format(range_min, range_max, given))
 
     def _raise_exception(self, message):
-        raise TcpCommandException("Exception message : {}".format(message))
+        raise RobotCommandException("Exception message : {}".format(message))

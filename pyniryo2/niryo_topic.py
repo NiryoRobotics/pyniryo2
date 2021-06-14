@@ -1,3 +1,5 @@
+import copy
+
 import roslibpy
 from threading import Event
 from pyniryo2.exceptions import TopicException
@@ -8,7 +10,7 @@ class NiryoTopic(object):
     Represent a Ros Topic instance. It supports both the request of a single value and/or callbacks.
     """
 
-    def __init__(self, client, topic_name, topic_type):
+    def __init__(self, client, topic_name, topic_type, timeout=3):
         """
 
         :param client: Instance of the ROS connection.
@@ -24,7 +26,7 @@ class NiryoTopic(object):
 
         self.__user_callback = None
 
-        self.__timeout = 0.5
+        self.__timeout = timeout
 
         self.__sync_topic_value = None
         self.__sync_event = Event()
@@ -36,14 +38,13 @@ class NiryoTopic(object):
     def __call__(self):
         if self.__topic.is_subscribed:
             self.__sync_event.wait(timeout=self.__timeout)
-            return self.sync_topic_value
+            return self.__sync_topic_value
 
-        self.sync_topic_value = None
         self.__sync_event.clear()
         self.__topic.subscribe(self.__internal_callback)
         self.__sync_event.wait(timeout=self.__timeout)
         self.__topic.unsubscribe()
-        return self.sync_topic_value
+        return self.__sync_topic_value
 
     def __str__(self):
         return "Name: {}\nType: {}\nSubscribed: {}\nValue: {}".format(self.__topic_name, self.__topic_type,
@@ -101,9 +102,9 @@ class NiryoTopic(object):
         :return: None
         :rtype: None
         """
-        self.sync_topic_value = topic_value
+        self.__sync_topic_value = copy.deepcopy(topic_value)
         self.__sync_event.set()
 
         if self.__user_callback:
-            self.__user_callback(self.sync_topic_value)
+            self.__user_callback(self.__sync_topic_value)
 

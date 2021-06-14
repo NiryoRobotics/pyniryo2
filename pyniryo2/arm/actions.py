@@ -23,6 +23,16 @@ class ArmActions(object):
         cmd['cmd_type'] = ArmMoveCommandType.POSE.value
         return roslibpy.actionlib.Goal(self.arm_action, roslibpy.Message({'cmd': cmd}))
 
+    def get_move_linear_pose_goal(self, pose_list):
+        cmd = self.pose_list_to_dict(pose_list)
+        cmd['cmd_type'] = ArmMoveCommandType.LINEAR_POSE.value
+        return roslibpy.actionlib.Goal(self.arm_action, roslibpy.Message({'cmd': cmd}))
+
+    def get_shift_pose_goal(self, axis, shift_value):
+        shift_cmd = {'axis_number': axis, 'value': shift_value}
+        cmd = {'cmd_type': ArmMoveCommandType.SHIFT_POSE.value, 'shift': shift_cmd}
+        return roslibpy.actionlib.Goal(self.arm_action, roslibpy.Message({'cmd': cmd}))
+
     @staticmethod
     def pose_list_to_dict(pose_list):
         return {"position": {"x": pose_list[0], "y": pose_list[1], "z": pose_list[2]},

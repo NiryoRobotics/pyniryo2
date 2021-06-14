@@ -20,7 +20,7 @@ class InvalidAnswerException(Exception):
                                         + "A problem occurred with: '" + answer + "'")
 
 
-class TcpCommandException(Exception):
+class RobotCommandException(Exception):
     pass
 
 

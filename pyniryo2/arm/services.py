@@ -34,6 +34,19 @@ class ArmServices(object):
                                                '/niryo_robot/jog_interface/enable',
                                                'niryo_robot_msgs/SetBool')
 
+        self.jog_shift_service = roslibpy.Service(self.__client,
+                                                              '/niryo_robot/jog_interface/jog_shift_commander',
+                                                              'niryo_robot_commander/JogShift')
+
+        self.stop_arm_service = roslibpy.Service(self.__client,
+                                                              '/niryo_robot_arm_commander/stop_command',
+                                                              'niryo_robot_msgs/Trigger')
+
+
+    @staticmethod
+    def get_trigger_request():
+        return roslibpy.ServiceRequest()
+
     @staticmethod
     def get_learning_mode_request(enabled):
         """
@@ -53,9 +66,21 @@ class ArmServices(object):
     def get_enable_jog_request(enabled):
         return roslibpy.ServiceRequest({"value": enabled})
 
-"""
-/niryo_robot_arm_commander/is_active
-/niryo_robot_arm_commander/linear_trajectory/activate
-/niryo_robot_arm_commander/set_max_velocity_scaling_factor
-/niryo_robot_arm_commander/stop_command
-"""
+    @staticmethod
+    def get_jog_request(cmd_type, shift_values):
+        return roslibpy.ServiceRequest({"cmd": cmd_type, "shift_values": shift_values})
+
+    @staticmethod
+    def get_forward_kinematics_request(joint_list):
+        return roslibpy.ServiceRequest({"joints": joint_list})
+
+    @staticmethod
+    def get_inverse_kinematics_request(pose_list):
+        pose_msg = ArmServices.pose_list_to_dict(pose_list)
+        return roslibpy.ServiceRequest({"pose": pose_msg})
+
+    @staticmethod
+    def pose_list_to_dict(pose_list):
+        return {"position": {"x": pose_list[0], "y": pose_list[1], "z": pose_list[2]},
+                "rpy": {"roll": pose_list[3], "pitch": pose_list[4], "yaw": pose_list[5]}}
+

@@ -22,7 +22,19 @@ class RobotAxis(Enum):
     YAW = 5
 
 @unique
+class JogShift(Enum):
+    """
+    Enumeration of Jog Shift : it used for Jog commands
+    """
+    JOINTS_SHIFT = 1
+    POSE_SHIFT = 2
+
+
+@unique
 class ArmMoveCommandType(Enum):
+    """
+    Enumeration of Arm Move Command : it used for move commands
+    """
     JOINTS = 0  # uses joints
     POSE = 1  # uses position and rpy
     POSITION = 2  # uses position

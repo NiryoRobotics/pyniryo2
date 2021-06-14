@@ -7,12 +7,14 @@ class ArmActions(object):
     def __init__(self, client):
         self.__client = client
 
+        self.arm_action = None
         self.arm_action = roslibpy.actionlib.ActionClient(self.__client,
                                                       '/niryo_robot_arm_commander/robot_action/',
                                                       'niryo_robot_arm_commander/RobotMoveAction')
 
     def __del__(self):
-        self.arm_action.dispose()
+        if self.arm_action:
+            self.arm_action.dispose()
 
     def get_move_joints_goal(self, joints):
         cmd = {'cmd_type': ArmMoveCommandType.JOINTS.value, 'joints': joints}

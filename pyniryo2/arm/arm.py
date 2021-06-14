@@ -234,10 +234,10 @@ class Arm(RobotCommander):
     # --  Simple Move
 
     @joints.setter
-    def joints(self, *args):
-        self.move_joints(*args)
+    def joints(self, joints):
+        self.move_joints(joints)
 
-    def move_joints(self, *args):
+    def move_joints(self, joints, callback=None):
         """
         Move robot joints. Joints are expressed in radians.
 
@@ -250,16 +250,16 @@ class Arm(RobotCommander):
         :type args: Union[list[float], tuple[float]]
         :rtype: None
         """
-        joints = self.__args_joints_to_list(*args)
         goal = self._actions.get_move_joints_goal(joints)
-        goal.send()
-        _result = goal.wait(self.__action_timeout)
+        goal.send(result_callback= callback)
+        if callback is None:
+            _result = goal.wait(self.__action_timeout)
 
     @pose.setter
-    def pose(self, *args):
-        self.move_pose(*args)
+    def pose(self, pose):
+        self.move_pose(pose)
 
-    def move_pose(self, *args):
+    def move_pose(self, pose, callback=None):
         """
         Move robot end effector pose to a (x, y, z, roll, pitch, yaw) pose.
         x, y & z are expressed in meters / roll, pitch & yaw are expressed in radians
@@ -268,7 +268,6 @@ class Arm(RobotCommander):
 
             robot.pose = [0.2, 0.1, 0.3, 0.0, 0.5, 0.0]
             robot.move_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0])
-            robot.move_pose(0.2, 0.1, 0.3, 0.0, 0.5, 0.0)
             robot.move_pose(PoseObject(0.2, 0.1, 0.3, 0.0, 0.5, 0.0))
 
         :param args: either 6 args (1 for each coordinates) or a list of 6 coordinates or a ``PoseObject``
@@ -276,10 +275,11 @@ class Arm(RobotCommander):
 
         :rtype: None
         """
-        pose_list = self.__args_pose_to_list(*args)
+        pose_list = self.__args_pose_to_list(pose)
         goal = self._actions.get_move_pose_goal(pose_list)
-        goal.send(result_callback=None)
-        _result = goal.wait(self.__action_timeout)
+        goal.send(result_callback=callback)
+        if callback is None:
+            _result = goal.wait(self.__action_timeout)
 
     def move_to_home_pose(self):
         """
@@ -287,7 +287,7 @@ class Arm(RobotCommander):
 
         :rtype: None
         """
-        self.move_joints(0.0, 0.3, -1.3, 0.0, 0.0, 0.0)
+        self.move_joints([0.0, 0.3, -1.3, 0.0, 0.0, 0.0])
 
     def go_to_sleep(self):
         """
@@ -338,7 +338,7 @@ class Arm(RobotCommander):
 
     # - Shift Pose
 
-    def shift_pose(self, axis, shift_value):
+    def shift_pose(self, axis, shift_value, callback=None):
         """
         Shift robot end effector pose along one axis
 
@@ -351,9 +351,10 @@ class Arm(RobotCommander):
         self._check_enum_belonging(axis, RobotAxis)
         shift_value = self._transform_to_type(shift_value, float)
 
-        goal = self._actions.get_shift_pose_goal(axis, shift_value)
-        goal.send()
-        _result = goal.wait(self.__action_timeout)
+        goal = self._actions.get_shift_pose_goal(axis.value, shift_value)
+        goal.send(result_callback=callback)
+        if callback is None:
+            _result = goal.wait(self.__action_timeout)
 
     # - Jog
 

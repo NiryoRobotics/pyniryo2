@@ -281,13 +281,13 @@ class Arm(RobotCommander):
         if callback is None:
             _result = goal.wait(self.__action_timeout)
 
-    def move_to_home_pose(self):
+    def move_to_home_pose(self,  callback=None):
         """
         Move to a position where the forearm lays on shoulder
 
         :rtype: None
         """
-        self.move_joints([0.0, 0.3, -1.3, 0.0, 0.0, 0.0])
+        self.move_joints([0.0, 0.3, -1.3, 0.0, 0.0, 0.0], callback)
 
     def go_to_sleep(self):
         """
@@ -298,7 +298,7 @@ class Arm(RobotCommander):
         self.move_to_home_pose()
         self.set_learning_mode(True)
 
-    def move_linear_pose(self, *args):
+    def move_linear_pose(self, pose, callback=None):
         """
         Move robot end effector pose to a (x, y, z, roll, pitch, yaw) pose in a linear way
 
@@ -306,16 +306,22 @@ class Arm(RobotCommander):
         :type args: Union[tuple[float], list[float], PoseObject]
         :rtype: None
         """
-        pose_list = self.__args_pose_to_list(*args)
+        pose_list = self.__args_pose_to_list(pose)
         goal = self._actions.get_move_linear_pose_goal(pose_list)
-        goal.send(result_callback=None)
+        goal.send(result_callback=callback)
         _result = goal.wait(self.__action_timeout)
 
     def stop_move(self, callback=None, errback=None, timeout=None):
-        self._services.stop_arm_service.call(self._services.get_trigger_request(), callback, errback, timeout)
+        req = self._services.get_trigger_request()
+        resp = self._services.stop_arm_service.call(req, callback, errback, timeout)
+
+        if callback is not None:
+            print(resp)
+            return resp["status"] >= RobotErrors.SUCCESS.value
+        return True
 
     @property
-    def get_arm_max_velocity(self):
+    def arm_max_velocity(self):
         """
         Get current arm max velocity by a percentage of its maximum velocity
 
@@ -324,7 +330,16 @@ class Arm(RobotCommander):
         """
         return self._topics.max_velocity_scaling_factor_topic
 
-    def set_arm_max_velocity(self, percentage_speed, callback=None, errback=None, timeout=None):
+    def get_arm_max_velocity(self):
+        """
+        Get current arm max velocity by a percentage of its maximum velocity
+
+        :return:
+        :rtype:
+        """
+        return self._topics.max_velocity_scaling_factor_topic()["data"]
+
+    def set_arm_max_velocity(self, percentage_speed):
         """
         Limit arm max velocity to a percentage of its maximum velocity
 
@@ -334,7 +349,7 @@ class Arm(RobotCommander):
         """
         self._check_range_belonging(percentage_speed, 1, 100)
         req = self._services.get_max_velocity_scaling_factor_request(percentage_speed)
-        self._services.set_max_velocity_scaling_factor_service.call(req, callback, errback, timeout)
+        return self._services.set_max_velocity_scaling_factor_service.call(req)["status"] >= RobotErrors.SUCCESS.value
 
     # - Shift Pose
 
@@ -358,7 +373,7 @@ class Arm(RobotCommander):
 
     # - Jog
 
-    def set_jog_control(self, enabled,  callback, errback, timeout):
+    def set_jog_control(self, enabled):
         """
         Set jog control mode if param is True, else turn it off
 
@@ -368,9 +383,9 @@ class Arm(RobotCommander):
         """
         self._check_type(enabled, bool)
         req = self._services.get_enable_jog_request(enabled)
-        self._services.enable_jog_controller_service.call(req, callback, errback, timeout)
+        return self._services.enable_jog_controller_service.call(req)["status"] >= RobotErrors.SUCCESS.value
 
-    def jog_joints(self, *args):
+    def jog_joints(self, joints_offset, callback=None, errback=None, timeout=None):
         """
         Jog robot joints'.
         Jog corresponds to a shift without motion planning.
@@ -380,11 +395,11 @@ class Arm(RobotCommander):
         :type args: Union[list[float], tuple[float]]
         :rtype: None
         """
-        joints_offset = self.__args_joints_to_list(*args)
-        req = self._services.get_jog_request(JogShift.JOINTS_SHIFT.value, joints_offset)
-        self._services.jog_shift_service.call(req)#, callback, errback, timeout)
+        joints_off = self.__args_joints_to_list(joints_offset)
+        req = self._services.get_jog_request(JogShift.JOINTS_SHIFT.value, joints_off)
+        self._services.jog_shift_service.call(req, callback, errback, timeout)
 
-    def jog_pose(self, *args):
+    def jog_pose(self, pose_offset, callback=None, errback=None, timeout=None):
         """
         Jog robot end effector pose
         Jog corresponds to a shift without motion planning
@@ -395,9 +410,9 @@ class Arm(RobotCommander):
         :type args: Union[list[float], tuple[float]]
         :rtype: None
         """
-        pose_offset = self.__args_joints_to_list(*args)
-        req = self._services.get_jog_request(JogShift.POSE_SHIFT.value, pose_offset)
-        self._services.jog_shift_service.call(req)  # , callback, errback, timeout)
+        pose_offset_list = self.__args_joints_to_list(pose_offset)
+        req = self._services.get_jog_request(JogShift.POSE_SHIFT.value, pose_offset_list)
+        self._services.jog_shift_service.call(req, callback, errback, timeout)
 
     # -- Kinematics
 
@@ -414,7 +429,7 @@ class Arm(RobotCommander):
         request = self._services.get_forward_kinematics_request(joints)
         response = self._services.forward_kinematics_service.call(request)
 
-        pose_array = self.__args_pose_to_list(response["pose"])
+        pose_array = self._services.pose_dict_to_list(response["pose"])
         pose_object = PoseObject(*pose_array)
         return pose_object
 

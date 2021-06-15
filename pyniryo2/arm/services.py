@@ -84,3 +84,7 @@ class ArmServices(object):
         return {"position": {"x": pose_list[0], "y": pose_list[1], "z": pose_list[2]},
                 "rpy": {"roll": pose_list[3], "pitch": pose_list[4], "yaw": pose_list[5]}}
 
+    @staticmethod
+    def pose_dict_to_list(pose_dict):
+        return [pose_dict["position"]["x"], pose_dict["position"]["y"], pose_dict["position"]["z"],
+                pose_dict["rpy"]["roll"], pose_dict["rpy"]["pitch"], pose_dict["rpy"]["yaw"]]

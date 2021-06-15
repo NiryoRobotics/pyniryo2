@@ -68,6 +68,21 @@ class TestTopic(BaseTest):
         self.assertIsNone(topic.unsubscribe())
         self.assertFalse(topic.is_subscribed)
 
+    def test_type_conversion(self):
+
+        def conversion_get_joint_name(msg):
+            return str(msg["name"][0])
+
+        topic = NiryoTopic(self.client, self.topic_name, self.topic_type, conversion_function=conversion_get_joint_name)
+        self.assertIsInstance(topic(), str)
+
+        def conversion_get_joint_value(msg):
+            return float(msg["position"][0])
+
+        topic = NiryoTopic(self.client, self.topic_name, self.topic_type,
+                           conversion_function=conversion_get_joint_value)
+        self.assertIsInstance(topic(), float)
+
     def test_synchronous_access(self):
         self.assertTrue(self.client.is_connected)
 

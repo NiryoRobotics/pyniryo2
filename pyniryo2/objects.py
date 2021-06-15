@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 
+import numpy as np
 
 class PoseObject:
     """
@@ -72,60 +73,41 @@ class PoseObject:
         list_pos = [self.x, self.y, self.z, self.roll, self.pitch, self.yaw]
         return list(map(float, list_pos))
 
+    @property
+    def quaternion(self):
+        return self.euler_to_quaternion(self.roll, self.pitch, self.yaw)
 
-class HardwareStatusObject:
-    """
-    Object used to store every hardware information
-    """
+    @staticmethod
+    def euler_to_quaternion(roll, pitch, yaw):
+        qx = np.sin(roll / 2) * np.cos(pitch / 2) * np.cos(yaw / 2) - np.cos(roll / 2) * np.sin(pitch / 2) * np.sin(
+            yaw / 2)
+        qy = np.cos(roll / 2) * np.sin(pitch / 2) * np.cos(yaw / 2) + np.sin(roll / 2) * np.cos(pitch / 2) * np.sin(
+            yaw / 2)
+        qz = np.cos(roll / 2) * np.cos(pitch / 2) * np.sin(yaw / 2) - np.sin(roll / 2) * np.sin(pitch / 2) * np.cos(
+            yaw / 2)
+        qw = np.cos(roll / 2) * np.cos(pitch / 2) * np.cos(yaw / 2) + np.sin(roll / 2) * np.sin(pitch / 2) * np.sin(
+            yaw / 2)
 
-    def __init__(self, rpi_temperature, hardware_version, connection_up,
-                 error_message, calibration_needed, calibration_in_progress,
-                 motor_names, motor_types,
-                 motors_temperature, motors_voltage, hardware_errors):
-        # Number representing the rpi temperature
-        self.rpi_temperature = rpi_temperature
-        # Number representing the hardware version
-        self.hardware_version = hardware_version
-        # Boolean indicating if the connection with the robot is up
-        self.connection_up = connection_up
-        # Error message status on error
-        self.error_message = error_message
-        # Boolean indicating if a calibration is needed
-        self.calibration_needed = calibration_needed
-        # Boolean indicating if calibration is in progress
-        self.calibration_in_progress = calibration_in_progress
+        return [qx, qy, qz, qw]
 
-        # Following list describe each motor
-        # Row 0 for first motor, row 1 for second motor, row 2 for third motor, row 3 for fourth motor
-        # List of motor names
-        self.motor_names = motor_names
-        # List of motor types
-        self.motor_types = motor_types
-        # List of motors_temperature
-        self.motors_temperature = motors_temperature
-        # List of motors_voltage
-        self.motors_voltage = motors_voltage
-        # List of hardware errors
-        self.hardware_errors = hardware_errors
+    @staticmethod
+    def quaternion_to_euler_angle(x, y, z, w):
+        ysqr = y * y
 
-    def __str__(self):
-        list_string_ret = list()
-        list_string_ret.append("Temp (°C) : {}".format(self.rpi_temperature))
-        list_string_ret.append("Hardware version : {}".format(self.hardware_version))
-        list_string_ret.append("Connection Up : {}".format(self.connection_up))
-        list_string_ret.append("Error Message : {}".format(self.error_message))
-        list_string_ret.append("Calibration Needed : {}".format(self.calibration_needed))
-        list_string_ret.append("Calibration in progress : {}".format(self.calibration_in_progress))
-        list_string_ret.append("MOTORS INFOS : Motor1, Motor2, Motor3, Motor4, Motor5, Motor6,")
-        list_string_ret.append("Names : {}".format(self.motor_names))
-        list_string_ret.append("Types : {}".format(self.motor_types))
-        list_string_ret.append("Temperatures : {}".format(self.motors_temperature))
-        list_string_ret.append("Voltages : {}".format(self.motors_voltage))
-        list_string_ret.append("Hardware errors : {}".format(self.hardware_errors))
-        return "\n".join(list_string_ret)
+        t0 = +2.0 * (w * x + y * z)
+        t1 = +1.0 - 2.0 * (x * x + ysqr)
+        x_value = np.arctan2(t0, t1)
 
-    def __repr__(self):
-        return self.__str__()
+        t2 = +2.0 * (w * y - z * x)
+
+        t2 = np.clip(t2, a_min=-1.0, a_max=1.0)
+        y_value = np.arcsin(t2)
+
+        t3 = +2.0 * (w * z + x * y)
+        t4 = +1.0 - 2.0 * (ysqr + z * z)
+        z_value = np.arctan2(t3, t4)
+
+        return x_value, y_value, z_value
 
 
 class DigitalPinObject:

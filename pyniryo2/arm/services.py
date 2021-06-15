@@ -49,13 +49,6 @@ class ArmServices(object):
 
     @staticmethod
     def get_learning_mode_request(enabled):
-        """
-        Set learning mode if param is ``True``, else turn it off
-
-        :param enabled: ``True`` or ``False``
-        :type enabled: bool
-        :rtype: None
-        """
         return roslibpy.ServiceRequest({"value": enabled})
 
     @staticmethod

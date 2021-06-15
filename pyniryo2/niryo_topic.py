@@ -1,5 +1,3 @@
-import copy
-
 import roslibpy
 from threading import Event
 from pyniryo2.exceptions import TopicException
@@ -10,7 +8,7 @@ class NiryoTopic(object):
     Represent a Ros Topic instance. It supports both the request of a single value and/or callbacks.
     """
 
-    def __init__(self, client, topic_name, topic_type, timeout=3):
+    def __init__(self, client, topic_name, topic_type, conversion_function=None, timeout=3):
         """
 
         :param client: Instance of the ROS connection.
@@ -31,6 +29,8 @@ class NiryoTopic(object):
         self.__sync_topic_value = None
         self.__sync_event = Event()
         self.__sync_event.clear()
+
+        self.__conversion_function = conversion_function
 
     def __del__(self):
         self.unsubscribe()
@@ -102,7 +102,11 @@ class NiryoTopic(object):
         :return: None
         :rtype: None
         """
-        self.__sync_topic_value = copy.deepcopy(topic_value)
+        if self.__conversion_function is not None:
+            self.__sync_topic_value = self.__conversion_function(topic_value)
+        else:
+            self.__sync_topic_value = topic_value
+
         self.__sync_event.set()
 
         if self.__user_callback:

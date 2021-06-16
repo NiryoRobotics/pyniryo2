@@ -331,7 +331,7 @@ class Arm(RobotCommander):
         :return: end effector link pose
         :rtype: PoseObject
         """
-        return self._topics.robot_state_topic
+        return self._topics.robot_state_topic()
 
     @property
     def get_pose(self):
@@ -343,13 +343,13 @@ class Arm(RobotCommander):
 
         See below some usage ::
 
-            pose = arm.robot_pose()
-            pose = arm.robot_pose.value
-            pose_list = arm.robot_pose().to_list()
+            pose = arm.get_pose()
+            pose = arm.get_pose.value
+            pose_list = arm.get_pose().to_list()
             x, y, z, roll, pitch, yaw = arm.get_pose().to_list()
 
-            arm.robot_pose.subscribe(callback)
-            arm.robot_pose.unsubscribe()
+            arm.get_pose.subscribe(callback)
+            arm.get_pose.unsubscribe()
 
         :return: end effector link pose topic
         :rtype: NiryoTopic

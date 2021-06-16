@@ -33,6 +33,8 @@ class HardwareStatusObject:
         self.motors_voltage = None
         # List of hardware errors
         self.hardware_errors = None
+        # List of hardware error messages
+        self.hardware_error_messages = None
 
     def init_from_message(self, msg):
         # Number representing the rpi temperature
@@ -53,18 +55,20 @@ class HardwareStatusObject:
         # List of motor names
         self.motor_names = msg["motor_names"]
         # List of motor types
-        self.motor_types = msg[" motor_types"]
+        self.motor_types = msg["motor_types"]
         # List of motors_temperature
-        self.motors_temperature = msg["motors_temperature"]
+        self.motors_temperature = msg["temperatures"]
         # List of motors_voltage
-        self.motors_voltage = msg["motors_voltage"]
+        self.motors_voltage = msg["voltages"]
         # List of hardware errors
         self.hardware_errors = msg["hardware_errors"]
+        # List of hardware error messages
+        self.hardware_error_messages = msg["hardware_errors_message"]
 
     def init_from_values(self, rpi_temperature, hardware_version, connection_up,
                          error_message, calibration_needed, calibration_in_progress,
                          motor_names, motor_types,
-                         motors_temperature, motors_voltage, hardware_errors):
+                         motors_temperature, motors_voltage, hardware_errors, hardware_error_messages):
         # Number representing the rpi temperature
         self.rpi_temperature = rpi_temperature
         # Number representing the hardware version
@@ -90,6 +94,8 @@ class HardwareStatusObject:
         self.motors_voltage = motors_voltage
         # List of hardware errors
         self.hardware_errors = hardware_errors
+        # List of hardware error messages
+        self.hardware_error_messages = hardware_error_messages
 
     def __str__(self):
         list_string_ret = list()
@@ -105,6 +111,7 @@ class HardwareStatusObject:
         list_string_ret.append("Temperatures : {}".format(self.motors_temperature))
         list_string_ret.append("Voltages : {}".format(self.motors_voltage))
         list_string_ret.append("Hardware errors : {}".format(self.hardware_errors))
+        list_string_ret.append("Hardware error messages : {}".format(self.hardware_error_messages))
         return "\n".join(list_string_ret)
 
     def __repr__(self):

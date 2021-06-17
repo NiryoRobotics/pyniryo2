@@ -6,7 +6,7 @@ from __future__ import print_function
 
 # Communication imports
 from .exceptions import RobotCommandException
-
+from .objects import PoseObject
 
 class RobotCommander(object):
     def __init__(self, client):
@@ -84,6 +84,41 @@ class RobotCommander(object):
             return value
         except ValueError:
             self._raise_exception_expected_type(type_.__name__, value)
+
+    # -- Useful functions
+    def _args_pose_to_list(self, *args):
+        if len(args) == 1:
+            arg = args[0]
+            if isinstance(arg, PoseObject):
+                return arg.to_list()
+            else:
+                pose_list = arg
+        else:
+            pose_list = args
+
+        pose_list_float = self._map_list(pose_list, float)
+        if len(pose_list_float) != 6:
+            self._raise_exception("A pose should contain 6 elements (x, y, z, roll, pitch, yaw)")
+        return pose_list_float
+
+    def _args_joints_to_list(self, *args):
+        """
+        Convert args into a list
+        Either if args = (1.1,5.6,-6.7) or args = ([1.1,5.6,-6.7],) , the
+        function will return (1.1,5.6,-6.7)
+
+        :param args: Union[list, tuple]
+        :return: list of float
+        """
+        if len(args) == 1:
+            args = args[0]
+
+        joints = self._map_list(args, float)
+        if len(joints) != 6:
+            self._raise_exception("The robot has 6 joints")
+
+        return joints
+
 
     # Error Handlers
     def _raise_exception_expected_choice(self, expected_choice, given):

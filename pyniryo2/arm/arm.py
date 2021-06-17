@@ -192,7 +192,7 @@ class Arm(RobotCommander):
 
             # Subscribe a callback
             def hs_callback(msg):
-                print msg["voltages"]
+                print msg.voltage
 
             arm.hardware_status.subscribe(hs_callback)
             arm.hardware_status.unsubscribe()

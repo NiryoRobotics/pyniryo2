@@ -1,10 +1,6 @@
 # - Imports
 from __future__ import print_function
 
-# Python libraries
-import roslibpy
-import time
-
 # Communication imports
 from pyniryo2.robot_commander import RobotCommander
 from pyniryo2.enums import RobotErrors
@@ -15,6 +11,7 @@ from pyniryo2.vision.services import VisionServices
 from pyniryo2.vision.topics import VisionTopics
 
 from pyniryo2.arm.arm import Arm
+from pyniryo2.tool.tool import Tool
 
 
 class Vision(RobotCommander):
@@ -31,11 +28,21 @@ class Vision(RobotCommander):
             self._check_instance(self.__arm, Arm)
             self.__arm = arm
 
-        if arm is None:
+        if tool is None:
             self.__tool = Tool(client)
         else:
-            self._check_instance(self.__arm, Arm)
+            self._check_instance(self.__tool, Tool)
             self.__tool = tool
+
+    @property
+    def get_camera_intrinsics(self):
+        """
+        Get calibration object: camera intrinsics, distortions coefficients
+        The topic return a namedtuple(intrinsics: list[list[float]], distortion: list[list[float]])
+
+        :rtype: NiryoTopic
+        """
+        return self._topics.camera_info_topic
 
     @property
     def get_img_compressed(self):
@@ -44,7 +51,7 @@ class Vision(RobotCommander):
         Use ``uncompress_image`` from the vision package to uncompress it
 
         :return: string containing a JPEG compressed image
-        :rtype: str
+        :rtype: NiryoTopic
         """
         return self._topics.compressed_video_stream_topic
 
@@ -225,16 +232,6 @@ class Vision(RobotCommander):
 
         return obj_found, rel_pose_array, ObjectShape[shape], ObjectColor[color]
 
-    @property
-    def get_camera_intrinsics(self):
-        """
-        Get calibration object: camera intrinsics, distortions coefficients
-
-        :return: camera intrinsics, distortions coefficients
-        :rtype: (list[list[float]], list[list[float]])
-        """
-        return self._topics.camera_info_topic
-
     # - Workspace
     def save_workspace_from_robot_poses(self, workspace_name, pose_origin, pose_2, pose_3, pose_4):
         """
@@ -259,8 +256,7 @@ class Vision(RobotCommander):
         """
         self._check_type(workspace_name, str)
         point_list = [self._args_pose_to_list(pose) for pose in (pose_origin, pose_2, pose_3, pose_4)]
-        workspace = {"name": workspace_name, "poses": point_list}
-        req = self._services.manage_workspace_service_request(ManageWorkspace.SAVE, workspace)
+        req = self._services.add_workspace_from_points_request(workspace_name, point_list)
         _resp = self._services.manage_workspace_service.call(req)
 
     def save_workspace_from_points(self, workspace_name, point_origin, point_2, point_3, point_4):
@@ -282,8 +278,7 @@ class Vision(RobotCommander):
         """
         self._check_type(workspace_name, str)
         point_list = [self._map_list(point, float) for point in (point_origin, point_2, point_3, point_4)]
-        workspace = {"name": workspace_name, "points": point_list}
-        req = self._services.manage_workspace_service_request(ManageWorkspace.SAVE_WITH_POINTS, workspace)
+        req = self._services.add_workspace_from_points_request(workspace_name, point_list)
         _resp = self._services.manage_workspace_service.call(req)
 
     def delete_workspace(self, workspace_name):
@@ -323,7 +318,7 @@ class Vision(RobotCommander):
         """
         self._check_type(workspace_name, str)
         req = self._services.get_workspace_ratio_service_request(workspace_name)
-        return self._services.get_workspace_list_service.call(req)["ratio"]
+        return self._services.get_workspace_ratio_service.call(req)["ratio"]
 
     def get_workspace_list(self):
         """
@@ -332,4 +327,4 @@ class Vision(RobotCommander):
         :rtype: list[str]
         """
         req = self._services.get_workspace_list_service_request()
-        return self._services.get_workspace_list_service.call(req)["name_list"]
+        return self._map_list(self._services.get_workspace_list_service.call(req)["name_list"], str)

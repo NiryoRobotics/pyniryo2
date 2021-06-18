@@ -3,6 +3,7 @@ import numpy as np
 
 from pyniryo2.niryo_topic import NiryoTopic
 
+CameraInfo = namedtuple("CameraInfo", ['intrinsics', 'distortion'])
 
 class VisionTopics(object):
 
@@ -21,12 +22,10 @@ class VisionTopics(object):
 
 
 def compressed_video_stream_topic_conversion(msg):
-    return msg['data']
+    return str(msg['data'])
 
 
 def camera_info_topic_conversion(msg):
-    CameraInfo = namedtuple("CameraInfo", ['intrinsics', 'distortion'])
-
     mtx = np.reshape(msg['K'], (3, 3))
     dist = np.expand_dims(msg['D'], axis=0)
 

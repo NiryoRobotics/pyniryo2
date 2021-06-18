@@ -18,7 +18,8 @@ port = 9090
 
 test_order = ["test_camera_info",
               "test_camera_img",
-                "test_workspace",
+              "test_workspace",
+              "test_target_from_rel",
               ]
 
 
@@ -106,6 +107,34 @@ class TestVision(BaseTest):
 
         self.assertIsNone(self.vision.delete_workspace(ws_name))
         self.assertFalse(ws_name in self.vision.get_workspace_list())
+
+    def test_target_from_rel(self):
+        ws_name = "unit_test_ws"
+        self.assertIsNone(self.vision.delete_workspace(ws_name))
+
+        unit_test_ws_points = [ws_name,
+                               [0.3, -0.1, 0.0],
+                               [0.3, 0.1, 0.0],
+                               [0.1, 0.1, 0.0],
+                               [0.1, -0.1, 0.0]]
+
+        self.assertIsNone(self.vision.save_workspace_from_points(*unit_test_ws_points))
+        self.assertTrue(ws_name in self.vision.get_workspace_list())
+        pose = self.vision.get_target_pose_from_rel(ws_name, 0.0, 0.5, 0.5, 0.0)
+        self.assertIsInstance(pose, PoseObject)
+        self.assertAlmostEqualVector(pose.to_list()[:3], [0.2, 0.0, 0.0])
+
+        pose = self.vision.get_target_pose_from_rel(ws_name, 0.0, 0.0, 0.0, 0.0)
+        self.assertIsInstance(pose, PoseObject)
+        self.assertAlmostEqualVector(pose.to_list()[:3], unit_test_ws_points[1])
+
+        pose = self.vision.get_target_pose_from_rel(ws_name, .10, 1.0, 1., 0.0)
+        self.assertIsInstance(pose, PoseObject)
+        expected_pose = unit_test_ws_points[-2][:]
+        expected_pose[2] -= 0.1
+        self.assertAlmostEqualVector(pose.to_list()[:3], expected_pose)
+
+        self.assertIsNone(self.vision.delete_workspace(ws_name))
 
 
 def suite():

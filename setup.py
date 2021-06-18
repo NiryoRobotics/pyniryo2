@@ -4,7 +4,7 @@ from io import open
 import sys
 from setuptools import find_packages, setup
 
-version = '1.0.3'
+version = '1.0.0'
 
 with open('README.rst', 'r', encoding='utf-8') as f:
     readme = f.read()
@@ -18,12 +18,12 @@ kwargs = {
     'description': 'Package to control Niryo Robot "Ned" through TCP',
     'long_description': readme,
     'author': 'Niryo',
-    'author_email': 'r.lux@niryo.com',
-    'maintainer': 'Rémi Lux',
-    'maintainer_email': 'r.lux@niryo.com',
+    'author_email': 'v.pitre@niryo.com',
+    'maintainer': 'Valentin Pitre',
+    'maintainer_email': 'v.pitre@niryo.com',
     'install_requires': REQUIRES,
     'include_package_data': True,
-    'url': 'https://github.com/NiryoRobotics/pyniryo',
+    'url': 'https://github.com/NiryoRobotics/pyniryo2',
     'license': 'GNU 3.0',
     'classifiers': [
         'Development Status :: 5 - Production/Stable',

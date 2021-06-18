@@ -2,6 +2,7 @@
 from __future__ import print_function
 
 # Communication imports
+from pyniryo2.exceptions import RobotCommandException
 from pyniryo2.robot_commander import RobotCommander
 from pyniryo2.enums import RobotErrors
 from pyniryo2.io.enums import PinID
@@ -10,7 +11,6 @@ from pyniryo2.tool.enums import ToolID, ToolCommand
 from pyniryo2.tool.services import ToolServices
 from pyniryo2.tool.actions import ToolActions
 from pyniryo2.tool.topics import ToolTopics
-
 
 class Tool(RobotCommander):
     def __init__(self, client):
@@ -79,7 +79,8 @@ class Tool(RobotCommander):
         """
         req = self._services.get_trigger_request()
         result = self._services.update_tool_service.call(req, callback, errback, timeout)
-        return True if callback is None or result["status"] >= RobotErrors.SUCCESS.value else False
+        return callback is not None or result["status"] >= RobotErrors.SUCCESS.value
+
 
     def grasp_with_tool(self, callback=None):
         """
@@ -175,16 +176,15 @@ class Tool(RobotCommander):
         :rtype: Bool
         """
         speed = self._transform_to_type(speed, int)
+        self._check_range_belonging(speed, 1, 1000)
+
         tool_id = self.get_current_tool_id()
+        if tool_id not in [ToolID.GRIPPER_1, ToolID.GRIPPER_2, ToolID.GRIPPER_3]:
+            raise RobotCommandException("Call update_tool before using the open_gripper function")
 
         goal = self._actions.get_gripper_action_goal(tool_id, ToolCommand.OPEN_GRIPPER, speed)
         goal.send(result_callback=callback)
-
-        if callback is None:
-            return True
-
-        result = goal.wait(self.__action_timeout)
-        return True if result["status"] >= RobotErrors.SUCCESS.value else False
+        return callback is not None or goal.wait(self.__action_timeout)["status"] >= RobotErrors.SUCCESS.value
 
     def close_gripper(self, speed=500, callback=None):
         """
@@ -211,18 +211,17 @@ class Tool(RobotCommander):
         :rtype: Bool
         """
         speed = self._transform_to_type(speed, int)
+        self._check_range_belonging(speed, 1, 1000)
+
         tool_id = self.get_current_tool_id()
+        if tool_id not in [ToolID.GRIPPER_1, ToolID.GRIPPER_2, ToolID.GRIPPER_3]:
+            raise RobotCommandException("Call update_tool before using the close_gripper function")
 
         goal = self._actions.get_gripper_action_goal(tool_id, ToolCommand.CLOSE_GRIPPER, speed)
         goal.send(result_callback=callback)
+        return callback is not None or goal.wait(self.__action_timeout)["status"] >= RobotErrors.SUCCESS.value
 
-        if callback is None:
-            return True
-
-        result = goal.wait(self.__action_timeout)
-        return True if result["status"] >= RobotErrors.SUCCESS.value else False
-
-    # - Vacuum
+        # - Vacuum
     def pull_air_vacuum_pump(self, callback=None):
         """
         Pull air of vacuum pump
@@ -245,14 +244,13 @@ class Tool(RobotCommander):
         Returns always True with non blocking use.
         :rtype: Bool
         """
+        tool_id = self.get_current_tool_id()
+        if tool_id not in [ToolID.VACUUM_PUMP_1]:
+            raise RobotCommandException("Call update_tool before using the pull_air_vacuum_pump function")
+
         goal = self._actions.get_vacuum_pump_action_goal(ToolCommand.PULL_AIR_VACUUM_PUMP)
         goal.send(result_callback=callback)
-        
-        if callback is None:
-            return True
-
-        result = goal.wait(self.__action_timeout)
-        return True if result["status"] >= RobotErrors.SUCCESS.value else False
+        return callback is not None or goal.wait(self.__action_timeout)["status"] >= RobotErrors.SUCCESS.value
 
     def push_air_vacuum_pump(self, callback=None):
         """
@@ -276,16 +274,15 @@ class Tool(RobotCommander):
         Returns always True with non blocking use.
         :rtype: Bool
         """
+        tool_id = self.get_current_tool_id()
+        if tool_id not in [ToolID.VACUUM_PUMP_1]:
+            raise RobotCommandException("Call update_tool before using the push_air_vacuum_pump function")
+
         goal = self._actions.get_vacuum_pump_action_goal(ToolCommand.PUSH_AIR_VACUUM_PUMP)
         goal.send(result_callback=callback)
-        
-        if callback is None:
-            return True
+        return callback is not None or goal.wait(self.__action_timeout)["status"] >= RobotErrors.SUCCESS.value
 
-        result = goal.wait(self.__action_timeout)
-        return True if result["status"] >= RobotErrors.SUCCESS.value else False
-
-    # - Electromagnet
+        # - Electromagnet
     def setup_electromagnet(self, pin_id):
         """
         Setup electromagnet on pin
@@ -302,15 +299,14 @@ class Tool(RobotCommander):
         self._check_enum_belonging(pin_id, PinID)
 
         req = self._services.equip_electromagnet_service_request()
-        self._services.equip_electromagnet_service(req)
+        self._services.equip_electromagnet_service.call(req)
 
         goal = self._actions.get_electromagnet_action_goal(ToolCommand.SETUP_DIGITAL_IO, pin_id)
         goal.send()
         result = goal.wait(self.__action_timeout)
+        return result["status"] >= RobotErrors.SUCCESS.value
 
-        return True if result["status"] >= RobotErrors.SUCCESS.value else False
-
-    def activate_electromagnet(self, pin_id=-1, callback=None):
+    def activate_electromagnet(self, pin_id=None, callback=None):
         """
         Activate electromagnet associated to electromagnet_id on pin_id
         If a callback function is not passed in parameter, the function will be blocking.
@@ -334,21 +330,20 @@ class Tool(RobotCommander):
         Returns always True with non blocking use.
         :rtype: Bool
         """
-        self._check_enum_belonging(pin_id, PinID)
+        if pin_id is not None:
+            self._check_enum_belonging(pin_id, PinID)
 
-        req = self._services.equip_electromagnet_service_request()
-        self._services.equip_electromagnet_service(req)
+        if self.get_current_tool_id() != ToolID.ELECTROMAGNET_1:
+            if pin_id:
+                self.setup_electromagnet(pin_id)
+            else:
+                raise RobotCommandException("Call setup_electromagnet before using activate_electromagnet or specify a pin ID.")
 
         goal = self._actions.get_electromagnet_action_goal(ToolCommand.ACTIVATE_DIGITAL_IO, pin_id)
         goal.send(result_callback=callback)
+        return callback is not None  or goal.wait(self.__action_timeout)["status"] >= RobotErrors.SUCCESS.value
 
-        if callback is None:
-            return True
-
-        result = goal.wait(self.__action_timeout)
-        return True if result["status"] >= RobotErrors.SUCCESS.value else False
-
-    def deactivate_electromagnet(self, pin_id=-1, callback=None):
+    def deactivate_electromagnet(self, pin_id=None, callback=None):
         """
         Deactivate electromagnet associated to electromagnet_id on pin_id
         If a callback function is not passed in parameter, the function will be blocking.
@@ -372,16 +367,16 @@ class Tool(RobotCommander):
         Returns always True with non blocking use.
         :rtype: Bool
         """
-        self._check_enum_belonging(pin_id, PinID)
+        if pin_id is not None:
+            self._check_enum_belonging(pin_id, PinID)
 
-        req = self._services.equip_electromagnet_service_request()
-        self._services.equip_electromagnet_service(req)
+        if self.get_current_tool_id() != ToolID.ELECTROMAGNET_1:
+            if pin_id:
+                self.setup_electromagnet(pin_id)
+            else:
+                raise RobotCommandException("Call setup_electromagnet before using deactivate_electromagnet or specify a pin ID.")
 
         goal = self._actions.get_electromagnet_action_goal(ToolCommand.DEACTIVATE_DIGITAL_IO, pin_id)
         goal.send(result_callback=callback)
 
-        if callback is None:
-            return True
-
-        result = goal.wait(self.__action_timeout)
-        return True if result["status"] >= RobotErrors.SUCCESS.value else False
+        return callback is not None or goal.wait(self.__action_timeout)["status"] >= RobotErrors.SUCCESS.value

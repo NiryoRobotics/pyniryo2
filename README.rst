@@ -1,4 +1,4 @@
-pyniryo
+pyniryo2
 =========
 
 .. contents:: **Table of Contents**
@@ -18,7 +18,7 @@ Python 2.7/3.5+
 Documentation
 -----------------
 
-PyNiryo allows to write simple script in Python in order to control Ned
+PyNiryo2 allows to write simple script in Python in order to control Ned
 
 .. code-block:: python
 

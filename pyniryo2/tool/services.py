@@ -21,4 +21,4 @@ class ToolServices(object):
 
     @staticmethod
     def equip_electromagnet_service_request(id_=ToolID.ELECTROMAGNET_1):
-        return roslibpy.ServiceRequest({"value": id_})
+        return roslibpy.ServiceRequest({"value": id_.value})

@@ -14,4 +14,4 @@ class ToolTopics(object):
 
 
 def tool_id_topic_conversion(msg):
-    return ToolID[msg['data']]
+    return ToolID(msg['data'])

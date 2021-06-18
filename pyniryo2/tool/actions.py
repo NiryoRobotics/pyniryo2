@@ -43,15 +43,16 @@ class ToolActions(object):
 
         return roslibpy.actionlib.Goal(self.tool_action, roslibpy.Message({'cmd': cmd}))
 
-    def get_electromagnet_action_goal(self, tool_cmd, gpio):
+    def get_electromagnet_action_goal(self, tool_cmd, gpio=None):
         self._check_instance(tool_cmd, ToolCommand)
+        pin = -1 if gpio is None else gpio.value
 
         if tool_cmd == ToolCommand.ACTIVATE_DIGITAL_IO:
-            cmd = {'cmd_type': tool_cmd.value, 'tool_id': ToolID.ELECTROMAGNET_1.value, 'activate': True, 'gpio': gpio}
+            cmd = {'cmd_type': tool_cmd.value, 'tool_id': ToolID.ELECTROMAGNET_1.value, 'activate': True, 'gpio': pin}
         elif tool_cmd == ToolCommand.DEACTIVATE_DIGITAL_IO:
-            cmd = {'cmd_type': tool_cmd.value, 'tool_id': ToolID.ELECTROMAGNET_1.value, 'activate': False, 'gpio': gpio}
+            cmd = {'cmd_type': tool_cmd.value, 'tool_id': ToolID.ELECTROMAGNET_1.value, 'activate': False, 'gpio': pin}
         elif tool_cmd == ToolCommand.SETUP_DIGITAL_IO:
-            cmd = {'cmd_type': tool_cmd.value, 'tool_id': ToolID.ELECTROMAGNET_1.value, 'gpio': gpio}
+            cmd = {'cmd_type': tool_cmd.value, 'tool_id': ToolID.ELECTROMAGNET_1.value, 'gpio': pin}
         else:
             raise TypeError
 

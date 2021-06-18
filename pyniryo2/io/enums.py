@@ -24,9 +24,13 @@ class PinID(Enum):
     """
     Enumeration of Robot Pins
     """
-    GPIO_1A = 0
-    GPIO_1B = 1
-    GPIO_1C = 2
-    GPIO_2A = 3
-    GPIO_2B = 4
-    GPIO_2C = 5
+    GPIO_1A = 2
+    GPIO_1B = 3
+    GPIO_1C = 16
+    GPIO_2A = 26
+    GPIO_2B = 19
+    GPIO_2C = 6
+
+    SW_1 = 12
+    SW_2 = 13
+

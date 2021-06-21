@@ -616,7 +616,8 @@ class Arm(RobotCommander):
 
         :param enabled: ``True`` or ``False``
         :type enabled: bool
-        :rtype: None
+        :return: True if command where successfully completed, False otherwise.
+        :rtype: Bool
         """
         self._check_type(enabled, bool)
         req = self._services.get_enable_jog_request(enabled)

@@ -5,13 +5,14 @@ import roslibpy
 import numpy as np
 from threading import Event
 
-from pyniryo2.exceptions import RobotCommandException
-from pyniryo2.niryo_topic import NiryoTopic
-from pyniryo2.enums import RobotErrors
-from pyniryo2.io.enums import PinID
-from pyniryo2.vision.vision import Vision
-from pyniryo2.vision.topics import CameraInfo
-from pyniryo2.objects import PoseObject
+from exceptions import RobotCommandException
+from niryo_topic import NiryoTopic
+from enums import RobotErrors
+from io.enums import PinID
+from vision.vision import Vision
+from vision.topics import CameraInfo
+from vision.enums import ObjectColor
+from objects import PoseObject
 
 robot_ip_address = "192.168.1.52"
 port = 9090
@@ -135,6 +136,54 @@ class TestVision(BaseTest):
         self.assertAlmostEqualVector(pose.to_list()[:3], expected_pose)
 
         self.assertIsNone(self.vision.delete_workspace(ws_name))
+
+
+#
+#
+# @unittest.skipUnless(simulation, "Vision test is only coded for Gazebo")
+# class TestVision(BaseTestTcpApi):
+#     workspace_name = "gazebo_1"
+#     workspace_h = 0.001
+#     point_1 = [0.3369, 0.087, workspace_h]
+#     point_2 = [point_1[0], -point_1[1], workspace_h]
+#     point_3 = [0.163, -point_1[1], workspace_h]
+#     point_4 = [point_3[0], point_1[1], workspace_h]
+#
+#     def setUp(self):
+#         super(TestVision, self).setUp()
+#         self.assertIsNone(self.niryo_robot.move_joints(0.0, 0.0, 0.0, 0.0, -1.57, 0.0))
+#         self.assertIsNone(self.niryo_robot.update_tool())
+#         self.assertIsNone(self.niryo_robot.save_workspace_from_points(
+#             self.workspace_name, self.point_1, self.point_2, self.point_3, self.point_4))
+#
+#     def tearDown(self):
+#         self.assertIsNone(self.niryo_robot.delete_workspace(self.workspace_name))
+#         super(TestVision, self).tearDown()
+#
+#     def test_vision_detect(self):
+#         # Getting img compressed & calibration object
+#         self.assertIsNotNone(self.niryo_robot.get_img_compressed())
+#         self.assertIsNotNone(self.niryo_robot.get_camera_intrinsics())
+#
+#         # Getting target pose's from multiple ways
+#         self.assertIsNotNone(self.niryo_robot.get_target_pose_from_rel(
+#             self.workspace_name, 0.1, 0.5, 0.5, 0.0))
+#
+#         self.assertIsNotNone(self.niryo_robot.get_target_pose_from_cam(
+#             self.workspace_name, 0.1, ObjectShape.ANY, ObjectColor.ANY))
+#
+#         self.assertIsNotNone(self.niryo_robot.detect_object(self.workspace_name, ObjectShape.ANY, ObjectColor.RED))
+#
+#     def test_vision_move(self):
+#         # Test to move to the object
+#         self.assertIsNotNone(self.niryo_robot.move_to_object(self.workspace_name, 0.1,
+#                                                              ObjectShape.ANY, ObjectColor.GREEN))
+#         # Going back to observation pose
+#         self.assertIsNone(self.niryo_robot.move_joints(0.0, 0.0, 0.0, 0.0, -1.57, 0.0))
+#         # Vision Pick
+#         self.assertIsNotNone(self.niryo_robot.vision_pick(self.workspace_name, 0.1,
+#                                                           ObjectShape.ANY, ObjectColor.BLUE))
+#
 
 
 def suite():

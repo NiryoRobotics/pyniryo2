@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import time
 
-import sys
 import unittest
 import roslibpy
 import numpy as np

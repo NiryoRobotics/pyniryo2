@@ -5,12 +5,12 @@ import roslibpy
 import numpy as np
 from threading import Event
 
-from exceptions import RobotCommandException
-from niryo_topic import NiryoTopic
-from enums import RobotErrors
-from io.enums import PinID
-from tool.tool import Tool
-from tool.enums import ToolID
+from pyniryo2.exceptions import RobotCommandException
+from pyniryo2.niryo_topic import NiryoTopic
+from pyniryo2.enums import RobotErrors
+from pyniryo2.io.enums import PinID
+from pyniryo2.tool.tool import Tool
+from pyniryo2.tool.enums import ToolID
 
 robot_ip_address = "192.168.1.52"
 port = 9090

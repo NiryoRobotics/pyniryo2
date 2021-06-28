@@ -551,7 +551,7 @@ class Arm(RobotCommander):
             arm.get_arm_max_velocity.subscribe(velocity_callback)
             arm.get_arm_max_velocity.unsubscribe()
 
-        :return: hardware state topic instance
+        :return: arm velocity topic instance
         :rtype: NiryoTopic
         """
         return self._topics.max_velocity_scaling_factor_topic

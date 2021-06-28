@@ -6,8 +6,8 @@ class PinMode(Enum):
     """
     Enumeration of Pin Modes
     """
-    INPUT = 0
-    OUTPUT = 1
+    OUTPUT = 0
+    INPUT = 1
 
 
 @unique
@@ -33,4 +33,3 @@ class PinID(Enum):
 
     SW_1 = 12
     SW_2 = 13
-

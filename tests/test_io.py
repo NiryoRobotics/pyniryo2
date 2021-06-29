@@ -35,9 +35,9 @@ class BaseTest(unittest.TestCase):
 # noinspection PyTypeChecker
 class TestIO(BaseTest):
     def get_io_sate(self):
-        self.assertIsInstance(self.io.get_io_state, NiryoTopic)
-        self.assertIsInstance(self.io.get_io_state(), list)
-        io_state = self.io.get_io_state()
+        self.assertIsInstance(self.io.get_digital_io_state, NiryoTopic)
+        self.assertIsInstance(self.io.get_digital_io_state(), list)
+        io_state = self.io.get_digital_io_state()
         self.assertIsInstance(self.io.digital_read(PinID.GPIO_1A), DigitalPinObject)
         io_state_bis = self.io.digital_read(PinID.GPIO_1A)
 
@@ -60,9 +60,9 @@ class TestIO(BaseTest):
             self.assertIsInstance(io_state_list[0], DigitalPinObject)
             io_state_event.set()
 
-        self.assertIsNone(self.io.get_io_state.subscribe(io_state_callback))
+        self.assertIsNone(self.io.get_digital_io_state.subscribe(io_state_callback))
         self.assertTrue(io_state_event.wait(10))
-        self.assertIsNone(self.io.get_io_state.unsubscribe())
+        self.assertIsNone(self.io.get_digital_io_state.unsubscribe())
 
     def test_pin_mode(self):
         self.assertTrue(self.io.set_pin_mode(PinID.GPIO_1A, PinMode.INPUT))

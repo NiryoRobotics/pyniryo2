@@ -17,7 +17,11 @@ class IO(RobotCommander):
         self._topics = IOTopics(self._client)
 
     @property
-    def get_io_state(self):
+    def digital_io_state(self):
+        return self.get_digital_io_state()
+
+    @property
+    def get_digital_io_state(self):
         """
         Returns the io state client which can be used synchronously or asynchronously to obtain the io states.
         The io state client returns a list of DigitalPinObject.
@@ -25,15 +29,15 @@ class IO(RobotCommander):
         Examples: ::
 
             # Get last value
-            io.get_io_state()
-            io.get_io_state.value
+            io.get_digital_io_state()
+            io.get_digital_io_state.value
 
             # Subscribe a callback
             def io_callback(io_state):
                 print io_state
 
-            arm.get_io_state.subscribe(io_callback)
-            arm.get_io_state.unsubscribe()
+            arm.get_digital_io_state.subscribe(io_callback)
+            arm.get_digital_io_state.unsubscribe()
 
         :return: io state topic instance
         :rtype: NiryoTopic

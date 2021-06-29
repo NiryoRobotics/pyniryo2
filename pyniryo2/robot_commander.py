@@ -7,6 +7,7 @@ from __future__ import print_function
 # Communication imports
 from .exceptions import RobotCommandException
 from .objects import PoseObject
+from .enums import RobotErrors
 
 class RobotCommander(object):
     def __init__(self, client):
@@ -63,6 +64,11 @@ class RobotCommander(object):
     def _check_list_type(self, values_list, type_):
         for value in values_list:
             self._check_type(value, type_)
+
+    @staticmethod
+    def _check_result_status(result):
+        if result["status"] < RobotErrors.SUCCESS.value:
+            raise RobotCommandException("Error Code : {}\nMessage : {}".format(result["status"], result["message"]))
 
     def _map_list(self, list_, type_):
         """

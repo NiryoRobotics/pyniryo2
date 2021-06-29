@@ -615,7 +615,7 @@ class Arm(RobotCommander):
         Set jog control mode if param is True, else turn it off
 
         :param enabled: ``True`` or ``False``
-        :type enabled: bool
+        :type enabled: Bool
         :return: True if command where successfully completed, False otherwise.
         :rtype: Bool
         """
@@ -686,7 +686,7 @@ class Arm(RobotCommander):
         :type timeout: float
         :rtype: None
         """
-        pose_offset_list = self.__args_joints_to_list(pose_offset)
+        pose_offset_list = self.__args_joints_to_list(pose_offset) # TODO : change args_joint to args_pose
         req = self._services.get_jog_request(JogShift.POSE_SHIFT.value, pose_offset_list)
         self._services.jog_shift_service.call(req, callback, errback, timeout)
 

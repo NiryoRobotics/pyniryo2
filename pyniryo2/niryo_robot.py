@@ -8,6 +8,7 @@ import time
 # Communication imports
 from .exceptions import *
 from pyniryo2.arm.arm import Arm
+from pyniryo2.trajectories.trajectories import Trajectories
 
 
 class NiryoRobot(object):
@@ -19,6 +20,7 @@ class NiryoRobot(object):
         self.connect(host, port)
 
         self.__arm = Arm(self.__client)
+        self.__trajectories = Trajectories(self.__client)
 
     def __del__(self):
         if self.__client:
@@ -54,4 +56,8 @@ class NiryoRobot(object):
     @property
     def arm(self):
         return self.__arm
+
+    @property
+    def trajectories(self):
+        return self.__trajectories
 

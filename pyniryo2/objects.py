@@ -77,6 +77,10 @@ class PoseObject:
     def quaternion(self):
         return self.euler_to_quaternion(self.roll, self.pitch, self.yaw)
 
+    @property
+    def quaternion_pose(self):
+        return [self.x, self.y, self.z] + list(self.euler_to_quaternion(self.roll, self.pitch, self.yaw))
+
     @staticmethod
     def euler_to_quaternion(roll, pitch, yaw):
         qx = np.sin(roll / 2) * np.cos(pitch / 2) * np.cos(yaw / 2) - np.cos(roll / 2) * np.sin(pitch / 2) * np.sin(

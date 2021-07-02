@@ -1,6 +1,6 @@
 import roslibpy.actionlib
 
-from pyniryo2.arm.enums import ArmMoveCommandType
+from pyniryo2.enums import ArmMoveCommandType
 
 class ArmActions(object):
 

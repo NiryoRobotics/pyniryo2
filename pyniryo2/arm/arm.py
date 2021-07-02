@@ -686,7 +686,7 @@ class Arm(RobotCommander):
         :type timeout: float
         :rtype: None
         """
-        pose_offset_list = self.__args_joints_to_list(pose_offset) # TODO : change args_joint to args_pose
+        pose_offset_list = self.__args_pose_to_list(pose_offset)
         req = self._services.get_jog_request(JogShift.POSE_SHIFT.value, pose_offset_list)
         self._services.jog_shift_service.call(req, callback, errback, timeout)
 

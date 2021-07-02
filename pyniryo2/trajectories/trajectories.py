@@ -47,9 +47,20 @@ class Trajectories(RobotCommander):
         If a callback function is not passed in parameter, the function will be blocking.
         Otherwise, the callback will be called when the execution of the function is finished.
 
-        Example: ::
+        Examples: ::
             trajectories.execute_trajectory_saved("trajectory_01")
-            trajectories.execute_trajectory_saved("trajectory_01", dist_smoothing=1)
+            trajectories.execute_trajectory_saved("trajectory_01", dist_smoothing=0.02)
+
+            from threading import Event
+            trajectory_event = Event()
+            trajectory_event.clear()
+
+            def trajectory_callback(result):
+                print(result)
+                trajectory_event.set()
+
+            trajectories.execute_trajectory_saved("trajectory_01", callback=trajectory_callback)
+            trajectory_event.wait()
 
         :param callback: Callback invoked on successful execution.
         :type callback: function
@@ -66,6 +77,30 @@ class Trajectories(RobotCommander):
         Execute trajectory from list of poses
         If a callback function is not passed in parameter, the function will be blocking.
         Otherwise, the callback will be called when the execution of the function is finished.
+
+        Examples: ::
+            trajectory = [[0.3, 0.1, 0.3, 0., 0., 0., 1.],
+                          [0.3, -0.1, 0.3, 0., 0., 0., 1.],
+                          [0.3, -0.1, 0.4, 0., 0., 0., 1.],
+                          [0.3, 0.1, 0.4, 0., 0., 0., 1.]]
+
+            trajectories.execute_trajectory_from_poses(trajectory)
+            trajectories.execute_trajectory_from_poses(trajectory, dist_smoothing=0.02)
+            trajectories.execute_trajectory_from_poses([[0.3, 0.1, 0.3, 0., 0., 0., 1.], #[x,y,z,qx,qy,qz,qw]
+                                                 PoseObject(0.3, -0.1, 0.3, 0., 0., 0.),
+                                                 [0.3, -0.1, 0.4, 0., 0., 0.], #[x,y,z,roll,pitch,yaw]
+                                                 PoseObject(0.3, 0.1, 0.4, 0., 0., 0.)])
+
+            from threading import Event
+            trajectory_event = Event()
+            trajectory_event.clear()
+
+            def trajectory_callback(result):
+                print(result)
+                trajectory_event.set()
+
+            trajectories.execute_trajectory_from_poses(trajectory, callback=trajectory_callback)
+            trajectory_event.wait()
 
         :param callback: Callback invoked on successful execution.
         :type callback: function
@@ -84,7 +119,18 @@ class Trajectories(RobotCommander):
 
     def save_trajectory(self, trajectory_name, list_poses):
         """
-        Save trajectory in robot memory
+        Save trajectory in robot's memory
+
+        Examples: ::
+            trajectories.save_trajectory("trajectory_1", [[0.3, 0.1, 0.3, 0., 0., 0., 1.], #[x,y,z,qx,qy,qz,qw]
+                                                          [0.3, -0.1, 0.3, 0., 0., 0., 1.], #[x,y,z,qx,qy,qz,qw]
+                                                          [0.3, -0.1, 0.4, 0., 0., 0., 1.], #[x,y,z,qx,qy,qz,qw]
+                                                          [0.3, 0.1, 0.4, 0., 0., 0., 1.]]) #[x,y,z,qx,qy,qz,qw]
+
+            trajectories.execute_trajectory_from_poses([[0.3, 0.1, 0.3, 0., 0., 0., 1.], #[x,y,z,qx,qy,qz,qw]
+                                                 PoseObject(0.3, -0.1, 0.3, 0., 0., 0.),
+                                                 [0.3, -0.1, 0.4, 0., 0., 0.], #[x,y,z,roll,pitch,yaw]
+                                                 PoseObject(0.3, 0.1, 0.4, 0., 0., 0.)])
 
         :type trajectory_name: str
         :param list_poses: List of: [x,y,z,qx,qy,qz,qw] or [x,y,z,roll,pitch,yaw] or PoseObject
@@ -103,6 +149,10 @@ class Trajectories(RobotCommander):
         """
         Delete trajectory from robot's memory
 
+        Example: ::
+            if "trajectory_1" in trajectories.get_saved_trajectory_list():
+                trajectories.delete_trajectory("trajectory_1")
+
         :type trajectory_name: str
         :rtype: None
         """
@@ -115,6 +165,10 @@ class Trajectories(RobotCommander):
     def get_saved_trajectory_list(self):
         """
         Get list of trajectories' name saved in robot memory
+
+        Example: ::
+            if "trajectory_1" in trajectories.get_saved_trajectory_list():
+                trajectories.delete_trajectory("trajectory_1")
 
         :rtype: list[str]
         """

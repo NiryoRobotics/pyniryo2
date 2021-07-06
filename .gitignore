@@ -1,2 +1,5 @@
 /.idea
+/dist
+/build
+/pyniryo2.egg-info
 *.pyc

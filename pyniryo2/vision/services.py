@@ -1,5 +1,8 @@
 import roslibpy
-from pyniryo2.vision.enums import ManageWorkspace
+
+from pyniryo2.utils import pose_list_to_dict, point_list_to_dict
+
+from .enums import ManageWorkspace
 
 
 class VisionServices(object):
@@ -54,13 +57,13 @@ class VisionServices(object):
 
     @staticmethod
     def add_workspace_from_poses_request(workspace_name, pose_list):
-        workspace = {"name": workspace_name, "poses": [VisionServices.pose_list_to_dict(pose) for pose in pose_list]}
+        workspace = {"name": workspace_name, "poses": [pose_list_to_dict(pose) for pose in pose_list]}
         return VisionServices.manage_workspace_service_request(ManageWorkspace.SAVE, workspace)
 
     @staticmethod
     def add_workspace_from_points_request(workspace_name, point_list):
         workspace = {"name": workspace_name,
-                     "points": [VisionServices.point_list_to_dict(point) for point in point_list]}
+                     "points": [point_list_to_dict(point) for point in point_list]}
         return VisionServices.manage_workspace_service_request(ManageWorkspace.SAVE_WITH_POINTS, workspace)
 
     @staticmethod
@@ -75,20 +78,3 @@ class VisionServices(object):
     def get_workspace_list_service_request():
         return VisionServices.get_trigger_request()
 
-    @staticmethod
-    def pose_dict_to_list(pose_dict):
-        return [pose_dict["position"]["x"], pose_dict["position"]["y"], pose_dict["position"]["z"],
-                pose_dict["rpy"]["roll"], pose_dict["rpy"]["pitch"], pose_dict["rpy"]["yaw"]]
-
-    @staticmethod
-    def pose_list_to_dict(pose_list):
-        return {"position": {"x": pose_list[0], "y": pose_list[1], "z": pose_list[2]},
-                "rpy": {"roll": pose_list[3], "pitch": pose_list[4], "yaw": pose_list[5]}}
-
-    @staticmethod
-    def point_dict_to_list(pose_dict):
-        return [pose_dict["x"], pose_dict["y"], pose_dict["z"]]
-
-    @staticmethod
-    def point_list_to_dict(pose_list):
-        return {"x": pose_list[0], "y": pose_list[1], "z": pose_list[2]}

@@ -8,9 +8,12 @@ from threading import Event
 from pyniryo2.exceptions import RobotCommandException
 from pyniryo2.niryo_topic import NiryoTopic
 from pyniryo2.enums import RobotErrors
-from pyniryo2.io.enums import PinID
+
 from pyniryo2.tool.tool import Tool
 from pyniryo2.tool.enums import ToolID
+
+from pyniryo2.io.io import IO
+from pyniryo2.io.enums import PinID, PinState
 
 robot_ip_address = "192.168.1.52"
 port = 9090
@@ -29,6 +32,7 @@ class BaseTest(unittest.TestCase):
         cls.client = roslibpy.Ros(host=robot_ip_address, port=port)
         cls.client.run()
         cls.tool = Tool(cls.client)
+        cls.io = IO(cls.client)
 
     @classmethod
     def tearDownClass(cls):
@@ -81,9 +85,16 @@ class TestTool(BaseTest):
 
         self.assertTrue(self.tool.setup_electromagnet(PinID.GPIO_1A))
         self.assertEqual(self.tool.get_current_tool_id(), ToolID.ELECTROMAGNET_1)
-        # Activate
+
         self.assertTrue(self.tool.activate_electromagnet())
+        self.assertEqual(self.io.digital_read(PinID.GPIO_1A).state, PinState.HIGH.value)
+        self.assertTrue(self.tool.deactivate_electromagnet())
+        self.assertEqual(self.io.digital_read(PinID.GPIO_1A).state, PinState.LOW.value)
+
         self.assertTrue(self.tool.activate_electromagnet(PinID.GPIO_1A))
+        self.assertEqual(self.io.digital_read(PinID.GPIO_1A).state, PinState.HIGH.value)
+        self.assertTrue(self.tool.deactivate_electromagnet(PinID.GPIO_1A))
+        self.assertEqual(self.io.digital_read(PinID.GPIO_1A).state, PinState.LOW.value)
 
         tool_event = Event()
         tool_event.clear()
@@ -93,18 +104,17 @@ class TestTool(BaseTest):
 
         self.assertTrue(self.tool.activate_electromagnet(callback=tool_callback))
         self.assertTrue(tool_event.wait(10))
-
-        # Deactivate
-        self.assertTrue(self.tool.deactivate_electromagnet())
-        self.assertTrue(self.tool.deactivate_electromagnet(PinID.GPIO_1A))
-
+        self.assertEqual(self.io.digital_read(PinID.GPIO_1A).state, PinState.HIGH.value)
         tool_event.clear()
 
         self.assertTrue(self.tool.deactivate_electromagnet(callback=tool_callback))
         self.assertTrue(tool_event.wait(10))
+        self.assertEqual(self.io.digital_read(PinID.GPIO_1A).state, PinState.LOW.value)
 
         self.assertTrue(self.tool.grasp_with_tool())
+        self.assertEqual(self.io.digital_read(PinID.GPIO_1A).state, PinState.HIGH.value)
         self.assertTrue(self.tool.release_with_tool())
+        self.assertEqual(self.io.digital_read(PinID.GPIO_1A).state, PinState.LOW.value)
 
         # Exceptions
         with self.assertRaises(RobotCommandException):

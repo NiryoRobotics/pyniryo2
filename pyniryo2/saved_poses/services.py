@@ -1,6 +1,9 @@
 import roslibpy
-from pyniryo2.saved_poses.enums import ManagePose
+
 from pyniryo2.objects import PoseObject
+from pyniryo2.utils import pose_dict_to_list
+
+from pyniryo2.saved_poses.enums import ManagePose
 
 
 class SavedPosesServices(object):
@@ -50,13 +53,8 @@ class SavedPosesServices(object):
 
     @staticmethod
     def get_saved_pose_response_to_pose(response):
-        return PoseObject(*SavedPosesServices.pose_dict_to_list(response["pose"]))
+        return PoseObject(*pose_dict_to_list(response["pose"]))
 
     @staticmethod
     def get_saved_pose_list_response_to_list(response):
         return [str(pose_name) for pose_name in response["name_list"]]
-
-    @staticmethod
-    def pose_dict_to_list(pose_dict):
-        return [pose_dict["position"]["x"], pose_dict["position"]["y"], pose_dict["position"]["z"],
-                pose_dict["rpy"]["roll"], pose_dict["rpy"]["pitch"], pose_dict["rpy"]["yaw"]]

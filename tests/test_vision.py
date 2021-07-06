@@ -5,14 +5,13 @@ import roslibpy
 import numpy as np
 from threading import Event
 
-from exceptions import RobotCommandException
-from niryo_topic import NiryoTopic
-from enums import RobotErrors
-from io.enums import PinID
-from vision.vision import Vision
-from vision.topics import CameraInfo
-from vision.enums import ObjectColor
-from objects import PoseObject
+from pyniryo2.exceptions import RobotCommandException
+from pyniryo2.niryo_topic import NiryoTopic
+from pyniryo2.objects import PoseObject
+
+from pyniryo2.vision.vision import Vision
+from pyniryo2.vision.objects import CameraInfo
+from pyniryo2.vision.enums import ObjectColor
 
 robot_ip_address = "192.168.1.52"
 port = 9090

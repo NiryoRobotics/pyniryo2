@@ -27,7 +27,7 @@ class NiryoRobot(object):
         self.__saved_poses = SavedPoses(self.__client)
         self.__tool = Tool(self.__client)
         self.__trajectories = Trajectories(self.__client)
-        self.__vision = Vision(self.__client)
+        self.__vision = Vision(self.__client, self.__arm, self.__tool)
 
     def __del__(self):
         if self.__client:

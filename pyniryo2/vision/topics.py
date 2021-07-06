@@ -1,9 +1,8 @@
-from collections import namedtuple
 import numpy as np
 
 from pyniryo2.niryo_topic import NiryoTopic
+from .objects import CameraInfo
 
-CameraInfo = namedtuple("CameraInfo", ['intrinsics', 'distortion'])
 
 class VisionTopics(object):
 

@@ -118,10 +118,9 @@ class HardwareStatusObject:
         return self.__str__()
 
 
-
 class JointStateObject:
     """
-    Object used to store every hardware information
+    Object used to store every joint state information
     """
 
     def __init__(self):

@@ -80,9 +80,16 @@ class MyMouseListener:
 
 
 def process(niyro_robot):
+    """
+
+    :param niyro_robot:
+    :type niyro_robot: NiryoRobot
+    :return: None
+    :rtype: None
+    """
     mouse_listener = MyMouseListener()
-    niyro_robot.move_joints(0.0, 0.0, 0.0, 0.0, -1.57, 0.0)
-    niyro_robot.set_jog_control(True)
+    niyro_robot.arm.move_joints([0.0, 0.0, 0.0, 0.0, -1.57, 0.0])
+    niyro_robot.arm.set_jog_control(True)
     while not mouse_listener.clicked:
         init = time.time()
         mouse_dx = mouse_listener.get_x_diff()
@@ -92,20 +99,20 @@ def process(niyro_robot):
         robot_dx = - float(mouse_dy) * 1e-4
         robot_dy = - float(mouse_dx) * 1e-4
         robot_dz = float(mouse_dz) * 5e-3
-        niyro_robot.jog_pose(robot_dx, robot_dy, robot_dz, 0.0, 0.0, 0.0)
+        niyro_robot.arm.jog_pose([robot_dx, robot_dy, robot_dz, 0.0, 0.0, 0.0])
 
         time.sleep(max(0., 0.10 - (time.time() - init)))
 
-    niyro_robot.set_jog_control(False)
-    niyro_robot.set_learning_mode(True)
+    niyro_robot.arm.set_jog_control(False)
+    niyro_robot.arm.set_learning_mode(True)
 
 
 if __name__ == '__main__':
     # Connect to robot
     robot = NiryoRobot(robot_ip_address)
     # Calibrate robot if robot needs calibration
-    robot.calibrate_auto()
+    robot.arm.calibrate_auto()
     # Launching main process
     process(robot)
     # Releasing connection
-    robot.close_connection()
+    robot.terminate()

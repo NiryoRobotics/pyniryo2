@@ -15,6 +15,10 @@ from pyniryo2.arm.arm import Arm
 from pyniryo2.tool.tool import Tool
 
 
+def object_pose_dict_to_pose_object(object_pose_dict):
+    return PoseObject(*[object_pose_dict[axis] for axis in ["x", "y", "z", "roll", "pitch", "yaw"]])
+
+
 class Vision(RobotCommander):
     # --- Public functions --- #
     def __init__(self, client, arm=None, tool=None):
@@ -26,13 +30,13 @@ class Vision(RobotCommander):
         if arm is None:
             self.__arm = Arm(client)
         else:
-            self._check_instance(self.__arm, Arm)
+            self._check_instance(arm, Arm)
             self.__arm = arm
 
         if tool is None:
             self.__tool = Tool(client)
         else:
-            self._check_instance(self.__tool, Tool)
+            self._check_instance(tool, Tool)
             self.__tool = tool
 
     @property
@@ -167,12 +171,12 @@ class Vision(RobotCommander):
         approach_pose = self.get_target_pose_from_rel(
             workspace_name, height_offset + 0.05, rel_pose.x, rel_pose.y, rel_pose.yaw)
 
-        self.__tool.release()
+        self.__tool.release_with_tool()
 
         self.__arm.move_pose(approach_pose)
         self.__arm.move_pose(pick_pose)
 
-        self.__tool.grasp()
+        self.__tool.grasp_with_tool()
 
         self.__arm.move_pose(approach_pose)
         return True, obj_shape, obj_color
@@ -221,17 +225,17 @@ class Vision(RobotCommander):
         req = self._services.obj_detection_rel_service_request(shape, color, ratio)
         resp = self._services.obj_detection_rel_service.call(req)
 
-        obj_found = resp["status"] >= RobotErrors.SUCCESS
+        obj_found = resp["status"] >= RobotErrors.SUCCESS.value
         if not obj_found:
-            rel_pose_array = 3 * [0.0]
+            rel_pose = PoseObject(*(6*[0.0]))
             shape = "ANY"
             color = "ANY"
         else:
-            rel_pose_array = pose_dict_to_list(resp["obj_pose"])
+            rel_pose = object_pose_dict_to_pose_object(resp["obj_pose"])
             shape = resp["obj_type"]
             color = resp["obj_color"]
 
-        return obj_found, rel_pose_array, ObjectShape[shape], ObjectColor[color]
+        return obj_found, rel_pose, ObjectShape[shape], ObjectColor[color]
 
     # - Workspace
     def save_workspace_from_robot_poses(self, workspace_name, pose_origin, pose_2, pose_3, pose_4):

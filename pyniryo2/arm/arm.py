@@ -316,7 +316,7 @@ class Arm(RobotCommander):
         :return: List of joints value
         :rtype: list[float]
         """
-        return self._topics.joint_states_topic().position
+        return self._topics.joint_states_topic().position[:6]
 
     @property
     def pose(self):
@@ -401,7 +401,8 @@ class Arm(RobotCommander):
         :type joints: Union[list[float], tuple[float]]
         :rtype: None
         """
-        goal = self._actions.get_move_joints_goal(joints)
+        joint_list = self._args_joints_to_list(joints)
+        goal = self._actions.get_move_joints_goal(joint_list)
         goal.send(result_callback=callback)
         if callback is None:
             _result = goal.wait(self.__action_timeout)

@@ -47,7 +47,8 @@ class VisionServices(object):
     @staticmethod
     def obj_detection_rel_service_request(obj_type, obj_color, workspace_ratio, ret_image=False):
         return roslibpy.ServiceRequest(
-            {"obj_type": obj_type, "obj_color": obj_color, "workspace_ratio": workspace_ratio, "ret_image": ret_image})
+            {"obj_type": obj_type.value, "obj_color": obj_color.value, "workspace_ratio": workspace_ratio,
+             "ret_image": ret_image})
 
     @staticmethod
     def manage_workspace_service_request(cmd, workspace):
@@ -77,4 +78,3 @@ class VisionServices(object):
     @staticmethod
     def get_workspace_list_service_request():
         return VisionServices.get_trigger_request()
-

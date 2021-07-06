@@ -3,10 +3,12 @@
 
 import numpy as np
 
+
 class PoseObject:
     """
     Pose object which stores x, y, z, roll, pitch & yaw parameters
     """
+
     def __init__(self, x, y, z, roll, pitch, yaw):
         # X (meter)
         self.x = float(x)
@@ -48,8 +50,8 @@ class PoseObject:
         return PoseObject(x, y, z, roll, pitch, yaw)
 
     def __eq__(self, other):
-        return self.x == other.x and  self.y == other.y and self.z == other.z \
-               and self.roll == other.roll and self.pitch == other.pitch and  self.yaw == other.yaw
+        return self.x == other.x and self.y == other.y and self.z == other.z \
+               and self.roll == other.roll and self.pitch == other.pitch and self.yaw == other.yaw
 
     def copy_with_offsets(self, x_offset=0., y_offset=0., z_offset=0., roll_offset=0., pitch_offset=0., yaw_offset=0.):
         """
@@ -112,29 +114,3 @@ class PoseObject:
         z_value = np.arctan2(t3, t4)
 
         return x_value, y_value, z_value
-
-
-class DigitalPinObject:
-    """
-    Object used to store information on digital pins
-    """
-
-    def __init__(self, pin_id, name, mode, state):
-        # Pin ID
-        self.pin_id = pin_id
-        # Name
-        self.name = name
-        # Input or output
-        self.mode = mode
-        # High or Low
-        self.state = state
-
-    def __str__(self):
-        string_ret = "Pin : {}".format(self.pin_id)
-        string_ret += ", Name : {}".format(self.name)
-        string_ret += ", Mode : {}".format(self.mode)
-        string_ret += ", State : {}".format(self.state)
-        return string_ret
-
-    def __repr__(self):
-        return self.__str__()

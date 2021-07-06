@@ -46,7 +46,7 @@ class PickPlace(RobotCommander):
         :rtype: None
         """
         pick_pose = self._args_pose_to_pose_object(*args)
-        pick_pose_high = pick_pose.copy_position_with_offsets(z_offset=0.05)
+        pick_pose_high = pick_pose.copy_with_offsets(z_offset=0.05)
 
         self.__tool.release_with_tool()
         self.__trajectories.execute_trajectory_from_poses([pick_pose_high, pick_pose], dist_smoothing=0.0)
@@ -70,7 +70,7 @@ class PickPlace(RobotCommander):
         """
 
         place_pose = self._args_pose_to_pose_object(*args)
-        place_pose_high = place_pose.copy_position_with_offsets(z_offset=0.05)
+        place_pose_high = place_pose.copy_with_offsets(z_offset=0.05)
 
         self.__trajectories.execute_trajectory_from_poses([place_pose_high, place_pose], dist_smoothing=0.0)
         self.__tool.release_with_tool()
@@ -92,8 +92,8 @@ class PickPlace(RobotCommander):
         pick_pose_object = self._args_pose_to_pose_object(pick_pose)
         place_pose_object = self._args_pose_to_pose_object(place_pose)
 
-        pick_pose_high = pick_pose_object.copy_position_with_offsets(z_offset=0.05)
-        place_pose_high = place_pose_object.copy_position_with_offsets(z_offset=0.05)
+        pick_pose_high = pick_pose_object.copy_with_offsets(z_offset=0.05)
+        place_pose_high = place_pose_object.copy_with_offsets(z_offset=0.05)
 
         self.__tool.release_with_tool()
 

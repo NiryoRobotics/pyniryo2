@@ -7,7 +7,7 @@ A collection of utilities to convert data from dict to list and vice versa
 
 def pose_dict_to_list(pose_dict):
     return [pose_dict["position"][axis] for axis in ["x", "y", "z"]] + \
-           [pose_dict["rpy"][axis] for axis in ["x", "y", "z", "w"]]
+           [pose_dict["rpy"][axis] for axis in ["roll", "pitch", "yaw"]]
 
 
 def pose_list_to_dict(pose_list):

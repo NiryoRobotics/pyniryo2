@@ -9,11 +9,13 @@ from pyniryo2 import *
 # -- MUST Change these variables
 simulation_mode = True
 tool_used = ToolID.GRIPPER_1  # Tool used for picking
-workspace_name = "workspace_1"  # Robot's Workspace Name
-# Set robot address
-robot_ip_address_rpi = "10.10.10.10"
-robot_ip_address_simulation = "127.0.0.1"
-robot_ip_address = robot_ip_address_simulation if simulation_mode else robot_ip_address_rpi
+
+
+# Set robot address & workspace name
+if simulation_mode:
+    robot_ip_address, workspace_name = "127.0.0.1", "gazebo_1"
+else:
+    robot_ip_address, workspace_name = "10.10.10.10", "workspace_1"
 
 # -- Should Change these variables
 # The pose from where the image processing happens
@@ -32,16 +34,22 @@ place_pose = PoseObject(
 # -- MAIN PROGRAM
 
 def vision_pick_n_place_1(niyro_robot):
+    """
+    Simple pick and place with vision: Example 1
+
+    :type niyro_robot: NiryoRobot
+    :rtype: None
+    """
     # Loop
     try_without_success = 0
     while try_without_success < 5:
         # Moving to observation pose
-        niyro_robot.move_pose(*observation_pose.to_list())
+        niyro_robot.arm.move_pose(observation_pose)
         # Trying to get target pose using camera
-        ret = niyro_robot.get_target_pose_from_cam(workspace_name,
-                                                   height_offset=0.0,
-                                                   shape=ObjectShape.ANY,
-                                                   color=ObjectColor.ANY)
+        ret = niyro_robot.vision.get_target_pose_from_cam(workspace_name,
+                                                          height_offset=0.0,
+                                                          shape=ObjectShape.ANY,
+                                                          color=ObjectColor.ANY)
         obj_found, obj_pose, shape, color = ret
         if not obj_found:
             try_without_success += 1
@@ -53,24 +61,30 @@ def vision_pick_n_place_1(niyro_robot):
         # ---
 
         # Everything is good, so we going to pick the object
-        niyro_robot.pick_from_pose(obj_pose)
+        niyro_robot.pick_place.pick_from_pose(obj_pose)
 
         # Going to place
-        niyro_robot.place_from_pose(place_pose)
+        niyro_robot.pick_place.place_from_pose(place_pose)
         break
 
 
 def vision_pick_n_place_2(niyro_robot):
+    """
+    Simple pick and place with vision: Example 2
+
+    :type niyro_robot: NiryoRobot
+    :rtype: None
+    """
     # Loop
     try_without_success = 0
     while try_without_success < 5:
         # Moving to observation pose
-        niyro_robot.move_pose(*observation_pose.to_list())
+        niyro_robot.arm.move_pose(observation_pose)
         # Trying to pick target using camera
-        ret = niyro_robot.vision_pick(workspace_name,
-                                      height_offset=0.0,
-                                      shape=ObjectShape.ANY,
-                                      color=ObjectColor.ANY)
+        ret = niyro_robot.vision.vision_pick(workspace_name,
+                                                 height_offset=0.0,
+                                                 shape=ObjectShape.ANY,
+                                                 color=ObjectColor.ANY)
         obj_found, shape_ret, color_ret = ret
         if not obj_found:
             try_without_success += 1
@@ -78,7 +92,7 @@ def vision_pick_n_place_2(niyro_robot):
         # Vision pick has succeed which means that Ned should have already catch the object !
 
         # Everything is good, so we going to place the object
-        niyro_robot.place_from_pose(place_pose)
+        niyro_robot.pick_place.place_from_pose(place_pose)
         break
 
 
@@ -86,15 +100,14 @@ if __name__ == '__main__':
     # Connect to robot
     client = NiryoRobot(robot_ip_address)
     # Changing tool
-    client.update_tool()
+    client.tool.update_tool()
     # Calibrate robot if robot needs calibration
-    client.calibrate(CalibrateMode.AUTO)
+    client.arm.calibrate(CalibrateMode.AUTO)
     # Launching main process
     print("Starting Version 1")
     vision_pick_n_place_1(client)
     print("Starting Version 2")
     vision_pick_n_place_2(client)
     # Ending
-    client.go_to_sleep()
-    # Releasing connection
-    client.close_connection()
+    client.arm.go_to_sleep()
+    client.terminate()

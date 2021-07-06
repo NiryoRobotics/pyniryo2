@@ -9,6 +9,7 @@ from .exceptions import RobotCommandException
 from .objects import PoseObject
 from .enums import RobotErrors
 
+
 class RobotCommander(object):
     def __init__(self, client):
         self._client = client
@@ -22,7 +23,6 @@ class RobotCommander(object):
 
     def __repr__(self):
         return self.__str__()
-
 
     # Parameters checker
     def _check_enum_belonging(self, value, enum_):
@@ -107,6 +107,25 @@ class RobotCommander(object):
             self._raise_exception("A pose should contain 6 elements (x, y, z, roll, pitch, yaw)")
         return pose_list_float
 
+    def _args_pose_to_pose_object(self, *args):
+        if len(args) == 1:
+            arg = args[0]
+        else:
+            arg = args
+
+        if isinstance(arg, PoseObject):
+            return arg
+        elif len(arg) == 6:
+            pose_list_float = self._map_list(arg, float)
+            return PoseObject(*pose_list_float)
+        elif len(arg) == 7:
+            pose_list_float = self._map_list(arg, float)
+            pose_list_rpy = pose_list_float[:3] + list(PoseObject.quaternion_to_euler_angle(*pose_list_float[3:]))
+            return PoseObject(*pose_list_rpy)
+        else:
+            self._raise_exception("A pose should contain either 6 elements (x, y, z, roll, pitch, yaw), "
+                                  "either 7 elements (x, y, z, qx, qy, qz, qw), either a PoseObject.")
+
     def _args_joints_to_list(self, *args):
         """
         Convert args into a list
@@ -124,7 +143,6 @@ class RobotCommander(object):
             self._raise_exception("The robot has 6 joints")
 
         return joints
-
 
     # Error Handlers
     def _raise_exception_expected_choice(self, expected_choice, given):

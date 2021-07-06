@@ -1,7 +1,8 @@
 # Communication imports
 from pyniryo2.robot_commander import RobotCommander
 from pyniryo2.objects import PoseObject
-from pyniryo2.saved_poses.services import SavedPosesServices
+
+from .services import SavedPosesServices
 
 
 class SavedPoses(RobotCommander):

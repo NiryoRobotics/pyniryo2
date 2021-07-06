@@ -3,9 +3,9 @@ from pyniryo2.robot_commander import RobotCommander
 from pyniryo2.enums import RobotErrors
 from pyniryo2.exceptions import RobotCommandException
 
-from pyniryo2.io.services import IOServices
-from pyniryo2.io.topics import IOTopics
-from pyniryo2.io.enums import PinID, PinMode, PinState
+from .services import IOServices
+from .topics import IOTopics
+from .enums import PinID, PinMode, PinState
 
 
 class IO(RobotCommander):

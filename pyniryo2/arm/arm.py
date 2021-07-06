@@ -7,13 +7,15 @@ import time
 
 # Communication imports
 from pyniryo2.robot_commander import RobotCommander
-from pyniryo2.arm.enums import CalibrateMode, RobotAxis, JogShift
 from pyniryo2.enums import RobotErrors
 from pyniryo2.objects import PoseObject
+from pyniryo2.utils import pose_dict_to_list
 
-from pyniryo2.arm.services import ArmServices
-from pyniryo2.arm.topics import ArmTopics
-from pyniryo2.arm.actions import ArmActions
+from .enums import CalibrateMode, RobotAxis, JogShift
+from .services import ArmServices
+from .topics import ArmTopics
+from .actions import ArmActions
+
 
 class Arm(RobotCommander):
     # --- Public functions --- #
@@ -314,7 +316,7 @@ class Arm(RobotCommander):
         :return: List of joints value
         :rtype: list[float]
         """
-        return self._topics.joint_states_topic().position
+        return self._topics.joint_states_topic().position[:6]
 
     @property
     def pose(self):
@@ -399,7 +401,8 @@ class Arm(RobotCommander):
         :type joints: Union[list[float], tuple[float]]
         :rtype: None
         """
-        goal = self._actions.get_move_joints_goal(joints)
+        joint_list = self._args_joints_to_list(joints)
+        goal = self._actions.get_move_joints_goal(joint_list)
         goal.send(result_callback=callback)
         if callback is None:
             _result = goal.wait(self.__action_timeout)
@@ -709,7 +712,7 @@ class Arm(RobotCommander):
         request = self._services.get_forward_kinematics_request(joints)
         response = self._services.forward_kinematics_service.call(request)
 
-        pose_array = self._services.pose_dict_to_list(response["pose"])
+        pose_array = pose_dict_to_list(response["pose"])
         pose_object = PoseObject(*pose_array)
         return pose_object
 

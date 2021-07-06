@@ -7,10 +7,11 @@ from pyniryo2.robot_commander import RobotCommander
 from pyniryo2.enums import RobotErrors
 from pyniryo2.io.enums import PinID
 
-from pyniryo2.tool.enums import ToolID, ToolCommand
-from pyniryo2.tool.services import ToolServices
-from pyniryo2.tool.actions import ToolActions
-from pyniryo2.tool.topics import ToolTopics
+from .enums import ToolID, ToolCommand
+from .services import ToolServices
+from .actions import ToolActions
+from .topics import ToolTopics
+
 
 class Tool(RobotCommander):
     def __init__(self, client):
@@ -80,7 +81,6 @@ class Tool(RobotCommander):
         req = self._services.get_trigger_request()
         result = self._services.update_tool_service.call(req, callback, errback, timeout)
         return callback is not None or result["status"] >= RobotErrors.SUCCESS.value
-
 
     def grasp_with_tool(self, callback=None):
         """
@@ -222,6 +222,7 @@ class Tool(RobotCommander):
         return callback is not None or goal.wait(self.__action_timeout)["status"] >= RobotErrors.SUCCESS.value
 
         # - Vacuum
+
     def pull_air_vacuum_pump(self, callback=None):
         """
         Pull air of vacuum pump
@@ -283,6 +284,7 @@ class Tool(RobotCommander):
         return callback is not None or goal.wait(self.__action_timeout)["status"] >= RobotErrors.SUCCESS.value
 
         # - Electromagnet
+
     def setup_electromagnet(self, pin_id):
         """
         Setup electromagnet on pin
@@ -337,11 +339,12 @@ class Tool(RobotCommander):
             if pin_id:
                 self.setup_electromagnet(pin_id)
             else:
-                raise RobotCommandException("Call setup_electromagnet before using activate_electromagnet or specify a pin ID.")
+                raise RobotCommandException(
+                    "Call setup_electromagnet before using activate_electromagnet or specify a pin ID.")
 
         goal = self._actions.get_electromagnet_action_goal(ToolCommand.ACTIVATE_DIGITAL_IO, pin_id)
         goal.send(result_callback=callback)
-        return callback is not None  or goal.wait(self.__action_timeout)["status"] >= RobotErrors.SUCCESS.value
+        return callback is not None or goal.wait(self.__action_timeout)["status"] >= RobotErrors.SUCCESS.value
 
     def deactivate_electromagnet(self, pin_id=None, callback=None):
         """
@@ -374,7 +377,8 @@ class Tool(RobotCommander):
             if pin_id:
                 self.setup_electromagnet(pin_id)
             else:
-                raise RobotCommandException("Call setup_electromagnet before using deactivate_electromagnet or specify a pin ID.")
+                raise RobotCommandException(
+                    "Call setup_electromagnet before using deactivate_electromagnet or specify a pin ID.")
 
         goal = self._actions.get_electromagnet_action_goal(ToolCommand.DEACTIVATE_DIGITAL_IO, pin_id)
         goal.send(result_callback=callback)

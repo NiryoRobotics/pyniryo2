@@ -5,13 +5,18 @@ from __future__ import print_function
 from pyniryo2.robot_commander import RobotCommander
 from pyniryo2.enums import RobotErrors
 from pyniryo2.objects import PoseObject
+from pyniryo2.utils import pose_dict_to_list
 
-from pyniryo2.vision.enums import ObjectShape, ObjectColor, ManageWorkspace
-from pyniryo2.vision.services import VisionServices
-from pyniryo2.vision.topics import VisionTopics
+from .enums import ObjectShape, ObjectColor, ManageWorkspace
+from .services import VisionServices
+from .topics import VisionTopics
 
 from pyniryo2.arm.arm import Arm
 from pyniryo2.tool.tool import Tool
+
+
+def object_pose_dict_to_pose_object(object_pose_dict):
+    return PoseObject(*[object_pose_dict[axis] for axis in ["x", "y", "z", "roll", "pitch", "yaw"]])
 
 
 class Vision(RobotCommander):
@@ -25,13 +30,13 @@ class Vision(RobotCommander):
         if arm is None:
             self.__arm = Arm(client)
         else:
-            self._check_instance(self.__arm, Arm)
+            self._check_instance(arm, Arm)
             self.__arm = arm
 
         if tool is None:
             self.__tool = Tool(client)
         else:
-            self._check_instance(self.__tool, Tool)
+            self._check_instance(tool, Tool)
             self.__tool = tool
 
     @property
@@ -86,7 +91,7 @@ class Vision(RobotCommander):
         req = self._services.get_target_pose_service_request(workspace_name, height_offset, x_rel, y_rel, yaw_rel)
         resp = self._services.get_target_pose_service.call(req)
 
-        pose_array = self._services.pose_dict_to_list(resp["target_pose"])
+        pose_array = pose_dict_to_list(resp["target_pose"])
         pose_object = PoseObject(*pose_array)
         return pose_object
 
@@ -166,12 +171,12 @@ class Vision(RobotCommander):
         approach_pose = self.get_target_pose_from_rel(
             workspace_name, height_offset + 0.05, rel_pose.x, rel_pose.y, rel_pose.yaw)
 
-        self.__tool.release()
+        self.__tool.release_with_tool()
 
         self.__arm.move_pose(approach_pose)
         self.__arm.move_pose(pick_pose)
 
-        self.__tool.grasp()
+        self.__tool.grasp_with_tool()
 
         self.__arm.move_pose(approach_pose)
         return True, obj_shape, obj_color
@@ -220,17 +225,17 @@ class Vision(RobotCommander):
         req = self._services.obj_detection_rel_service_request(shape, color, ratio)
         resp = self._services.obj_detection_rel_service.call(req)
 
-        obj_found = resp["status"] >= RobotErrors.SUCCESS
+        obj_found = resp["status"] >= RobotErrors.SUCCESS.value
         if not obj_found:
-            rel_pose_array = 3 * [0.0]
+            rel_pose = PoseObject(*(6*[0.0]))
             shape = "ANY"
             color = "ANY"
         else:
-            rel_pose_array = self._services.pose_dict_to_list(resp["obj_pose"])
+            rel_pose = object_pose_dict_to_pose_object(resp["obj_pose"])
             shape = resp["obj_type"]
             color = resp["obj_color"]
 
-        return obj_found, rel_pose_array, ObjectShape[shape], ObjectColor[color]
+        return obj_found, rel_pose, ObjectShape[shape], ObjectColor[color]
 
     # - Workspace
     def save_workspace_from_robot_poses(self, workspace_name, pose_origin, pose_2, pose_3, pose_4):
@@ -306,7 +311,7 @@ class Vision(RobotCommander):
         self._check_type(workspace_name, str)
         req = self._services.get_workspace_poses_service_request(workspace_name)
         resp = self._services.get_workspace_poses_service.call(req)
-        return [PoseObject(*self._services.pose_dict_to_list(robot_pose)) for robot_pose in resp["poses"]]
+        return [PoseObject(*pose_dict_to_list(robot_pose)) for robot_pose in resp["poses"]]
 
     def get_workspace_ratio(self, workspace_name):
         """

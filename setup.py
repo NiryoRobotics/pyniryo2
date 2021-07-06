@@ -13,7 +13,7 @@ with open('requirements.txt', 'r') as f:
     REQUIRES = [str(line.replace("\n", "")) for line in f.readlines()]
 
 kwargs = {
-    'name': 'pyniryo',
+    'name': 'pyniryo2',
     'version': version,
     'description': 'Package to control Niryo Robot "Ned" through TCP',
     'long_description': readme,

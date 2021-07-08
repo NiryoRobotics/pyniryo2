@@ -60,21 +60,21 @@ class TestHardwareStatus(BaseTest):
     def test_synchronous_calibration(self):
         self.assertIsNone(time.sleep(1))
         # Test Reset calibration
-        self.assertTrue(self.arm.reset_calibration())
+        self.assertIsNone(self.arm.reset_calibration())
         self.assertTrue(self.arm.need_calibration())
 
         # Test Auto calibration
-        self.assertTrue(self.arm.calibrate(CalibrateMode.AUTO))
+        self.assertIsNone(self.arm.calibrate(CalibrateMode.AUTO))
         self.assertFalse(self.arm.need_calibration())
-        self.assertTrue(self.arm.reset_calibration())
+        self.assertIsNone(self.arm.reset_calibration())
         self.assertTrue(self.arm.need_calibration())
-        self.assertTrue(self.arm.calibrate_auto())
+        self.assertIsNone(self.arm.calibrate_auto())
         self.assertFalse(self.arm.need_calibration())
 
         # Test Manual Calibration
-        self.assertTrue(self.arm.reset_calibration())
+        self.assertIsNone(self.arm.reset_calibration())
         self.assertTrue(self.arm.need_calibration())
-        self.assertTrue(self.arm.calibrate(CalibrateMode.MANUAL))
+        self.assertIsNone(self.arm.calibrate(CalibrateMode.MANUAL))
         self.assertFalse(self.arm.need_calibration())
 
     def test_calibration_callback(self):
@@ -87,7 +87,7 @@ class TestHardwareStatus(BaseTest):
             self.assertIsNone(time.sleep(1))
             calibration_event.set()
 
-        self.assertTrue(self.arm.reset_calibration())
+        self.assertIsNone(self.arm.reset_calibration())
         self.assertTrue(self.arm.need_calibration())
 
         self.assertIsNone(self.arm.calibrate_auto(callback=callback_calibration_end))
@@ -104,7 +104,7 @@ class TestHardwareStatus(BaseTest):
             self.assertIsNone(time.sleep(1))
             calibration_event.set()
 
-        self.assertTrue(self.arm.calibrate(CalibrateMode.MANUAL))
+        self.assertIsNone(self.arm.calibrate(CalibrateMode.MANUAL))
         self.assertFalse(self.arm.need_calibration())
 
         self.assertIsNone(self.arm.request_new_calibration(callback=callback_calibration_end))
@@ -118,10 +118,10 @@ class TestHardwareStatus(BaseTest):
         def setter_learning_mode(state):
             self.arm.learning_mode = state
 
-        self.assertTrue(self.arm.set_learning_mode(False))
+        self.assertIsNone(self.arm.set_learning_mode(False))
         self.assertFalse(self.arm.learning_mode())
 
-        self.assertTrue(self.arm.set_learning_mode(True))
+        self.assertIsNone(self.arm.set_learning_mode(True))
         self.assertTrue(self.arm.learning_mode())
 
         self.assertIsNone(setter_learning_mode(False))
@@ -253,7 +253,7 @@ class TestHardwareStatus(BaseTest):
         joints = [0.0, 0.3, -1.3, 0.0, 0.0, 0.0]
         self.assertIsNone(self.arm.move_joints(joints, end_move_callback))
         self.assertIsNone(time.sleep(1))
-        self.assertTrue(self.arm.stop_move())
+        self.assertIsNone(self.arm.stop_move())
         self.assertTrue(end_move_event.wait(10))
 
         with self.assertRaises(AssertionError):
@@ -308,7 +308,7 @@ class TestHardwareStatus(BaseTest):
         self.assertIsNone(self.arm.move_joints(6 * [0.0]))
         self.assertAlmostEqualVector(self.arm.get_joints(), 6 * [0.0])
 
-        self.assertTrue(self.arm.set_jog_control(True))
+        self.assertIsNone(self.arm.set_jog_control(True))
 
         self.assertIsNone(self.arm.jog_joints([-0.2, 0.0, 0.2, 0.2, 0, 0]))
         self.assertIsNone(time.sleep(2))
@@ -323,7 +323,7 @@ class TestHardwareStatus(BaseTest):
         with self.assertRaises(RobotCommandException):
             self.arm.jog_joints([0.1, 0.0, -0.1], 0.05)
 
-        self.assertTrue(self.arm.set_jog_control(False))
+        self.assertIsNone(self.arm.set_jog_control(False))
 
     def test_jog_pose(self):
         self.assertIsNone(time.sleep(1))
@@ -363,11 +363,11 @@ class TestHardwareStatus(BaseTest):
         with self.assertRaises(RobotCommandException):
             self.arm.jog_pose([0.1, 0.0, -0.1], 0.05)
 
-        self.assertTrue(self.arm.set_jog_control(False))
+        self.assertIsNone(self.arm.set_jog_control(False))
 
     def test_velocity(self):
         self.assertIsNone(time.sleep(1))
-        self.assertTrue(self.arm.set_arm_max_velocity(100))
+        self.assertIsNone(self.arm.set_arm_max_velocity(100))
         self.assertEqual(self.arm.get_arm_max_velocity(), 100)
 
         self.velocity = None
@@ -376,7 +376,7 @@ class TestHardwareStatus(BaseTest):
             self.velocity = msg
 
         self.assertIsNone(self.arm.get_arm_max_velocity.subscribe(velocity_callback))
-        self.assertTrue(self.arm.set_arm_max_velocity(50))
+        self.assertIsNone(self.arm.set_arm_max_velocity(50))
         self.assertIsNone(time.sleep(1))
         self.assertEqual(self.velocity, 50)
 
@@ -390,7 +390,7 @@ class TestHardwareStatus(BaseTest):
             self.arm.set_arm_max_velocity(0)
 
         self.assertIsNone(time.sleep(0.5))
-        self.assertTrue(self.arm.set_arm_max_velocity(100))
+        self.assertIsNone(self.arm.set_arm_max_velocity(100))
         self.assertIsNone(time.sleep(0.5))
         self.assertEqual(self.arm.get_arm_max_velocity(), 100)
 
@@ -412,7 +412,7 @@ class TestHardwareStatus(BaseTest):
         pose_reached = self.arm.get_pose()
         self.assertAlmostEqualVector(pose_target, pose_reached.to_list())
 
-        self.assertTrue(self.arm.set_learning_mode(True))
+        self.assertIsNone(self.arm.set_learning_mode(True))
 
 
 def suite():

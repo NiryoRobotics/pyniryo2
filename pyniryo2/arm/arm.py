@@ -10,6 +10,7 @@ from pyniryo2.robot_commander import RobotCommander
 from pyniryo2.enums import RobotErrors
 from pyniryo2.objects import PoseObject
 from pyniryo2.utils import pose_dict_to_list
+from pyniryo2.exceptions import RobotCommandException
 
 from .enums import CalibrateMode, RobotAxis, JogShift
 from .services import ArmServices
@@ -59,9 +60,7 @@ class Arm(RobotCommander):
         :type errback: function
         :param timeout: Timeout for the operation, in seconds. Only used if blocking.
         :type timeout: float
-        :return: True if command where successfully completed, False otherwise.
-        Returns always True with non blocking use.
-        :rtype: Bool
+        :rtype: None
         """
 
         def wait_calibration_end():
@@ -70,8 +69,8 @@ class Arm(RobotCommander):
                 hardware_status = self._topics.hardware_status_topic()
                 if hardware_status and not (
                         hardware_status.calibration_in_progress or hardware_status.calibration_needed):
-                    return True
-            return False
+                    return
+            raise RobotCommandException("Calibration timeout")
 
         self._check_enum_belonging(calibrate_mode, CalibrateMode)
         request = roslibpy.ServiceRequest()
@@ -80,13 +79,11 @@ class Arm(RobotCommander):
         if callback is not None:
             self._services.request_calibration_service.call(request, callback=callback, errback=errback,
                                                             timeout=timeout)
-            return True
+            return
         else:
             resp = self._services.request_calibration_service.call(request, callback=None, errback=errback,
                                                                    timeout=timeout)
-            if resp["status"] < RobotErrors.SUCCESS.value:
-                return False
-
+            self._check_result_status(resp)
             return wait_calibration_end()
 
     def calibrate_auto(self, callback=None, errback=None, timeout=None):
@@ -112,9 +109,7 @@ class Arm(RobotCommander):
         :type errback: function
         :param timeout: Timeout for the operation, in seconds. Only used if blocking.
         :type timeout: float
-        :return: True if command where successfully completed, False otherwise.
-        Returns always True with non blocking use.
-        :rtype: Bool
+        :rtype: None
         """
         return self.calibrate(CalibrateMode.AUTO, callback, errback, timeout)
 
@@ -141,9 +136,7 @@ class Arm(RobotCommander):
         :type errback: function
         :param timeout: Timeout for the operation, in seconds. Only used if blocking.
         :type timeout: float
-        :return: True if command where successfully completed, False otherwise.
-                Returns always True with non blocking use.
-        :rtype: Bool
+        :rtype: None
         """
         self.reset_calibration()
         return self.calibrate_auto(callback, errback, timeout)
@@ -154,8 +147,7 @@ class Arm(RobotCommander):
 
         :param timeout: Timeout for the operation, in seconds.
         :type timeout: float
-        :return: True if command where successfully completed, False if failed or timeout occurs..
-        :rtype: Bool
+        :rtype: None
         """
         request = self._services.get_trigger_request()
         self._services.request_new_calibration_service.call(request)
@@ -164,9 +156,8 @@ class Arm(RobotCommander):
         while time.time() - start_time < timeout:
             hardware_status = self._topics.hardware_status_topic()
             if hardware_status and hardware_status.calibration_needed:
-                return True
+                return
             time.sleep(0.05)
-        return False
 
     def need_calibration(self):
         """
@@ -257,13 +248,12 @@ class Arm(RobotCommander):
 
         :param enabled: ``True`` or ``False``
         :type enabled: bool
-        :return: True if succeeded, False otherwise
-        :rtype: Bool
+        :rtype: None
         """
         self._check_type(enabled, bool)
         req = self._services.get_learning_mode_request(enabled)
         resp = self._services.activate_learning_mode_service.call(req)
-        return resp["status"] >= RobotErrors.SUCCESS.value
+        self._check_result_status(resp)
 
     # - Get Joints/Pose
 
@@ -523,16 +513,12 @@ class Arm(RobotCommander):
         :type errback: function
         :param timeout: Timeout for the operation, in seconds. Only used if blocking.
         :type timeout: float
-        :return: True if command where successfully completed, False otherwise.
-        Returns always True with non blocking use.
-        :rtype: Bool
+        :rtype: None
         """
         req = self._services.get_trigger_request()
         resp = self._services.stop_arm_service.call(req, callback, errback, timeout)
 
-        if callback is not None:
-            return resp["status"] >= RobotErrors.SUCCESS.value
-        return True
+        self._check_result_status(resp)
 
     @property
     def get_arm_max_velocity(self):
@@ -565,13 +551,12 @@ class Arm(RobotCommander):
 
         :param percentage_speed: Should be between 1 & 100
         :type percentage_speed: int
-        :return: True if command where successfully completed, False otherwise.
-        Returns always True with non blocking use.
-        :rtype: Bool
+        :rtype: None
         """
         self._check_range_belonging(percentage_speed, 1, 100)
         req = self._services.get_max_velocity_scaling_factor_request(percentage_speed)
-        return self._services.set_max_velocity_scaling_factor_service.call(req)["status"] >= RobotErrors.SUCCESS.value
+        resp = self._services.set_max_velocity_scaling_factor_service.call(req)
+        self._check_result_status(resp)
 
     # - Shift Pose
 
@@ -619,12 +604,12 @@ class Arm(RobotCommander):
 
         :param enabled: ``True`` or ``False``
         :type enabled: Bool
-        :return: True if command where successfully completed, False otherwise.
-        :rtype: Bool
+        :rtype: None
         """
         self._check_type(enabled, bool)
         req = self._services.get_enable_jog_request(enabled)
-        return self._services.enable_jog_controller_service.call(req)["status"] >= RobotErrors.SUCCESS.value
+        resp = self._services.enable_jog_controller_service.call(req)
+        self._check_result_status(resp)
 
     def jog_joints(self, joints_offset, callback=None, errback=None, timeout=None):
         """

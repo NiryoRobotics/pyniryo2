@@ -1,7 +1,7 @@
 from enum import Enum, unique
 
-@unique
 
+@unique
 class ConveyorID(Enum):
     """
     Enumeration of the different Conveyor Ids
@@ -10,8 +10,8 @@ class ConveyorID(Enum):
     ID_1 = 12
     ID_2 = 13
 
-@unique
 
+@unique
 class ConveyorDirection(Enum):
     """
     Enumeration of the directions of the conveyor
@@ -20,8 +20,8 @@ class ConveyorDirection(Enum):
     FORWARD = 1
     BACKWARD = -1
 
-@unique
 
+@unique
 class ConveyorStatus(Enum):
     """
     Enumeration of the different Conveyor status

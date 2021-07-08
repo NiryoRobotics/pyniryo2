@@ -1,17 +1,9 @@
-# - Imports
-from __future__ import print_function
-
-# Python libraries
-import roslibpy
-import sys
-
 # Communication imports
-from pyniryo2.exceptions import RobotCommandException
 from pyniryo2.robot_commander import RobotCommander
 
-from pyniryo2.conveyor.enums import ConveyorID, ConveyorDirection, ConveyorStatus
-from pyniryo2.conveyor.services import ConveyorServices
-from pyniryo2.conveyor.topics import ConveyorTopics
+from .enums import ConveyorID, ConveyorDirection, ConveyorStatus
+from .services import ConveyorServices
+from .topics import ConveyorTopics
 
 
 class Conveyor(RobotCommander):
@@ -35,25 +27,24 @@ class Conveyor(RobotCommander):
             # Scan and set the conveyor plugged
             conveyor.set_conveyor()
 
-        :return: New conveyor ID
-        :rtype: int
+        :return : New conveyor ID
+        :rtype: ConveyorID
         """
-        cmd_type = ConveyorStatus.ADD.value
-        req = self._services.get_ping_and_set_conveyor_request(cmd_type)
+        req = self._services.get_ping_and_set_conveyor_request()
         resp = self._services.ping_and_set_conveyor_service.call(req)
-        conveyor_id = resp["id"]
+        conveyor_id = ConveyorID(resp["id"])
 
         # If new conveyor has been found
-        if conveyor_id != ConveyorID.NONE.value:
-            print("New conveyor detected and set with id :", conveyor_id)
+        if conveyor_id != ConveyorID.NONE:
+            # print("New conveyor detected and set with id :", conveyor_id)
             return conveyor_id
         else:
             last_conveyor_id = self.get_conveyors_feedback()[0].conveyor_id
-            if last_conveyor_id != ConveyorID.NONE.value:
-                print("No new conveyor detecter, actual conveyor id :", last_conveyor_id)
+            if last_conveyor_id != ConveyorID.NONE:
+                # print("No new conveyor detected, actual conveyor id :", last_conveyor_id)
                 return last_conveyor_id
             else:
-                print("No conveyor detected")
+                # print("No conveyor detected")
                 return last_conveyor_id
 
     def unset_conveyor(self, conveyor_id):
@@ -63,18 +54,19 @@ class Conveyor(RobotCommander):
         Example: ::
             conveyor_id = conveyor.set_conveyor()
             conveyor.unset_conveyor(conveyor_id)
+            conveyor.unset_conveyor(ConveyorID.ID_1)
+            conveyor.unset_conveyor(ConveyorID.ID_2)
         
-        :param conveyor_id: Basically, ConveyorID.ID_1 or ConveyorID.ID_TWO
-        :type conveyor_id: int
-        :return: status, message
-        :rtype: (int, str)
+        :param conveyor_id: Basically, ConveyorID.ID_1 or ConveyorID.ID_2
+        :type conveyor_id: ConveyorID
+        :rtype: None
         """
+        self._check_enum_belonging(conveyor_id, ConveyorID)
         req = self._services.unset_conveyor_request(conveyor_id)
         resp = self._services.ping_and_set_conveyor_service.call(req)
+        self._check_result_status(resp)
 
-        return str(resp["status"]), str(resp["message"])
-    
-    def run_conveyor(self, conveyor_id):
+    def run_conveyor(self, conveyor_id, speed=100, direction=ConveyorDirection.FORWARD):
         """
         Run conveyor at id 'conveyor_id'
 
@@ -86,22 +78,19 @@ class Conveyor(RobotCommander):
             conveyor_id = conveyor.set_conveyor()
             conveyor.run_conveyor(conveyor_id) 
 
-        :param conveyor_id: conveyor_id = conveyor_id
-        :type conveyor_id: int
-        :param control_on: True
-        :type control_on: Bool
-        :param speed: speed = 50
+        :param conveyor_id: The conveyor id
+        :type conveyor_id: ConveyorID
+        :param speed: speed percentage between 0% and 100%
         :type speed: int
-        :param direction: direction = ConveyorDirection.FORWARD.value
+        :param direction: direction = ConveyorDirection.FORWARD
         :type direction: ConveyorDirection
         :rtype: None
         """
-        req = self._services.control_conveyor_request(conveyor_id, control_on=True, speed=50, direction=ConveyorDirection.FORWARD.value)
-        self._services.control_conveyor_service.call(req)
+        self.control_conveyor(conveyor_id, control_on=True, speed=speed, direction=direction)
 
     def stop_conveyor(self, conveyor_id):
         """
-        Run conveyor at id 'conveyor_id'
+        Stop conveyor at id 'conveyor_id'
     
         Example: ::
             # Set the conveyor and get its id, run it and then stop it after 3 seconds
@@ -115,18 +104,11 @@ class Conveyor(RobotCommander):
             time.sleep(3)
             conveyor.stop_conveyor(conveyor_id) 
 
-        :param conveyor_id: conveyor_id = conveyor_id
-        :type conveyor_id: int 
-        :param control_on: False
-        :type control_on: Bool
-        :param speed: speed = 0
-        :type speed: int
-        :param direction: direction = ConveyorDirection.FORWARD.value
-        :type direction: ConveyorDirection
+        :param conveyor_id:
+        :type conveyor_id: ConveyorID
         :rtype: None
         """
-        req = self._services.control_conveyor_request(conveyor_id, control_on=False, speed=0, direction=ConveyorDirection.FORWARD.value)
-        self._services.control_conveyor_service.call(req)
+        self.control_conveyor(conveyor_id, control_on=False, speed=50, direction=ConveyorDirection.FORWARD)
 
     def control_conveyor(self, conveyor_id, control_on, speed, direction):
         """
@@ -152,32 +134,62 @@ class Conveyor(RobotCommander):
             import time
 
             conveyor_id = conveyor.set_conveyor()
-            conveyor.control_conveyo(conveyor_id, True, 30, ConveyorDirection.BACKWARD.value)
+            conveyor.control_conveyor(conveyor_id, True, 30, ConveyorDirection.BACKWARD.value)
             time.sleep(3)
             conveyor.stop_conveyor(conveyor_id) 
 
-        :param conveyor_id: ConveyorID = conveyor_id
-        :type conveyor_id: int
-        :param bool_control_on: True for activate, False for deactivate
-        :type bool_control_on: bool
-        :param speed: target speed
-        :type speed: int (0, 100)%
+        :param conveyor_id:
+        :type conveyor_id: ConveyorID
+        :param control_on: True for activate, False for deactivate
+        :type control_on: bool
+        :param speed: New speed which is a percentage of maximum speed (0% to 100%)
+        :type speed: int
         :param direction: ConveyorDirection.FORWARD.value, ConveyorDirection.BACKWARD.value
         :type direction: ConveyorDirection
-        :return: status, message
-        :rtype: (int, str)
+        :rtype: None
         """
+        self._check_enum_belonging(conveyor_id, ConveyorID)
+        self._check_type(control_on, bool)
+        self._transform_to_type(speed, int)
+        self._check_range_belonging(speed, 0, 100)
+        self._check_enum_belonging(direction, ConveyorDirection)
+
         req = self._services.control_conveyor_request(conveyor_id, control_on, speed, direction)
         resp = self._services.control_conveyor_service.call(req)
 
-        return str(resp["status"]), str(resp["message"])
-        
+        self._check_result_status(resp)
+
     @property
     def get_conveyors_feedback(self):
         """
-        Give conveyors feedback (conveyor_id, connection_state, running, speed, direction)
+        Returns the conveyors feedback client which can be used synchronously or asynchronously
+        to obtain the conveyors feedback: (conveyor_id, connection_state, running, speed, direction)
 
-        :return: namedtuple[conveyor_id, connection_state, running, speed, direction]
-        :rtype: namedtuple(int, bool, bool, int, int)
+        Examples: ::
+
+            # Get last value
+            arm.get_conveyors_feedback()
+            arm.get_conveyors_feedback.value
+
+            # Subscribe a callback
+            def conveyor_callback(conveyor_feedback):
+                print conveyor_feedback
+
+            arm.hardware_status.subscribe(conveyor_callback)
+            # wait
+            arm.hardware_status.unsubscribe()
+
+        :return: namedtuple[conveyor_id, running, speed, direction]
+        :rtype: namedtuple(ConveyorID, bool, int, ConveyorDirection)
         """
         return self._topics.conveyor_feedback_topic
+
+    @property
+    def conveyors(self):
+        """
+        Return list of registered conveyors
+
+        :return: namedtuple[conveyor_id, running, speed, direction]
+        :rtype: namedtuple(ConveyorID, bool, int, ConveyorDirection)
+        """
+        return self._topics.conveyor_feedback_topic()

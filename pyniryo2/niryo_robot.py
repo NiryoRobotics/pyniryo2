@@ -7,6 +7,7 @@ import time
 
 # Communication imports
 from .arm.arm import Arm
+from .conveyor.conveyor import Conveyor
 from .io.io import IO
 from .pick_place.pick_place import PickPlace
 from .saved_poses.saved_poses import SavedPoses
@@ -27,11 +28,13 @@ class NiryoRobot(object):
         self.__tool = None
         self.__saved_poses = None
         self.__io = None
+        self.__conveyor = None
         self.__arm = None
 
         self.run(ip_address, port)
 
         self.__arm = Arm(self.__client)
+        self.__conveyor = Conveyor(self.__client)
         self.__io = IO(self.__client)
         self.__saved_poses = SavedPoses(self.__client)
         self.__tool = Tool(self.__client)
@@ -46,6 +49,7 @@ class NiryoRobot(object):
         del self.__tool
         del self.__saved_poses
         del self.__io
+        del self.__conveyor
         del self.__arm
 
         self.end()
@@ -81,6 +85,10 @@ class NiryoRobot(object):
     @property
     def arm(self):
         return self.__arm
+
+    @property
+    def conveyor(self):
+        return self.__conveyor
 
     @property
     def io(self):

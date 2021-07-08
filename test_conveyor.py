@@ -1,27 +1,20 @@
 #!/usr/bin/env python
 import time
-from collections import namedtuple
 import unittest
 import roslibpy
-from threading import Event
 
 from pyniryo2.exceptions import RobotCommandException
-from pyniryo2.niryo_topic import NiryoTopic
-from pyniryo2.enums import RobotErrors
 
-from pyniryo2.conveyor.enums import ConveyorID, ConveyorDirection, ConveyorStatus
+from pyniryo2.conveyor.enums import ConveyorID, ConveyorDirection
 from pyniryo2.conveyor.conveyor import Conveyor
 from pyniryo2.conveyor.topics import ConveyorInfo
 
-
-robot_ip_address = "192.168.1.118"
+robot_ip_address = "192.168.1.52"
 port = 9090
 
-test_order = ["test_conveyor_variable",
-              "test_conveyor_set_run"]
-              # "test_run_conveyor",
-              # "test_control_conveyor",
-              # "test_shutdown_conveyor"]
+test_order = ["test_conveyor_set_run",
+              "test_bad_params_errors",
+              ]
 
 
 class BaseTest(unittest.TestCase):
@@ -38,56 +31,81 @@ class BaseTest(unittest.TestCase):
 
 # noinspection PyTypeChecker
 class TestConveyor(BaseTest):
-    def test_conveyor_variable(self):
-        self.assertIsNone(time.sleep(1))
-        self.assertIsInstance(self.conveyor.get_conveyors_feedback, NiryoTopic)
-        self.assertIsInstance(self.conveyor.set_conveyor(), int)
-        conveyor_id = self.conveyor.set_conveyor()
-        self.assertIsInstance(self.conveyor.unset_conveyor(conveyor_id), tuple)
-        self.assertIsInstance(self.conveyor.unset_conveyor(conveyor_id)[0], str)
-        self.assertIsInstance(self.conveyor.unset_conveyor(conveyor_id)[1], str)
-        self.assertIsNone(self.conveyor.run_conveyor(conveyor_id), None)
-        self.assertIsInstance(self.conveyor.control_conveyor(conveyor_id, True, 30, ConveyorDirection.BACKWARD.value), tuple)
-        self.assertIsInstance(self.conveyor.control_conveyor(conveyor_id, True, 100, ConveyorDirection.BACKWARD.value)[0], str)
-        self.assertIsInstance(self.conveyor.control_conveyor(conveyor_id, True, 50, ConveyorDirection.FORWARD.value)[1], str)
-    
     def test_conveyor_set_run(self):
-        self.assertIsNone(time.sleep(1))
-        self.assertTrue(self.conveyor.set_conveyor())
-        self.assertIsNone(time.sleep(1))
         conveyor_id = self.conveyor.set_conveyor()
+        self.assertIsInstance(conveyor_id, ConveyorID)
 
+        self.assertIsInstance(self.conveyor.get_conveyors_feedback(), list)
+        feedback = self.conveyor.get_conveyors_feedback()
+        self.assertIsInstance(feedback[0], ConveyorInfo)
+        self.assertEqual(feedback[0].conveyor_id, ConveyorID.ID_1)
 
-        # ---- Uncomment second line if conveyor plugged with ID_2 ----
-        self.assertEqual(self.conveyor.get_conveyors_feedback()[0].conveyor_id, ConveyorID.ID_1.value)
-        # self.assertEqual(self.conveyor.get_conveyors_feedback()[0].conveyor_id, ConveyorID.ID_2.value)
-        self.assertIsNone(time.sleep(2))
+        self.assertIsNone(self.conveyor.control_conveyor(ConveyorID.ID_1, True, 30, ConveyorDirection.BACKWARD))
+        self.assertIsNone(time.sleep(1))
+        self.assertEqual(self.conveyor.get_conveyors_feedback()[0], ConveyorInfo(conveyor_id=ConveyorID.ID_1,
+                                                                                 speed=30,
+                                                                                 running=True,
+                                                                                 direction=ConveyorDirection.BACKWARD))
 
-        self.assertEqual(int(self.conveyor.control_conveyor(conveyor_id, True, 30, ConveyorDirection.BACKWARD.value)[0]), 1) # 1 --> runnung
-        self.assertEqual(self.conveyor.get_conveyors_feedback()[0].direction, ConveyorDirection.BACKWARD.value)
-        self.assertEqual(self.conveyor.get_conveyors_feedback()[0].speed, 30)
-        self.assertIsNone(time.sleep(2))
+        self.assertIsNone(self.conveyor.control_conveyor(ConveyorID.ID_1, True, 50, ConveyorDirection.FORWARD))
+        self.assertIsNone(time.sleep(1))
+        self.assertEqual(self.conveyor.get_conveyors_feedback()[0], ConveyorInfo(conveyor_id=ConveyorID.ID_1,
+                                                                                 speed=50,
+                                                                                 running=True,
+                                                                                 direction=ConveyorDirection.FORWARD))
 
-        self.assertEqual(int(self.conveyor.control_conveyor(conveyor_id, True, 100, ConveyorDirection.FORWARD.value)[0]), 1) # 1 --> running
-        self.assertEqual(self.conveyor.get_conveyors_feedback()[0].direction, ConveyorDirection.FORWARD.value)
-        self.assertEqual(self.conveyor.get_conveyors_feedback()[0].speed, 100)
-        self.assertIsNone(time.sleep(2))
+        self.assertIsNone(self.conveyor.control_conveyor(ConveyorID.ID_1, False, 50, ConveyorDirection.FORWARD))
+        self.assertIsNone(time.sleep(1))
+        self.assertEqual(self.conveyor.get_conveyors_feedback()[0], ConveyorInfo(conveyor_id=ConveyorID.ID_1,
+                                                                                 speed=0,
+                                                                                 running=False,
+                                                                                 direction=ConveyorDirection.FORWARD))
 
-        self.conveyor.stop_conveyor(conveyor_id)
-        self.assertEqual(self.conveyor.get_conveyors_feedback()[0].direction, ConveyorDirection.FORWARD.value)
+        self.conveyor.run_conveyor(ConveyorID.ID_1)
+        self.assertIsNone(time.sleep(1))
+        self.assertEqual(self.conveyor.get_conveyors_feedback()[0], ConveyorInfo(conveyor_id=ConveyorID.ID_1,
+                                                                                 speed=100,
+                                                                                 running=True,
+                                                                                 direction=ConveyorDirection.FORWARD))
+
+        self.conveyor.stop_conveyor(ConveyorID.ID_1)
+        self.assertIsNone(time.sleep(1))
+        self.assertEqual(self.conveyor.get_conveyors_feedback()[0].running, False)
         self.assertEqual(self.conveyor.get_conveyors_feedback()[0].speed, 0)
-        self.assertIsNone(time.sleep(2))
 
-        self.conveyor.run_conveyor(conveyor_id) 
-        self.assertEqual(self.conveyor.get_conveyors_feedback()[0].direction, ConveyorDirection.FORWARD.value)
-        self.assertEqual(self.conveyor.get_conveyors_feedback()[0].speed, 50)
-        self.assertIsNone(time.sleep(2))
-        self.conveyor.stop_conveyor(conveyor_id)
-
-        self.conveyor.unset_conveyor(conveyor_id)
+        self.assertIsNone(self.conveyor.unset_conveyor(ConveyorID.ID_1))
         self.assertEqual(self.conveyor.get_conveyors_feedback(), [])
-        self.conveyor.set_conveyor()
-        self.assertEqual(self.conveyor.get_conveyors_feedback()[0].conveyor_id, ConveyorID.ID_1.value)
+        self.assertFalse(
+            ConveyorID.ID_1 in [conveyor.conveyor_id for conveyor in self.conveyor.get_conveyors_feedback()])
+
+        self.assertEqual(self.conveyor.set_conveyor(), ConveyorID.ID_1)
+
+    def test_bad_params_errors(self):
+        self.assertEqual(self.conveyor.set_conveyor(), ConveyorID.ID_1)
+
+        with self.assertRaises(RobotCommandException):
+            self.conveyor.unset_conveyor(1)
+
+        with self.assertRaises(RobotCommandException):
+            self.conveyor.control_conveyor(1, False, 50, ConveyorDirection.FORWARD)
+
+        with self.assertRaises(RobotCommandException):
+            self.conveyor.control_conveyor(ConveyorID, False, 50, ConveyorDirection.FORWARD)
+
+        with self.assertRaises(RobotCommandException):
+            self.conveyor.control_conveyor(ConveyorID.ID_1, 1, 50, ConveyorDirection.FORWARD)
+
+        with self.assertRaises(RobotCommandException):
+            self.conveyor.control_conveyor(ConveyorID.ID_1, True, -100, ConveyorDirection.FORWARD)
+
+        with self.assertRaises(RobotCommandException):
+            self.conveyor.control_conveyor(ConveyorID.ID_1, True, 200, ConveyorDirection.FORWARD)
+
+        with self.assertRaises(RobotCommandException):
+            self.conveyor.control_conveyor(ConveyorID.ID_1, True, 100, ConveyorDirection)
+
+        with self.assertRaises(RobotCommandException):
+            self.conveyor.control_conveyor(ConveyorID.ID_1, True, 100, 1)
 
 
 def suite():

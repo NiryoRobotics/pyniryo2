@@ -13,7 +13,8 @@ class ArmActions(object):
                                                       'niryo_robot_arm_commander/RobotMoveAction')
 
     def __del__(self):
-        if self.arm_action:
+        if self.arm_action is not None:
+            self.arm_action.cancel()
             self.arm_action.dispose()
 
     def get_move_joints_goal(self, joints):

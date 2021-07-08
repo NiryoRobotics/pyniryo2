@@ -15,7 +15,8 @@ class ToolActions(object):
                                                            'niryo_robot_tools_commander/ToolAction')
 
     def __del__(self):
-        if self.tool_action:
+        if self.tool_action is not None:
+            self.tool_action.cancel()
             self.tool_action.dispose()
 
     def get_gripper_action_goal(self, tool_id, tool_cmd, speed):

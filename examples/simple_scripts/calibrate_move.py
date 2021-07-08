@@ -44,4 +44,4 @@ if not simulation_mode:
 
 # Terminate
 niryo_robot.arm.set_learning_mode(True)
-niryo_robot.terminate()
+niryo_robot.end()

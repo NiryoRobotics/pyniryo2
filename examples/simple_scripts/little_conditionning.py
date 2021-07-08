@@ -74,4 +74,4 @@ if __name__ == '__main__':
     vision_pick_n_place(robot)
     # Releasing connection
     robot.arm.go_to_sleep()
-    robot.terminate()
+    robot.end()

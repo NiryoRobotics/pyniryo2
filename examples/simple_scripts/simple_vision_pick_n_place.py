@@ -110,4 +110,4 @@ if __name__ == '__main__':
     vision_pick_n_place_2(client)
     # Ending
     client.arm.go_to_sleep()
-    client.terminate()
+    client.end()

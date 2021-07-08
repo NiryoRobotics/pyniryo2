@@ -115,4 +115,4 @@ if __name__ == '__main__':
     # Launching main process
     process(robot)
     # Releasing connection
-    robot.terminate()
+    robot.end()

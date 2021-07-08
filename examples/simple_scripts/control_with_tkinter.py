@@ -185,4 +185,4 @@ if __name__ == '__main__':
     # Launching main process
     process(robot)
     # Terminate
-    robot.terminate()
+    robot.end()

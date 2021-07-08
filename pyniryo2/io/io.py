@@ -42,7 +42,7 @@ class IO(RobotCommander):
         :return: io state topic instance
         :rtype: NiryoTopic
         """
-        return self._topics.joint_states_topic
+        return self._topics.io_topic
 
     def set_pin_mode(self, pin_id, pin_mode):
         """

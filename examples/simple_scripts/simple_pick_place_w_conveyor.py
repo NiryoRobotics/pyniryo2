@@ -63,4 +63,4 @@ if __name__ == '__main__':
     # Launching main process
     pick_n_place_w_conveyor(robot)
     # Releasing connection
-    robot.terminate()
+    robot.end()

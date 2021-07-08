@@ -50,7 +50,7 @@ class PickPlace(RobotCommander):
 
         self.__tool.release_with_tool()
         self.__trajectories.execute_trajectory_from_poses([pick_pose_high, pick_pose], dist_smoothing=0.0)
-        self.__trajectories.grasp_with_tool()
+        self.__tool.grasp_with_tool()
 
         return self.__arm.move_pose(pick_pose_high)
 
@@ -98,7 +98,7 @@ class PickPlace(RobotCommander):
         self.__tool.release_with_tool()
 
         self.__trajectories.execute_trajectory_from_poses([pick_pose_high, pick_pose_object], dist_smoothing)
-        self.__trajectories.grasp_with_tool()
+        self.__tool.grasp_with_tool()
 
         self.__trajectories.execute_trajectory_from_poses([pick_pose_high, place_pose_high, place_pose_object],
                                                           dist_smoothing)

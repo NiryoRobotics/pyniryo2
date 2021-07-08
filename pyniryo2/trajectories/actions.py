@@ -13,7 +13,8 @@ class TrajectoriesActions(object):
                                                                  'niryo_robot_arm_commander/RobotMoveAction')
 
     def __del__(self):
-        if self.trajectory_action:
+        if self.trajectory_action is not None:
+            self.trajectory_action.cancel()
             self.trajectory_action.dispose()
 
     def get_execute_trajectories_goal(self, pose_list, dist_smoothing=0):

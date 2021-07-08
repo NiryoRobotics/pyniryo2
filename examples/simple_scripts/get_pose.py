@@ -36,5 +36,5 @@ while "User to not quit":
 
 niryo_robot.arm.set_learning_mode(True)
 # Terminate
-niryo_robot.terminate()
+niryo_robot.end()
 

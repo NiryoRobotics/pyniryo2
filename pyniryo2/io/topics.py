@@ -7,7 +7,7 @@ class IOTopics(object):
     def __init__(self, client):
         self.__client = client
 
-        self.joint_states_topic = NiryoTopic(self.__client,
+        self.io_topic = NiryoTopic(self.__client,
                                              '/niryo_robot_rpi/digital_io_state',
                                              'niryo_robot_rpi/DigitalIOState',
                                              digital_io_state_topic_conversion)

@@ -45,6 +45,17 @@ class Vision(RobotCommander):
         Get calibration object: camera intrinsics, distortions coefficients
         The topic return a namedtuple(intrinsics: list[list[float]], distortion: list[list[float]])
 
+        Examples: ::
+            vision.get_camera_intrinsics()
+            vision.get_camera_intrinsics().value
+
+            def camera_info_callback(camera_info):
+                print(camera_info.intrinsics)
+                print(camera_info.distortion)
+                vision.get_camera_intrinsics.unsubscribe()
+
+            vision.get_camera_intrinsics.subscribe(camera_info_callback)
+
         :rtype: NiryoTopic
         """
         return self._topics.camera_info_topic

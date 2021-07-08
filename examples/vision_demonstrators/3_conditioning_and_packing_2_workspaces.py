@@ -41,6 +41,11 @@ sleep_joints = [0.0, 0.55, -1.2, 0.0, 0.0, 0.0]
 
 
 def process(niryo_robot):
+    """
+
+    :type niryo_robot: NiryoRobot
+    :rtype: None
+    """
     catch_count_category_1 = 0
     catch_count_category_2 = 0
     try_without_success = 0
@@ -48,32 +53,32 @@ def process(niryo_robot):
     while try_without_success < 3 and catch_count_category_1 + catch_count_category_2 < 6:
         obj_pose = None
         # Moving to observation pose over the packing workspace
-        niryo_robot.move_pose(*observation_pose_wks_place.to_list())
+        niryo_robot.arm.move_pose(observation_pose_wks_place)
         # Trying to get place pose from python ROS wrapper
-        ret = niryo_robot.get_target_pose_from_cam(workspace_place_name,
-                                                   height_offset=0.0,
-                                                   shape=ObjectShape.ANY,
-                                                   color=ObjectColor.ANY)
+        ret = niryo_robot.vision.get_target_pose_from_cam(workspace_place_name,
+                                                          height_offset=0.0,
+                                                          shape=ObjectShape.ANY,
+                                                          color=ObjectColor.ANY)
         # Unpacking return result
-        status, obj_found, place_pose, shape, color = ret
-        if not status or not obj_found:  # Aborting iteration if issue
+        obj_found, place_pose, shape, color = ret
+        if not obj_found:  # Aborting iteration if issue
             try_without_success += 1
             continue
 
         # Moving to observation pose over the picking workspace
-        niryo_robot.move_pose(*observation_pose_wks_pick.to_list())
+        niryo_robot.arm.move_pose(observation_pose_wks_pick)
 
         try_without_success_within = 0
         obj_found_within = False
         should_leave = False
         shape_obj = None
         while not obj_found_within:  # Looping over picking area
-            ret = niryo_robot.get_target_pose_from_cam(workspace_pick_name,
-                                                       height_offset=0.0,
-                                                       shape=ObjectShape.ANY,
-                                                       color=ObjectColor.ANY)
-            status, obj_found_within, obj_pose, shape_obj, color_obj = ret
-            if not status or not obj_found_within:
+            ret = niryo_robot.vision.get_target_pose_from_cam(workspace_pick_name,
+                                                              height_offset=0.0,
+                                                              shape=ObjectShape.ANY,
+                                                              color=ObjectColor.ANY)
+            obj_found_within, obj_pose, shape_obj, color_obj = ret
+            if not obj_found_within:
                 try_without_success_within += 1
                 if try_without_success_within > 3:
                     should_leave = True
@@ -82,18 +87,18 @@ def process(niryo_robot):
         if should_leave:  # If nothing has been found, nothing more to pack, leave
             break
         # Everything is good, so we going to pick the object
-        niryo_robot.pick_from_pose(*obj_pose.to_list())
+        niryo_robot.pick_place.pick_from_pose(obj_pose)
 
         # Packing
         place_pose_high = place_pose.copy_with_offsets(z_offset=0.05)
-        niryo_robot.move_pose(*place_pose_high.to_list())
-        niryo_robot.move_pose(*place_pose.copy_with_offsets(z_offset=0.01).to_list())
+        niryo_robot.arm.move_pose(place_pose_high)
+        niryo_robot.arm.move_pose(place_pose.copy_with_offsets(z_offset=0.01))
         # Opening gripper to pack
-        niryo_robot.open_gripper()
+        niryo_robot.tool.open_gripper()
         # Going down to pick package
-        niryo_robot.move_pose(*place_pose.copy_with_offsets(z_offset=-0.011).to_list())
-        niryo_robot.close_gripper()
-        niryo_robot.move_pose(*place_pose.copy_with_offsets(z_offset=0.05).to_list())
+        niryo_robot.arm.move_pose(place_pose.copy_with_offsets(z_offset=-0.011))
+        niryo_robot.tool.close_gripper()
+        niryo_robot.arm.move_pose(place_pose.copy_with_offsets(z_offset=0.05))
 
         # Getting place position
         if shape_obj == ObjectShape.SQUARE:
@@ -107,21 +112,21 @@ def process(niryo_robot):
             )
             catch_count_category_2 += 1
 
-        niryo_robot.place_from_pose(*target_pose.to_list())
+        niryo_robot.pick_place.place_from_pose(target_pose)
 
-    niryo_robot.move_pose(*observation_pose_wks_pick.to_list())
+    niryo_robot.arm.move_pose(observation_pose_wks_pick)
 
 
 if __name__ == '__main__':
     # Connect to robot
     robot = NiryoRobot(robot_ip_address)
     # Changing tool
-    robot.update_tool()
+    robot.tool.update_tool()
     # Calibrate robot if robot needs calibration
-    robot.calibrate_auto()
+    robot.arm.calibrate_auto()
     # Launching main process
     process(robot)
     # Ending
-    robot.go_to_sleep()
+    robot.arm.go_to_sleep()
     # Releasing connection
-    robot.close_connection()
+    robot.end()

@@ -28,5 +28,5 @@ niyro_robot.arm.move_joints(joints_target)
 
 # Leaving
 niyro_robot.arm.set_learning_mode(True)
-niyro_robot.terminate()
+niyro_robot.end()
 

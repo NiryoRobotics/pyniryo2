@@ -21,6 +21,14 @@ class NiryoRobot(object):
         self.__port = None
         self.__client = None
 
+        self.__vision = None
+        self.__pick_place = None
+        self.__trajectories = None
+        self.__tool = None
+        self.__saved_poses = None
+        self.__io = None
+        self.__arm = None
+
         self.run(ip_address, port)
 
         self.__arm = Arm(self.__client)
@@ -32,8 +40,15 @@ class NiryoRobot(object):
         self.__vision = Vision(self.__client, self.__arm, self.__tool)
 
     def __del__(self):
-        if self.__client:
-            self.terminate()
+        del self.__vision
+        del self.__pick_place
+        del self.__trajectories
+        del self.__tool
+        del self.__saved_poses
+        del self.__io
+        del self.__arm
+
+        self.end()
 
     def __str__(self):
         return "Niryo Robot"
@@ -48,8 +63,9 @@ class NiryoRobot(object):
         self.__client = roslibpy.Ros(host=self.__host, port=self.__port)
         self.__client.run()
 
-    def terminate(self):
-        self.__client.terminate()
+    def end(self):
+        if self.__client is not None and self.__client.is_connected:
+            self.__client.terminate()
 
     @staticmethod
     def wait(duration):
@@ -89,4 +105,3 @@ class NiryoRobot(object):
     @property
     def vision(self):
         return self.__vision
-

@@ -38,4 +38,4 @@ while id_point < 5:  # Iterating over 4 markers
 # Creating workspace
 niyro_robot.vision.save_workspace_from_robot_poses(ws_name, *points)
 # Leaving
-niyro_robot.terminate()
+niyro_robot.end()

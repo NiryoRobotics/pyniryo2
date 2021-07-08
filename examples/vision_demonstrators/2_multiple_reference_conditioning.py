@@ -12,8 +12,11 @@ Once a line is completed, objects will be pack over the lower level
 from pyniryo2 import *
 
 # -- MUST Change these variables
-robot_ip_address = "10.10.10.10"  # IP address of Ned
-workspace_name = "workspace_1"  # Robot's Workspace Name
+simulation_mode = True
+if simulation_mode:
+    robot_ip_address, workspace_name = "127.0.0.1", "gazebo_1"
+else:
+    robot_ip_address, workspace_name = "10.10.10.10", "workspace_1"
 
 # -- Can change these variables
 grid_dimension = (3, 3)
@@ -34,6 +37,11 @@ first_conditioning_pose = PoseObject(
 
 # -- MAIN PROGRAM
 def process(niryo_robot):
+    """
+
+    :type niryo_robot: NiryoRobot
+    :rtype: None
+    """
     try_without_success = 0
     count_dict = {
         ObjectColor.BLUE: 0,
@@ -43,9 +51,9 @@ def process(niryo_robot):
     # Loop until too much failures
     while try_without_success < 3:
         # Moving to observation pose
-        niryo_robot.move_pose(observation_pose)
+        niryo_robot.arm.move_pose(observation_pose)
         # Trying to get object via Vision Pick
-        obj_found, shape, color = niryo_robot.vision_pick(workspace_name)
+        obj_found, shape, color = niryo_robot.vision.vision_pick(workspace_name)
         if not obj_found:
             try_without_success += 1
             continue
@@ -65,7 +73,7 @@ def process(niryo_robot):
         place_pose = first_conditioning_pose.copy_with_offsets(0.05 * offset_x_ind,
                                                                0.05 * offset_y_ind,
                                                                0.025 * offset_z_ind)
-        niryo_robot.place_from_pose(place_pose)
+        niryo_robot.pick_place.place_from_pose(place_pose)
         # Increment count
         count_dict[color] += 1
         try_without_success = 0
@@ -75,12 +83,12 @@ if __name__ == '__main__':
     # Connect to robot
     robot = NiryoRobot(robot_ip_address)
     # Changing tool
-    robot.update_tool()
+    robot.tool.update_tool()
     # Calibrate robot if robot needs calibration
-    robot.calibrate_auto()
+    robot.arm.calibrate_auto()
     # Launching main process
     process(robot)
     # Ending
-    robot.go_to_sleep()
+    robot.arm.go_to_sleep()
     # Releasing connection
-    robot.close_connection()
+    robot.end()

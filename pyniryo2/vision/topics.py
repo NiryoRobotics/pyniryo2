@@ -1,4 +1,5 @@
 import numpy as np
+import base64
 
 from pyniryo2.niryo_topic import NiryoTopic
 from .objects import CameraInfo
@@ -21,7 +22,8 @@ class VisionTopics(object):
 
 
 def compressed_video_stream_topic_conversion(msg):
-    return str(msg['data'])
+    # Convert base64 into unit8 array
+    return base64.b64decode(msg['data'])
 
 
 def camera_info_topic_conversion(msg):

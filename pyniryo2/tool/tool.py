@@ -74,13 +74,13 @@ class Tool(RobotCommander):
         :param errback: Callback invoked on error.
         :type errback: function
         :param timeout: Timeout for the operation, in seconds. Only used if blocking.
-        :return: True if command where successfully completed, False otherwise.
-        Returns always True with non blocking use.
-        :rtype: Bool
+        :rtype: None
         """
         req = self._services.get_trigger_request()
         result = self._services.update_tool_service.call(req, callback, errback, timeout)
-        return callback is not None or result["status"] >= RobotErrors.SUCCESS.value
+
+        if callback is None:
+            self._check_result_status(result)
 
     def grasp_with_tool(self, callback=None):
         """
@@ -103,9 +103,7 @@ class Tool(RobotCommander):
 
         :param callback: Callback invoked on successful execution.
         :type callback: function
-        :return: True if command where successfully completed, False otherwise.
-        Returns always True with non blocking use.
-        :rtype: Bool
+        :rtype: None
         """
         tool_id = self.get_current_tool_id()
 
@@ -137,9 +135,7 @@ class Tool(RobotCommander):
 
         :param callback: Callback invoked on successful execution.
         :type callback: function
-        :return: True if command where successfully completed, False otherwise.
-        Returns always True with non blocking use.
-        :rtype: Bool
+        :rtype: None
         """
         tool_id = self.get_current_tool_id()
 
@@ -171,9 +167,7 @@ class Tool(RobotCommander):
         :type speed: int
         :param callback: Callback invoked on successful execution.
         :type callback: function
-        :return: True if command where successfully completed, False otherwise.
-        Returns always True with non blocking use.
-        :rtype: Bool
+        :rtype: None
         """
         speed = self._transform_to_type(speed, int)
         self._check_range_belonging(speed, 1, 1000)
@@ -184,7 +178,9 @@ class Tool(RobotCommander):
 
         goal = self._actions.get_gripper_action_goal(tool_id, ToolCommand.OPEN_GRIPPER, speed)
         goal.send(result_callback=callback)
-        return callback is not None or goal.wait(self.__action_timeout)["status"] >= RobotErrors.SUCCESS.value
+
+        if callback is None:
+            self._check_result_status(goal.wait(self.__action_timeout))
 
     def close_gripper(self, speed=500, callback=None):
         """
@@ -206,9 +202,7 @@ class Tool(RobotCommander):
         :type speed: int
         :param callback: Callback invoked on successful execution.
         :type callback: function
-        :return: True if command where successfully completed, False otherwise.
-        Returns always True with non blocking use.
-        :rtype: Bool
+        :rtype: None
         """
         speed = self._transform_to_type(speed, int)
         self._check_range_belonging(speed, 1, 1000)
@@ -219,7 +213,9 @@ class Tool(RobotCommander):
 
         goal = self._actions.get_gripper_action_goal(tool_id, ToolCommand.CLOSE_GRIPPER, speed)
         goal.send(result_callback=callback)
-        return callback is not None or goal.wait(self.__action_timeout)["status"] >= RobotErrors.SUCCESS.value
+
+        if callback is None:
+            self._check_result_status(goal.wait(self.__action_timeout))
 
         # - Vacuum
 
@@ -251,7 +247,9 @@ class Tool(RobotCommander):
 
         goal = self._actions.get_vacuum_pump_action_goal(ToolCommand.PULL_AIR_VACUUM_PUMP)
         goal.send(result_callback=callback)
-        return callback is not None or goal.wait(self.__action_timeout)["status"] >= RobotErrors.SUCCESS.value
+
+        if callback is None:
+            self._check_result_status(goal.wait(self.__action_timeout))
 
     def push_air_vacuum_pump(self, callback=None):
         """
@@ -271,9 +269,7 @@ class Tool(RobotCommander):
 
         :param callback: Callback invoked on successful execution.
         :type callback: function
-        :return: True if command where successfully completed, False otherwise.
-        Returns always True with non blocking use.
-        :rtype: Bool
+        :rtype: None
         """
         tool_id = self.get_current_tool_id()
         if tool_id not in [ToolID.VACUUM_PUMP_1]:
@@ -281,7 +277,9 @@ class Tool(RobotCommander):
 
         goal = self._actions.get_vacuum_pump_action_goal(ToolCommand.PUSH_AIR_VACUUM_PUMP)
         goal.send(result_callback=callback)
-        return callback is not None or goal.wait(self.__action_timeout)["status"] >= RobotErrors.SUCCESS.value
+
+        if callback is None:
+            self._check_result_status(goal.wait(self.__action_timeout))
 
         # - Electromagnet
 
@@ -294,9 +292,7 @@ class Tool(RobotCommander):
         
         :param pin_id:
         :type pin_id: PinID
-        :return: True if command where successfully completed, False otherwise.
-        Returns always True with non blocking use.
-        :rtype: Bool
+        :rtype: None
         """
         self._check_enum_belonging(pin_id, PinID)
 
@@ -305,8 +301,7 @@ class Tool(RobotCommander):
 
         goal = self._actions.get_electromagnet_action_goal(ToolCommand.SETUP_DIGITAL_IO, pin_id)
         goal.send()
-        result = goal.wait(self.__action_timeout)
-        return result["status"] >= RobotErrors.SUCCESS.value
+        self._check_result_status(goal.wait(self.__action_timeout))
 
     def activate_electromagnet(self, pin_id=None, callback=None):
         """
@@ -328,9 +323,7 @@ class Tool(RobotCommander):
         :type pin_id: PinID
         :param callback: Callback invoked on successful execution.
         :type callback: function
-        :return: True if command where successfully completed, False otherwise.
-        Returns always True with non blocking use.
-        :rtype: Bool
+        :rtype: None
         """
         if pin_id is not None:
             self._check_enum_belonging(pin_id, PinID)
@@ -344,7 +337,9 @@ class Tool(RobotCommander):
 
         goal = self._actions.get_electromagnet_action_goal(ToolCommand.ACTIVATE_DIGITAL_IO, pin_id)
         goal.send(result_callback=callback)
-        return callback is not None or goal.wait(self.__action_timeout)["status"] >= RobotErrors.SUCCESS.value
+
+        if callback is None:
+            self._check_result_status(goal.wait(self.__action_timeout))
 
     def deactivate_electromagnet(self, pin_id=None, callback=None):
         """
@@ -366,9 +361,7 @@ class Tool(RobotCommander):
         :type pin_id: PinID
         :param callback: Callback invoked on successful execution.
         :type callback: function
-        :return: True if command where successfully completed, False otherwise.
-        Returns always True with non blocking use.
-        :rtype: Bool
+        :rtype: None
         """
         if pin_id is not None:
             self._check_enum_belonging(pin_id, PinID)
@@ -383,4 +376,5 @@ class Tool(RobotCommander):
         goal = self._actions.get_electromagnet_action_goal(ToolCommand.DEACTIVATE_DIGITAL_IO, pin_id)
         goal.send(result_callback=callback)
 
-        return callback is not None or goal.wait(self.__action_timeout)["status"] >= RobotErrors.SUCCESS.value
+        if callback is None:
+            self._check_result_status(goal.wait(self.__action_timeout))

@@ -17,11 +17,11 @@ class IO(RobotCommander):
         self._topics = IOTopics(self._client)
 
     @property
-    def digital_io_state(self):
-        return self.get_digital_io_state()
+    def digital_io_states(self):
+        return self.get_digital_io_states()
 
     @property
-    def get_digital_io_state(self):
+    def get_digital_io_states(self):
         """
         Returns the io state client which can be used synchronously or asynchronously to obtain the io states.
         The io state client returns a list of DigitalPinObject.
@@ -29,20 +29,38 @@ class IO(RobotCommander):
         Examples: ::
 
             # Get last value
-            io.get_digital_io_state()
-            io.get_digital_io_state.value
+            io.get_digital_io_states()
+            io.get_digital_io_states.value
 
             # Subscribe a callback
             def io_callback(io_state):
                 print io_state
 
-            arm.get_digital_io_state.subscribe(io_callback)
-            arm.get_digital_io_state.unsubscribe()
+            arm.get_digital_io_states.subscribe(io_callback)
+            arm.get_digital_io_states.unsubscribe()
 
         :return: io state topic instance
         :rtype: NiryoTopic
         """
         return self._topics.io_topic
+
+    def get_digital_io_state(self, pin_id):
+        """
+        Return the value of a digital io.
+
+        :type pin_id: PinID
+        :return: State, Name, Pin, Mode of the pin
+        :rtype: DigitalPinObject
+        """
+        self._check_enum_belonging(pin_id, PinID)
+
+        req = self._services.get_digital_io_request(pin_id)
+        resp = self._services.get_digital_io_service.call(req)
+
+        if resp["status"] < RobotErrors.SUCCESS.value:
+            return None
+
+        return self._services.get_digital_io_response_to_object(resp)
 
     def set_pin_mode(self, pin_id, pin_mode):
         """
@@ -56,15 +74,14 @@ class IO(RobotCommander):
         :type pin_id: PinID
         :param pin_mode:
         :type pin_mode: PinMode
-        :return: True if command where successfully completed, False otherwise.
-        :rtype: Bool
+        :rtype: None
         """
         self._check_enum_belonging(pin_id, PinID)
         self._check_enum_belonging(pin_mode, PinMode)
 
         req = self._services.set_digital_io_mode_request(pin_id, pin_mode)
         resp = self._services.set_digital_io_mode_service.call(req)
-        return resp["status"] >= RobotErrors.SUCCESS.value
+        self._check_result_status(resp)
 
     def digital_write(self, pin_id, digital_state):
         """
@@ -78,8 +95,7 @@ class IO(RobotCommander):
         :type pin_id: PinID
         :param digital_state:
         :type digital_state: PinState
-        :return: True if command where successfully completed, False otherwise.
-        :rtype: Bool
+        :rtype: None
         """
         self._check_enum_belonging(pin_id, PinID)
         self._check_enum_belonging(digital_state, PinState)
@@ -87,10 +103,7 @@ class IO(RobotCommander):
         req = self._services.set_digital_io_state_request(pin_id, digital_state)
         resp = self._services.set_digital_io_state_service.call(req)
 
-        if resp["status"] == RobotErrors.DIGITAL_IO_PANEL_ERROR.value:
-            raise RobotCommandException("Error {}: {}".format(resp["status"], resp["message"]))
-
-        return resp["status"] >= RobotErrors.SUCCESS.value
+        self._check_result_status(resp)
 
     def digital_read(self, pin_id):
         """
@@ -106,12 +119,4 @@ class IO(RobotCommander):
         :type pin_id: PinID
         :rtype: PinState
         """
-        self._check_enum_belonging(pin_id, PinID)
-
-        req = self._services.get_digital_io_request(pin_id)
-        resp = self._services.get_digital_io_service.call(req)
-
-        if resp["status"] < RobotErrors.SUCCESS.value:
-            return None
-
-        return self._services.get_digital_io_response_to_object(resp)
+        return self.get_digital_io_state(pin_id).state

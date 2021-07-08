@@ -35,11 +35,12 @@ class BaseTest(unittest.TestCase):
 # noinspection PyTypeChecker
 class TestIO(BaseTest):
     def get_io_sate(self):
-        self.assertIsInstance(self.io.get_digital_io_state, NiryoTopic)
-        self.assertIsInstance(self.io.get_digital_io_state(), list)
-        io_state = self.io.get_digital_io_state()
-        self.assertIsInstance(self.io.digital_read(PinID.GPIO_1A), DigitalPinObject)
-        io_state_bis = self.io.digital_read(PinID.GPIO_1A)
+        self.assertIsInstance(self.io.get_digital_io_states, NiryoTopic)
+        self.assertIsInstance(self.io.get_digital_io_states(), list)
+        io_state = self.io.get_digital_io_states()
+        self.assertIsInstance(self.io.get_digital_io_state(PinID.GPIO_1A), DigitalPinObject)
+        io_state_bis = self.io.get_digital_io_state(PinID.GPIO_1A)
+        self.assertIsInstance(self.io.digital_read(PinID.GPIO_1A), PinState)
 
         self.assertIsInstance(io_state, list)
         self.assertIsInstance(io_state[0], DigitalPinObject)
@@ -50,6 +51,7 @@ class TestIO(BaseTest):
         self.assertIsInstance(io_state[0].mode, PinMode)
         self.assertEqual(io_state[0].mode, io_state_bis.mode)
         self.assertIsInstance(io_state[0].state, PinState)
+        self.assertEqual(io_state[0].state, self.io.digital_read(PinID.GPIO_1A))
         self.assertEqual(io_state[0].state, io_state_bis.state)
 
         io_state_event = Event()
@@ -60,15 +62,15 @@ class TestIO(BaseTest):
             self.assertIsInstance(io_state_list[0], DigitalPinObject)
             io_state_event.set()
 
-        self.assertIsNone(self.io.get_digital_io_state.subscribe(io_state_callback))
+        self.assertIsNone(self.io.get_digital_io_states.subscribe(io_state_callback))
         self.assertTrue(io_state_event.wait(10))
-        self.assertIsNone(self.io.get_digital_io_state.unsubscribe())
+        self.assertIsNone(self.io.get_digital_io_states.unsubscribe())
 
     def test_pin_mode(self):
-        self.assertTrue(self.io.set_pin_mode(PinID.GPIO_1A, PinMode.INPUT))
-        self.assertEqual(self.io.digital_read(PinID.GPIO_1A).mode,  PinMode.INPUT)
-        self.assertTrue(self.io.set_pin_mode(PinID.GPIO_1A, PinMode.OUTPUT))
-        self.assertEqual(self.io.digital_read(PinID.GPIO_1A).mode, PinMode.OUTPUT)
+        self.assertIsNone(self.io.set_pin_mode(PinID.GPIO_1A, PinMode.INPUT))
+        self.assertEqual(self.io.get_digital_io_state(PinID.GPIO_1A).mode,  PinMode.INPUT)
+        self.assertIsNone(self.io.set_pin_mode(PinID.GPIO_1A, PinMode.OUTPUT))
+        self.assertEqual(self.io.get_digital_io_state(PinID.GPIO_1A).mode, PinMode.OUTPUT)
 
         with self.assertRaises(RobotCommandException):
             self.io.set_pin_mode(1, PinMode.OUTPUT)
@@ -77,19 +79,21 @@ class TestIO(BaseTest):
             self.io.set_pin_mode(PinID.GPIO_1A, 0)
 
     def test_set_pin_state(self):
-        self.assertTrue(self.io.set_pin_mode(PinID.GPIO_1A, PinMode.INPUT))
-        self.assertEqual(self.io.digital_read(PinID.GPIO_1A).mode,  PinMode.INPUT)
+        self.assertIsNone(self.io.set_pin_mode(PinID.GPIO_1A, PinMode.INPUT))
+        self.assertEqual(self.io.get_digital_io_state(PinID.GPIO_1A).mode,  PinMode.INPUT)
 
         with self.assertRaises(RobotCommandException):
             self.io.digital_write(PinID.GPIO_1A, PinState.HIGH)
 
-        self.assertTrue(self.io.set_pin_mode(PinID.GPIO_1A, PinMode.OUTPUT))
-        self.assertEqual(self.io.digital_read(PinID.GPIO_1A).mode, PinMode.OUTPUT)
+        self.assertIsNone(self.io.set_pin_mode(PinID.GPIO_1A, PinMode.OUTPUT))
+        self.assertEqual(self.io.get_digital_io_state(PinID.GPIO_1A).mode, PinMode.OUTPUT)
 
-        self.assertTrue(self.io.digital_write(PinID.GPIO_1A, PinState.HIGH))
-        self.assertEqual(self.io.digital_read(PinID.GPIO_1A).state, PinState.HIGH)
-        self.assertTrue(self.io.digital_write(PinID.GPIO_1A, PinState.LOW))
-        self.assertEqual(self.io.digital_read(PinID.GPIO_1A).state, PinState.LOW)
+        self.assertIsNone(self.io.digital_write(PinID.GPIO_1A, PinState.HIGH))
+        self.assertEqual(self.io.get_digital_io_state(PinID.GPIO_1A).state, PinState.HIGH)
+        self.assertEqual(self.io.digital_read(PinID.GPIO_1A), PinState.HIGH)
+        self.assertIsNone(self.io.digital_write(PinID.GPIO_1A, PinState.LOW))
+        self.assertEqual(self.io.get_digital_io_state(PinID.GPIO_1A).state, PinState.LOW)
+        self.assertEqual(self.io.digital_read(PinID.GPIO_1A), PinState.LOW)
 
         with self.assertRaises(RobotCommandException):
             self.io.digital_write(1, PinState.LOW)

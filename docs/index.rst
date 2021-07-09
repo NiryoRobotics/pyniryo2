@@ -1,4 +1,4 @@
-PyNiryo Documentation
+Conveyor - API Documentation
 ================================
 
 .. image:: _static/PyNiryo_logo_2.png
@@ -79,27 +79,17 @@ API Documentation
 Master controls with PyNiryo with full detailed functions
 :doc:`here <source/api_doc/api>`
 
-Discover also :doc:`Vision Functions <source/vision/image_processing_overview>`
-to create your own image processing pipelines !
-
 .. toctree::
-   :hidden:
    :caption: API Documentation
 
-   source/api_doc/api
+   source/api_doc/niryo_robot
+   source/api_doc/arm
+   source/api_doc/tool
+   source/api_doc/io
+   source/api_doc/conveyor
+   source/api_doc/saved_poses
+   source/api_doc/pick_place
 
-Start with Image Processing
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Discover how to create your own image processing pipelines !
-
-
-.. toctree::
-   :hidden:
-   :caption: Image Processing
-
-   source/vision/image_processing_overview
-   source/vision/image_processing_api
 
 
 Indices and tables

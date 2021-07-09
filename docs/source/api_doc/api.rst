@@ -16,7 +16,21 @@ This file presents the different :ref:`Command Functions`,
 
 Command Functions
 ------------------------------------
-.. automodule:: api.tcp_client
+.. automodule:: arm.arm
+   :members:
+.. automodule:: conveyor.conveyor
+   :members:
+.. automodule:: io.io
+   :members:
+.. automodule:: pick_place.pick_place
+   :members:
+.. automodule:: saved_poses.saved_poses
+   :members:
+.. automodule:: tool.tool
+   :members:
+.. automodule:: trajectories.trajectories
+   :members:
+.. automodule:: vision.vision
    :members:
 
 This section reference all existing functions to control your robot, which include
@@ -43,44 +57,64 @@ TCP Connection
 ^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: NiryoRobot
-    :members: connect, close_connection
+    :members: run, end, wait
 
 Main purpose functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: NiryoRobot
-    :members: calibrate, calibrate_auto, need_calibration, get_learning_mode, set_learning_mode,
-              set_arm_max_velocity, set_jog_control, wait
+.. autoclass:: Arm
+    :members: calibrate, calibrate_auto, request_new_calibration, reset_calibration, need_calibration,
+              hardware_status, learning_mode, get_learning_mode, set_learning_mode,
+              get_arm_max_velocity, set_arm_max_velocity, wait
     :member-order: bysource
 
 Joints & Pose
 ^^^^^^^^^^^^^
 
-.. autoclass:: NiryoRobot
-    :members: get_joints, get_pose, get_pose_quat, move_joints, move_pose,
-              shift_pose, jog_joints, jog_pose,
-              move_linear_pose, move_to_home_pose, go_to_sleep,
-              forward_kinematics, inverse_kinematics
+.. autoclass:: Arm
+    :members: joints_state, joints, get_joints, pose, get_pose, get_pose_quat
+              move_joints, move_pose, move_to_home_pose, go_to_sleep
+              move_linear_pose, stop_move, go_to_sleep,
+              shift_pose, set_jog_control, jog_joints, jog_pose, forward_kinematics, inverse_kinematics
+    :member-order: bysource
+
+
+List of enums:
+
+* :class:`~.arm.objects.CalibrateMode`
+* :class:`~.arm.objects.RobotAxis`
+* :class:`~.arm.objects.JogShift`
+* :class:`~.api.objects.ArmMoveCommandType`
+
+.. automodule:: arm.enums
+    :members:
+    :undoc-members:
+    :member-order: bysource
+
+.. automodule:: enums
+    :members:
+    :undoc-members:
+    :exclude-members: RobotErrors
     :member-order: bysource
 
 Saved Poses
 ^^^^^^^^^^^^^
 
-.. autoclass:: NiryoRobot
+.. autoclass:: SavedPoses
     :members: get_pose_saved, save_pose, delete_pose, get_saved_pose_list
     :member-order: bysource
 
 Pick & Place
 ^^^^^^^^^^^^^
 
-.. autoclass:: NiryoRobot
+.. autoclass:: PickPlace
     :members: pick_from_pose, place_from_pose, pick_and_place
     :member-order: bysource
 
 Trajectories
 ^^^^^^^^^^^^^
 
-.. autoclass:: NiryoRobot
+.. autoclass:: Trajectories
     :members: get_trajectory_saved, execute_trajectory_from_poses, execute_trajectory_saved,
               save_trajectory, delete_trajectory, get_saved_trajectory_list
     :member-order: bysource
@@ -88,32 +122,32 @@ Trajectories
 Tools
 ^^^^^^^^^^^^^
 
-.. autoclass:: NiryoRobot
-    :members: get_current_tool_id, update_tool, grasp_with_tool,release_with_tool,
+.. autoclass:: Tool
+    :members: tool, get_current_tool_id, update_tool, grasp_with_tool, release_with_tool,
               open_gripper, close_gripper, pull_air_vacuum_pump, push_air_vacuum_pump,
               setup_electromagnet, activate_electromagnet, deactivate_electromagnet
     :member-order: bysource
 
-Hardware
+IO
 ^^^^^^^^^^^^^
 
-.. autoclass:: NiryoRobot
-    :members: set_pin_mode, digital_write, digital_read,
-              get_hardware_status, get_digital_io_state
+.. autoclass:: IO
+    :members: digital_io_states, get_digital_io_states, get_digital_io_state,
+              set_pin_mode, digital_write, digital_read
     :member-order: bysource
 
 Conveyor
 ^^^^^^^^^^^^^
 
-.. autoclass:: NiryoRobot
+.. autoclass:: Conveyor
     :members: set_conveyor, unset_conveyor, run_conveyor,
-              stop_conveyor, control_conveyor, get_connected_conveyors_id
+              stop_conveyor, control_conveyor, get_conveyors_feedback, conveyors
     :member-order: bysource
 
 Vision
 ^^^^^^^^^^^^^
 
-.. autoclass:: NiryoRobot
+.. autoclass:: Vision
     :members: get_img_compressed, get_target_pose_from_rel, get_target_pose_from_cam,
               vision_pick, move_to_object, detect_object, get_camera_intrinsics,
               save_workspace_from_robot_poses, save_workspace_from_points,
@@ -121,48 +155,19 @@ Vision
     :member-order: bysource
 
 
-Enums
-------------------------------------
-
-Enums are used to pass specific parameters to functions.
-
-For instance, :meth:`~.api.tcp_client.NiryoRobot.change_tool`
-will need a parameter which is from
-:class:`~.api.objects.ToolID` enum ::
-
-    robot.change_tool(ToolID.GRIPPER_1)
-
-List of enums:
-
-* :class:`~.api.objects.CalibrateMode`
-* :class:`~.api.objects.RobotAxis`
-* :class:`~.api.objects.ToolID`
-* :class:`~.api.objects.PinMode`
-* :class:`~.api.objects.PinState`
-* :class:`~.api.objects.PinID`
-* :class:`~.api.objects.ConveyorID`
-* :class:`~.api.objects.ConveyorDirection`
-* :class:`~.api.objects.ObjectColor`
-* :class:`~.api.objects.ObjectShape`
-
-.. automodule:: api.enums_communication
-    :members:
-    :undoc-members:
-    :exclude-members: Command
-    :member-order: bysource
-
-.. undoc-members -> allow to see members of enums
-.. show-inheritance -> display enum.Enum
-
 Python Object classes
 ------------------------------------
 
-Special objects :D
-
-.. automodule:: api.objects
+.. automodule:: objects
     :members:
     :no-undoc-members:
     :member-order: bysource
 
+.. automodule:: arm.objects
+    :members:
+    :no-undoc-members:
+    :member-order: bysource
 
 .. |pose_object| replace:: :class:`~.api.objects.PoseObject`
+.. |hardware_status_object| replace:: :class:`~.arm.objects.HardwareStatusObject`
+.. |joint_state_object| replace:: :class:`~.arm.objects.JointStateObject`

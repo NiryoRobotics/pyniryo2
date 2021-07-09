@@ -21,6 +21,7 @@ class Conveyor(RobotCommander):
         If a conveyor is already set, return its ID
 
         Example: ::
+
             # Get the id of the conveyor plugged
             conveyor_id = conveyor.set_conveyor()
 
@@ -52,6 +53,7 @@ class Conveyor(RobotCommander):
         Remove and unset a conveyor previously plugged and set
 
         Example: ::
+
             conveyor_id = conveyor.set_conveyor()
             conveyor.unset_conveyor(conveyor_id)
             conveyor.unset_conveyor(ConveyorID.ID_1)
@@ -71,6 +73,7 @@ class Conveyor(RobotCommander):
         Run conveyor at id 'conveyor_id'
 
         Example: ::
+
             # Set the conveyor and get its id and un it. 
             # By default, the conveyor will go forward at a speed of 50
             # You can't choose the parameters with this method
@@ -93,6 +96,7 @@ class Conveyor(RobotCommander):
         Stop conveyor at id 'conveyor_id'
     
         Example: ::
+
             # Set the conveyor and get its id, run it and then stop it after 3 seconds
             # By default, the conveyor will go forward at a speed of 50
             # When the conveyor is stopped, its control_on parameter is False and its speed is 0
@@ -116,6 +120,7 @@ class Conveyor(RobotCommander):
         Then stops it if bool_control_on is False, else refreshes it speed and direction
 
         Example: ::
+
             # Example 1
             # Set the conveyor and get its id, control it and then stop it after 3 seconds
             # It this first example, we control the conveyor at a speed of 100% and in the forward direction

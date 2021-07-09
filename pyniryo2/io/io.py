@@ -67,6 +67,7 @@ class IO(RobotCommander):
         Set pin number pin_id to mode pin_mode
 
         Examples: ::
+
             io.set_pin_mode(PinID.GPIO_1A, PinMode.INPUT)
             io.set_pin_mode(PinID.GPIO_1A, PinMode.OUTPUT)
 
@@ -88,6 +89,7 @@ class IO(RobotCommander):
         Set pin_id state to digital_state
 
         Examples: ::
+
             io.digital_write(PinID.GPIO_1A, PinState.HIGH)
             io.digital_write(PinID.GPIO_1A, PinState.LOW)
 
@@ -110,6 +112,7 @@ class IO(RobotCommander):
         Read pin number pin_id and return its state
 
         Examples: ::
+
            io.set_pin_mode(PinID.GPIO_1A, PinMode.OUTPUT)
            io.digital_read(PinID.GPIO_1A) #type = PinState
            io.digital_read(PinID.GPIO_1A).value #type = int

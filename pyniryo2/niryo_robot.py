@@ -18,6 +18,20 @@ from .vision.vision import Vision
 
 class NiryoRobot(object):
     def __init__(self, ip_address="127.0.0.1", port=9090):
+        """
+        Connect your orbot to your computer: ::
+
+            robot_simulation = NiryoRobot("127.0.0.1") # Simulation
+
+            robot_hotpot = NiryoRobot("10.10.10.10") # Hotspot
+
+            robot_ethernet = NiryoRobot("169.254.200.201") # Ethernet
+
+        :param ip_address:
+        :type ip_address:
+        :param port:
+        :type port:
+        """
         self.__host = None
         self.__port = None
         self.__client = None
@@ -61,6 +75,24 @@ class NiryoRobot(object):
         return self.__str__()
 
     def run(self, ip_address="127.0.0.1", port=9090):
+        """
+        Connect to your robot and ROS
+        This function is already called at the initialization of the class.
+        It is therefore not necessary to call it again, except to reconnect the robot. ::
+
+            # Start
+            robot = NiryoRobot("10.10.10.10")
+
+            # End
+            robot.end()
+
+            # Reconnect
+            robot_hotpot.run("10.10.10.10")
+
+        :type ip_address: str
+        :type port: int
+        :rtype: None
+        """
         self.__host = ip_address
         self.__port = port
 
@@ -68,6 +100,17 @@ class NiryoRobot(object):
         self.__client.run()
 
     def end(self):
+        """
+        Disconnect from your robot and ROS: ::
+
+            # Start
+            robot = NiryoRobot("10.10.10.10")
+
+            # End
+            robot.end()
+
+        :rtype: None
+        """
         if self.__client is not None and self.__client.is_connected:
             self.__client.terminate()
 

@@ -43,6 +43,7 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
+    'sphinx.ext.extlinks',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -110,4 +111,7 @@ htmlhelp_basename = 'PyNiryoDoc'
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
     'https://docs.python.org/': None,
+}
+extlinks = {
+    'numpy_type': ('https://numpy.org/doc/1.20/reference/arrays.scalars.html#%s', ''),
 }

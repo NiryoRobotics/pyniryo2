@@ -17,6 +17,7 @@ class SavedPoses(RobotCommander):
         Get pose saved in from Ned's memory
 
         Examples: ::
+
             pose = saved_poses.get_pose_saved("pose1")
 
         :param pose_name: Pose name in robot's memory
@@ -37,6 +38,7 @@ class SavedPoses(RobotCommander):
         Save pose (x, y, z, roll, pitch, yaw) in robot's memory
 
         Examples: ::
+
             saved_poses.save_pose("pose1", 0.3, 0.0, 0.3, 0.0, 1.57, 0.0)
             saved_poses.save_pose("pose1", [0.3, 0.0, 0.3, 0.0, 1.57, 0.0])
             saved_poses.save_pose("pose1", PoseObject(0.3, 0.0, 0.3, 0.0, 1.57, 0.0))
@@ -58,6 +60,7 @@ class SavedPoses(RobotCommander):
         Delete pose from robot's memory
 
         Examples: ::
+
             if "pose1" in saved_poses.get_saved_pose_list():
                 saved_poses.delete_pose("pose1")
 
@@ -76,6 +79,7 @@ class SavedPoses(RobotCommander):
         Get list of poses' name saved in robot memory
 
         Examples: ::
+
             >> print(saved_poses.get_saved_pose_list())
             ["pose1", "pose2", "pose3"]
 

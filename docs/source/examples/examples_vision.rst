@@ -6,7 +6,7 @@ This page shows how to use Ned's vision set
 | If you want see more about Ned's vision functions,
  you can look at :ref:`PyNiryo - Vision<Vision>`
 | If you want to see how to do image processing,
- go check out the :doc:`Image Processing section<../vision/image_processing_overview>`
+ go check out the Pyniryo (first version) doc.
 
 .. note::
     Even if you do not own a Vision Set, you can still realize these examples
@@ -48,15 +48,15 @@ As the examples start always the same, add the following lines at the beginning 
     # Connect to robot
     robot = NiryoRobot(robot_ip_address)
     # Calibrate robot if robot needs calibration
-    robot.calibrate_auto()
+    robot.arm.calibrate_auto()
     # Updating tool
-    robot.update_tool()
+    robot.tool.update_tool()
 
     # --- -------------- --- #
     # --- CODE GOES HERE --- #
     # --- -------------- --- #
 
-    robot.close_connection()
+    robot.end()
 
 .. hint::
     All the following examples are only of part of what can be made
@@ -69,15 +69,15 @@ The goal of a Vision Pick & Place is the same as a classical Pick & Place,
 with a close difference : the camera detects where the robot has to go in order to pick !
 
 This short example show how to do your first vision pick using the
-:meth:`~.api.tcp_client.NiryoRobot.vision_pick` function : ::
+:meth:`~.vision.Vision.vision_pick` function : ::
 
     robot.move_pose(observation_pose)
     # Trying to pick target using camera
-    obj_found, shape_ret, color_ret = robot.vision_pick(workspace_name)
+    obj_found, shape_ret, color_ret = robot.vision.vision_pick(workspace_name)
     if obj_found:
-        robot.place_from_pose(place_pose)
+        robot.pick_place.place_from_pose(place_pose)
 
-    robot.set_learning_mode(True)
+    robot.arm.set_learning_mode(True)
 
 .. _code_details_simple_vision_pick_n_place:
 
@@ -87,16 +87,16 @@ Code Details - Simple Vision Pick and Place
 To execute a Vision pick, we firstly need to go to a place where the robot will
 be able to see the workspace ::
 
-    robot.move_pose(observation_pose)
+    robot.arm.move_pose(observation_pose)
 
 Then, we try to perform a vision pick in the workspace with the
-:meth:`~.api.tcp_client.NiryoRobot.vision_pick` function ::
+:meth:`~.vision.Vision.vision_pick` function ::
 
-    obj_found, shape_ret, color_ret = robot.vision_pick(workspace_name)
+    obj_found, shape_ret, color_ret = robot.vision.vision_pick(workspace_name)
 
 
 Variables ``shape_ret`` and ``color_ret`` are respectively of type
-:class:`~.api.enums_communication.ObjectShape` and :class:`~.api.enums_communication.ObjectColor`, and
+:class:`~.vision.enums.ObjectShape` and :class:`~.vision.enums.ObjectColor`, and
 store the shape and the color of the detected object ! We won't use them for this first
 example.
 
@@ -105,11 +105,11 @@ object has been found and picked, or not. Thus, if the pick worked,
 we can go place the object at the place pose. ::
 
     if obj_found:
-        robot.place_from_pose(place_pose)
+        robot.pick_place.place_from_pose(place_pose)
 
 Finally, we turn learning mode on::
 
-    robot.set_learning_mode(True)
+    robot.arm.set_learning_mode(True)
 
 
 .. note::
@@ -133,21 +133,21 @@ a straight line ::
     catch_count = 0
     while catch_count < max_catch_count:
         # Moving to observation pose
-        robot.move_pose(observation_pose)
+        robot.arm.move_pose(observation_pose)
 
         # Trying to get object via Vision Pick
-        obj_found, shape, color = robot.vision_pick(workspace_name)
+        obj_found, shape, color = robot.vision.vision_pick(workspace_name)
         if not obj_found:
             robot.wait(0.1)
             continue
 
         # Calculate place pose and going to place the object
         next_place_pose = place_pose.copy_with_offsets(x_offset=catch_count * offset_size)
-        robot.place_from_pose(next_place_pose)
+        robot.pick_place.place_from_pose(next_place_pose)
 
         catch_count += 1
 
-    robot.go_to_sleep()
+    robot.arm.go_to_sleep()
 
 .. _code_details_first_conditionning_via_vision:
 
@@ -168,9 +168,9 @@ We start a loop until the robot has caught ``max_catch_count`` objects ::
 For each iteration, we firstly go to the observation pose and then,
 try to make a vision pick in the workspace ::
 
-    robot.move_pose(observation_pose)
+    robot.arm.move_pose(observation_pose)
 
-    obj_found, shape, color = robot.vision_pick(workspace_name)
+    obj_found, shape, color = robot.vision.vision_pick(workspace_name)
 
 
 If the vision pick failed, we wait 0.1 second and then, start a new iteration ::
@@ -183,7 +183,7 @@ Else, we compute the new place position according to the number of catches, and
 then, go placing the object at that place ::
 
     next_place_pose = place_pose.copy_with_offsets(x_offset=catch_count * offset_size)
-    robot.place_from_pose(next_place_pose)
+    robot.pick_place.place_from_pose(next_place_pose)
 
 We also increment the ``catch_count`` variable ::
 
@@ -191,7 +191,7 @@ We also increment the ``catch_count`` variable ::
 
 Once the target catch number is achieved, we go to sleep ::
 
-    robot.go_to_sleep()
+    robot.arm.go_to_sleep()
 
 
 Multi Reference Conditioning
@@ -199,8 +199,8 @@ Multi Reference Conditioning
 During a conditioning task, objects may not always be placed as the same
 place according to their type. In this example, we will see how to align object
 according to their color, using the
-color element :class:`~.api.enums_communication.ObjectColor`
-returned by :meth:`~.api.tcp_client.NiryoRobot.vision_pick` function ::
+color element :class:`~.vision.enums.ObjectColor`
+returned by :meth:`~.vision.Vision.vision_pick` function ::
 
     # Distance between elements
     offset_size = 0.05
@@ -217,9 +217,9 @@ returned by :meth:`~.api.tcp_client.NiryoRobot.vision_pick` function ::
     # Loop until too much failures
     while try_without_success < max_failure_count:
         # Moving to observation pose
-        robot.move_pose(observation_pose)
+        robot.arm.move_pose(observation_pose)
         # Trying to get object via Vision Pick
-        obj_found, shape, color = robot.vision_pick(workspace_name)
+        obj_found, shape, color = robot.vision.vision_pick(workspace_name)
         if not obj_found:
             try_without_success += 1
             robot.wait(0.1)
@@ -239,13 +239,13 @@ returned by :meth:`~.api.tcp_client.NiryoRobot.vision_pick` function ::
         # Going to place the object
         next_place_pose = place_pose.copy_with_offsets(x_offset=offset_x_ind * offset_size,
                                                        y_offset=offset_y_ind * offset_size)
-        robot.place_from_pose(next_place_pose)
+        robot.pick_place.place_from_pose(next_place_pose)
 
         # Increment count
         count_dict[color] += 1
         try_without_success = 0
 
-    robot.go_to_sleep()
+    robot.arm.go_to_sleep()
 
 .. _code_details_multi_ref_conditioning:
 
@@ -276,7 +276,7 @@ try to make a vision pick in the workspace ::
 
     robot.move_pose(observation_pose)
 
-    obj_found, shape, color = robot.vision_pick(workspace_name)
+    obj_found, shape, color = robot.vision.vision_pick(workspace_name)
 
 If the vision pick failed, we wait 0.1 second and then, start a new iteration, without
 forgetting the increment the failure counter ::
@@ -303,7 +303,7 @@ then, go placing the object at that place ::
     # Going to place the object
     next_place_pose = place_pose.copy_with_offsets(x_offset=offset_x_ind * offset_size,
                                                    y_offset=offset_y_ind * offset_size)
-    robot.place_from_pose(next_place_pose)
+    robot.pick_place.place_from_pose(next_place_pose)
 
 We increment the ``count_dict`` dictionary and reset ``try_without_success`` ::
 
@@ -312,7 +312,7 @@ We increment the ``count_dict`` dictionary and reset ``try_without_success`` ::
 
 Once the target catch number is achieved, we go to sleep ::
 
-    robot.go_to_sleep()
+    robot.arm.go_to_sleep()
 
 Sorting Pick with Conveyor
 -------------------------------
@@ -327,49 +327,49 @@ stopping the conveyor as soon as the object is detected on the workspace ::
     shape_expected = ObjectShape.CIRCLE
     color_expected = ObjectColor.RED
 
-    conveyor_id = robot.set_conveyor()
+    conveyor_id = robot.conveyor.set_conveyor()
 
     catch_count = 0
     while catch_count < max_catch_count:
         # Turning conveyor on
-        robot.run_conveyor(conveyor_id)
+        robot.conveyor.run_conveyor(conveyor_id)
         # Moving to observation pose
-        robot.move_pose(observation_pose)
+        robot.arm.move_pose(observation_pose)
         # Check if object is in the workspace
-        obj_found, pos_array, shape, color = robot.detect_object(workspace_name,
-                                                                 shape=shape_expected,
-                                                                 color=color_expected)
+        obj_found, pos_array, shape, color = robot.vision.detect_object(workspace_name,
+                                                                        shape=shape_expected,
+                                                                        color=color_expected)
         if not obj_found:
             robot.wait(0.5)  # Wait to let the conveyor turn a bit
             continue
         # Stopping conveyor
-        robot.stop_conveyor(conveyor_id)
+        robot.conveyor.stop_conveyor(conveyor_id)
         # Making a vision pick
-        obj_found, shape, color = robot.vision_pick(workspace_name,
-                                                    shape=shape_expected,
-                                                    color=color_expected)
+        obj_found, shape, color = robot.visionvision_pick(workspace_name,
+                                                          shape=shape_expected,
+                                                          color=color_expected)
         if not obj_found:  # If visual pick did not work
             continue
 
         # Calculate place pose and going to place the object
         next_place_pose = place_pose.copy_with_offsets(x_offset=catch_count * offset_size)
-        robot.place_from_pose(next_place_pose)
+        robot.pick_place.place_from_pose(next_place_pose)
 
         catch_count += 1
 
     # Stopping & unsetting conveyor
-    robot.stop_conveyor(conveyor_id)
-    robot.unset_conveyor(conveyor_id)
+    robot.conveyor.stop_conveyor(conveyor_id)
+    robot.conveyor.unset_conveyor(conveyor_id)
 
-    robot.go_to_sleep()
+    robot.arm.go_to_sleep()
 
 Code Details - Sort Picking
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Firstly, we initialize your process : we want the robot to catch 4 Red Circles. To do so,
 we set variables ``shape_expected`` and ``color_expected`` with
-:attr:`ObjectShape.CIRCLE <api.enums_communication.ObjectShape.CIRCLE>`
-and :attr:`ObjectColor.RED <api.enums_communication.ObjectColor.RED>` ::
+:attr:`ObjectShape.CIRCLE <pyniryo2.vision.enums.ObjectShape.CIRCLE>`
+and :attr:`ObjectColor.RED <pyniryo2.vision.enums.ObjectColor.RED>` ::
 
     offset_size = 0.05
     max_catch_count = 4
@@ -388,16 +388,16 @@ For each iteration, we firstly run the conveyor belt (if the later is already ru
 nothing will happen), then go to the observation pose ::
 
         # Turning conveyor on
-        robot.run_conveyor(conveyor_id)
+        robot.conveyor.run_conveyor(conveyor_id)
         # Moving to observation pose
-        robot.move_pose(observation_pose)
+        robot.arm.move_pose(observation_pose)
 
 We then check if an object corresponding to our criteria
 is in the workspace. If not, we wait 0.5 second and then, start a new iteration ::
 
-    obj_found, pos_array, shape, color = robot.detect_object(workspace_name,
-                                                             shape=shape_expected,
-                                                             color=color_expected)
+    obj_found, pos_array, shape, color = robot.vision.detect_object(workspace_name,
+                                                                    shape=shape_expected,
+                                                                    color=color_expected)
     if not obj_found:
         robot.wait(0.5)  # Wait to let the conveyor turn a bit
         continue
@@ -405,11 +405,11 @@ is in the workspace. If not, we wait 0.5 second and then, start a new iteration 
 Else, stop the conveyor and try to make a vision pick ::
 
     # Stopping conveyor
-    robot.stop_conveyor(conveyor_id)
+    robot.conveyor.stop_conveyor(conveyor_id)
     # Making a vision pick
-    obj_found, shape, color = robot.vision_pick(workspace_name,
-                                                shape=shape_expected,
-                                                color=color_expected)
+    obj_found, shape, color = robot.vision.vision_pick(workspace_name,
+                                                       shape=shape_expected,
+                                                       color=color_expected)
     if not obj_found:  # If visual pick did not work
         continue
 
@@ -417,15 +417,15 @@ If Vision Pick succeed, compute new place pose, and place the object ::
 
     # Calculate place pose and going to place the object
     next_place_pose = place_pose.copy_with_offsets(x_offset=catch_count * offset_size)
-    robot.place_from_pose(next_place_pose)
+    robot.pick_place.place_from_pose(next_place_pose)
 
     catch_count += 1
 
 Once the target catch number is achieved, we stop the conveyor and go to sleep ::
 
     # Stopping & unsetting conveyor
-    robot.stop_conveyor(conveyor_id)
-    robot.unset_conveyor(conveyor_id)
+    robot.conveyor.stop_conveyor(conveyor_id)
+    robot.conveyor.unset_conveyor(conveyor_id)
 
-    robot.go_to_sleep()
+    robot.arm.go_to_sleep()
 

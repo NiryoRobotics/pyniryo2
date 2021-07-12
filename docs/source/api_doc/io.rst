@@ -1,6 +1,10 @@
 I/Os
 =====================================
 
+This file presents the different :ref:`I/Os - Command functions`,
+:ref:`I/Os - Enums`, :ref:`I/Os - Niryo Topics` & :ref:`I/Os - Objects` available with the  Arm API
+
+
 I/Os - Command functions
 ------------------------------------
 
@@ -14,7 +18,7 @@ This section reference all existing functions to control your robot, which inclu
 - Setting IOs value
 
 All functions to control the robot are accessible via an instance of
-the class :ref:`Niryo Robot` ::
+the class :ref:`NiryoRobot` ::
 
 
     robot = NiryoRobot(<robot_ip_address>)
@@ -46,15 +50,34 @@ Read & Write functions
     :members: set_pin_mode, digital_write, digital_read
     :member-order: bysource
 
+I/Os - Niryo Topics
+------------------------------------
+
+The use of these functions is explained in the :ref:`NiryoTopic` section.
+They allow the acquisition of data in real time by callbacks or by direct call.
+
+.. list-table:: I/O's Niryo Topics
+   :header-rows: 1
+   :widths: auto
+   :stub-columns: 0
+   :align: center
+
+   *  -  Name
+      -  Function
+      -  Return type
+   *  -  ``/niryo_robot_rpi/digital_io_state``
+      -  :attr:`~.io.IO.get_digital_io_states`
+      -  :exc:`list` [ :class:`~.io.objects.DigitalPinObject` ]
+
 
 I/Os - Enums
 ------------------------------------
 
 List of enums:
 
-* :class:`pyniryo2.io.objects.PinMode`
-* :class:`pyniryo2.io.objects.PinState`
-* :class:`pyniryo2.io.objects.PinID`
+* :class:`~.io.objects.PinMode`
+* :class:`~.io.objects.PinState`
+* :class:`~.io.objects.PinID`
 
 .. automodule:: pyniryo2.io.enums
     :members:
@@ -63,10 +86,6 @@ List of enums:
 
 I/Os - Objects
 ------------------------------------
-
-List of enums:
-
-* :class:`pyniryo2.io.objects.DigitalPinObject`
 
 .. automodule:: pyniryo2.io.objects
     :members:

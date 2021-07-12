@@ -13,19 +13,19 @@ will contain the checking code
 
 Edit this file and fill it with the following code ::
 
-    from pyniryo import *
+    from pyniryo2 import *
 
     robot_ip_address = "10.10.10.10"
 
     # Connect to robot & calibrate
     robot = NiryoRobot(robot_ip_address)
-    robot.calibrate_auto()
+    robot.arm.calibrate_auto()
     # Move joints
-    robot.move_joints(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+    robot.arm.move_joints([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
     # Turn learning mode ON
-    robot.set_learning_mode(True)
+    robot.arm.set_learning_mode(True)
     # Stop TCP connection
-    robot.close_connection()
+    robot.end()
 
 .. attention::
     Replace the third line with your :doc:`Robot IP Address <ip_address>`

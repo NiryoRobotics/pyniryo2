@@ -13,32 +13,32 @@ Simple Conveyor control
 This short example show how to connect a conveyor and
 launch its motor (control it by setting its speed and direction) : ::
 
-    from pyniryo import *
+    from pyniryo2 import *
 
     # Connecting to robot
     robot = NiryoRobot(<robot_ip_address>)
 
     # Activating connexion with conveyor
-    conveyor_id = robot.set_conveyor()
+    conveyor_id = robot.conveyor.set_conveyor()
 
     # Running conveyor at 50% of its maximum speed, in Forward direction
-    robot.run_conveyor(conveyor_id, speed=50, direction=ConveyorDirection.FORWARD)
+    robot.conveyor.run_conveyor(conveyor_id, speed=50, direction=ConveyorDirection.FORWARD)
 
     # Waiting 3 seconds
     robot.wait(3)
 
     # Stopping robot motor
-    robot.stop_conveyor(conveyor_id)
+    robot.conveyor.stop_conveyor(conveyor_id)
 
     # Deactivating connexion with conveyor
-    robot.unset_conveyor(conveyor_id)
+    robot.conveyor.unset_conveyor(conveyor_id)
 
 Advanced Conveyor control
 -------------------------------
 This example shows how to do a certain amount of pick & place by using
 the conveyor with the infrared sensor ::
 
-    from pyniryo import *
+    from pyniryo2 import *
 
     # -- Setting variables
     sensor_pin_id = PinID.GPIO_1A
@@ -61,18 +61,18 @@ the conveyor with the infrared sensor ::
     robot = NiryoRobot(<robot_ip_address>)
 
     # Activating connexion with conveyor
-    conveyor_id = robot.set_conveyor()
+    conveyor_id = robot.conveyor.set_conveyor()
 
     for i in range(catch_nb):
-        robot.run_conveyor(conveyor_id)
-        while robot.digital_read(sensor_pin_id) == PinState.LOW:
+        robot.conveyor.run_conveyor(conveyor_id)
+        while robot.io.digital_read(sensor_pin_id) == PinState.LOW:
             robot.wait(0.1)
 
         # Stopping robot motor
-        robot.stop_conveyor(conveyor_id)
+        robot.conveyor.stop_conveyor(conveyor_id)
         # Making a pick & place
-        robot.pick_and_place(pick_pose, place_pose)
+        robot.pick_place.pick_and_place(pick_pose, place_pose)
 
     # Deactivating connexion with conveyor
-    robot.unset_conveyor(conveyor_id)
+    robot.conveyor.unset_conveyor(conveyor_id)
 

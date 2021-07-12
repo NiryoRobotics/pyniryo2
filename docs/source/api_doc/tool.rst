@@ -1,6 +1,10 @@
 Tool
 =====================================
 
+This file presents the different :ref:`Tool - Command functions`,
+:ref:`Tool - Enums` & :ref:`Tool - Niryo Topics` available with the Tool API
+
+
 Tool - Command Functions
 ------------------------------------
 
@@ -16,7 +20,7 @@ This section reference all existing functions to control your robot, which inclu
 - Using the electromagnet
 
 All functions to control the robot are accessible via an instance of
-the class :class:`~.api.enums_communication.NiryoRobot` ::
+the class :ref:`NiryoRobot` ::
 
 
     robot = NiryoRobot(<robot_ip_address>)
@@ -63,22 +67,35 @@ Electromagnet Functions
     :members: setup_electromagnet, activate_electromagnet, deactivate_electromagnet
     :member-order: bysource
 
+Tool - Niryo Topics
+------------------------------------
+
+The use of these functions is explained in the :ref:`NiryoTopic` section.
+They allow the acquisition of data in real time by callbacks or by direct call.
+
+.. list-table:: Tool's Niryo Topics
+   :header-rows: 1
+   :widths: auto
+   :stub-columns: 0
+   :align: center
+
+   *  -  Name
+      -  Function
+      -  Return type
+   *  -  ``/niryo_robot_tools_commander/current_id``
+      -  :attr:`~.tool.Tool.get_current_tool_id`
+      -  :class:`~.tool.enums.ToolID`
+
 
 Tool - Enums
 ------------------------------------
 
 List of enums:
 
-* :class:`~.tool.objects.ToolID`
-* :class:`~.tool.objects.ToolCommand`
+* :class:`~.tool.enums.ToolID`
+* :class:`~.tool.enums.ToolCommand`
 
-.. automodule:: tool.enums
+.. automodule:: pyniryo2.tool.enums
     :members:
     :undoc-members:
-    :member-order: bysource
-
-.. automodule:: io.enums
-    :members:
-    :undoc-members:
-    :exclude-members: PinState, PinMode
     :member-order: bysource

@@ -1,6 +1,9 @@
 Saved poses
 =====================================
 
+This file presents the different :ref:`Saved poses - Command functions`, available with the Saved poses API
+
+
 Saved poses - Command functions
 ------------------------------------
 
@@ -12,7 +15,7 @@ This section reference all existing functions to control your robot, which inclu
 - Managing of saved poses
 
 All functions to control the robot are accessible via an instance of
-the class :ref:`Niryo Robot` ::
+the class :ref:`NiryoRobot` ::
 
 
     robot = NiryoRobot(<robot_ip_address>)

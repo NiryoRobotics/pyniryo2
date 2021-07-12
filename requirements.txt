@@ -1,4 +1,3 @@
 numpy
-opencv-python
 roslibpy
 service_identity

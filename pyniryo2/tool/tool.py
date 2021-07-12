@@ -248,9 +248,7 @@ class Tool(RobotCommander):
 
         :param callback: Callback invoked on successful execution.
         :type callback: function
-        :return: True if command where successfully completed, False otherwise.
-        Returns always True with non blocking use.
-        :rtype: Bool
+        :rtype: None
         """
         tool_id = self.get_current_tool_id()
         if tool_id not in [ToolID.VACUUM_PUMP_1]:

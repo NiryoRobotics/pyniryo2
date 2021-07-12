@@ -1,7 +1,9 @@
 NiryoRobot
 =====================================
 
-
+The NiryoRobot class includes the different APIs of the PyNiryo2 library.
+It allows the connection of the program to the robot via roslibpy.
+This interface facilitates and centralizes all the control functions of the Niryo environment and products.
 
 NiryoRobot - Command functions
 ------------------------------------
@@ -14,9 +16,10 @@ This section reference all existing functions of the NiryoRobot client, which in
 - Connecting to your Ned
 - Disconnecting from your Ned
 - Waiting
+- Access to the entire PyNiryo2 API
 
 All functions to control the robot are accessible via an instance of
-the class NiryoRobot ::
+the class :ref:`NiryoRobot` ::
 
 
     robot = NiryoRobot(<robot_ip_address>)
@@ -40,8 +43,15 @@ NiryoRobot functions
 
 * :class:`~.niryo_robot.NiryoRobot`
 
-.. autoclass:: NiryoRobot2
-    :members: run, end, wait
+.. autoclass:: NiryoRobot
+    :members: run, end, wait, client
+    :member-order: bysource
+
+NiryoRobot properties
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: NiryoRobot
+    :members: arm, conveyor, io, pick_place, saved_poses, tool, trajectories, vision
     :member-order: bysource
 
 
@@ -50,7 +60,8 @@ Globals Enums
 
 List of enums:
 
-* :class:`~.objects.RobotErrors`
+* :class:`~.enums.RobotErrors`
+* :class:`~.enums.ArmMoveCommandType`
 
 .. automodule:: enums
     :members:

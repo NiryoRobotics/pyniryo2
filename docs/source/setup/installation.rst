@@ -30,16 +30,10 @@ You need to have installed Numpy package beforehand : ::
 
 To install Ned's Python package via ``pip``, simply execute::
 
-    pip install pyniryo
+    pip install pyniryo2
 
 You can find more information about
-the PyPi package `here <https://pypi.org/project/pyniryo/>`_
-
-If you also want to use vision functions to do your own image processing pipeline
-install OpenCV via the command : ::
-
-    pip install opencv-python
-
+the PyPi package `here <https://pypi.org/project/pyniryo2/>`_
 
 
 Uninstall
@@ -47,5 +41,5 @@ Uninstall
 
 To uninstall the library use ::
 
-    pip uninstall pyniryo
+    pip uninstall pyniryo2
 

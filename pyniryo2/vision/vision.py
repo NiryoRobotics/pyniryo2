@@ -46,6 +46,7 @@ class Vision(RobotCommander):
         The topic return a namedtuple(intrinsics: list[list[float]], distortion: list[list[float]])
 
         Examples: ::
+
             vision.get_camera_intrinsics()
             vision.get_camera_intrinsics().value
 
@@ -65,6 +66,16 @@ class Vision(RobotCommander):
         """
         Get image from video stream in a compressed format.
         Use ``uncompress_image`` from the vision package to uncompress it
+
+        Examples: ::
+
+            import pyniryo
+
+            img_compressed = vision.get_img_compressed()
+            camera_info = vision.get_camera_intrinsics()
+            img = pyniryo.uncompress_image(img_compressed)
+            img = pyniryo.undistort_image(img, camera_info.intrinsics, camera_info.distortion)
+
 
         :return: string containing a JPEG compressed image
         :rtype: NiryoTopic
@@ -150,9 +161,9 @@ class Vision(RobotCommander):
         Example::
 
             robot = NiryoRobot(ip_address="x.x.x.x")
-            robot.calibrate_auto()
-            robot.move_pose(<observation_pose>)
-            obj_found, shape_ret, color_ret = robot.vision_pick(<workspace_name>,
+            robot.arm.calibrate_auto()
+            robot.arm.move_pose(<observation_pose>)
+            obj_found, shape_ret, color_ret = robot.vision.vision_pick(<workspace_name>,
                                                                 height_offset=0.0,
                                                                 shape=ObjectShape.ANY,
                                                                 color=ObjectColor.ANY)
@@ -238,7 +249,7 @@ class Vision(RobotCommander):
 
         obj_found = resp["status"] >= RobotErrors.SUCCESS.value
         if not obj_found:
-            rel_pose = PoseObject(*(6*[0.0]))
+            rel_pose = PoseObject(*(6 * [0.0]))
             shape = "ANY"
             color = "ANY"
         else:

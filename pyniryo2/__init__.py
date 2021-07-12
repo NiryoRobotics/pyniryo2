@@ -1,4 +1,5 @@
 from .niryo_robot import NiryoRobot
+from .niryo_topic import NiryoTopic
 
 from .arm.arm import Arm
 from .conveyor.conveyor import Conveyor

@@ -25,6 +25,7 @@ class Trajectories(RobotCommander):
         Will raise error if position does not exist
 
         Example: ::
+
             trajectories.get_trajectory_saved("trajectory_01")
 
         :param trajectory_name: name of the trajectory
@@ -48,6 +49,7 @@ class Trajectories(RobotCommander):
         Otherwise, the callback will be called when the execution of the function is finished.
 
         Examples: ::
+
             trajectories.execute_trajectory_saved("trajectory_01")
             trajectories.execute_trajectory_saved("trajectory_01", dist_smoothing=0.02)
 
@@ -79,6 +81,7 @@ class Trajectories(RobotCommander):
         Otherwise, the callback will be called when the execution of the function is finished.
 
         Examples: ::
+
             trajectory = [[0.3, 0.1, 0.3, 0., 0., 0., 1.],
                           [0.3, -0.1, 0.3, 0., 0., 0., 1.],
                           [0.3, -0.1, 0.4, 0., 0., 0., 1.],
@@ -122,6 +125,7 @@ class Trajectories(RobotCommander):
         Save trajectory in robot's memory
 
         Examples: ::
+
             trajectories.save_trajectory("trajectory_1", [[0.3, 0.1, 0.3, 0., 0., 0., 1.], #[x,y,z,qx,qy,qz,qw]
                                                           [0.3, -0.1, 0.3, 0., 0., 0., 1.], #[x,y,z,qx,qy,qz,qw]
                                                           [0.3, -0.1, 0.4, 0., 0., 0., 1.], #[x,y,z,qx,qy,qz,qw]
@@ -150,6 +154,7 @@ class Trajectories(RobotCommander):
         Delete trajectory from robot's memory
 
         Example: ::
+
             if "trajectory_1" in trajectories.get_saved_trajectory_list():
                 trajectories.delete_trajectory("trajectory_1")
 
@@ -167,6 +172,7 @@ class Trajectories(RobotCommander):
         Get list of trajectories' name saved in robot memory
 
         Example: ::
+
             if "trajectory_1" in trajectories.get_saved_trajectory_list():
                 trajectories.delete_trajectory("trajectory_1")
 

@@ -1,4 +1,4 @@
-PyNiryo Documentation
+Conveyor - API Documentation
 ================================
 
 .. image:: _static/PyNiryo_logo_2.png
@@ -13,6 +13,7 @@ It offers a simple way for developers to create programs for robot and
 to control them via remote communication from their computers.
 Contrary to the Python ROS Wrapper, the user will not need to be connected on the robot
 through a terminal.
+This API is based on `roslibpy <https://roslibpy.readthedocs.io/en/latest/index.html>`_.
 
 .. note:: This package is able to control Ned in simulation
    as well as the physical robot.
@@ -44,7 +45,7 @@ This document is organized in 4 main sections
 Setup
 ^^^^^^^^^^^
 
-Install & Setup your environment in order to use Ned with PyNiryo.
+Install & Setup your environment in order to use Ned with PyNiryo2.
 
 Firstly, follow :doc:`Installation instructions <source/setup/installation>`,
 then :doc:`find your Robot IP address <source/setup/ip_address>` to be ready.
@@ -60,7 +61,7 @@ then :doc:`find your Robot IP address <source/setup/ip_address>` to be ready.
 Examples
 ^^^^^^^^^^^^^^^
 
-Learn how to use the PyNiryo package to implement various tasks
+Learn how to use the PyNiryo2 package to implement various tasks
 
 .. toctree::
    :hidden:
@@ -76,30 +77,23 @@ Learn how to use the PyNiryo package to implement various tasks
 API Documentation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Master controls with PyNiryo with full detailed functions
-:doc:`here <source/api_doc/api>`
-
-Discover also :doc:`Vision Functions <source/vision/image_processing_overview>`
-to create your own image processing pipelines !
+Master controls with PyNiryo2 with full detailed functions
+:doc:`here <source/api_doc/niryo_robot>`
 
 .. toctree::
-   :hidden:
    :caption: API Documentation
 
-   source/api_doc/api
+   source/api_doc/niryo_robot
+   source/api_doc/arm
+   source/api_doc/tool
+   source/api_doc/vision
+   source/api_doc/io
+   source/api_doc/conveyor
+   source/api_doc/saved_poses
+   source/api_doc/pick_place
+   source/api_doc/trajectories
+   source/api_doc/niryo_topics
 
-Start with Image Processing
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Discover how to create your own image processing pipelines !
-
-
-.. toctree::
-   :hidden:
-   :caption: Image Processing
-
-   source/vision/image_processing_overview
-   source/vision/image_processing_api
 
 
 Indices and tables

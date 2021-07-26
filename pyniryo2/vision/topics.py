@@ -22,7 +22,7 @@ class VisionTopics(object):
 
 
 def compressed_video_stream_topic_conversion(msg):
-    # Convert base64 into unit8 array
+    # Convert base64 into uint8 array
     return base64.b64decode(msg['data'])
 
 

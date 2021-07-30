@@ -391,3 +391,50 @@ class Tool(RobotCommander):
 
         if callback is None:
             self._check_result_status(goal.wait(self.__action_timeout))
+
+    def enable_tcp(self, enable=True):
+        """
+        Enables or disables the TCP function (Tool Center Point).
+        If activation is requested, the last recorded TCP value will be applied.
+        The default value depends on the gripper equipped.
+        If deactivation is requested, the TCP will be coincident with the tool_link.
+
+        :param enable: True to enable, False otherwise.
+        :type enable: Bool
+        :rtype: None
+        """
+        self._check_type(enable, bool)
+        req = self._services.enable_tcp_service_request(enable)
+        result = self._services.enable_tcp_service.call(req)
+        self._check_result_status(result)
+
+    def set_tcp(self, *args):
+        """
+        Activates the TCP function (Tool Center Point)
+        and defines the transformation between the tool_link frame and the TCP frame.
+
+        Examples: ::
+
+            tool.set_tcp(0.02, 0.0, 0.03, 0.0, 1.57, 0.0)
+            tool.set_tcp([0.02, 0.0, 0.03, 0.0, 1.57, 0.0])
+            tool.set_tcp(PoseObject(0.02, 0.0, 0.03, 0.0, 1.57, 0.0))
+
+        :param args: either 6 args (1 for each coordinates) or a list of 6 coordinates or a ``PoseObject``
+        :type args: Union[tuple[float], list[float], PoseObject]
+        :rtype: None
+        """
+        pose_list = self._args_pose_to_list(*args)
+        req = self._services.set_tcp_service_request(pose_list)
+        result = self._services.set_tcp_service.call(req)
+        self._check_result_status(result)
+
+    def reset_tcp(self):
+        """
+        Reset the TCP (Tool Center Point) transformation.
+        The PCO will be reset according to the tool equipped.
+
+        :rtype: None
+        """
+        req = self._services.get_trigger_request()
+        result = self._services.reset_tcp_service.call(req)
+        self._check_result_status(result)

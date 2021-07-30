@@ -8,14 +8,17 @@ from threading import Event
 from pyniryo2.exceptions import RobotCommandException
 from pyniryo2.niryo_topic import NiryoTopic
 from pyniryo2.enums import RobotErrors
+from pyniryo2.objects import PoseObject
 
 from pyniryo2.tool.tool import Tool
 from pyniryo2.tool.enums import ToolID
 
+from pyniryo2.arm.arm import Arm
+
 from pyniryo2.io.io import IO
 from pyniryo2.io.enums import PinID, PinState, PinMode
 
-robot_ip_address = "192.168.1.52"
+robot_ip_address = "127.0.0.1"
 port = 9090
 
 test_order = ["test_tool_id",
@@ -23,6 +26,7 @@ test_order = ["test_tool_id",
               "test_electromagnet",
               "test_grippers",
               "test_vacuum_pump",
+              "test_tcp"
               ]
 
 
@@ -33,6 +37,7 @@ class BaseTest(unittest.TestCase):
         cls.client.run()
         cls.tool = Tool(cls.client)
         cls.io = IO(cls.client)
+        cls.arm = Arm(cls.client)
 
     @classmethod
     def tearDownClass(cls):
@@ -220,6 +225,53 @@ class TestTool(BaseTest):
             self.tool.pull_air_vacuum_pump()
         with self.assertRaises(RobotCommandException):
             self.tool.push_air_vacuum_pump()
+
+    def test_tcp(self):
+        self.assertIsNone(self.tool.reset_tcp())
+        self.assertIsNone(self.tool.enable_tcp(False))
+
+        test_pose = [0.3, 0.0, 0.2, 0.0, 1.57, 0.0]
+        self.assertIsNone(self.arm.move_pose(test_pose))
+        self.assertAlmostEqualVector(self.arm.pose.to_list()[:3], test_pose[:3])
+
+        # Test Set TCP
+        self.assertIsNone(self.tool.set_tcp(0.01, 0.02, 0.03, 0.0, 0.0, 0.0))
+        new_pose = test_pose[:3]
+        new_pose[2] -= 0.01
+        new_pose[1] += 0.02
+        new_pose[0] += 0.03
+        self.assertAlmostEqualVector(self.arm.pose.to_list()[:3], new_pose, 2)
+
+        self.assertIsNone(self.tool.set_tcp(PoseObject(0.1, 0.0, 0.0, 0.0, 0.0, 0.0)))
+        new_pose = test_pose[:]
+        new_pose[2] -= 0.1
+        self.assertAlmostEqualVector(self.arm.pose.to_list()[:3], new_pose[:3])
+
+        # Enable/Disable
+        self.assertIsNone(self.tool.enable_tcp(False))
+        self.assertAlmostEqualVector(self.arm.pose.to_list()[:3], test_pose[:3])
+        self.assertIsNone(self.tool.enable_tcp())
+        self.assertAlmostEqualVector(self.arm.pose.to_list()[:3], new_pose[:3])
+
+        # Reset
+        self.assertIsNone(self.tool.reset_tcp())
+        self.assertAlmostEqualVector(self.arm.pose.to_list()[:3], test_pose[:3])
+
+        # Exceptions
+        with self.assertRaises(RobotCommandException):
+            self.tool.set_tcp(5 * [0.0])
+
+        with self.assertRaises(RobotCommandException):
+            self.tool.set_tcp(7 * [0.0])
+
+        with self.assertRaises(RobotCommandException):
+            self.tool.set_tcp(0.0, 0.0)
+
+        with self.assertRaises(RobotCommandException):
+            self.tool.set_tcp(*(8 * [0.0]))
+
+        with self.assertRaises(RobotCommandException):
+            self.tool.set_tcp("a")
 
 
 def suite():

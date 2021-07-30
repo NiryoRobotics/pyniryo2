@@ -92,7 +92,7 @@ class Vision(RobotCommander):
         Brightness factor: How much to adjust the brightness. 0.5 will give a darkened image,
         1 will give the original image while 2 will enhance the brightness by a factor of 2.
 
-        Contrast factor: While a factor of 1 gives original image.
+        Contrast factor: A factor of 1 gives original image.
         Making the factor towards 0 makes the image greyer, while factor>1 increases the contrast of the image.
 
         Saturation factor: 0 will give a black and white image, 1 will give the original image while

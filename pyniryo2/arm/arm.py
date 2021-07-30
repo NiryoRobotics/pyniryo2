@@ -38,6 +38,7 @@ class Arm(RobotCommander):
         if motors are already calibrated
 
         Examples: ::
+
             # Synchronous use
             arm.calibrate(CalibrateMode.MANUAL)
             arm.calibrate(CalibrateMode.AUTO)
@@ -91,6 +92,7 @@ class Arm(RobotCommander):
         Starts a automatic motors calibration if motors are not calibrated yet.
 
         Examples: ::
+
             # Synchronous use
             arm.calibrate_auto()
 
@@ -118,6 +120,7 @@ class Arm(RobotCommander):
         Starts a automatic motors calibration even if motors are calibrated yet.
 
         Examples: ::
+
             # Synchronous use
             arm.request_new_calibration()
 
@@ -495,6 +498,7 @@ class Arm(RobotCommander):
         Otherwise, the callback will be called when the execution of the function is finished.
 
         Examples: ::
+
             # Synchronous use
             arm.stop_move()
 
@@ -567,6 +571,7 @@ class Arm(RobotCommander):
         Otherwise, the callback will be called when the execution of the function is finished.
 
         Examples: ::
+
             self.arm.shift_pose(RobotAxis.X, 0.05)
             self.arm.shift_pose(RobotAxis.Y, -0.05)
             self.arm.shift_pose(RobotAxis.Z, 0.1)
@@ -686,6 +691,7 @@ class Arm(RobotCommander):
         associated spatial pose
 
         Examples: ::
+
             pose_obj = arm.forward_kinematics(1.57, 0.0, 0.0, 0.78, 0.0, -1.57)
             pose_obj = arm.forward_kinematics([1.57, 0.0, 0.0, 0.78, 0.0, -1.57])
 
@@ -706,6 +712,7 @@ class Arm(RobotCommander):
         Compute inverse kinematics
 
         Examples: ::
+
             joint_list = arm.inverse_kinematics(0.2, 0.0, 0.3, 0.0, 1.57, 0.0)
             joint_list = arm.inverse_kinematics([0.2, 0.0, 0.3, 0.0, 1.57, 0.0])
             joint_list = arm.inverse_kinematics(PoseObject(0.2, 0.0, 0.3, 0.0, 1.57, 0.0))

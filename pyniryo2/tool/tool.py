@@ -25,6 +25,11 @@ class Tool(RobotCommander):
 
     @property
     def tool(self):
+        """
+
+        :return: The equipped tool ID
+        :rtype: ToolID
+        """
         return self.get_current_tool_id()
 
     @property
@@ -57,6 +62,7 @@ class Tool(RobotCommander):
         Update equipped tool
 
         Examples: ::
+
             # Synchronous use
             tool.update_tool()
 
@@ -93,6 +99,7 @@ class Tool(RobotCommander):
         Otherwise, the callback will be called when the execution of the function is finished.
 
         Examples: ::
+
             tool.update_tool()
             tool.grasp_with_tool()
             
@@ -125,6 +132,7 @@ class Tool(RobotCommander):
         Otherwise, the callback will be called when the execution of the function is finished.
 
         Examples: ::
+
             tool.update_tool()
             tool.release_with_tool()
             
@@ -154,6 +162,7 @@ class Tool(RobotCommander):
         Otherwise, the callback will be called when the execution of the function is finished.
 
         Examples: ::
+
             tool.update_tool()
             tool.open_gripper()
             tool.open_gripper(speed=850)
@@ -189,6 +198,7 @@ class Tool(RobotCommander):
         Otherwise, the callback will be called when the execution of the function is finished.
 
         Examples: ::
+
             tool.update_tool()
             tool.close_gripper()
             tool.close_gripper(speed=850)
@@ -226,6 +236,7 @@ class Tool(RobotCommander):
         Otherwise, the callback will be called when the execution of the function is finished.
 
         Examples: ::
+
             tool.update_tool()
             tool.pull_air_vacuum_pump()
 
@@ -237,9 +248,7 @@ class Tool(RobotCommander):
 
         :param callback: Callback invoked on successful execution.
         :type callback: function
-        :return: True if command where successfully completed, False otherwise.
-        Returns always True with non blocking use.
-        :rtype: Bool
+        :rtype: None
         """
         tool_id = self.get_current_tool_id()
         if tool_id not in [ToolID.VACUUM_PUMP_1]:
@@ -258,6 +267,7 @@ class Tool(RobotCommander):
         Otherwise, the callback will be called when the execution of the function is finished.
 
         Examples: ::
+
             tool.update_tool()
             tool.push_air_vacuum_pump()
 
@@ -281,13 +291,14 @@ class Tool(RobotCommander):
         if callback is None:
             self._check_result_status(goal.wait(self.__action_timeout))
 
-        # - Electromagnet
+    # - Electromagnet
 
     def setup_electromagnet(self, pin_id):
         """
         Setup electromagnet on pin
 
         Example: ::
+
             tool.setup_electromagnet(PinID.GPIO_1A)
         
         :param pin_id:
@@ -310,6 +321,7 @@ class Tool(RobotCommander):
         Otherwise, the callback will be called when the execution of the function is finished.
 
         Examples: ::
+
             tool.setup_electromagnet(PinID.GPIO_1A)
             tool.activate_electromagnet()
             tool.activate_electromagnet(PinID.GPIO_1A)
@@ -348,6 +360,7 @@ class Tool(RobotCommander):
         Otherwise, the callback will be called when the execution of the function is finished.
 
         Examples: ::
+
             tool.setup_electromagnet(PinID.GPIO_1A)
             tool.deactivate_electromagnet()
             tool.deactivate_electromagnet(PinID.GPIO_1A)

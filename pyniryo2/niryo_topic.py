@@ -6,6 +6,7 @@ from pyniryo2.exceptions import TopicException
 class NiryoTopic(object):
     """
     Represent a Ros Topic instance. It supports both the request of a single value and/or callbacks.
+    This class is a wrapper of roslibpy Topic instance (https://roslibpy.readthedocs.io/en/latest/reference/index.html#topics)
     """
 
     def __init__(self, client, topic_name, topic_type, conversion_function=None, timeout=3):
@@ -17,6 +18,11 @@ class NiryoTopic(object):
         :type topic_name: string
         :param topic_type: Topic type.
         :type topic_type: string
+        :param conversion_function: convert the response of the topic in a specific type.
+        :type conversion_function: function
+        :param timeout: Timeout while waiting a message.
+        :type timeout: float
+
         """
         self.__topic_name = topic_name
         self.__topic_type = topic_type
@@ -56,10 +62,22 @@ class NiryoTopic(object):
 
     @property
     def is_subscribed(self):
+        """
+        Return the topic connection status.
+
+        :return: True if already subscribed, False otherwise.
+        :rtype: Bool
+        """
         return self.__topic.is_subscribed
 
     @property
     def value(self):
+        """
+        Return the last value of the topic.
+
+        :return: The last value of the topic. The value depends on the conversion function of the topic. By default, it will be a dict.
+        :rtype:
+        """
         return self.__call__()
 
     def subscribe(self, callback):
@@ -85,8 +103,7 @@ class NiryoTopic(object):
         """
         Unsubscribe to the topic.
 
-        :return:
-        :rtype:
+        :rtype: None
         """
         if self.__topic.is_subscribed:
             self.__topic.unsubscribe()

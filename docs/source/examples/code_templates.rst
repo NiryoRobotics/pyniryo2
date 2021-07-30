@@ -9,18 +9,18 @@ The short template
 
 Very simple, straightforward ::
 
-    from pyniryo import *
+    from pyniryo2 import *
 
     # Connect to robot & calibrate
     robot = NiryoRobot(<robot_ip_address>)
-    robot.calibrate_auto()
+    robot.arm.calibrate_auto()
 
     # --- --------- --- #
     # --- YOUR CODE --- #
     # --- --------- --- #
 
     # Releasing connection
-    robot.close_connection()
+    robot.end()
 
 
 Advanced template
@@ -29,7 +29,7 @@ Advanced template
 This template let the user defined his own process but it handles connection,
 calibration, tool equipping, and make the robot go to sleep at the end ::
 
-    from pyniryo import *
+    from pyniryo2 import *
 
     local_mode = False # Or True
     tool_used = ToolID.GRIPPER_1
@@ -49,61 +49,61 @@ calibration, tool equipping, and make the robot go to sleep at the end ::
         # Connect to robot
         robot = NiryoRobot(robot_ip_address)
         # Calibrate robot if robot needs calibration
-        robot.calibrate_auto()
+        robot.arm.calibrate_auto()
         # Equip tool
-        robot.update_tool()
+        robot.tool.update_tool()
         # Launching main process
         process(client)
         # Ending
-        robot.go_to_sleep()
+        robot.arm.go_to_sleep()
         # Releasing connection
-        robot.close_connection()
+        robot.end()
 
 Advanced template for conveyor
 --------------------------------------
 
 Same as :ref:`Advanced template` but with a conveyor ::
 
-    from pyniryo import *
+    from pyniryo2 import *
 
     # Set robot address
     robot_ip_address = "x.x.x.x"
 
 
     def process(robot, conveyor_id):
-        robot.run_conveyor(conveyor_id)
+        robot.conveyor.run_conveyor(conveyor_id)
 
         # --- --------- --- #
         # --- YOUR CODE --- #
         # --- --------- --- #
 
-        robot.stop_conveyor()
+        robot.conveyor.stop_conveyor()
 
 
     if __name__ == '__main__':
         # Connect to robot
         robot = NiryoRobot(robot_ip_address)
         # Calibrate robot if robot needs calibration
-        robot.calibrate_auto()
+        robot.arm.calibrate_auto()
         # Equip tool
-        robot.update_tool()
+        robot.tool.update_tool()
         # Activating connexion with conveyor
-        conveyor_id = robot.set_conveyor()
+        conveyor_id = robot.conveyor.set_conveyor()
         # Launching main process
         process(robot, conveyor_id)
         # Ending
-        robot.go_to_sleep()
+        robot.arm.go_to_sleep()
         # Deactivating connexion with conveyor
-        robot.unset_conveyor(conveyor_id)
+        robot.conveyor.unset_conveyor(conveyor_id)
         # Releasing connection
-        robot.close_connection()
+        robot.end()
 
 Advanced template for vision
 --------------------------------------
 
 Huge template for vision users ! ::
 
-    from pyniryo import *
+    from pyniryo2 import *
 
     local_mode = False # Or True
     workspace_name = "workspace_1"  # Robot's Workspace Name
@@ -126,13 +126,13 @@ Huge template for vision users ! ::
     )
 
     def process(robot):
-        robot.move_pose(observation_pose)
+        robot.arm.move_pose(observation_pose)
         catch_count = 0
         while catch_count < 3:
-            ret = robot.get_target_pose_from_cam(workspace_name,
-                                                height_offset=0.0,
-                                                shape=ObjectShape.ANY,
-                                                color=ObjectColor.ANY)
+            ret = robot.vision.get_target_pose_from_cam(workspace_name,
+                                                        height_offset=0.0,
+                                                        shape=ObjectShape.ANY,
+                                                        color=ObjectColor.ANY)
             obj_found, obj_pose, shape, color = ret
             if not obj_found:
                 continue
@@ -140,19 +140,19 @@ Huge template for vision users ! ::
             # --- --------- --- #
             # --- YOUR CODE --- #
             # --- --------- --- #
-            robot.place_from_pose(place_pose)
+            robot.pick_place.place_from_pose(place_pose)
 
     if __name__ == '__main__':
         # Connect to robot
         robot = NiryoRobot(robot_ip_address)
         # Calibrate robot if robot needs calibration
-        robot.calibrate_auto()
+        robot.arm.calibrate_auto()
         # Equip tool
-        robot.update_tool()
+        robot.tool.update_tool()
         # Launching main process
         process(client)
         # Ending
-        robot.go_to_sleep()
+        robot.arm.go_to_sleep()
         # Releasing connection
-        robot.close_connection()
+        robot.end()
 

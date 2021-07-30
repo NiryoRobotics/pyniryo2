@@ -10,16 +10,17 @@ from pyniryo2.niryo_topic import NiryoTopic
 from pyniryo2.objects import PoseObject
 
 from pyniryo2.vision.vision import Vision
-from pyniryo2.vision.objects import CameraInfo
+from pyniryo2.vision.objects import CameraInfo, ImageParameters
 from pyniryo2.vision.enums import ObjectColor
 
-robot_ip_address = "192.168.1.52"
+robot_ip_address = "127.0.0.1"
 port = 9090
 
 test_order = ["test_camera_info",
               "test_camera_img",
-              "test_workspace",
-              "test_target_from_rel",
+              "test_image_parameters",
+              # "test_workspace",
+              # "test_target_from_rel",
               ]
 
 
@@ -59,18 +60,49 @@ class TestVision(BaseTest):
 
     def test_camera_img(self):
         self.assertIsInstance(self.vision.get_img_compressed, NiryoTopic)
-        self.assertIsInstance(self.vision.get_img_compressed(), str)
+        self.assertIsInstance(self.vision.get_img_compressed(), bytes)
 
         cam_event = Event()
         cam_event.clear()
 
         def camera_img_callback(img):
-            self.assertIsInstance(img, str)
             cam_event.set()
+            self.assertIsInstance(img, bytes)
 
         self.assertIsNone(self.vision.get_img_compressed.subscribe(camera_img_callback))
         self.assertTrue(cam_event.wait(10))
         self.assertIsNone(self.vision.get_img_compressed.unsubscribe())
+
+    def test_image_parameters(self):
+        self.assertIsInstance(self.vision.get_image_parameters, NiryoTopic)
+        self.assertIsInstance(self.vision.get_image_parameters(), ImageParameters)
+
+        img_param_event = Event()
+        img_param_event.clear()
+
+        def img_param_callback(img_param):
+            self.assertIsInstance(img_param, ImageParameters)
+            img_param_event.set()
+
+        self.assertIsNone(self.vision.get_image_parameters.subscribe(img_param_callback))
+        self.assertTrue(img_param_event.wait(10))
+        self.assertIsNone(self.vision.get_image_parameters.unsubscribe())
+
+        old_img_param = self.vision.get_image_parameters.value
+        for i, function in enumerate(
+                [self.vision.set_brightness, self.vision.set_contrast, self.vision.set_saturation]):
+
+            new_value = old_img_param[i] + 1.0
+            self.assertIsNone(function(new_value))
+            self.assertEqual(self.vision.get_image_parameters()[i], new_value)
+            self.assertIsNone(function(1))
+            self.assertEqual(self.vision.get_image_parameters()[i], 1)
+
+            with self.assertRaises(RobotCommandException):
+                function("1")
+
+            with self.assertRaises(RobotCommandException):
+                function(True)
 
     def test_workspace(self):
         ws_name = "unit_test_ws"

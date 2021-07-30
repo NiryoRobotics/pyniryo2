@@ -34,6 +34,18 @@ class VisionServices(object):
                                                            '/niryo_robot_poses_handlers/get_workspace_list',
                                                            'niryo_robot_msgs/GetNameDescriptionList')
 
+        self.set_brightness_service = roslibpy.Service(self.__client,
+                                                       '/niryo_robot_vision/set_brightness',
+                                                       'niryo_robot_vision/SetImageParameter')
+
+        self.set_contrast_service = roslibpy.Service(self.__client,
+                                                     '/niryo_robot_vision/set_contrast',
+                                                     'niryo_robot_vision/SetImageParameter')
+
+        self.set_saturation_service = roslibpy.Service(self.__client,
+                                                       '/niryo_robot_vision/set_saturation',
+                                                       'niryo_robot_vision/SetImageParameter')
+
     @staticmethod
     def get_trigger_request():
         return roslibpy.ServiceRequest()
@@ -78,3 +90,7 @@ class VisionServices(object):
     @staticmethod
     def get_workspace_list_service_request():
         return VisionServices.get_trigger_request()
+
+    @staticmethod
+    def get_image_parameter_request(factor):
+        return roslibpy.ServiceRequest({"factor": factor})

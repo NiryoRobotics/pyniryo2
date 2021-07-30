@@ -1,4 +1,5 @@
 from .niryo_robot import NiryoRobot
+from .niryo_topic import NiryoTopic
 
 from .arm.arm import Arm
 from .conveyor.conveyor import Conveyor
@@ -22,4 +23,4 @@ from .objects import PoseObject
 from .arm.objects import HardwareStatusObject, JointStateObject
 from .conveyor.objects import ConveyorInfo
 from .io.objects import DigitalPinObject
-from .vision.objects import CameraInfo
+from .vision.objects import CameraInfo, ImageParameters

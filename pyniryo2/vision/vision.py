@@ -46,8 +46,9 @@ class Vision(RobotCommander):
         The topic return a namedtuple(intrinsics: list[list[float]], distortion: list[list[float]])
 
         Examples: ::
+
             vision.get_camera_intrinsics()
-            vision.get_camera_intrinsics().value
+            vision.get_camera_intrinsics.value
 
             def camera_info_callback(camera_info):
                 print(camera_info.intrinsics)
@@ -66,10 +67,103 @@ class Vision(RobotCommander):
         Get image from video stream in a compressed format.
         Use ``uncompress_image`` from the vision package to uncompress it
 
+        Examples: ::
+
+            import pyniryo
+
+            img_compressed = vision.get_img_compressed()
+            camera_info = vision.get_camera_intrinsics()
+            img = pyniryo.uncompress_image(img_compressed)
+            img = pyniryo.undistort_image(img, camera_info.intrinsics, camera_info.distortion)
+
+
         :return: string containing a JPEG compressed image
         :rtype: NiryoTopic
         """
         return self._topics.compressed_video_stream_topic
+
+    @property
+    def get_image_parameters(self):
+        """
+        Return the NiryoTopic to get last stream image parameters:
+        Brightness factor, Contrast factor, Saturation factor.
+        The topic return a namedtuple(brightness_factor: float, contrast_factor: float, saturation_factor: float)
+
+        Brightness factor: How much to adjust the brightness. 0.5 will give a darkened image,
+        1 will give the original image while 2 will enhance the brightness by a factor of 2.
+
+        Contrast factor: While a factor of 1 gives original image.
+        Making the factor towards 0 makes the image greyer, while factor>1 increases the contrast of the image.
+
+        Saturation factor: 0 will give a black and white image, 1 will give the original image while
+        2 will enhance the saturation by a factor of 2.
+
+        Examples: ::
+
+            vision.get_image_parameters()
+            vision.get_image_parameters.value
+
+            def image_parameters_callback(image_parameters):
+                print(image_parameters.brightness_factor)
+                print(image_parameters.contrast_factor)
+                print(image_parameters.saturation_factor)
+
+                vision.get_image_parameters.unsubscribe()
+
+            vision.get_image_parameters.subscribe(image_parameters_callback)
+
+
+        :return: ImageParameters namedtuple containing the brightness factor, contrast factor and saturation factor.
+        :rtype: NiryoTopic
+        """
+        return self._topics.video_stream_parameters_topic
+
+    def set_brightness(self, brightness_factor):
+        """
+        Modify image brightness
+
+        :param brightness_factor: How much to adjust the brightness. 0.5 will
+            give a darkened image, 1 will give the original image while
+            2 will enhance the brightness by a factor of 2.
+        :type brightness_factor: float
+        :rtype: None
+        """
+        self._check_not_instance(brightness_factor, bool)
+        self._check_instance(brightness_factor, (int, float))
+        req = self._services.get_image_parameter_request(brightness_factor)
+        result = self._services.set_brightness_service.call(req)
+        self._check_result_status(result)
+
+    def set_contrast(self, contrast_factor):
+        """
+        Modify image contrast
+
+        :param contrast_factor: While a factor of 1 gives original image.
+            Making the factor towards 0 makes the image greyer, while factor>1 increases the contrast of the image.
+        :type contrast_factor: float
+        :rtype: None
+        """
+        self._check_not_instance(contrast_factor, bool)
+        self._check_instance(contrast_factor, (int, float))
+        req = self._services.get_image_parameter_request(contrast_factor)
+        result = self._services.set_contrast_service.call(req)
+        self._check_result_status(result)
+
+    def set_saturation(self, saturation_factor):
+        """
+        Modify image saturation
+
+        :param saturation_factor: How much to adjust the saturation. 0 will
+            give a black and white image, 1 will give the original image while
+            2 will enhance the saturation by a factor of 2.
+        :type saturation_factor: float
+        :rtype: None
+        """
+        self._check_not_instance(saturation_factor, bool)
+        self._check_instance(saturation_factor, (int, float))
+        req = self._services.get_image_parameter_request(saturation_factor)
+        result = self._services.set_saturation_service.call(req)
+        self._check_result_status(result)
 
     def get_target_pose_from_rel(self, workspace_name, height_offset, x_rel, y_rel, yaw_rel):
         """
@@ -150,9 +244,9 @@ class Vision(RobotCommander):
         Example::
 
             robot = NiryoRobot(ip_address="x.x.x.x")
-            robot.calibrate_auto()
-            robot.move_pose(<observation_pose>)
-            obj_found, shape_ret, color_ret = robot.vision_pick(<workspace_name>,
+            robot.arm.calibrate_auto()
+            robot.arm.move_pose(<observation_pose>)
+            obj_found, shape_ret, color_ret = robot.vision.vision_pick(<workspace_name>,
                                                                 height_offset=0.0,
                                                                 shape=ObjectShape.ANY,
                                                                 color=ObjectColor.ANY)
@@ -238,7 +332,7 @@ class Vision(RobotCommander):
 
         obj_found = resp["status"] >= RobotErrors.SUCCESS.value
         if not obj_found:
-            rel_pose = PoseObject(*(6*[0.0]))
+            rel_pose = PoseObject(*(6 * [0.0]))
             shape = "ANY"
             color = "ANY"
         else:

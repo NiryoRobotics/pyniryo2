@@ -14,6 +14,7 @@ from .saved_poses.saved_poses import SavedPoses
 from .tool.tool import Tool
 from .trajectories.trajectories import Trajectories
 from .vision.vision import Vision
+from .led_ring.led_ring import LedRing
 
 
 class NiryoRobot(object):
@@ -44,6 +45,7 @@ class NiryoRobot(object):
         self.__io = None
         self.__conveyor = None
         self.__arm = None
+        self.__led_ring = None
 
         self.run(ip_address, port)
 
@@ -55,6 +57,7 @@ class NiryoRobot(object):
         self.__trajectories = Trajectories(self.__client)
         self.__pick_place = PickPlace(self.__client, self.__arm, self.__tool, self.__trajectories)
         self.__vision = Vision(self.__client, self.__arm, self.__tool)
+        self.__led_ring = LedRing(self.__client)
 
     def __del__(self):
         del self.__vision
@@ -256,3 +259,17 @@ class NiryoRobot(object):
         :rtype: Vision
         """
         return self.__vision
+
+    @property
+    def led_ring(self):
+        """
+        Access to the Led Ring API
+        Example: ::
+
+            robot = NiryoRobot(<robot_ip_address>)
+            niryo_robot.led_ring.led_ring_flash([20,255,78], iterations = 10, wait = True, frequency = 8)
+            niryo_robot.led_ring.led_ring_turn_off()
+
+        :rtype: LedRing
+        """
+        return self.__led_ring

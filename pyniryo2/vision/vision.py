@@ -138,7 +138,7 @@ class Vision(RobotCommander):
         """
         Modify image contrast
 
-        :param contrast_factor: While a factor of 1 gives original image.
+        :param contrast_factor: A factor of 1 gives original image.
             Making the factor towards 0 makes the image greyer, while factor>1 increases the contrast of the image.
         :type contrast_factor: float
         :rtype: None

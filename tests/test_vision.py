@@ -19,8 +19,8 @@ port = 9090
 test_order = ["test_camera_info",
               "test_camera_img",
               "test_image_parameters",
-              # "test_workspace",
-              # "test_target_from_rel",
+              "test_workspace",
+              "test_target_from_rel",
               ]
 
 

@@ -31,23 +31,3 @@ class LedRingServices(object):
     def color_to_color_rgba(color):
         return {'r': color[0], 'g' : color[1], 'b': color[2], 'a': 0} 
 
-    # @staticmethod
-    # def save_trajectory_request(name, poses, description=""):
-    #     return roslibpy.ServiceRequest({"cmd": ManageTrajectories.SAVE.value, "name": name, "description": description,
-    #                                     "poses": [pose_quat_list_to_dict(pose) for pose in poses]})
-
-    # @staticmethod
-    # def delete_trajectory_request(name):
-    #     return roslibpy.ServiceRequest({"cmd": ManageTrajectories.DELETE.value, "name": name})
-
-    # @staticmethod
-    # def get_saved_trajectory_list_request():
-    #     return roslibpy.ServiceRequest()
-
-    # @staticmethod
-    # def get_saved_trajectory_list_response_to_list(response):
-    #     return [str(pose_name) for pose_name in response["name_list"]]
-
-    # @staticmethod
-    # def trajectory_dict_to_list(traj_dict):
-    #     return [pose_quat_dict_to_list(pose_dict) for pose_dict in traj_dict]

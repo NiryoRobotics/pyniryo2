@@ -17,3 +17,10 @@ class AnimationMode(Enum):
     RAINBOW_CHASE = 8
     GO_UP = 9
     GO_UP_AND_DOWN = 10
+
+class LedMode(Enum):
+    """
+    Enumeration of available Led Mode
+    """
+    ROBOT_STATUS = 1
+    USER = 2

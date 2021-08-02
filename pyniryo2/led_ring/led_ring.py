@@ -5,6 +5,7 @@ from pyniryo2.robot_commander import RobotCommander
 # from pyniryo2.objects import PoseObject
 
 from .services import LedRingServices
+from .topics import LedRingTopics
 from .enums import AnimationMode
 
 
@@ -14,8 +15,25 @@ class LedRing(RobotCommander):
         super(LedRing, self).__init__(client)
 
         self._services = LedRingServices(self._client)
+        self._topics = LedRingTopics(self._client)
+        # self.__action_timeout = 10
 
-        self.__action_timeout = 10
+    # - Get current status and state of led ring
+
+    @property
+    def led_ring_status(self): 
+        return self._topics.led_ring_status_topic
+
+    def get_led_ring_status(self):
+        return self._topics.led_ring_status_topic()
+
+    @property
+    def led_ring_colors(self):
+        return self._topics.led_ring_state_topic
+
+    def get_led_ring_colors(self):
+        return self._topics.led_ring_state_topic()
+
 
     # - Control Led Ring with available animations
 

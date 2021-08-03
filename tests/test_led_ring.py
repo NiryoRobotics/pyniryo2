@@ -127,6 +127,7 @@ class TestLedRing(BaseTest):
 
     def test_led_controlled_user(self): # TODO : activate autonomous mode first
         
+        
         # - NONE
         self.test_user_none()
         self.assertIsNone(self.led_ring.led_ring_turn_off()) 
@@ -152,6 +153,16 @@ class TestLedRing(BaseTest):
         self.assertIsNone(self.led_ring.led_ring_turn_off()) 
         self.assertIsNone(time.sleep(1))
         
+        # - Color wipe
+        self.test_user_color_wipe()
+        self.assertIsNone(self.led_ring.led_ring_turn_off()) 
+        self.assertIsNone(time.sleep(1))
+        
+        # - Rainbow
+        self.test_user_rainbow()
+        self.assertIsNone(self.led_ring.led_ring_turn_off()) 
+        self.assertIsNone(time.sleep(1))
+
     def test_user_solid(self):
         print 'TEST USER - SOLID'
         color_solid = [178.0, 189.0, 230.0]
@@ -181,11 +192,10 @@ class TestLedRing(BaseTest):
             self.assertEqual(led_ring_color_state[i], NONE)
 
 
-
     def test_user_flash(self):
         print 'TEST USER - FLASHING'
         color_flashing = [0.0, 255.0, 164.0]
-        iter_flashing = 5
+        iter_flashing = 5 # 1 iter = 1 solid color followed by 1 none (leds turned off)
         freq_flashing = 3.0
         print ' flashing color {} {} times, at freq {} ...'.format(color_flashing, iter_flashing, freq_flashing)
         self.is_flashing = False
@@ -193,6 +203,7 @@ class TestLedRing(BaseTest):
         self.flash_nb = 0
         self.times_flashing = []
         self.color_flashed = NONE
+
         def check_color_flash(color):
             if self.is_flashing:
                 if not (self.flash_nb == 0 and color[0] == NONE):
@@ -205,7 +216,6 @@ class TestLedRing(BaseTest):
                         self.assertTrue(color[i] == color_flashing or color[i] == NONE) # TODO also check colors
                         if color[i] != NONE:
                             self.color_flashed = color[i]
-
 
         def check_status_flash(status):
             if status.animation_mode == AnimationMode.FLASHING.value:
@@ -234,8 +244,8 @@ class TestLedRing(BaseTest):
 
     def test_user_alternate(self):
         print 'TEST USER - ALTERNATE'
-        colors_list = [[22,244,244],[140,70,220],[246,31,99]]
-        iter_alternate = 3
+        colors_list = [[22.0,244.0,244.0],[140.0,70.0,220.0],[246.0,31.0,99.0]]
+        iter_alternate = 3 # 1 iter = len(colors_list) alternations
         print ' alternate colors {} {} times...'.format(colors_list, iter_alternate)
         self.is_alter = False
         # Variables used to check if alternation was correctly done
@@ -271,10 +281,10 @@ class TestLedRing(BaseTest):
 
     def test_user_chase(self):
         print 'TEST USER - CHASE'
-        color = [255, 0, 0]
+        color_chase = [255.0, 0.0, 0.0]
         iter_chase = 15 # 1 iter = 3 times leds sets
         speed_chase = 50
-        print ' chase color {} {} times at speed {}...'.format(color, iter_chase, speed_chase)
+        print ' chase color {} {} times at speed {}...'.format(color_chase, iter_chase, speed_chase)
         self.is_chase = False
         # Variables used to check if chase was correctly done
         self.times_chase = []
@@ -286,10 +296,10 @@ class TestLedRing(BaseTest):
                 if not (self.chase_nb == 0 and color == [NONE]*30):
                     self.times_chase.append(time.time())
                     self.chase_nb = self.chase_nb + 1
-                    for i in range(30): 
+                    for i in range(30): # TODO: check that we do the 30
                         if color[i] not in self.color_chased and color[i] != NONE:
                             self.color_chased.append(color[i])                        
-                        self.assertTrue(color[i] == color or color[i] == NONE)
+                        self.assertTrue(color[i] == color_chase or color[i] == NONE)
 
         def check_status_chase(status):
             if status.animation_mode == AnimationMode.CHASE.value:
@@ -299,7 +309,7 @@ class TestLedRing(BaseTest):
 
         self.led_ring.led_ring_status.subscribe(check_status_chase)
         self.led_ring.led_ring_colors.subscribe(check_color_chase)
-        self.assertIsNone(self.led_ring.led_ring_chase(color, wait = True, iterations = iter_chase, speed = speed_chase))
+        self.assertIsNone(self.led_ring.led_ring_chase(color_chase, wait = True, iterations = iter_chase, speed = speed_chase))
         self.led_ring.led_ring_colors.unsubscribe()
         self.led_ring.led_ring_status.unsubscribe()
 
@@ -308,17 +318,136 @@ class TestLedRing(BaseTest):
 
         # check color
         self.assertEqual(len(self.color_chased), 1) # TODO : do that also for alternate (and others?)
-        self.assertEqual(self.color_chased[0], color)
+        self.assertEqual(self.color_chased[0], color_chase)
 
         # check the mean speed
         self.times_between_chases = [] # 
         for i,k in zip(self.times_chase[0::2], self.times_chase[1::2]):
             self.times_between_chases.append(k-i)
-        print self.times_between_chases
         mean_time_iter = round((sum(self.times_between_chases) / len(self.times_between_chases))*1000.0, 1) # speed chase is in millisecondes
         self.assertAlmostEqual(mean_time_iter, speed_chase, delta = 5)
 
         print ' chased color {} {} times, at mean speed {}'.format(self.color_chased[0], self.chase_nb/3, mean_time_iter)
+
+    def test_user_color_wipe(self):
+        print 'TEST USER - COLOR WIPE'
+        color_wipe = [230.0, 79.0, 128.0]
+        speed = 60
+        print ' color wipe with color {} at speed {}...'.format(color_wipe, speed)
+        self.is_wipe = False
+        # Variables used to check if chase was correctly done
+        self.times_wipe = [] # TODO : rename "speed"
+        self.color_wiped = [] # list of colors displayed during the animation
+        self.max_index_colored = 0
+
+        def check_color_wipe(color):
+            # print color
+            if self.is_wipe:
+                if not (color == [NONE]*30):
+                    self.times_wipe.append(time.time())
+                    for i in range(30): 
+                        if color[i] not in self.color_wiped and color[i] != NONE:
+                            self.color_wiped.append(color[i])         
+                        self.assertTrue(color[i] == color_wipe or color[i] == NONE) # IMPORTANT: an assert in a callback won't throw an error...
+                        if i > 0 and color[i] == NONE and color[i-1] != NONE:
+                            self.max_index_colored = i-1
+                        if i == 29 and color[i] != NONE: 
+                            self.max_index_colored = i
+
+        def check_status_wipe(status):
+            if status.animation_mode == AnimationMode.COLOR_WIPE.value:
+                self.is_wipe = True
+            else:
+                self.is_wipe = False
+
+        self.led_ring.led_ring_status.subscribe(check_status_wipe)
+        self.led_ring.led_ring_colors.subscribe(check_color_wipe)
+        self.assertIsNone(self.led_ring.led_ring_wipe(color_wipe, wait = True, speed = speed))
+        self.led_ring.led_ring_colors.unsubscribe()
+        self.led_ring.led_ring_status.unsubscribe()
+
+        # check the wipe was completed
+        self.assertEqual(self.max_index_colored+1, 30)
+
+        # check color
+        self.assertEquals(len(self.color_wiped), 1)
+        self.assertEquals(self.color_wiped[0], color_wipe)
+
+        # check speed
+        self.times_between_wipe = [] # 
+        for i,k in zip(self.times_wipe[0::2], self.times_wipe[1::2]):
+            self.times_between_wipe.append(k-i)
+        mean_time_iter = round((sum(self.times_between_wipe) / len(self.times_between_wipe))*1000.0, 1) # speed chase is in millisecondes
+        self.assertAlmostEqual(mean_time_iter, speed, delta = 5)
+        print ' color wiped with color {} at speed {}...'.format(self.color_wiped[0], mean_time_iter)
+
+
+    def test_user_rainbow(self):
+        print 'TEST USER - RAINBOW'
+        iter_rainbow = 2
+        # NOTE: if speed too low (rainbow rapid), the values from the color topic subscription won't be correctly retrieved and it errors will be raised
+        speed_rainbow = 20
+        print ' rainbow {} times at speed {}...'.format(iter_rainbow, speed_rainbow)
+        self.is_rainbow = False
+        # Variables used to check if rainbow was correctly done
+        self.times_rainbow = []
+
+        self.rainbow_values = [float(i) for i in range(0, 256, 3)]
+        self.first_led_r_values =[]
+        self.first_led_g_values =[]
+        self.first_led_b_values =[]
+        self.first_led_max_red_reached = 0
+        self.first_led_max_green_reached = 0
+        self.first_led_max_blue_reached = 0
+
+        def check_color_rainbow(color):
+            if self.is_rainbow:
+                if not (color == [NONE]*30):
+                    self.times_rainbow.append(time.time())
+                    self.first_led_r_values.append(color[0][0])
+                    self.first_led_g_values.append(color[0][1])
+                    self.first_led_b_values.append(color[0][2])
+                    if (color[0][0] == 255.0):
+                        self.first_led_max_red_reached += 1
+                    if (color[0][1] == 255.0): # green is 255.0 at the beginning and the end for the first led
+                        self.first_led_max_green_reached += 1
+                    if (color[0][2] == 255.0):
+                        self.first_led_max_blue_reached += 1
+
+
+        def check_status_rainbow(status):
+            if status.animation_mode == AnimationMode.RAINBOW.value:
+                self.is_rainbow = True
+            else:
+                self.is_rainbow = False
+
+        self.led_ring.led_ring_status.subscribe(check_status_rainbow)
+        self.led_ring.led_ring_colors.subscribe(check_color_rainbow)
+        self.assertIsNone(self.led_ring.led_ring_rainbow(wait = True, iterations = iter_rainbow, speed = speed_rainbow))
+        self.led_ring.led_ring_colors.unsubscribe()
+        self.led_ring.led_ring_status.unsubscribe()
+
+        # check that the first led took all rainbow values. 
+        # NOTE: we don't check the order of colors here, neither the other leds. todo later
+        for rainbow_value in self.rainbow_values:
+            self.assertTrue(rainbow_value in self.first_led_r_values)
+            self.assertTrue(rainbow_value in self.first_led_g_values)
+            self.assertTrue(rainbow_value in self.first_led_b_values)
+
+        # check the nb of iterations. One iteration = each led reaches the max (255.0) of red, green and blue
+        self.assertEqual(iter_rainbow, self.first_led_max_red_reached)
+        self.assertEqual(iter_rainbow, self.first_led_max_green_reached / 2.0) # green is 255.0 at the beginning and the end for the first led
+        self.assertEqual(iter_rainbow, self.first_led_max_blue_reached)
+
+        # check the mean speed
+        self.times_between_rainbows = [] # 
+        for i,k in zip(self.times_rainbow[0::2], self.times_rainbow[1::2]):
+            self.times_between_rainbows.append(k-i)
+        mean_time_iter = round((sum(self.times_between_rainbows) / len(self.times_between_rainbows))*1000.0, 1) # speed rainbow is in millisecondes
+        self.assertAlmostEqual(mean_time_iter, speed_rainbow, delta = 5)
+        print ' rainbow {} times at speed {}...'.format(self.first_led_max_red_reached, mean_time_iter)
+
+
 
 def suite():
     suite = unittest.TestSuite()

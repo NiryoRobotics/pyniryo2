@@ -162,6 +162,16 @@ class TestLedRing(BaseTest):
         self.test_user_rainbow()
         self.assertIsNone(self.led_ring.led_ring_turn_off()) 
         self.assertIsNone(time.sleep(1))
+        
+        # - Rainbow cycle
+        self.test_user_rainbow(method_led_ring = "led_ring_rainbow_cycle", animation_nb = AnimationMode.RAINBOW_CYLE.value, name_print = 'rainbow cycle')
+        self.assertIsNone(self.led_ring.led_ring_turn_off()) 
+        self.assertIsNone(time.sleep(1))
+        
+        # - Rainbow chase
+        self.test_user_rainbow(method_led_ring = "led_ring_rainbow_chase", animation_nb = AnimationMode.RAINBOW_CHASE.value, name_print = 'rainbow chase')
+        self.assertIsNone(self.led_ring.led_ring_turn_off()) 
+        self.assertIsNone(time.sleep(1))
 
     def test_user_solid(self):
         print 'TEST USER - SOLID'
@@ -382,12 +392,16 @@ class TestLedRing(BaseTest):
         print ' color wiped with color {} at speed {}...'.format(self.color_wiped[0], mean_time_iter)
 
 
-    def test_user_rainbow(self):
-        print 'TEST USER - RAINBOW'
-        iter_rainbow = 2
-        # NOTE: if speed too low (rainbow rapid), the values from the color topic subscription won't be correctly retrieved and it errors will be raised
-        speed_rainbow = 20
-        print ' rainbow {} times at speed {}...'.format(iter_rainbow, speed_rainbow)
+    def test_user_rainbow(self, method_led_ring = "led_ring_rainbow", animation_nb = AnimationMode.RAINBOW.value, name_print = 'rainbow'):
+        """
+        same test function for rainbow, rainbow chase and rainbow cycle
+        """
+        print 'TEST USER - {}'.format(name_print).upper()
+        iter_rainbow = 1
+        # NOTE: if speed too low (rainbow rapid), or the values from the color topic subscription 
+        # won't be correctly retrieved and it errors will be raised. 30ms is a correct speed for test
+        speed_rainbow = 30
+        print ' {} {} times at speed {}...'.format(name_print, iter_rainbow, speed_rainbow)
         self.is_rainbow = False
         # Variables used to check if rainbow was correctly done
         self.times_rainbow = []
@@ -414,16 +428,15 @@ class TestLedRing(BaseTest):
                     if (color[0][2] == 255.0):
                         self.first_led_max_blue_reached += 1
 
-
         def check_status_rainbow(status):
-            if status.animation_mode == AnimationMode.RAINBOW.value:
+            if status.animation_mode == animation_nb:
                 self.is_rainbow = True
             else:
                 self.is_rainbow = False
 
         self.led_ring.led_ring_status.subscribe(check_status_rainbow)
         self.led_ring.led_ring_colors.subscribe(check_color_rainbow)
-        self.assertIsNone(self.led_ring.led_ring_rainbow(wait = True, iterations = iter_rainbow, speed = speed_rainbow))
+        self.assertIsNone(getattr(self.led_ring,method_led_ring)(wait = True, iterations = iter_rainbow, speed = speed_rainbow))
         self.led_ring.led_ring_colors.unsubscribe()
         self.led_ring.led_ring_status.unsubscribe()
 
@@ -445,8 +458,7 @@ class TestLedRing(BaseTest):
             self.times_between_rainbows.append(k-i)
         mean_time_iter = round((sum(self.times_between_rainbows) / len(self.times_between_rainbows))*1000.0, 1) # speed rainbow is in millisecondes
         self.assertAlmostEqual(mean_time_iter, speed_rainbow, delta = 5)
-        print ' rainbow {} times at speed {}...'.format(self.first_led_max_red_reached, mean_time_iter)
-
+        print ' {} {} times at speed {}...'.format(name_print, self.first_led_max_red_reached, mean_time_iter)
 
 
 def suite():

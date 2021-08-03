@@ -127,7 +127,6 @@ class TestLedRing(BaseTest):
 
     def test_led_controlled_user(self): # TODO : activate autonomous mode first
         
-        
         # - NONE
         self.test_user_none()
         self.assertIsNone(self.led_ring.led_ring_turn_off()) 
@@ -216,7 +215,7 @@ class TestLedRing(BaseTest):
         print 'TEST USER - FLASHING'
         color_flashing = [0.0, 255.0, 164.0]
         iter_flashing = 5 # 1 iter = 1 solid color followed by 1 none (leds turned off)
-        freq_flashing = 3.0
+        freq_flashing = 3
         print ' flashing color {} {} times, at freq {} ...'.format(color_flashing, iter_flashing, freq_flashing)
         self.is_flashing = False
         # Variable used to check if flash was correctly done
@@ -398,7 +397,7 @@ class TestLedRing(BaseTest):
         for i,k in zip(self.times_wipe[0::2], self.times_wipe[1::2]):
             self.times_between_wipe.append(k-i)
         mean_time_iter = round((sum(self.times_between_wipe) / len(self.times_between_wipe))*1000.0, 1) # speed chase is in millisecondes
-        self.assertAlmostEqual(mean_time_iter, speed, delta = 5)
+        self.assertAlmostEqual(mean_time_iter, speed, delta = 10)
         print ' color wiped with color {} at speed {}...'.format(self.color_wiped[0], mean_time_iter)
 
 

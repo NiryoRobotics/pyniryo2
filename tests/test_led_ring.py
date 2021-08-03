@@ -172,6 +172,16 @@ class TestLedRing(BaseTest):
         self.test_user_rainbow(method_led_ring = "led_ring_rainbow_chase", animation_nb = AnimationMode.RAINBOW_CHASE.value, name_print = 'rainbow chase')
         self.assertIsNone(self.led_ring.led_ring_turn_off()) 
         self.assertIsNone(time.sleep(1))
+        
+        # - Go up
+        self.test_user_go_up()
+        self.assertIsNone(self.led_ring.led_ring_turn_off()) 
+        self.assertIsNone(time.sleep(1))
+        
+        # - Go up and down
+        self.test_user_go_up_and_down()
+        self.assertIsNone(self.led_ring.led_ring_turn_off()) 
+        self.assertIsNone(time.sleep(1))
 
     def test_user_solid(self):
         print 'TEST USER - SOLID'
@@ -460,6 +470,116 @@ class TestLedRing(BaseTest):
         self.assertAlmostEqual(mean_time_iter, speed_rainbow, delta = 5)
         print ' {} {} times at speed {}...'.format(name_print, self.first_led_max_red_reached, mean_time_iter)
 
+    def test_user_go_up(self):
+        print 'TEST USER GO UP'
+        color_go_up = [255.0, 255.0, 255.0]
+        speed = 20
+        iterations = 3
+        print ' go up with color {} at speed {}...'.format(color_go_up, speed)
+        self.is_go_up = False
+        # Variables used to check if anim was correctly done
+        self.times_go_up = [] # TODO : rename "speed"
+        self.color_displayed = [] # list of colors displayed during the animation
+        self.max_index_colored = 0
+        self.go_up_nb = 0 # iterations done
+
+        def check_color_go_up(color):
+            # print color
+            if self.is_go_up:
+                if not (color == [NONE]*30):
+                    self.times_go_up.append(time.time())
+                    for i in range(30): 
+                        if color[i] not in self.color_displayed and color[i] != NONE:
+                            self.color_displayed.append(color[i])         
+                        self.assertTrue(color[i] == color_go_up or color[i] == NONE) # IMPORTANT: an assert in a callback won't throw an error...
+                        if i > 0 and color[i] == NONE and color[i-1] != NONE:
+                            self.max_index_colored = i-1
+                        if i == 29 and color[i] != NONE: 
+                            self.max_index_colored = i
+                            self.go_up_nb +=1 # +1 iteration
+
+        def check_status_go_up(status):
+            if status.animation_mode == AnimationMode.GO_UP.value:
+                self.is_go_up = True
+            else:
+                self.is_go_up = False
+
+        self.led_ring.led_ring_status.subscribe(check_status_go_up)
+        self.led_ring.led_ring_colors.subscribe(check_color_go_up)
+        self.assertIsNone(self.led_ring.led_ring_go_up(color_go_up, wait = True, speed = speed, iterations = iterations))
+        self.led_ring.led_ring_colors.unsubscribe()
+        self.led_ring.led_ring_status.unsubscribe()
+
+        # check the go up was completed
+        self.assertEqual(self.max_index_colored+1, 30)
+        self.assertEqual(self.go_up_nb, iterations)
+
+        # check color
+        self.assertEquals(len(self.color_displayed), 1)
+        self.assertEquals(self.color_displayed[0], color_go_up)
+
+        # check speed
+        self.times_between_step = [] # 
+        for i,k in zip(self.times_go_up[0::2], self.times_go_up[1::2]):
+            self.times_between_step.append(k-i)
+        mean_time_iter = round((sum(self.times_between_step) / len(self.times_between_step))*1000.0, 1) # speed chase is in millisecondes
+        self.assertAlmostEqual(mean_time_iter, speed, delta = 5)
+        print ' did go up with color {} {} times at speed {}...'.format(self.color_displayed[0], self.go_up_nb, mean_time_iter)
+
+    def test_user_go_up_and_down(self):
+        print 'TEST USER GO UP AND DOWN'
+        color_go_up_and_down = [255.0, 255.0, 255.0]
+        speed = 20
+        iterations = 3
+        print ' go up and down with color {} {} at speed {}...'.format(color_go_up_and_down, iterations, speed)
+        self.is_go_up_and_down = False
+        # Variables used to check if anim was correctly done
+        self.times_go_up_and_down = [] # TODO : rename "speed"
+        self.color_displayed = [] # list of colors displayed during the animation
+        self.max_index_colored = 0
+        self.go_up_and_down_nb = 0 # iterations done
+
+        def check_color_go_up_and_down(color):
+            # print color
+            if self.is_go_up_and_down:
+                if not (color == [NONE]*30):
+                    self.times_go_up_and_down.append(time.time())
+                    for i in range(30): 
+                        if color[i] not in self.color_displayed and color[i] != NONE:
+                            self.color_displayed.append(color[i])         
+                        self.assertTrue(color[i] == color_go_up_and_down or color[i] == NONE) # IMPORTANT: an assert in a callback won't throw an error...
+                        if i == 29 and color == [color[i]]*30: # every leds are ON
+                            self.go_up_and_down_nb +=1 # +1 iteration in 'up'
+                        if i == 29 and color[i] != NONE and color[i-1] == NONE: # only the last led is ON
+                            self.go_up_and_down_nb +=1 # +1 iteration in 'down'
+
+        def check_status_go_up_and_down(status):
+            if status.animation_mode == AnimationMode.GO_UP_AND_DOWN.value:
+                self.is_go_up_and_down = True
+            else:
+                self.is_go_up_and_down = False
+
+        self.led_ring.led_ring_status.subscribe(check_status_go_up_and_down)
+        self.led_ring.led_ring_colors.subscribe(check_color_go_up_and_down)
+        self.assertIsNone(self.led_ring.led_ring_go_up_down(color_go_up_and_down, wait = True, speed = speed, iterations = iterations))
+        self.led_ring.led_ring_colors.unsubscribe()
+        self.led_ring.led_ring_status.unsubscribe()
+
+        # check the go up was completed
+        self.assertEqual(self.go_up_and_down_nb/2, iterations)
+
+        # check color
+        self.assertEquals(len(self.color_displayed), 1)
+        self.assertEquals(self.color_displayed[0], color_go_up_and_down)
+
+        # check speed
+        self.times_between_step = [] # 
+        for i,k in zip(self.times_go_up_and_down[0::2], self.times_go_up_and_down[1::2]):
+            self.times_between_step.append(k-i)
+        mean_time_iter = round((sum(self.times_between_step) / len(self.times_between_step))*1000.0, 1) # speed chase is in millisecondes
+        self.assertAlmostEqual(mean_time_iter, speed, delta = 5)
+
+        print ' did go up and downs with color {} {} times at speed {}...'.format(self.color_displayed[0], self.go_up_and_down_nb/2, mean_time_iter)
 
 def suite():
     suite = unittest.TestSuite()

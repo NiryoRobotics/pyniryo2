@@ -11,14 +11,13 @@ from pyniryo2.led_ring.enums import AnimationMode, LedMode
 from pyniryo2.niryo_topic import NiryoTopic
 from pyniryo2.arm.arm import Arm
 
-# from pyniryo2.objects import PoseObject
 
 robot_ip_address = "192.168.1.13"
 port = 9090
 
 test_order = [
     "test_led_display_robot_status",
-    # "test_led_controlled_user",
+    "test_led_controlled_user",
 ]
 
 WHITE = [255.0, 255.0, 255.0]
@@ -41,10 +40,9 @@ class BaseTest(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        # cls.arm.go_to_sleep()
         cls.led_ring.led_ring_turn_off()
-        # cls.arm.learning_mode = True
-        # cls.arm.go_to_sleep()
+        cls.arm.go_to_sleep()
+        cls.arm.learning_mode = True
         cls.client.terminate()
 
     def assertHasAttr(self, obj, intendedAttr):
@@ -76,6 +74,7 @@ class TestLedRing(BaseTest):
 
     def test_led_display_robot_status(self):  
         # Launch first calibration
+        print 'Auto calibration and go to first pose ...'
         self.assertIsNone(self.arm.calibrate_auto())
         self.go_to_neutral_pose()
         self.assertIsNone(time.sleep(1))
@@ -91,20 +90,24 @@ class TestLedRing(BaseTest):
         # - Test Led Ring display moving 
         self.test_status_moving()
         self.assertIsNone(time.sleep(1))
-        
-        # - Test Led ring display Fatal Error
+
+        self.arm.go_to_sleep()
+
+        # - Starting from here, to test the other robot status displayed, 
+        # we have to execute in a terminal on the robot the bash script "pub_topics_led_test.sh"
+        # to publish the right robot status, to simulate errors or warning in different modes.
         self.test_status_fatal()
         self.assertIsNone(time.sleep(1))
-        
+
         self.test_status_booting_or_update()
         self.assertIsNone(time.sleep(1))
-        
+
         self.test_status_learning_mode_error()
         self.assertIsNone(time.sleep(1))
 
         self.test_status_learning_mode_warning()
         self.assertIsNone(time.sleep(1))
-
+      
         self.test_status_moving_error()
         self.assertIsNone(time.sleep(1))
 
@@ -122,6 +125,7 @@ class TestLedRing(BaseTest):
 
         self.test_status_autonomous()
         self.assertIsNone(time.sleep(1))
+
 
 
     def test_status_learning_mode(self):
@@ -185,11 +189,11 @@ class TestLedRing(BaseTest):
         self.animation_mode = None
         self.msg_published = False
 
-        self.topic_robot_status.publish(Message({"robot_status": 0, 
-                            "robot_message": "", 
-                            "logs_status": -3,
-                            "logs_message": "" })) 
-        # NOTE : this publication is not rarely working ... . 
+        # self.topic_robot_status.publish(Message({"robot_status": 0, 
+        #                     "robot_message": "", 
+        #                     "logs_status": -3,
+        #                     "logs_message": "" })) 
+        # NOTE : this publication is not rarely working ... . because of bad network? 
         # currently doing it by command line
 
         self.assertIsNone(time.sleep(1))
@@ -217,6 +221,7 @@ class TestLedRing(BaseTest):
 
         while not self.msg_published:
             self.assertIsNone(time.sleep(0.01))
+        self.assertIsNone(time.sleep(1))
 
         self.assertEqual(self.led_ring_mode, LedMode.ROBOT_STATUS.value)
         self.assertEqual(self.animation_mode, AnimationMode.SOLID.value)
@@ -225,7 +230,8 @@ class TestLedRing(BaseTest):
             self.assertEqual(self.color_displayed[i], RED)
         self.topic_robot_status.unsubscribe()
         self.led_ring.led_ring_colors.unsubscribe()
-        self.led_ring.led_ring_status.unsubscribe()        
+        self.led_ring.led_ring_status.unsubscribe()       
+        print 'fatal unsub to all..' 
 
     def test_status_booting_or_update(self): 
         """
@@ -266,6 +272,7 @@ class TestLedRing(BaseTest):
 
         while not self.msg_published:
             self.assertIsNone(time.sleep(0.01))
+        self.assertIsNone(time.sleep(1))
 
         self.assertEqual(self.led_ring_mode, LedMode.ROBOT_STATUS.value)
         self.assertEqual(self.animation_mode, AnimationMode.CHASE.value)
@@ -340,7 +347,7 @@ class TestLedRing(BaseTest):
             logs_status: -1
             logs_message: ''" 
         """
-        print 'TEST LEARNING MODE ERROR, wait for robot status publication...'
+        print 'TEST LEARNING MODE WARNING, wait for robot status publication...'
         self.color_displayed = []
         self.led_ring_mode = None
         self.animation_mode = None
@@ -385,7 +392,62 @@ class TestLedRing(BaseTest):
             j +=1
         self.topic_robot_status.unsubscribe()
         self.led_ring.led_ring_colors.unsubscribe()
-        self.led_ring.led_ring_status.unsubscribe()        
+        self.led_ring.led_ring_status.unsubscribe()    
+
+
+    def test_status_moving_error(self): 
+        """
+        publish in command line:
+        rostopic pub /niryo_robot_status/robot_status niryo_robot_status/RobotStatus "robot_status: 7
+            robot_message: ''
+            logs_status: -2
+            logs_message: ''" 
+        """
+        print 'TEST MOVING ERROR, wait for robot status publication...'
+        self.color_displayed = []
+        self.led_ring_mode = None
+        self.animation_mode = None
+        self.msg_published = False
+
+        self.assertIsNone(time.sleep(1))
+
+        def check_topic(msg): # check if topic was published
+            # since the publication from roslipy is not really working, we publish 
+            # in command line
+            if msg["robot_status"] == 7 and msg["logs_status"] == -2:
+                self.msg_published = True
+                print ' received robot status !'
+
+        self.topic_robot_status.subscribe(check_topic)
+
+        def check_color(color):
+            self.test_led_ring_color_obj(color)
+            self.color_displayed = color
+
+        def check_status(status):
+            self.test_led_ring_status_obj(status)
+            self.led_ring_mode = status.led_ring_mode
+            self.animation_mode = status.animation_mode
+
+        self.led_ring.led_ring_colors.subscribe(check_color)
+        self.led_ring.led_ring_status.subscribe(check_status)
+
+        while not self.msg_published:
+            self.assertIsNone(time.sleep(0.01))
+        self.assertIsNone(time.sleep(1))
+
+        j = 0
+        while not j==5: # check alternate for several second
+            self.assertEqual(self.led_ring_mode, LedMode.ROBOT_STATUS.value)
+            self.assertEqual(self.animation_mode, AnimationMode.ALTERNATE.value)
+            self.assertEqual(len(self.color_displayed), 30)
+            for i in range(30):
+                self.assertTrue(self.color_displayed[i] == GREEN or self.color_displayed[i] == RED)
+            self.assertIsNone(time.sleep(0.5)) # time between two alternation
+            j +=1
+        self.topic_robot_status.unsubscribe()
+        self.led_ring.led_ring_colors.unsubscribe()
+        self.led_ring.led_ring_status.unsubscribe()            
 
 
     def test_status_autonomous(self): 
@@ -502,7 +564,7 @@ class TestLedRing(BaseTest):
             logs_status: -1
             logs_message: ''" 
         """
-        print 'TEST AUTONOMOUS ERROR, wait for robot status publication...'
+        print 'TEST AUTONOMOUS WARNING, wait for robot status publication...'
         self.color_displayed = []
         self.led_ring_mode = None
         self.animation_mode = None
@@ -673,7 +735,7 @@ class TestLedRing(BaseTest):
             logs_status: 0
             logs_message: ''" 
         """
-        
+
         print 'TEST LED USER MODE, wait for robot status to be AUTONOMOUS...'
         # first wait for the robot status to be AUTONOMOUS
         self.autonomous_mode = False
@@ -685,7 +747,6 @@ class TestLedRing(BaseTest):
 
         while not self.autonomous_mode:
             self.assertIsNone(time.sleep(0.01))
-
 
         # - NONE
         self.test_user_none()
@@ -733,6 +794,7 @@ class TestLedRing(BaseTest):
                                name_print='rainbow chase')
         self.assertIsNone(self.led_ring.led_ring_turn_off())
         self.assertIsNone(time.sleep(1))
+     
 
         # - Go up
         self.test_user_go_up()
@@ -1046,7 +1108,9 @@ class TestLedRing(BaseTest):
     def test_user_go_up(self):
         print 'TEST USER GO UP'
         color_go_up = [255.0, 255.0, 255.0]
-        speed = 20
+        # the speed should not be too high (like 20ms) in order to receive every published 
+        # message on the led_ring_state (color) (errors raised when slow network)
+        speed = 40 
         iterations = 3
         print ' go up with color {} at speed {}...'.format(color_go_up, speed)
         self.is_go_up = False
@@ -1105,7 +1169,9 @@ class TestLedRing(BaseTest):
     def test_user_go_up_and_down(self):
         print 'TEST USER GO UP AND DOWN'
         color_go_up_and_down = [255.0, 255.0, 255.0]
-        speed = 20
+        # the speed should not be too high (like 20ms) in order to receive every published 
+        # message on the led_ring_state (color) (errors raised when slow network)
+        speed = 40
         iterations = 3
         print ' go up and down with color {} {} at speed {}...'.format(color_go_up_and_down, iterations, speed)
         self.is_go_up_and_down = False
@@ -1166,6 +1232,7 @@ class TestLedRing(BaseTest):
 def suite():
     suite = unittest.TestSuite()
     for function_name in test_order:
+        print 'TEST FUNCTION: ', function_name
         suite.addTest(TestLedRing(function_name))
     return suite
 

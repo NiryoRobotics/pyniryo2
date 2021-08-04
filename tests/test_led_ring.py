@@ -727,7 +727,7 @@ class TestLedRing(BaseTest):
 
     # - Test functions for user mode
 
-    def test_led_controlled_user(self):   #TODO : test with wrong args
+    def test_led_controlled_user(self):   #TODO : test user mode methods with wrong args
         """
         publish in command line:
         rostopic pub /niryo_robot_status/robot_status niryo_robot_status/RobotStatus "robot_status: 8
@@ -1084,7 +1084,7 @@ class TestLedRing(BaseTest):
         self.led_ring.led_ring_status.unsubscribe()
 
         # check that the first led took all rainbow values. 
-        # NOTE: we don't check the order of colors here, neither the other leds. todo later
+        # TODO: we don't check the order of colors here, neither the other leds. todo later
         for rainbow_value in self.rainbow_values:
             self.assertTrue(rainbow_value in self.first_led_r_values)
             self.assertTrue(rainbow_value in self.first_led_g_values)

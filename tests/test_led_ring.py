@@ -2,10 +2,13 @@
 import unittest
 import roslibpy
 import time
+from roslibpy import Message
+from roslibpy import Topic
 
 from pyniryo2.exceptions import RobotCommandException
 from pyniryo2.led_ring.led_ring import LedRing
 from pyniryo2.led_ring.enums import AnimationMode, LedMode
+from pyniryo2.niryo_topic import NiryoTopic
 from pyniryo2.arm.arm import Arm
 
 # from pyniryo2.objects import PoseObject
@@ -14,14 +17,16 @@ robot_ip_address = "192.168.1.13"
 port = 9090
 
 test_order = [
-    # "test_led_display_robot_status",
-    "test_led_controlled_user",
+    "test_led_display_robot_status",
+    # "test_led_controlled_user",
 ]
 
 WHITE = [255.0, 255.0, 255.0]
 GREEN = [0.0, 255.0, 0.0]
 NONE = [0.0, 0.0, 0.0]  # or [51.0, 51.0, 51.0] if simu
-
+RED = [255.0, 0.0, 0.0]
+YELLOW = [255.0, 255.0, 0.0]
+BLUE = [0.0, 0.0, 255.0]
 
 class BaseTest(unittest.TestCase):
     @classmethod
@@ -30,6 +35,9 @@ class BaseTest(unittest.TestCase):
         cls.client.run()
         cls.led_ring = LedRing(cls.client)
         cls.arm = Arm(cls.client)
+        cls.topic_robot_status_name = '/niryo_robot_status/robot_status'
+        cls.topic_robot_status_type = 'niryo_robot_status/RobotStatus'
+        cls.topic_robot_status = Topic(cls.client, cls.topic_robot_status_name, cls.topic_robot_status_type)
 
     @classmethod
     def tearDownClass(cls):
@@ -52,6 +60,7 @@ class TestLedRing(BaseTest):
     def go_to_neutral_pose(self):
         self.assertIsNone(self.arm.move_pose(self.neutral_pose))
 
+
     def test_led_ring_status_obj(self, led_ring_status):
         self.assertHasAttr(led_ring_status, "led_ring_mode")
         self.assertHasAttr(led_ring_status, "animation_mode")
@@ -61,16 +70,61 @@ class TestLedRing(BaseTest):
         self.assertIsInstance(led_ring_color_state, list)
         self.assertEqual(len(led_ring_color_state), self.nb_leds)
 
-    # - Test functions
+    # TODO: remove every "assert..." in a callback from a topic!! they don't throw error.
 
-    def test_led_display_robot_status(self):  # TODO : we need to access/publish on robot status to check every status
+    # - Test functions for robot status mode
+
+    def test_led_display_robot_status(self):  
         # Launch first calibration
         self.assertIsNone(self.arm.calibrate_auto())
         self.go_to_neutral_pose()
-
         self.assertIsNone(time.sleep(1))
 
         # - Test Led Ring display learning mode
+        self.test_status_learning_mode()
+        self.assertIsNone(time.sleep(1))
+
+        # - Test Led Ring display standby
+        self.test_status_standby()
+        self.assertIsNone(time.sleep(1))
+
+        # - Test Led Ring display moving 
+        self.test_status_moving()
+        self.assertIsNone(time.sleep(1))
+        
+        # - Test Led ring display Fatal Error
+        self.test_status_fatal()
+        self.assertIsNone(time.sleep(1))
+        
+        self.test_status_booting_or_update()
+        self.assertIsNone(time.sleep(1))
+        
+        self.test_status_learning_mode_error()
+        self.assertIsNone(time.sleep(1))
+
+        self.test_status_learning_mode_warning()
+        self.assertIsNone(time.sleep(1))
+
+        self.test_status_moving_error()
+        self.assertIsNone(time.sleep(1))
+
+        self.test_status_autonomous_error()
+        self.assertIsNone(time.sleep(1))
+
+        self.test_status_autonomous_warning()
+        self.assertIsNone(time.sleep(1))
+
+        self.test_status_autonomous_learning()
+        self.assertIsNone(time.sleep(1))
+
+        self.test_status_autonomous_learning_warning()
+        self.assertIsNone(time.sleep(1))
+
+        self.test_status_autonomous()
+        self.assertIsNone(time.sleep(1))
+
+
+    def test_status_learning_mode(self):
         print 'TEST LEARNING MODE'
         self.arm.learning_mode = True
 
@@ -84,28 +138,10 @@ class TestLedRing(BaseTest):
         for i in range(self.nb_leds):
             self.assertEqual(led_ring_color_state[i], WHITE)
 
-        self.assertIsNone(time.sleep(1))
-
-        # - Test Led Ring display standby
-        print 'TEST STANDBY'
-        self.arm.learning_mode = False
-        led_ring_status = self.led_ring.get_led_ring_status()
-        self.test_led_ring_status_obj(led_ring_status)
-        self.assertEqual(led_ring_status.led_ring_mode, LedMode.ROBOT_STATUS.value)
-        self.assertEqual(led_ring_status.animation_mode, AnimationMode.SOLID.value)
-
-        led_ring_color_state = self.led_ring.get_led_ring_colors()
-        self.test_led_ring_color_obj(led_ring_color_state)
-        for i in range(self.nb_leds):
-            self.assertEqual(led_ring_color_state[i], GREEN)
-
-        self.assertIsNone(time.sleep(1))
-
-        # - Test Led Ring display moving 
+    def test_status_moving(self):
         # Led Ring must be flashing green
         print 'TEST MOVING'
         joints = [0., 0., 0., 0., 0., 0.]
-
         def check_move_color(color):
             self.test_led_ring_color_obj(color)
             for i in range(self.nb_leds):
@@ -122,7 +158,535 @@ class TestLedRing(BaseTest):
         self.led_ring.led_ring_colors.unsubscribe()
         self.led_ring.led_ring_status.unsubscribe()
 
-    def test_led_controlled_user(self):  # TODO : activate autonomous mode first + TODO : test with wrong args
+    def test_status_standby(self):
+        print 'TEST STANDBY'
+        self.arm.learning_mode = False
+        led_ring_status = self.led_ring.get_led_ring_status()
+        self.test_led_ring_status_obj(led_ring_status)
+        self.assertEqual(led_ring_status.led_ring_mode, LedMode.ROBOT_STATUS.value)
+        self.assertEqual(led_ring_status.animation_mode, AnimationMode.SOLID.value)
+
+        led_ring_color_state = self.led_ring.get_led_ring_colors()
+        self.test_led_ring_color_obj(led_ring_color_state)
+        for i in range(self.nb_leds):
+            self.assertEqual(led_ring_color_state[i], GREEN)
+
+    def test_status_fatal(self): 
+        """
+        publish in command line:
+        rostopic pub /niryo_robot_status/robot_status niryo_robot_status/RobotStatus "robot_status: 0
+            robot_message: ''
+            logs_status: -3
+            logs_message: ''" 
+        """
+        print 'TEST FATAL ERROR, wait for robot status publication...'
+        self.color_displayed = []
+        self.led_ring_mode = None
+        self.animation_mode = None
+        self.msg_published = False
+
+        self.topic_robot_status.publish(Message({"robot_status": 0, 
+                            "robot_message": "", 
+                            "logs_status": -3,
+                            "logs_message": "" })) 
+        # NOTE : this publication is not rarely working ... . 
+        # currently doing it by command line
+
+        self.assertIsNone(time.sleep(1))
+
+        def check_topic(msg): # check if topic was published
+            # since the publication from roslipy is not really working, we publish 
+            # in command line
+            if msg["robot_status"] == 0 and msg["logs_status"] == -3:
+                self.msg_published = True
+                print ' received robot status !'
+
+        self.topic_robot_status.subscribe(check_topic)
+
+        def check_color(color):
+            self.test_led_ring_color_obj(color)
+            self.color_displayed = color
+
+        def check_status(status):
+            self.test_led_ring_status_obj(status)
+            self.led_ring_mode = status.led_ring_mode
+            self.animation_mode = status.animation_mode
+
+        self.led_ring.led_ring_colors.subscribe(check_color)
+        self.led_ring.led_ring_status.subscribe(check_status)
+
+        while not self.msg_published:
+            self.assertIsNone(time.sleep(0.01))
+
+        self.assertEqual(self.led_ring_mode, LedMode.ROBOT_STATUS.value)
+        self.assertEqual(self.animation_mode, AnimationMode.SOLID.value)
+        self.assertEqual(len(self.color_displayed), 30)
+        for i in range(30):
+            self.assertEqual(self.color_displayed[i], RED)
+        self.topic_robot_status.unsubscribe()
+        self.led_ring.led_ring_colors.unsubscribe()
+        self.led_ring.led_ring_status.unsubscribe()        
+
+    def test_status_booting_or_update(self): 
+        """
+        publish in command line:
+        rostopic pub /niryo_robot_status/robot_status niryo_robot_status/RobotStatus "robot_status: 1
+            robot_message: ''
+            logs_status: 0
+            logs_message: ''" 
+        """
+        print 'TEST BOOTING, wait for robot status publication...'
+        self.color_displayed = []
+        self.led_ring_mode = None
+        self.animation_mode = None
+        self.msg_published = False
+
+        self.assertIsNone(time.sleep(1))
+
+        def check_topic(msg): # check if topic was published
+            # since the publication from roslipy is not really working, we publish 
+            # in command line
+            if (msg["robot_status"] == 1 or msg["robot_status"] == 2) and msg["logs_status"] == 0:
+                self.msg_published = True
+                print ' received robot status !'
+
+        self.topic_robot_status.subscribe(check_topic)
+
+        def check_color(color):
+            self.test_led_ring_color_obj(color)
+            self.color_displayed = color
+
+        def check_status(status):
+            self.test_led_ring_status_obj(status)
+            self.led_ring_mode = status.led_ring_mode
+            self.animation_mode = status.animation_mode
+
+        self.led_ring.led_ring_colors.subscribe(check_color)
+        self.led_ring.led_ring_status.subscribe(check_status)
+
+        while not self.msg_published:
+            self.assertIsNone(time.sleep(0.01))
+
+        self.assertEqual(self.led_ring_mode, LedMode.ROBOT_STATUS.value)
+        self.assertEqual(self.animation_mode, AnimationMode.CHASE.value)
+        self.assertEqual(len(self.color_displayed), 30)
+        for i in range(30):
+            self.assertTrue(self.color_displayed[i] == WHITE or self.color_displayed[i] == NONE)
+        self.topic_robot_status.unsubscribe()
+        self.led_ring.led_ring_colors.unsubscribe()
+        self.led_ring.led_ring_status.unsubscribe()        
+
+    def test_status_learning_mode_error(self): 
+        """
+        publish in command line:
+        rostopic pub /niryo_robot_status/robot_status niryo_robot_status/RobotStatus "robot_status: 5
+            robot_message: ''
+            logs_status: -2
+            logs_message: ''" 
+        """
+        print 'TEST LEARNING MODE ERROR, wait for robot status publication...'
+        self.color_displayed = []
+        self.led_ring_mode = None
+        self.animation_mode = None
+        self.msg_published = False
+
+        self.assertIsNone(time.sleep(1))
+
+        def check_topic(msg): # check if topic was published
+            # since the publication from roslipy is not really working, we publish 
+            # in command line
+            if msg["robot_status"] == 5 and msg["logs_status"] == -2:
+                self.msg_published = True
+                print ' received robot status !'
+
+        self.topic_robot_status.subscribe(check_topic)
+
+        def check_color(color):
+            self.test_led_ring_color_obj(color)
+            self.color_displayed = color
+
+        def check_status(status):
+            self.test_led_ring_status_obj(status)
+            self.led_ring_mode = status.led_ring_mode
+            self.animation_mode = status.animation_mode
+
+        self.led_ring.led_ring_colors.subscribe(check_color)
+        self.led_ring.led_ring_status.subscribe(check_status)
+
+        while not self.msg_published:
+            self.assertIsNone(time.sleep(0.01))
+        self.assertIsNone(time.sleep(1))
+
+        j = 0
+        while not j==5: # check alternate for several second
+            self.assertEqual(self.led_ring_mode, LedMode.ROBOT_STATUS.value)
+            self.assertEqual(self.animation_mode, AnimationMode.ALTERNATE.value)
+            self.assertEqual(len(self.color_displayed), 30)
+            for i in range(30):
+                self.assertTrue(self.color_displayed[i] == WHITE or self.color_displayed[i] == RED)
+            self.assertIsNone(time.sleep(0.5)) # time between two alternation
+            j +=1
+        self.topic_robot_status.unsubscribe()
+        self.led_ring.led_ring_colors.unsubscribe()
+        self.led_ring.led_ring_status.unsubscribe()        
+
+
+
+    def test_status_learning_mode_warning(self): 
+        """
+        publish in command line:
+        rostopic pub /niryo_robot_status/robot_status niryo_robot_status/RobotStatus "robot_status: 5
+            robot_message: ''
+            logs_status: -1
+            logs_message: ''" 
+        """
+        print 'TEST LEARNING MODE ERROR, wait for robot status publication...'
+        self.color_displayed = []
+        self.led_ring_mode = None
+        self.animation_mode = None
+        self.msg_published = False
+
+        self.assertIsNone(time.sleep(1))
+
+        def check_topic(msg): # check if topic was published
+            # since the publication from roslipy is not really working, we publish 
+            # in command line
+            if msg["robot_status"] == 5 and msg["logs_status"] == -1:
+                self.msg_published = True
+                print ' received robot status !'
+
+        self.topic_robot_status.subscribe(check_topic)
+
+        def check_color(color):
+            self.test_led_ring_color_obj(color)
+            self.color_displayed = color
+
+        def check_status(status):
+            self.test_led_ring_status_obj(status)
+            self.led_ring_mode = status.led_ring_mode
+            self.animation_mode = status.animation_mode
+
+        self.led_ring.led_ring_colors.subscribe(check_color)
+        self.led_ring.led_ring_status.subscribe(check_status)
+
+        while not self.msg_published:
+            self.assertIsNone(time.sleep(0.01))
+
+        self.assertIsNone(time.sleep(1))
+
+        j = 0
+        while not j==5: # check alternate for several second
+            self.assertEqual(self.led_ring_mode, LedMode.ROBOT_STATUS.value)
+            self.assertEqual(self.animation_mode, AnimationMode.ALTERNATE.value)
+            self.assertEqual(len(self.color_displayed), 30)
+            for i in range(30):
+                self.assertTrue(self.color_displayed[i] == WHITE or self.color_displayed[i] == YELLOW)
+            self.assertIsNone(time.sleep(0.5)) # time between two alternation
+            j +=1
+        self.topic_robot_status.unsubscribe()
+        self.led_ring.led_ring_colors.unsubscribe()
+        self.led_ring.led_ring_status.unsubscribe()        
+
+
+    def test_status_autonomous(self): 
+        """
+        publish in command line:
+        rostopic pub /niryo_robot_status/robot_status niryo_robot_status/RobotStatus "robot_status: 8
+            robot_message: ''
+            logs_status: 0
+            logs_message: ''" 
+        """
+        print 'TEST AUTONOMOUS, wait for robot status publication...'
+        self.color_displayed = []
+        self.led_ring_mode = None
+        self.animation_mode = None
+        self.msg_published = False
+
+        self.assertIsNone(time.sleep(1))
+
+        def check_topic(msg): # check if topic was published
+            # since the publication from roslipy is not really working, we publish 
+            # in command line
+            if msg["robot_status"] == 8 and msg["logs_status"] == 0:
+                self.msg_published = True
+                print ' received robot status !'
+
+        self.topic_robot_status.subscribe(check_topic)
+
+        def check_color(color):
+            self.test_led_ring_color_obj(color)
+            self.color_displayed = color
+
+        def check_status(status):
+            self.test_led_ring_status_obj(status)
+            self.led_ring_mode = status.led_ring_mode
+            self.animation_mode = status.animation_mode
+
+        self.led_ring.led_ring_colors.subscribe(check_color)
+        self.led_ring.led_ring_status.subscribe(check_status)
+
+        while not self.msg_published:
+            self.assertIsNone(time.sleep(0.01))
+
+        self.assertIsNone(time.sleep(1))
+
+        self.assertEqual(self.led_ring_mode, LedMode.USER.value)
+        self.assertEqual(self.animation_mode, AnimationMode.SOLID.value)
+        self.assertEqual(len(self.color_displayed), 30)
+        for i in range(30):
+            self.assertTrue(self.color_displayed[i] == BLUE)
+        self.topic_robot_status.unsubscribe()
+        self.led_ring.led_ring_colors.unsubscribe()
+        self.led_ring.led_ring_status.unsubscribe()        
+
+    def test_status_autonomous_error(self): 
+        """
+        publish in command line:
+        rostopic pub /niryo_robot_status/robot_status niryo_robot_status/RobotStatus "robot_status: 8
+            robot_message: ''
+            logs_status: -2
+            logs_message: ''" 
+        """
+        print 'TEST AUTONOMOUS ERROR, wait for robot status publication...'
+        self.color_displayed = []
+        self.led_ring_mode = None
+        self.animation_mode = None
+        self.msg_published = False
+
+        self.assertIsNone(time.sleep(1))
+
+        def check_topic(msg): # check if topic was published
+            # since the publication from roslipy is not really working, we publish 
+            # in command line
+            if msg["robot_status"] == 8 and msg["logs_status"] == -2:
+                self.msg_published = True
+                print ' received robot status !'
+
+        self.topic_robot_status.subscribe(check_topic)
+
+        def check_color(color):
+            self.test_led_ring_color_obj(color)
+            self.color_displayed = color
+
+        def check_status(status):
+            self.test_led_ring_status_obj(status)
+            self.led_ring_mode = status.led_ring_mode
+            self.animation_mode = status.animation_mode
+
+        self.led_ring.led_ring_colors.subscribe(check_color)
+        self.led_ring.led_ring_status.subscribe(check_status)
+
+        while not self.msg_published:
+            self.assertIsNone(time.sleep(0.01))
+
+        self.assertIsNone(time.sleep(1))
+
+        j = 0
+        while not j==5: # check alternate for several second
+            self.assertEqual(self.led_ring_mode, LedMode.USER.value)
+            self.assertEqual(self.animation_mode, AnimationMode.ALTERNATE.value)
+            self.assertEqual(len(self.color_displayed), 30)
+            for i in range(30):
+                self.assertTrue(self.color_displayed[i] == BLUE or self.color_displayed[i] == RED)
+            self.assertIsNone(time.sleep(0.5)) # time between two alternation
+            j +=1
+        self.topic_robot_status.unsubscribe()
+        self.led_ring.led_ring_colors.unsubscribe()
+        self.led_ring.led_ring_status.unsubscribe()        
+
+    def test_status_autonomous_warning(self): 
+        """
+        publish in command line:
+        rostopic pub /niryo_robot_status/robot_status niryo_robot_status/RobotStatus "robot_status: 8
+            robot_message: ''
+            logs_status: -1
+            logs_message: ''" 
+        """
+        print 'TEST AUTONOMOUS ERROR, wait for robot status publication...'
+        self.color_displayed = []
+        self.led_ring_mode = None
+        self.animation_mode = None
+        self.msg_published = False
+
+        self.assertIsNone(time.sleep(1))
+
+        def check_topic(msg): # check if topic was published
+            # since the publication from roslipy is not really working, we publish 
+            # in command line
+            if msg["robot_status"] == 8 and msg["logs_status"] == -1:
+                self.msg_published = True
+                print ' received robot status !'
+
+        self.topic_robot_status.subscribe(check_topic)
+
+        def check_color(color):
+            self.test_led_ring_color_obj(color)
+            self.color_displayed = color
+
+        def check_status(status):
+            self.test_led_ring_status_obj(status)
+            self.led_ring_mode = status.led_ring_mode
+            self.animation_mode = status.animation_mode
+
+        self.led_ring.led_ring_colors.subscribe(check_color)
+        self.led_ring.led_ring_status.subscribe(check_status)
+
+        while not self.msg_published:
+            self.assertIsNone(time.sleep(0.01))
+
+        self.assertIsNone(time.sleep(1))
+
+        j = 0
+        while not j==5: # check alternate for several second
+            self.assertEqual(self.led_ring_mode, LedMode.USER.value)
+            self.assertEqual(self.animation_mode, AnimationMode.ALTERNATE.value)
+            self.assertEqual(len(self.color_displayed), 30)
+            for i in range(30):
+                self.assertTrue(self.color_displayed[i] == BLUE or self.color_displayed[i] == YELLOW)
+            self.assertIsNone(time.sleep(0.5)) # time between two alternation
+            j +=1
+
+        self.topic_robot_status.unsubscribe()
+        self.led_ring.led_ring_colors.unsubscribe()
+        self.led_ring.led_ring_status.unsubscribe()        
+        
+
+    def test_status_autonomous_learning(self): 
+        """
+        publish in command line:
+        rostopic pub /niryo_robot_status/robot_status niryo_robot_status/RobotStatus "robot_status: 11
+            robot_message: ''
+            logs_status: 0
+            logs_message: ''" 
+        """
+        print 'TEST AUTONOMOUS LEARNING MODE, wait for robot status publication...'
+        self.color_displayed = []
+        self.led_ring_mode = None
+        self.animation_mode = None
+        self.msg_published = False
+
+        self.assertIsNone(time.sleep(1))
+
+        def check_topic(msg): # check if topic was published
+            # since the publication from roslipy is not really working, we publish 
+            # in command line
+            if msg["robot_status"] == 11 and msg["logs_status"] == 0:
+                self.msg_published = True
+                print ' received robot status !'
+
+        self.topic_robot_status.subscribe(check_topic)
+
+        def check_color(color):
+            self.test_led_ring_color_obj(color)
+            self.color_displayed = color
+
+        def check_status(status):
+            self.test_led_ring_status_obj(status)
+            self.led_ring_mode = status.led_ring_mode
+            self.animation_mode = status.animation_mode
+
+        self.led_ring.led_ring_colors.subscribe(check_color)
+        self.led_ring.led_ring_status.subscribe(check_status)
+
+        while not self.msg_published:
+            self.assertIsNone(time.sleep(0.01))
+
+        self.assertIsNone(time.sleep(1))
+
+        j = 0
+        while not j==5: # check alternate for several second
+            self.assertEqual(self.led_ring_mode, LedMode.USER.value)
+            self.assertEqual(self.animation_mode, AnimationMode.ALTERNATE.value)
+            self.assertEqual(len(self.color_displayed), 30)
+            for i in range(30):
+                self.assertTrue(self.color_displayed[i] == BLUE or self.color_displayed[i] == WHITE)
+            self.assertIsNone(time.sleep(0.5)) # time between two alternation
+            j +=1
+        self.topic_robot_status.unsubscribe()
+        self.led_ring.led_ring_colors.unsubscribe()
+        self.led_ring.led_ring_status.unsubscribe()        
+
+    def test_status_autonomous_learning_warning(self): 
+        """
+        publish in command line:
+        rostopic pub /niryo_robot_status/robot_status niryo_robot_status/RobotStatus "robot_status: 11
+            robot_message: ''
+            logs_status: -1
+            logs_message: ''" 
+        """
+        print 'TEST AUTONOMOUS LEARNING MODE WARNING, wait for robot status publication...'
+        self.color_displayed = []
+        self.led_ring_mode = None
+        self.animation_mode = None
+        self.msg_published = False
+
+        self.assertIsNone(time.sleep(1))
+
+        def check_topic(msg): # check if topic was published
+            # since the publication from roslipy is not really working, we publish 
+            # in command line
+            if msg["robot_status"] == 11 and msg["logs_status"] == -1:
+                self.msg_published = True
+                print ' received robot status !'
+
+        self.topic_robot_status.subscribe(check_topic)
+
+        def check_color(color):
+            self.test_led_ring_color_obj(color)
+            self.color_displayed = color
+
+        def check_status(status):
+            self.test_led_ring_status_obj(status)
+            self.led_ring_mode = status.led_ring_mode
+            self.animation_mode = status.animation_mode
+
+        self.led_ring.led_ring_colors.subscribe(check_color)
+        self.led_ring.led_ring_status.subscribe(check_status)
+
+        while not self.msg_published:
+            self.assertIsNone(time.sleep(0.01))
+
+        self.assertIsNone(time.sleep(1))
+
+        j = 0
+        while not j==5: # check alternate for several second
+            self.assertEqual(self.led_ring_mode, LedMode.USER.value)
+            self.assertEqual(self.animation_mode, AnimationMode.ALTERNATE.value)
+            self.assertEqual(len(self.color_displayed), 30)
+            for i in range(30):
+                self.assertTrue(self.color_displayed[i] == BLUE or self.color_displayed[i] == YELLOW)
+            self.assertIsNone(time.sleep(0.5)) # time between two alternation
+            j +=1
+        self.topic_robot_status.unsubscribe()
+        self.led_ring.led_ring_colors.unsubscribe()
+        self.led_ring.led_ring_status.unsubscribe()        
+
+
+
+    # - Test functions for user mode
+
+    def test_led_controlled_user(self):   #TODO : test with wrong args
+        """
+        publish in command line:
+        rostopic pub /niryo_robot_status/robot_status niryo_robot_status/RobotStatus "robot_status: 8
+            robot_message: ''
+            logs_status: 0
+            logs_message: ''" 
+        """
+        
+        print 'TEST LED USER MODE, wait for robot status to be AUTONOMOUS...'
+        # first wait for the robot status to be AUTONOMOUS
+        self.autonomous_mode = False
+        def check_topic(msg): 
+            if msg["robot_status"] == 8 and msg["logs_status"] == 0:
+                self.autonomous_mode = True
+
+        self.topic_robot_status.subscribe(check_topic)
+
+        while not self.autonomous_mode:
+            self.assertIsNone(time.sleep(0.01))
+
+
         # - NONE
         self.test_user_none()
         self.assertIsNone(self.led_ring.led_ring_turn_off())

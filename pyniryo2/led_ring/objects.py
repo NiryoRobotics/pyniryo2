@@ -52,9 +52,9 @@ class LedRingStateObject:
         led_state = []
         for color_rgba_obj in msg["led_ring_colors"]:
             color_rgb = []
-            color_rgb.append(color_rgba_obj["r"]) # or color_rgba_obj["r"]
-            color_rgb.append(color_rgba_obj["g"]) # or color_rgba_obj["r"]
-            color_rgb.append(color_rgba_obj["b"]) # or color_rgba_obj["r"]
+            color_rgb.append(color_rgba_obj["r"]) 
+            color_rgb.append(color_rgba_obj["g"]) 
+            color_rgb.append(color_rgba_obj["b"]) 
             led_state.append(color_rgb)
         self.led_state = led_state
 

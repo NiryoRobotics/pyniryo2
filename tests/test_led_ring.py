@@ -193,8 +193,8 @@ class TestLedRing(BaseTest):
         #                     "robot_message": "", 
         #                     "logs_status": -3,
         #                     "logs_message": "" })) 
-        # NOTE : this publication is not rarely working ... . because of bad network? 
-        # currently doing it by command line
+        # NOTE : this publication is rarely working ... . because of bad network? 
+        # currently doing it with the shell script pub_topics_led_test.sh
 
         self.assertIsNone(time.sleep(1))
 
@@ -1129,7 +1129,7 @@ class TestLedRing(BaseTest):
                         if color[i] not in self.color_displayed and color[i] != NONE:
                             self.color_displayed.append(color[i])
                         self.assertTrue(color[i] == color_go_up or color[
-                            i] == NONE)  # IMPORTANT: an assert in a callback won't throw an error...
+                            i] == NONE)  # IMPORTANT: an assert in a callback won't throw an error... TODO : put asserts out of callbacks
                         if i > 0 and color[i] == NONE and color[i - 1] != NONE:
                             self.max_index_colored = i - 1
                         if i == 29 and color[i] != NONE:

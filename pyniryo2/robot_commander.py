@@ -65,6 +65,10 @@ class RobotCommander(object):
         for value in values_list:
             self._check_type(value, type_)
 
+    def _check_length(self, values, length):
+        if len(values) != length:
+            self._raise_exception_length(len(values), length)
+
     @staticmethod
     def _check_result_status(result):
         if result["status"] < RobotErrors.SUCCESS.value:
@@ -154,6 +158,9 @@ class RobotCommander(object):
     def _raise_exception_expected_range(self, range_min, range_max, given):
         raise RobotCommandException(
             "Expected the following condition: {} <= value <= {}\nGiven: {}".format(range_min, range_max, given))
+
+    def _raise_exception_length(self, expected_length, given):
+        raise RobotCommandException("Expected length: {}.\n Given: {}".format(expected_length, given))
 
     def _raise_exception(self, message):
         raise RobotCommandException("Exception message : {}".format(message))

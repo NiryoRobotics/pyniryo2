@@ -1,7 +1,5 @@
 import roslibpy
 
-# from pyniryo2.utils import pose_quat_dict_to_list, pose_quat_list_to_dict
-
 from .enums import AnimationMode
 
 
@@ -10,24 +8,36 @@ class LedRingServices(object):
     def __init__(self, client):
         self.__client = client
 
-        self.set_led_ring_service = roslibpy.Service(self.__client,
-                                                        '/niryo_robot_led_ring/user_service',
-                                                        'niryo_robot_led_ring/LedUser')
+        self.set_led_ring_animation_service = roslibpy.Service(self.__client,
+                                                               '/niryo_robot_led_ring/set_user_animation',
+                                                               'niryo_robot_led_ring/LedUser')
 
+        self.set_led_ring_led_color_service = roslibpy.Service(self.__client,
+                                                               '/niryo_robot_led_ring/set_led_color',
+                                                               'niryo_robot_led_ring/SetLedColor')
 
-    def set_led_ring_request(self, animation_nb, color = [0, 0, 0], color_list = [[0, 0, 0]], frequency = 0, iterations = 0, speed = 0, wait = False):
-        animation_mode = {'animation': animation_nb}
-        color_rgb = self.color_to_color_rgba(color)
-        color_list_rgb = [self.color_to_color_rgba(color) for color in color_list]
-        return roslibpy.ServiceRequest({"animation_mode": animation_mode, 
-                                        "color": color_rgb,
-                                        "colors_list": color_list_rgb,
-                                        "frequency": frequency,
+    def set_led_ring_request(self, animation_nb, color_list=None, period=0, iterations=0, wait=False):
+        animation_mode = {'animation': animation_nb.value if isinstance(animation_nb, AnimationMode) else animation_nb}
+
+        if not isinstance(color_list, list) or len(color_list) < 1:
+            color_list_rgb = []
+        elif not isinstance(color_list[0], list):
+            color_list_rgb = [self.color_to_color_rgba(color) for color in [color_list]]
+        else:
+            color_list_rgb = [self.color_to_color_rgba(color) for color in color_list]
+
+        return roslibpy.ServiceRequest({"animation_mode": animation_mode,
+                                        "colors": color_list_rgb,
+                                        "period": period,
                                         "iterations": iterations,
-                                        "speed_ms": speed,
-                                        "wait_answer": wait })
-   
+                                        "wait_end": wait})
+
+    def set_led_ring_color_request(self, led_id, color):
+        color_rgba = [] if not isinstance(color, list) else color[:]
+        return roslibpy.ServiceRequest({"led_id": led_id,
+                                        "color": self.color_to_color_rgba(color_rgba)})
+
     @staticmethod
     def color_to_color_rgba(color):
-        return {'r': color[0], 'g' : color[1], 'b': color[2], 'a': 0} 
-
+        color_rgb = color if len(color >= 3) else color[:] + (3 - len(color)) * [0]
+        return {'r': color_rgb[0], 'g': color_rgb[1], 'b': color_rgb[2], 'a': 0}

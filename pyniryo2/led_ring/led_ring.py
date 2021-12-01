@@ -21,345 +21,584 @@ class LedRing(RobotCommander):
     # - Get current status and state of led ring
 
     @property
-    def led_ring_status(self): 
+    def status(self):
         """
         Returns the Led Ring status client which can be used synchronously or asynchronously
-        to obtain the current Led Ring status.
+        to obtain the current Led Ring status (cf LedRingStatusObject).
+
+        Examples: ::
+
+            # Get last value
+            led_ring.status()
+            led_ring.status.value
+
+            # Subscribe a callback
+            def status_callback(msg):
+                print([msg.r, msg.g, msg.b])
+
+            led_ring.status.subscribe(status_callback)
+            led_ring.status.unsubscribe()
+
         :return: Led Ring status topic.
         :rtype: NiryoTopic
         """
         return self._topics.led_ring_status_topic
 
-    def get_led_ring_status(self):
+    def get_status(self):
         """
         Get Led Ring status.
+
+        Example: ::
+
+            status = led_ring.get_status()
+            print(status.animation)
 
         :return: Object with the current led ring mode, the animation played and the color used
         :rtype: LedRingStatusObject
         """
         return self._topics.led_ring_status_topic()
 
-    @property
-    def led_ring_colors(self):
-        """
-        Returns the Led Ring state client which can be used synchronously or asynchronously
-        to obtain the current state (color) of each Led of the Led Ring.
-        :return: Led Ring state topic.
-        :rtype: NiryoTopic
-        """
-        return self._topics.led_ring_state_topic
-
-    def get_led_ring_colors(self):
-        """
-        Get a list of color values of each Led.
-
-        :return: list[list[float]] containing color information (r, g and b)
-        :rtype: LedRingStateObject
-        """
-        return self._topics.led_ring_state_topic()
-
-
     # - Control Led Ring with available animations
-
-    def led_ring_solid(self, color, wait = False):
+    def solid(self, color):
         """
-        Set the whole Led Ring to a fixed color. 
+        Set the whole Led Ring to a fixed color.
 
-        Once the robot is in Autonomous mode, 
-        You can set the Led Ring color's to red with: ::
+        Example: ::
 
-            led_ring = robot.led_ring
-            led_ring.led_ring_solid([255.0, 0, 0])
+            led_ring.solid([15, 50, 255])
 
-        :param color: Led ring color, in a list of size 3 (r, g, b: 0-255) 
-        :type color: list[float] or list[int]
-        :param wait: The service wait for the animation to finish or not to answer. 
-                For this method, the action is quickly done, so waiting doesn't take a lot of time.
-        :type wait: bool
+        :param color: Led color in a list of size 3[R, G, B]. RGB channels from 0 to 255.
+        :type color: list[float]
         :rtype: None
         """
-        self._check_type(wait, bool)
-        color = self._check_color_led_ring(color)
-        req = self._services.set_led_ring_request(AnimationMode.SOLID.value, color = color, wait = wait)
-        self._services.set_led_ring_service.call(req)  # TODO : should we return something ? Like "interrupted" / "launched"?
+        self.__classic_check_and_execute_w_color(AnimationMode.FLASHING, color, 0, 0, True)
 
-    def led_ring_turn_off(self, wait = False):
+    def turn_off(self):
         """
-        Turn off all Leds
+        Turn off all LEDs
 
-        You can turn off leds with ::
+        Example: ::
 
-            led_ring = robot.led_ring
-            led_ring.led_ring_turn_off()
+            led_ring.turn_off()
 
-        :param wait: the service wait for the animation to finish or not to answer. 
-                For this method, the action is quickly done, so waiting doesn't take a lot of time.
-        :type wait: bool
         :rtype: None
         """
-        self._check_type(wait, bool)
-        req = self._services.set_led_ring_request(AnimationMode.NONE.value, wait = wait)
-        self._services.set_led_ring_service.call(req)
+        self.__classic_check_and_execute_without_color(AnimationMode.NONE, 0, 0, True)
 
-    def led_ring_flash(self, color, frequency = 4, iterations = 0, wait=False):
+    def flash(self, color, period=0, iterations=0, wait=False, callback=None, timeout=None):
         """
-        Flashes a color according to a frequency.
+        Flashes a color according to a frequency. The frequency is equal to 1 / period.
 
-        You can make the Led Ring flash a green color 10 times at
-        3 Hz with ::
+        Examples: ::
 
-            led_ring = robot.led_ring
-            led_ring.led_ring_flash([0, 255, 0], frequency = 3, iterations = 10, wait = True)
+            # Synchronous use
+            led_ring.flash([15, 50, 255])  # Non-blocking
+            led_ring.flash([15, 50, 255], 1, 100, False)  # Non-blocking
+            led_ring.flash([15, 50, 255], iterations=20, wait=True)  # Wait the end
 
-        :param color: Led ring color, in a list of size 3 (r, g, b: 0-255) 
-        :type color: list[float] or list[int]
-        :param frequency: flashing frequency, in Hertz. From 1 Hz to 100 Hz. If 0 or not filled, the default 
-                frequency is used (4 Hz)
-        :type frequency: int
-        :param iterations: Number of consecutives flashes. If 0, the Led Ring flashes endlessly.
+            frequency = 20  # Hz
+            total_duration = 10 # seconds
+            led_ring.flash([15, 50, 255], 1./frequency, total_duration * frequency , True)
+
+            # Asynchronous use
+            def led_ring_callback(result):
+                if result["status"] < RobotErrors.SUCCESS.value:
+                    print("Failed")
+                else:
+                    print("Completed with success")
+
+            led_ring.flash([15, 50, 255], iterations=20, wait=True, callback=calibration_callback)
+
+
+        :param color: Led color in a list of size 3[R, G, B]. RGB channels from 0 to 255.
+        :type color: list[float]
+        :param period: Execution time for a pattern in seconds. If 0, the default time will be used.
+        :type period: float
+        :param iterations: Number of consecutive flashes. If 0, the Led Ring flashes endlessly.
         :type iterations: int
         :param wait: The service wait for the animation to finish all iterations or not to answer. If iterations
-                is 0, the service answers immediatly. 
+                is 0, the service answers immediately.
         :type wait: bool
+        :param callback: Callback invoked on successful execution.
+        :type callback: function
+        :param timeout: Timeout for the operation, in seconds. Only used if blocking.
+        :type timeout: float
         :rtype: None
         """
-        self._check_type(wait, bool)
-        color = self._check_color_led_ring(color)
-        self._check_type(frequency, int)
-        self._check_type(iterations, int)
-        req = self._services.set_led_ring_request(AnimationMode.FLASHING.value, color = color, frequency = frequency, iterations = iterations, wait = wait)
-        self._services.set_led_ring_service.call(req)
 
-    def led_ring_alternate(self, color_list, iterations = 0, wait=False):
+        self.__classic_check_and_execute_w_color(AnimationMode.FLASHING, color, period, iterations, wait, callback,
+                                                 timeout)
+
+    def alternate(self, color_list, period=0, iterations=0, wait=False, callback=None, timeout=None):
         """
         Several colors are alternated one after the other.
 
-        You can make alternate 3 colors endlessly with: ::
+        Examples: ::
 
-            led_ring = robot.led_ring
-            color_list = [[255, 0, 0], [0, 255, 0], [0, 0, 255]]
+            # Synchronous use
+            color_list = [
+                [15, 50, 255],
+                [255, 0, 0],
+                [0, 255, 0],
+            ]
 
-            led_ring.led_ring_alternate(color_list)
-            # led_ring.led_ring_alternate(color_list, wait = True) # same effect. Won't wait because iterations = 0
+            led_ring.alternate(color_list) # Non-blocking
+            led_ring.alternate(color_list, 1, 100, False) # Non-blocking
+            led_ring.alternate(color_list, iterations=20, wait=True) # Blocking
 
-        :param color: Led ring color, in a list of size 3 (r, g, b: 0-255) 
-        :type color: list[float] or list[int]
-        :param iterations: Number of consecutives alternations. If 0, the Led Ring alternates endlessly.
+            # Asynchronous use
+            def led_ring_callback(result):
+                if result["status"] < RobotErrors.SUCCESS.value:
+                    print("Failed")
+                else:
+                    print("Completed with success")
+
+            led_ring.alternate(color_list, iterations=20, wait=True, callback=calibration_callback)
+
+        :param color_list: Led color list of lists of size 3[R, G, B]. RGB channels from 0 to 255.
+        :type color_list: list[list[float]]
+        :param period: Execution time for a pattern in seconds. If 0, the default time will be used.
+        :type period: float
+        :param iterations: Number of consecutive alternations. If 0, the Led Ring alternates endlessly.
         :type iterations: int
         :param wait: The service wait for the animation to finish all iterations or not to answer. If iterations
-                is 0, the service answers immediatly. 
+                is 0, the service answers immediately.
         :type wait: bool
+        :param callback: Callback invoked on successful execution.
+        :type callback: function
+        :param timeout: Timeout for the operation, in seconds. Only used if blocking.
+        :type timeout: float
         :rtype: None
         """
-        self._check_type(wait, bool)
-        for index, color in enumerate(color_list):
-            color = self._check_color_led_ring(color)
-            color_list[index] = color
-        self._check_type(iterations, int)
-        req = self._services.set_led_ring_request(AnimationMode.ALTERNATE.value, color_list = color_list, iterations = iterations, wait = wait)
-        self._services.set_led_ring_service.call(req)
+        self.__classic_check_and_execute_w_color_list(AnimationMode.ALTERNATE, color_list, period, iterations, wait,
+                                                      callback,
+                                                      timeout)
 
-    def led_ring_chase(self, color, speed = 50, iterations = 0, wait=False):
+    def chase(self, color, period=00, iterations=0, wait=False, callback=None, timeout=None):
         """
         Movie theater light style chaser animation.
 
-        You can start a white chase animation with: ::
+        Examples: ::
 
-            led_ring = robot.led_ring
-            led_ring.led_ring_chase([255, 255, 255], speed = 60)
+            # Synchronous use
+            led_ring.chase([15, 50, 255]) # Non-blocking
+            led_ring.chase([15, 50, 255], 1, 100, False) # Non-blocking
+            led_ring.chase([15, 50, 255], iterations=20, wait=True) # Blocking
 
-        :param color: Led ring color, in a list of size 3 (r, g, b: 0-255) 
-        :type color: list[float] or list[int]
-        :param speed: Speed of animation between each step, in milliseconde. 
-            the bigger this param is, the slower the animation will be. If 0 or
-            not filled, the default speed is used (50 ms)
-        :type speed: int
-        :param iterations: Number of consecutives chase. If 0, the animation continues endlessly.
-            One chase just lights one Led every 3 Leds.
+            # Asynchronous use
+            def led_ring_callback(result):
+                if result["status"] < RobotErrors.SUCCESS.value:
+                    print("Failed")
+                else:
+                    print("Completed with success")
+
+            led_ring.chase([15, 50, 255], iterations=20, wait=True, callback=calibration_callback)
+
+        :param color: Led color in a list of size 3[R, G, B]. RGB channels from 0 to 255.
+        :type color: list[float]
+        :param period: Execution time for a pattern in seconds. If 0, the default time will be used.
+        :type period: float
+        :param iterations: Number of consecutive chase. If 0, the animation continues endlessly.
+            One chase just lights one Led every 3 LEDs.
         :type iterations: int
         :param wait: The service wait for the animation to finish all iterations or not to answer. If iterations
-                is 0, the service answers immediatly. 
+                is 0, the service answers immediately.
         :type wait: bool
+        :param callback: Callback invoked on successful execution.
+        :type callback: function
+        :param timeout: Timeout for the operation, in seconds. Only used if blocking.
+        :type timeout: float
         :rtype: None
         """
-        self._check_type(wait, bool)
-        color = self._check_color_led_ring(color)
-        self._check_type(speed, int)
-        self._check_type(iterations, int)
-        req = self._services.set_led_ring_request(AnimationMode.CHASE.value, color = color, speed = speed, iterations = iterations, wait = wait)
-        self._services.set_led_ring_service.call(req)
+        self.__classic_check_and_execute_w_color(AnimationMode.CHASE, color, period, iterations, wait, callback,
+                                                 timeout)
 
-    def led_ring_wipe(self, color, speed = 50, wait=False):
-        """ 
+    def wipe(self, color, period=0, wait=False, callback=None, timeout=None):
+        """
         Wipe a color across the Led Ring, light a Led at a time.
 
-        You can launch a color wipe and wait for the end with: ::
+        Examples: ::
 
-            led_ring = robot.led_ring
-            led_ring.led_ring_wipe([255, 255, 0], speed = 100, wait = True)
+            # Synchronous use
+            robot.wipe([15, 50, 255])  # Non-blocking
+            led_ring.wipe([15, 50, 255], 1, False)  # Non-blocking
+            led_ring.wipe([15, 50, 255], wait=True)  # Blocking
 
-        :param color: Led ring color, in a list of size 3 (r, g, b: 0-255) 
-        :type color: list[float] or list[int]
-        :param speed: Speed of animation between each step, in milliseconde. 
-            the bigger this param is, the slower the animation will be. If 0 or
-            not filled, the default speed is used (50 ms)
-        :type speed: int
+            # Asynchronous use
+            def led_ring_callback(result):
+                if result["status"] < RobotErrors.SUCCESS.value:
+                    print("Failed")
+                else:
+                    print("Completed with success")
+
+            led_ring.wipe([15, 50, 255], wait=True, callback=calibration_callback)
+
+        :param color: Led color in a list of size 3[R, G, B]. RGB channels from 0 to 255.
+        :type color: list[float]
+        :param period: Execution time for a pattern in seconds. If 0, the default time will be used.
+        :type period: float
         :param wait: The service wait for the animation to finish or not to answer.
         :type wait: bool
+        :param callback: Callback invoked on successful execution.
+        :type callback: function
+        :param timeout: Timeout for the operation, in seconds. Only used if blocking.
+        :type timeout: float
         :rtype: None
         """
-        self._check_type(wait, bool)
-        color = self._check_color_led_ring(color)
-        self._check_type(speed, int)
-        req = self._services.set_led_ring_request(AnimationMode.COLOR_WIPE.value, color = color, speed = speed, wait = wait)
-        self._services.set_led_ring_service.call(req)
+        self.__classic_check_and_execute_w_color(AnimationMode.COLOR_WIPE, color, period, 0, wait, callback,
+                                                 timeout)
 
-    def led_ring_rainbow(self, speed = 20, iterations = 0, wait=False):
+    def go_up(self, color, period=0, iterations=0, wait=False, callback=None, timeout=None):
         """
-        Draw rainbow that fades across all Leds at once.
+        LEDs turn on like a loading circle, and are then all turned off at once.
 
-        You can launch a rainbow and wait for the end with: ::
+        Examples: ::
 
-            led_ring = robot.led_ring
-            led_ring.led_ring_rainbow(speed = 10, iterations = 1, wait = True)
+            # Synchronous use
+            led_ring.go_up([15, 50, 255])  # Non-blocking
+            led_ring.go_up([15, 50, 255], 1, 100, False)  # Non-blocking
+            led_ring.go_up([15, 50, 255], iterations=20, wait=True)  # Blocking
 
-        :param speed: Speed of animation between each step, in milliseconde. 
-            the bigger this param is, the slower the animation will be. If 0 or
-            not filled, the default speed is used (20 ms)
-        :type speed: int
-        :param iterations: Number of consecutives rainbows. If 0, the animation continues endlessly.
+            # Asynchronous use
+            def led_ring_callback(result):
+                if result["status"] < RobotErrors.SUCCESS.value:
+                    print("Failed")
+                else:
+                    print("Completed with success")
+
+            led_ring.go_up([15, 50, 255], period=2, iterations=20, wait=True, callback=calibration_callback)
+
+        :param color: Led color in a list of size 3[R, G, B]. RGB channels from 0 to 255.
+        :type color: list[float]
+        :param period: Execution time for a pattern in seconds. If 0, the default time will be used.
+        :type period: float
+        :param iterations: Number of consecutive turns around the Led Ring. If 0, the animation
+            continues endlessly.
         :type iterations: int
         :param wait: The service wait for the animation to finish or not to answer. If iterations
-                is 0, the service answers immediatly. 
+                is 0, the service answers immediately.
         :type wait: bool
+        :param callback: Callback invoked on successful execution.
+        :type callback: function
+        :param timeout: Timeout for the operation, in seconds. Only used if blocking.
+        :type timeout: float
         :rtype: None
         """
-        self._check_type(wait, bool)
-        self._check_type(speed, int)
-        self._check_type(iterations, int)
-        req = self._services.set_led_ring_request(AnimationMode.RAINBOW.value, speed = speed, iterations = iterations, wait = wait)
-        self._services.set_led_ring_service.call(req)
+        self.__classic_check_and_execute_w_color(AnimationMode.GO_UP, color, period, iterations, wait, callback,
+                                                 timeout)
 
-    def led_ring_rainbow_cycle(self, speed = 20, iterations = 0, wait=False):
+    def go_up_down(self, color, period=0, iterations=0, wait=False, callback=None, timeout=None):
         """
-        Draw rainbow that uniformly distributes itself across all Leds.
+        LEDs turn on like a loading circle, and are turned off the same way.
 
-        You can launch an endless rainbow cycle  ::
+        Examples: ::
 
-            led_ring = robot.led_ring
-            led_ring.led_ring_rainbow_cycle(speed = 10)
+            # Synchronous use
+            led_ring.go_up_down([15, 50, 255])  # Non-blocking
+            led_ring.go_up_down([15, 50, 255], 1, 100, False)  # Non-blocking
+            led_ring.go_up_down([15, 50, 255], iterations=20, wait=True)  # Blocking
 
-        :param speed: Speed of animation between each step, in milliseconde. 
-            the bigger this param is, the slower the animation will be. If 0 or
-            not filled, the default speed is used (20 ms)
-        :type speed: int
-        :param iterations: Number of consecutives rainbow cycles. If 0, the animation continues endlessly.
+            # Asynchronous use
+            def led_ring_callback(result):
+                if result["status"] < RobotErrors.SUCCESS.value:
+                    print("Failed")
+                else:
+                    print("Completed with success")
+
+            led_ring.go_up_down([15, 50, 255], period=2, iterations=20, wait=True, callback=calibration_callback)
+
+        :param color: Led color in a list of size 3[R, G, B]. RGB channels from 0 to 255.
+        :type color: list[float]
+        :param period: Execution time for a pattern in seconds. If 0, the default time will be used.
+        :type period: float
+        :param iterations: Number of consecutive turns around the Led Ring. If 0, the animation
+            continues endlessly.
         :type iterations: int
         :param wait: The service wait for the animation to finish or not to answer. If iterations
-                is 0, the service answers immediatly. 
+                is 0, the service answers immediately.
         :type wait: bool
+        :param callback: Callback invoked on successful execution.
+        :type callback: function
+        :param timeout: Timeout for the operation, in seconds. Only used if blocking.
+        :type timeout: float
         :rtype: None
         """
-        self._check_type(wait, bool)
-        self._check_type(speed, int)
-        self._check_type(iterations, int)
-        req = self._services.set_led_ring_request(AnimationMode.RAINBOW_CYLE.value, speed = speed, iterations = iterations, wait = wait)
-        self._services.set_led_ring_service.call(req)
+        self.__classic_check_and_execute_w_color(AnimationMode.GO_UP_AND_DOWN, color, period, iterations, wait,
+                                                 callback,
+                                                 timeout)
 
-    def led_ring_rainbow_chase(self, speed = 50, iterations = 0, wait=False):
+    def breath(self, color, period=0, iterations=0, wait=False, callback=None, timeout=None):
+        """
+        Variation of the light intensity of the LED ring, similar to human breathing.
+
+        Examples: ::
+
+            # Synchronous use
+            led_ring.breath([15, 50, 255])  # Non-blocking
+            led_ring.breath([15, 50, 255], 1, 100, False)  # Non-blocking
+            led_ring.breath([15, 50, 255], iterations=20, wait=True)  # Blocking
+
+            # Asynchronous use
+            def led_ring_callback(result):
+                if result["status"] < RobotErrors.SUCCESS.value:
+                    print("Failed")
+                else:
+                    print("Completed with success")
+
+            led_ring.breath([15, 50, 255], period=2, iterations=20, wait=True,
+                callback=calibration_callback)
+
+        :param color: Led color in a list of size 3[R, G, B]. RGB channels from 0 to 255.
+        :type color: list[float]
+        :param period: Execution time for a pattern in seconds. If 0, the default time will be used.
+        :type period: float
+        :param iterations: Number of consecutive turns around the Led Ring. If 0, the animation
+            continues endlessly.
+        :type iterations: int
+        :param wait: The service wait for the animation to finish or not to answer. If iterations
+                is 0, the service answers immediately.
+        :type wait: bool
+        :param callback: Callback invoked on successful execution.
+        :type callback: function
+        :param timeout: Timeout for the operation, in seconds. Only used if blocking.
+        :type timeout: float
+        :rtype: None
+        """
+        self.__classic_check_and_execute_w_color(AnimationMode.BREATH, color, period, iterations, wait, callback,
+                                                 timeout)
+
+    def snake(self, color, period=0, iterations=0, wait=False, callback=None, timeout=None):
+        """
+        A small coloured snake (certainly a python :D ) runs around the LED ring.
+
+        Examples: ::
+
+            # Synchronous use
+            led_ring.snake([15, 50, 255]) # Non-blocking
+            led_ring.snake([15, 50, 255], 1, 100, True) # Blocking
+
+            # Asynchronous use
+            def led_ring_callback(result):
+                if result["status"] < RobotErrors.SUCCESS.value:
+                    print("Failed")
+                else:
+                    print("Completed with success")
+
+            led_ring.snake([15, 50, 255], period=2, iterations=20, wait=True, callback=calibration_callback)
+
+        :param color: Led color in a list of size 3[R, G, B]. RGB channels from 0 to 255.
+        :type color: list[float]
+        :param period: Execution time for a pattern in seconds. If 0, the default duration will be used.
+        :type period: float
+        :param iterations: Number of consecutive turns around the Led Ring. If 0, the animation
+            continues endlessly.
+        :type iterations: int
+        :param wait: The service wait for the animation to finish or not to answer. If iterations
+                is 0, the service answers immediately.
+        :type wait: bool
+        :param callback: Callback invoked on successful execution.
+        :type callback: function
+        :param timeout: Timeout for the operation, in seconds. Only used if blocking.
+        :type timeout: float
+        :rtype: None
+        """
+        self.__classic_check_and_execute_w_color(AnimationMode.SNAKE, color, period, iterations, wait, callback,
+                                                 timeout)
+
+    def rainbow(self, period=0, iterations=0, wait=False, callback=None, timeout=None):
+        """
+        Draw rainbow that fades across all LEDs at once.
+
+        Examples: ::
+
+            # Synchronous use
+            led_ring.rainbow()  # Non-blocking
+            led_ring.rainbow(5, 2, True)  # Blocking
+            led_ring.rainbow(wait=True)  # Blocking
+
+            # Asynchronous use
+            def led_ring_callback(result):
+                if result["status"] < RobotErrors.SUCCESS.value:
+                    print("Failed")
+                else:
+                    print("Completed with success")
+
+            led_ring.rainbow(period=2, iterations=20, wait=True, callback=calibration_callback)
+
+        :param period: Execution time for a pattern in seconds. If 0, the default time will be used.
+        :type period: float
+        :param iterations: Number of consecutive rainbows. If 0, the animation continues endlessly.
+        :type iterations: int
+        :param wait: The service wait for the animation to finish or not to answer. If iterations
+                is 0, the service answers immediately.
+        :type wait: bool
+        :param callback: Callback invoked on successful execution.
+        :type callback: function
+        :param timeout: Timeout for the operation, in seconds. Only used if blocking.
+        :type timeout: float
+        :rtype: None
+        """
+        self.__classic_check_and_execute_without_color(AnimationMode.RAINBOW, period, iterations, wait, callback,
+                                                       timeout)
+
+    def rainbow_cycle(self, period=0, iterations=0, wait=False, callback=None, timeout=None):
+        """
+        Draw rainbow that uniformly distributes itself across all LEDs.
+
+        Examples: ::
+
+            # Synchronous use
+            led_ring.rainbow_cycle()
+            led_ring.rainbow_cycle(5, 2, True)
+            led_ring.rainbow_cycle(wait=True)
+
+            # Asynchronous use
+            def led_ring_callback(result):
+                if result["status"] < RobotErrors.SUCCESS.value:
+                    print("Failed")
+                else:
+                    print("Completed with success")
+
+            led_ring.rainbow_cycle(period=2, iterations=20, wait=True, callback=calibration_callback)
+
+        :param period: Execution time for a pattern in seconds. If 0, the default time will be used.
+        :type period: float
+        :param iterations: Number of consecutive rainbow cycles. If 0, the animation continues endlessly.
+        :type iterations: int
+        :param wait: The service wait for the animation to finish or not to answer. If iterations
+                is 0, the service answers immediately.
+        :type wait: bool
+        :param callback: Callback invoked on successful execution.
+        :type callback: function
+        :param timeout: Timeout for the operation, in seconds. Only used if blocking.
+        :type timeout: float
+        :rtype: None
+        """
+        self.__classic_check_and_execute_without_color(AnimationMode.RAINBOW_CYLE, period, iterations, wait, callback,
+                                                       timeout)
+
+    def rainbow_chase(self, period=0, iterations=0, wait=False, callback=None, timeout=None):
         """
         Rainbow chase animation, like the led_ring_chase method.
 
-        You can launch an endless rainbow cycle  ::
+        Examples: ::
 
-            led_ring = robot.led_ring
-            led_ring.led_ring_rainbow_chase(speed = 10)
+            # Synchronous use
+            led_ring.rainbow_chase()
+            led_ring.rainbow_chase(5, 2, True)
+            led_ring.rainbow_chase(wait=True)
 
-        :param speed: Speed of animation between each step, in milliseconde. 
-            the bigger this param is, the slower the animation will be. If 0 or
-            not filled, the default speed is used (50 ms)
-        :type speed: int
-        :param iterations: Number of consecutives rainbow cycles. If 0, the animation continues endlessly.
+            # Asynchronous use
+            def led_ring_callback(result):
+                if result["status"] < RobotErrors.SUCCESS.value:
+                    print("Failed")
+                else:
+                    print("Completed with success")
+
+            led_ring.rainbow_chase(period=2, iterations=20, wait=True, callback=calibration_callback)
+
+        :param period: Execution time for a pattern in seconds. If 0, the default time will be used.
+        :type period: float
+        :param iterations: Number of consecutive rainbow cycles. If 0, the animation continues endlessly.
         :type iterations: int
         :param wait: The service wait for the animation to finish or not to answer. If iterations
-                is 0, the service answers immediatly. 
+                is 0, the service answers immediately.
         :type wait: bool
+        :param callback: Callback invoked on successful execution.
+        :type callback: function
+        :param timeout: Timeout for the operation, in seconds. Only used if blocking.
+        :type timeout: float
         :rtype: None
         """
-        self._check_type(wait, bool)
-        self._check_type(speed, int)
-        self._check_type(iterations, int)
-        req = self._services.set_led_ring_request(AnimationMode.RAINBOW_CHASE.value, speed = speed, iterations = iterations, wait = wait)
-        self._services.set_led_ring_service.call(req)
+        self.__classic_check_and_execute_without_color(AnimationMode.RAINBOW_CHASE, period, iterations, wait, callback,
+                                                       timeout)
 
-    def led_ring_go_up(self, color, speed = 50, iterations = 0, wait=False):
+    def custom(self, led_colors):
         """
-        Leds turn on like a loading circle, and are then all turned off at once.
+        Sends a colour command to all LEDs of the LED ring.
+        The function expects a list of colours for the 30 LEDs  of the robot.
 
-        You can launch 2 go up animations and wait for the end ::
+        Example: ::
 
-            led_ring = robot.led_ring
-            led_ring.led_ring_go_up([0, 255, 255], iterations = 2, wait = True)
+            led_list = [[i / 30. * 255 , 0, 255 - i / 30.] for i in range(30)]
+            led_ring.custom(led_list)
 
-        :param color: Led ring color, in a list of size 3 (r, g, b: 0-255) 
-        :type color: list[float] or list[int]
-        :param speed: Speed of animation between each step, in milliseconde. 
-            the bigger this param is, the slower the animation will be. If 0 or
-            not filled, the default speed is used (50 ms)
-        :type speed: int
-        :param iterations: Number of consecutives turns around the Led Ring. If 0, the animation 
-            continues endlessly.
-        :type iterations: int
-        :param wait: The service wait for the animation to finish or not to answer. If iterations
-                is 0, the service answers immediatly. 
-        :type wait: bool
+        :param led_colors: List of size 30 of led color in a list of size 3[R, G, B].
+                RGB channels from 0 to 255.
+        :type led_colors: list[list[float]]
         :rtype: None
         """
-        self._check_type(wait, bool)
-        color = self._check_color_led_ring(color)
-        self._check_type(speed, int)
-        self._check_type(iterations, int)
-        req = self._services.set_led_ring_request(AnimationMode.GO_UP.value, color = color, speed = speed, iterations = iterations, wait = wait)
-        self._services.set_led_ring_service.call(req)
+        self._check_length(led_colors, 30)
+        self.__classic_check_and_execute_w_color_list(AnimationMode.CUSTOM, led_colors, 0, 0, True)
 
-    def led_ring_go_up_down(self, color, speed = 0, iterations = 0, wait=False):
+    def set_led_color(self, led_id, color):
         """
-        Leds turn on like a loading circle, and are turned off the same way.
+        Lights up an LED in one colour. RGB colour between 0 and 255.
 
-        You can launch 1 go up and down animations and wait for the end ::
+        Example: ::
 
-            led_ring = robot.led_ring
-            led_ring.led_ring_go_up([255, 255, 255], iterations = 1, wait = True)
+            robot.set_led_color(5, [15, 50, 255])
 
-        :param color: Led ring color, in a list of size 3 (r, g, b: 0-255) 
-        :type color: list[float] or list[int]
-        :param speed: Speed of animation between each step, in milliseconde. 
-            the bigger this param is, the slower the animation will be. If 0 or
-            not filled, the default speed is used (50 ms)
-        :type speed: int
-        :param iterations: Number of consecutives turns around the Led Ring. If 0, the animation 
-            continues endlessly.
-        :type iterations: int
-        :param wait: The service wait for the animation to finish or not to answer. If iterations
-                is 0, the service answers immediatly. 
-        :type wait: bool
+        :param led_id: Id of the led: between 0 and 29
+        :type led_id: int
+        :param color: Led color in a list of size 3[R, G, B]. RGB channels from 0 to 255.
+        :type color: list[float]
         :rtype: None
         """
-        self._check_type(wait, bool)
-        color = self._check_color_led_ring(color)
-        self._check_type(speed, int)
-        self._check_type(iterations, int)
-        req = self._services.set_led_ring_request(AnimationMode.GO_UP_AND_DOWN.value, color = color, speed = speed, iterations = iterations, wait = wait)
-        self._services.set_led_ring_service.call(req)
+        color = self._check_color(color)
+        self._check_type(led_id, int)
 
+        req = self._services.set_led_ring_color_request(led_id, color)
+        resp = self._services.set_led_ring_animation_service.call(req)
+        self._check_result_status(resp)
 
     # Usefull method Led Ring
-    def _check_color_led_ring(self, color):
+    def __classic_check_and_execute_w_color(self, animation, color, period, iterations, wait, callback=None,
+                                            timeout=None):
+        checked_color = self._check_color(color)
+        self._check_type(period, float)
+        self._check_type(iterations, int)
+        self._check_type(wait, bool)
+        self._check_enum_belonging(animation, AnimationMode)
+
+        req = self._services.set_led_ring_request(animation, color_list=checked_color, period=period,
+                                                  iterations=iterations, wait=wait)
+        resp = self._services.set_led_ring_animation_service.call(req, callback=callback, timeout=timeout)
+        self._check_result_status(resp)
+
+    def __classic_check_and_execute_w_color_list(self, animation, color_list, period, iterations, wait, callback=None,
+                                                 timeout=None):
+        self._check_type(period, float)
+        self._check_type(iterations, int)
+        self._check_type(wait, bool)
+        self._check_enum_belonging(animation, AnimationMode)
+
+        checked_color_list = [self._check_color(color) for index, color in enumerate(color_list)]
+
+        req = self._services.set_led_ring_request(animation, color_list=checked_color_list, period=period,
+                                                  iterations=iterations, wait=wait)
+        resp = self._services.set_led_ring_animation_service.call(req, callback=callback, timeout=timeout)
+        self._check_result_status(resp)
+
+    def __classic_check_and_execute_without_color(self, animation, period, iterations, wait, callback=None,
+                                                  timeout=None):
+        self._check_type(period, float)
+        self._check_type(iterations, int)
+        self._check_type(wait, bool)
+        self._check_enum_belonging(animation, AnimationMode)
+
+        req = self._services.set_led_ring_request(animation, period=period, iterations=iterations,
+                                                  wait=wait)
+        resp = self._services.set_led_ring_animation_service.call(req, callback=callback, timeout=timeout)
+        self._check_result_status(resp)
+
+    def _check_color(self, color):
+        checked_color = []
         self._check_type(color, list)
-        if len(color) != 3: 
+        if len(color) != 3:
             self._raise_exception("Color must be a list of size 3: [r, g, b]")
-        for index, color_elem in enumerate(color):
+        for color_elem in enumerate(color):
             if color_elem < 0 or color_elem > 255:
                 self._raise_exception_expected_range(0, 255, color_elem)
-            color[index] = self._transform_to_type(color_elem, float)
-        return color
+            checked_color.append(self._transform_to_type(color_elem, float))
+        return checked_color

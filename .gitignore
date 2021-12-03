@@ -1,4 +1,5 @@
 /.idea
+/.eggs
 /dist
 /build
 /pyniryo2.egg-info

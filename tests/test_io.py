@@ -102,6 +102,8 @@ class TestIO(BaseTest):
             self.io.digital_write(PinID.GPIO_1A, 0)
 
 
+
+
 def suite():
     suite = unittest.TestSuite()
     for function_name in test_order:

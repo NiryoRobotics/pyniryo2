@@ -15,6 +15,7 @@ from .tool.tool import Tool
 from .trajectories.trajectories import Trajectories
 from .vision.vision import Vision
 from .led_ring.led_ring import LedRing
+from .niryo_ros import NiryoRos
 
 
 class NiryoRobot(object):
@@ -33,9 +34,9 @@ class NiryoRobot(object):
         :param port:
         :type port:
         """
-        self.__host = None
-        self.__port = None
-        self.__client = None
+        self.__host = ip_address
+        self.__port = port
+        self.__client = NiryoRos(ip_address, port)
 
         self.__vision = None
         self.__pick_place = None
@@ -46,8 +47,6 @@ class NiryoRobot(object):
         self.__conveyor = None
         self.__arm = None
         self.__led_ring = None
-
-        self.run(ip_address, port)
 
         self.__arm = Arm(self.__client)
         self.__conveyor = Conveyor(self.__client)
@@ -86,31 +85,6 @@ class NiryoRobot(object):
         :rtype: roslibpy.Ros
         """
         return self.__client
-
-    def run(self, ip_address="127.0.0.1", port=9090):
-        """
-        Connect to your robot and ROS
-        This function is already called at the initialization of the class.
-        It is therefore not necessary to call it again, except to reconnect the robot. ::
-
-            # Start
-            robot = NiryoRobot("10.10.10.10")
-
-            # End
-            robot.end()
-
-            # Reconnect
-            robot_hotpot.run("10.10.10.10")
-
-        :type ip_address: str
-        :type port: int
-        :rtype: None
-        """
-        self.__host = ip_address
-        self.__port = port
-
-        self.__client = roslibpy.Ros(host=self.__host, port=self.__port)
-        self.__client.run()
 
     def end(self):
         """

@@ -556,7 +556,7 @@ class LedRing(RobotCommander):
     def __classic_check_and_execute_w_color(self, animation, color, period, iterations, wait, callback=None,
                                             timeout=None):
         checked_color = self._check_color(color)
-        self._check_type(period, float)
+        self._check_instance(period, (float, int))
         self._check_type(iterations, int)
         self._check_type(wait, bool)
         self._check_enum_belonging(animation, AnimationMode)
@@ -568,7 +568,7 @@ class LedRing(RobotCommander):
 
     def __classic_check_and_execute_w_color_list(self, animation, color_list, period, iterations, wait, callback=None,
                                                  timeout=None):
-        self._check_type(period, float)
+        self._check_instance(period, (float, int))
         self._check_type(iterations, int)
         self._check_type(wait, bool)
         self._check_enum_belonging(animation, AnimationMode)
@@ -582,7 +582,7 @@ class LedRing(RobotCommander):
 
     def __classic_check_and_execute_without_color(self, animation, period, iterations, wait, callback=None,
                                                   timeout=None):
-        self._check_type(period, float)
+        self._check_instance(period, (float, int))
         self._check_type(iterations, int)
         self._check_type(wait, bool)
         self._check_enum_belonging(animation, AnimationMode)
@@ -597,8 +597,8 @@ class LedRing(RobotCommander):
         self._check_type(color, list)
         if len(color) != 3:
             self._raise_exception("Color must be a list of size 3: [r, g, b]")
-        for color_elem in enumerate(color):
-            if color_elem < 0 or color_elem > 255:
+        for color_elem in color:
+            if not 0 <= color_elem <= 255:
                 self._raise_exception_expected_range(0, 255, color_elem)
             checked_color.append(self._transform_to_type(color_elem, float))
         return checked_color

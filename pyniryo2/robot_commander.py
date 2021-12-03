@@ -1,17 +1,19 @@
 # - Imports
-from __future__ import print_function
 
 # Python libraries
-# /
+from __future__ import print_function
 
 # Communication imports
 from .exceptions import RobotCommandException
 from .objects import PoseObject
 from .enums import RobotErrors
+from .niryo_ros import NiryoRos
 
 
 class RobotCommander(object):
     def __init__(self, client):
+        assert (isinstance(client, NiryoRos))
+
         self._client = client
 
         self._services = None

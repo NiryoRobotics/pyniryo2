@@ -22,5 +22,5 @@ class LedRingStatusObject:
         self.g = msg['animation_color']['g']
         self.b = msg['animation_color']['b']
 
-        self.animation = AnimationMode(msg['animation_color']['animation'])
+        self.animation = AnimationMode(msg['animation_mode']['animation'])
         self.mode = LedMode(msg['led_mode'])

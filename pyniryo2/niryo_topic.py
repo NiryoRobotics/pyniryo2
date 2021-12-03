@@ -1,5 +1,6 @@
 import roslibpy
 from threading import Event
+
 from pyniryo2.exceptions import TopicException
 
 
@@ -24,6 +25,7 @@ class NiryoTopic(object):
         :type timeout: float
 
         """
+
         self.__topic_name = topic_name
         self.__topic_type = topic_type
         self.__topic = roslibpy.Topic(client, self.__topic_name, self.__topic_type)
@@ -109,6 +111,16 @@ class NiryoTopic(object):
             self.__topic.unsubscribe()
             self.__user_callback = None
 
+    def publish(self, msg_dict):
+        """
+        Publish a message on the topic
+
+        :param msg_dict: jsonified topic message content
+        :type msg_dict: dict
+        :rtype: None
+        """
+        self.__topic.publish(roslibpy.Message(msg_dict))
+
     def __internal_callback(self, topic_value):
         """
         This function is an internal callback that stores the last value of the subject
@@ -128,4 +140,3 @@ class NiryoTopic(object):
 
         if self.__user_callback:
             self.__user_callback(self.__sync_topic_value)
-

@@ -18,6 +18,7 @@ This section reference all existing functions to control your robot, which inclu
 - Using grippers
 - Using the vacuum pump
 - Using the electromagnet
+- Management of the TCP
 
 All functions to control the robot are accessible via an instance of
 the class :ref:`NiryoRobot` ::
@@ -39,32 +40,39 @@ List of functions subsections:
    :depth: 1
 
 
-Tool Functions
+Tool functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: Tool
     :members: update_tool, tool, get_current_tool_id, grasp_with_tool, release_with_tool
     :member-order: bysource
 
-Grippers Functions
+Grippers functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: Tool
     :members: open_gripper, close_gripper
     :member-order: bysource
 
-Vacuum Pump Functions
+Vacuum pump functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: Tool
     :members: pull_air_vacuum_pump, push_air_vacuum_pump
     :member-order: bysource
 
-Electromagnet Functions
+Electromagnet functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: Tool
     :members: setup_electromagnet, activate_electromagnet, deactivate_electromagnet
+    :member-order: bysource
+
+TCP functions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: Tool
+    :members: enable_tcp, set_tcp, reset_tcp
     :member-order: bysource
 
 Tool - Niryo Topics

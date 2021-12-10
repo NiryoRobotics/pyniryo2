@@ -2,13 +2,9 @@ from enum import Enum, unique
 
 
 @unique
-class SoundNameID(Enum):
+class ManageSound(Enum):
     """
-    Enumeration of the different SoundName Ids
+    Enumeration of the actions of sound database management
     """
-    SOUND_ALARM=1
-    SOUND_WARNING=2
-    SOUND_ON=3
-    SOUND_OFF=4
-    SOUND_LM_ON=5
-    SOUND_LM_OFF=6
+    ADD = 1
+    DELETE = 2

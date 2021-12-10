@@ -1,53 +1,59 @@
 import roslibpy
 
+from .enums import ManageSound
+
 
 class SoundServices(object):
 
     def __init__(self, client):
         self.__client = client
 
-        self.play_sound_user_service = roslibpy.Service(self.__client,
-                                                         '/niryo_robot_sound/play_sound_user',
-                                                         'niryo_robot_msgs/SoundUserCommand')
-                                            
+        self.play_sound_service = roslibpy.Service(self.__client,
+                                                   '/niryo_robot_sound/play',
+                                                   'niryo_robot_sound/PlaySound')
+
         self.stop_sound_service = roslibpy.Service(self.__client,
-                                                         '/niryo_robot_sound/stop_sound',
-                                                         'niryo_robot_msgs/StopSound')
-            
-        self.delete_sound_service = roslibpy.Service(self.__client,
-                                                         '/niryo_robot_sound/delete_sound_user',
-                                                         'niryo_robot_msgs/DeleteSound')
-                                        
+                                                   '/niryo_robot_sound/stop',
+                                                   'niryo_robot_msgs/Trigger')
+
         self.set_sound_volume_service = roslibpy.Service(self.__client,
                                                          '/niryo_robot_sound/set_volume',
                                                          'niryo_robot_msgs/SetInt')
 
-        self.import_sound_service = roslibpy.Service(self.__client,
-                                                         '/niryo_robot_sound/send_sound',
-                                                         'niryo_robot_msgs/SendUserSound')
+        self.manage_sound_service = roslibpy.Service(self.__client,
+                                                     '/niryo_robot_sound/manage',
+                                                     'niryo_robot_msgs/ManageSound')
 
-        
+        self.set_sound_volume_service = roslibpy.Service(self.__client,
+                                                         '/niryo_robot_sound/text_to_speech',
+                                                         'niryo_robot_sound/TextToSpeech')
+
     @staticmethod
-    def play_sound_user_request(sound_name):
+    def play_sound_request(sound_name, start_time_sec=0, end_time_sec=0, wait_end=False):
         """
 
         :param sound_name:
         :type sound_name: string
+        param start_time_sec:
+        :type start_time_sec: float
+        :param end_time_sec:
+        :type end_time_sec: float
+        :param wait_end:
+        :type wait_end: bool
         :return:
         :rtype: ServiceRequest
         """
-        return roslibpy.ServiceRequest({"sound_name": sound_name})
+        return roslibpy.ServiceRequest({"sound_name": sound_name, "start_time_sec": start_time_sec,
+                                        "end_time_sec": end_time_sec, "wait_end": wait_end})
 
     @staticmethod
-    def delete_sound_request(sound_name):
+    def stop_sound_request():
         """
 
-        :param sound_name:
-        :type sound_name: string
         :return:
         :rtype: ServiceRequest
         """
-        return roslibpy.ServiceRequest({"sound_name": sound_name})
+        return roslibpy.ServiceRequest()
 
     @staticmethod
     def set_sound_volume_request(value):
@@ -72,4 +78,16 @@ class SoundServices(object):
         :rtype: ServiceRequest
         """
         return roslibpy.ServiceRequest(
-            {"sound_name": sound_name, "sound_data": sound_data})
+            {"sound_name": sound_name, "sound_data": sound_data, "action": ManageSound.ADD.value})
+
+    @staticmethod
+    def delete_sound_request(sound_name):
+        """
+
+        :param sound_name:
+        :type sound_name: string
+        :return:
+        :rtype: ServiceRequest
+        """
+        return roslibpy.ServiceRequest(
+            {"sound_name": sound_name, "action": ManageSound.DELETE.value})

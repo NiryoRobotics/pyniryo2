@@ -13,25 +13,74 @@ class Sound(RobotCommander):
         self._services = SoundServices(self._client)
         self._topics = SoundTopics(self._client)
 
-    def play_sound_user(self, sound_name):
+    def __call__(self, *args, **kwargs):
+       self.play(*args, **kwargs)
+
+    @property
+    def sounds(self):
+        """
+        Returns the list of available sounds in the robot
+
+        Examples: ::
+
+            sounds_list = sound.sounds
+
+        :return: Returns the list of available sounds in the robot
+        :rtype: list[str]
+        """
+        return list(self._topics.sound_database_topic().values())
+
+
+    def get_sounds(self):
+        """
+        Returns the list of available sounds in the robot
+
+        Examples: ::
+
+            sounds_list = sound.get_sounds()
+
+        :return: Returns the list of available sounds in the robot
+        :rtype: list[str]
+        """
+        return self.sounds
+
+    def get_sound_duration(self, sound_name):
+        """
+        Get the duration of a sound in seconds
+
+        Examples: ::
+
+            sound_name = sound.get_sounds()[0]
+            sound_duration = sound.get_sound_duration(sound_name)
+
+        :return: Returns the duration of a sound in seconds
+        :rtype: float
+        """
+        sounds = self._topics.sound_database_topic()
+        self._check_dict_belonging(sound_name, sounds)
+        return sounds[sound_name]
+
+
+    def play(self, sound_name, start_time_sec=0, end_time_sec=0, wait_end=False):
         """
         Play a sound that as already been imported by the user on the robot. 
 
         Example: ::
 
-        # If you know that the sound test_sound.wav is already imported on the robot
-        self.sound.play_sound_user("test_sound.wav")
+            # If you know that the sound test_sound.wav is already imported on the robot
+            sound.play_sound_user("test_sound.wav")
 
-        # If you want to play the first sound of the ones that are already on the robot without knowing its name
-        sound_name_dic = self.sound.get_sound_user() 
-        self.sound.play_sound_user(str(sound_name_dic["sound_object"][0]["name"]))
+            # If you want to play the first sound of the ones that are already on the robot without knowing its name
+            sound_name_dic = sound.get_sounds()
+            sound.play_sound_user(str(sound_name_dic["sound_object"][0]["name"]))
 
         :param: sound_name: Name of the sound that will be played
         :type sound_name: str
         :rtype: None
         """
-        req = self._services.play_sound_user_request(sound_name)
-        resp = self._services.play_sound_user_service.call(req)
+        self._check_instance(sound_name, str)
+        req = self._services.play_sound_service(sound_name, start_time_sec, end_time_sec, wait_end)
+        resp = self._services.play_sound_service.call(req)
         self._check_result_status(resp)
     
     def stop_sound(self):
@@ -39,6 +88,7 @@ class Sound(RobotCommander):
         Stop a sound being played. It will get automatically the name of the sound being played and stop it. 
 
         Example: ::
+
         self.sound.stop_sound()
             
         
@@ -146,24 +196,3 @@ class Sound(RobotCommander):
         """
         return self._topics.sound_volume_state_topic
 
-    @property
-    def get_sound_user(self):
-        """
-        Returns an object with the names and the duration of the sounds on the robot 
-
-        Examples: ::
-
-        # get a dictionary with the sound_name and their duration
-        sound_name_dic = self.sound.get_sound_user()
-
-        # Get the name of the first sound on the robot
-        str(sound_name_dic["sound_object"][0]["name"])
-
-        # Get the duration of the first sound on the robot
-        str(sound_name_dic["sound_object"][0]["duration"])
-
-
-        :return: SoundUser (name: correspond to the name of the sound, duration: correspond to the duration of the sound)
-        :rtype: SoundUser
-        """
-        return self._topics.sound_user_topic

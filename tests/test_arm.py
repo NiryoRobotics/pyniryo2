@@ -12,7 +12,7 @@ from pyniryo2.exceptions import RobotCommandException
 from pyniryo2.arm.arm import Arm
 from pyniryo2.arm.enums import CalibrateMode, RobotAxis
 
-robot_ip_address = "192.168.1.92"
+robot_ip_address = "192.168.1.52"
 port = 9090
 
 test_order = ["test_hardware_status",

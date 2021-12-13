@@ -41,7 +41,8 @@ Camera functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: Vision
-    :members: get_img_compressed, get_camera_intrinsics
+    :members: get_img_compressed, get_camera_intrinsics,
+              get_image_parameters, set_brightness, set_contrast, set_saturation
     :member-order: bysource
 
 Detection functions

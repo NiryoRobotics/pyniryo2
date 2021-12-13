@@ -61,7 +61,15 @@ class RobotCommander(object):
 
     def _check_instance(self, value, type_):
         if not isinstance(value, type_):
-            self._raise_exception_expected_type(type_.__name__, value)
+            self._raise_exception_expected_type(
+                type_.__name__ if not isinstance(type_, tuple) else " or ".join([type__.__name__ for type__ in type_]),
+                value)
+
+    def _check_not_instance(self, value, type_):
+        if isinstance(value, type_):
+            self._raise_exception_unexpected_type(
+                type_.__name__ if not isinstance(type_, tuple) else " or ".join([type__.__name__ for type__ in type_]),
+                value)
 
     def _check_list_type(self, values_list, type_):
         for value in values_list:
@@ -156,6 +164,9 @@ class RobotCommander(object):
 
     def _raise_exception_expected_type(self, expected_type, given):
         raise RobotCommandException("Expected type: {}.\nGiven: {}".format(expected_type, given))
+
+    def _raise_exception_unexpected_type(self, unexpected_type, given):
+        raise RobotCommandException("Unexpected type: {}.\nGiven: {}".format(unexpected_type, given))
 
     def _raise_exception_expected_range(self, range_min, range_max, given):
         raise RobotCommandException(

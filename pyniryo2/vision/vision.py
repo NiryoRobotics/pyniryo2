@@ -82,6 +82,89 @@ class Vision(RobotCommander):
         """
         return self._topics.compressed_video_stream_topic
 
+    @property
+    def get_image_parameters(self):
+        """
+        Return the NiryoTopic to get last stream image parameters:
+        Brightness factor, Contrast factor, Saturation factor.
+        The topic return a namedtuple(brightness_factor: float, contrast_factor: float, saturation_factor: float)
+
+        Brightness factor: How much to adjust the brightness. 0.5 will give a darkened image,
+        1 will give the original image while 2 will enhance the brightness by a factor of 2.
+
+        Contrast factor: A factor of 1 gives original image.
+        Making the factor towards 0 makes the image greyer, while factor>1 increases the contrast of the image.
+
+        Saturation factor: 0 will give a black and white image, 1 will give the original image while
+        2 will enhance the saturation by a factor of 2.
+
+        Examples: ::
+
+            vision.get_image_parameters()
+            vision.get_image_parameters.value
+
+            def image_parameters_callback(image_parameters):
+                print(image_parameters.brightness_factor)
+                print(image_parameters.contrast_factor)
+                print(image_parameters.saturation_factor)
+
+                vision.get_image_parameters.unsubscribe()
+
+            vision.get_image_parameters.subscribe(image_parameters_callback)
+
+
+        :return: ImageParameters namedtuple containing the brightness factor, contrast factor and saturation factor.
+        :rtype: NiryoTopic
+        """
+        return self._topics.video_stream_parameters_topic
+
+    def set_brightness(self, brightness_factor):
+        """
+        Modify image brightness
+
+        :param brightness_factor: How much to adjust the brightness. 0.5 will
+            give a darkened image, 1 will give the original image while
+            2 will enhance the brightness by a factor of 2.
+        :type brightness_factor: float
+        :rtype: None
+        """
+        self._check_not_instance(brightness_factor, bool)
+        self._check_instance(brightness_factor, (int, float))
+        req = self._services.get_image_parameter_request(brightness_factor)
+        result = self._services.set_brightness_service.call(req)
+        self._check_result_status(result)
+
+    def set_contrast(self, contrast_factor):
+        """
+        Modify image contrast
+
+        :param contrast_factor: A factor of 1 gives original image.
+            Making the factor towards 0 makes the image greyer, while factor>1 increases the contrast of the image.
+        :type contrast_factor: float
+        :rtype: None
+        """
+        self._check_not_instance(contrast_factor, bool)
+        self._check_instance(contrast_factor, (int, float))
+        req = self._services.get_image_parameter_request(contrast_factor)
+        result = self._services.set_contrast_service.call(req)
+        self._check_result_status(result)
+
+    def set_saturation(self, saturation_factor):
+        """
+        Modify image saturation
+
+        :param saturation_factor: How much to adjust the saturation. 0 will
+            give a black and white image, 1 will give the original image while
+            2 will enhance the saturation by a factor of 2.
+        :type saturation_factor: float
+        :rtype: None
+        """
+        self._check_not_instance(saturation_factor, bool)
+        self._check_instance(saturation_factor, (int, float))
+        req = self._services.get_image_parameter_request(saturation_factor)
+        result = self._services.set_saturation_service.call(req)
+        self._check_result_status(result)
+
     def get_target_pose_from_rel(self, workspace_name, height_offset, x_rel, y_rel, yaw_rel):
         """
         Given a pose (x_rel, y_rel, yaw_rel) relative to a workspace, this function

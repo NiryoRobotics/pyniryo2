@@ -25,4 +25,4 @@ from .objects import PoseObject
 from .arm.objects import HardwareStatusObject, JointStateObject
 from .conveyor.objects import ConveyorInfo
 from .io.objects import DigitalPinObject
-from .vision.objects import CameraInfo
+from .vision.objects import CameraInfo, ImageParameters

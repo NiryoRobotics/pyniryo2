@@ -25,7 +25,6 @@ class NiryoTopic(object):
         :type timeout: float
 
         """
-
         self.__topic_name = topic_name
         self.__topic_type = topic_type
         self.__topic = roslibpy.Topic(client, self.__topic_name, self.__topic_type)

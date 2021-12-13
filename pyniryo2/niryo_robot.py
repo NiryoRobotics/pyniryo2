@@ -15,6 +15,7 @@ from .tool.tool import Tool
 from .trajectories.trajectories import Trajectories
 from .vision.vision import Vision
 from .led_ring.led_ring import LedRing
+from .sound.sound import Sound
 from .niryo_ros import NiryoRos
 
 
@@ -42,6 +43,7 @@ class NiryoRobot(object):
         self.__pick_place = None
         self.__trajectories = None
         self.__tool = None
+        self.__sound = None
         self.__saved_poses = None
         self.__io = None
         self.__conveyor = None
@@ -52,6 +54,7 @@ class NiryoRobot(object):
         self.__conveyor = Conveyor(self.__client)
         self.__io = IO(self.__client)
         self.__saved_poses = SavedPoses(self.__client)
+        self.__sound = Sound(self.__client)
         self.__tool = Tool(self.__client)
         self.__trajectories = Trajectories(self.__client)
         self.__pick_place = PickPlace(self.__client, self.__arm, self.__tool, self.__trajectories)
@@ -63,6 +66,7 @@ class NiryoRobot(object):
         del self.__pick_place
         del self.__trajectories
         del self.__tool
+        del self.__sound
         del self.__saved_poses
         del self.__io
         del self.__conveyor
@@ -186,6 +190,17 @@ class NiryoRobot(object):
         :rtype: SavedPoses
         """
         return self.__saved_poses
+
+    @property
+    def sound(self):
+        """
+        Access to the Sound API
+
+        Example: ::
+
+        :rtype: Sound
+        """
+        return self.__sound
 
     @property
     def tool(self):

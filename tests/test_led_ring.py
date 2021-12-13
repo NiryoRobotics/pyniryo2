@@ -10,9 +10,8 @@ from pyniryo2.exceptions import RobotCommandException
 from pyniryo2.niryo_ros import NiryoRos
 
 from pyniryo2.enums import RobotErrors
-from pyniryo2.arm.arm import Arm
 
-robot_ip_address = "192.168.1.92"
+robot_ip_address = "127.0.0.1"  # "192.168.1.92"
 port = 9090
 
 test_order = [
@@ -31,8 +30,6 @@ class BaseTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.client = NiryoRos(ip_address=robot_ip_address, port=port)
-        time.sleep(20)
-        cls.arm = Arm(cls.client)
         cls.led_ring = LedRing(cls.client)
 
         print("-- Connected --")
@@ -40,18 +37,12 @@ class BaseTest(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         cls.led_ring.turn_off()
-        cls.arm.go_to_sleep()
-        cls.arm.learning_mode = True
         cls.client.terminate()
 
 
 # noinspection PyTypeChecker
 class TestLedRing(BaseTest):
-    neutral_pose = [0.2, 0.0, 0.4, 0., 0., 0.]
     nb_leds = 30
-
-    def go_to_neutral_pose(self):
-        self.assertIsNone(self.arm.move_pose(self.neutral_pose))
 
     def test_ledring(self):
         self.assertEqual(self.led_ring.get_status().mode, LedMode.USER)
@@ -72,7 +63,7 @@ class TestLedRing(BaseTest):
         self.test_rainbow_animation(self.led_ring.rainbow_cycle, AnimationMode.RAINBOW_CYLE)
         self.test_rainbow_animation(self.led_ring.rainbow_chase, AnimationMode.RAINBOW_CHASE)
 
-        self.assertIsNotNone(self.led_ring.turn_off())
+        self.assertIsNone(self.led_ring.turn_off())
 
     def test_classic_animation(self, function, animation):
         color = [random.randint(0, 255) for _ in range(3)]
@@ -198,7 +189,7 @@ class TestLedRing(BaseTest):
         period = random.uniform(1, 4)
 
         start_time = time.time()
-        self.assertIsNotNone(self.led_ring.wipe(color, period=period, wait=True))
+        self.assertIsNone(self.led_ring.wipe(color, period=period, wait=True))
         self.assertTrue(0 <= time.time() - start_time - period < 1)
         self.assertIsNone(self.led_ring.turn_off())
 
@@ -235,24 +226,26 @@ class TestLedRing(BaseTest):
 
     def test_set_led(self):
         for led_id in range(30):
-            self.assertIsNotNone(self.led_ring.set_led_color(led_id, [0, 255, 255]))
+            self.assertIsNone(self.led_ring.set_led_color(led_id, [0, 255, 255]))
 
     def test_solid(self):
         color = [255, 0, 255]
-        self.assertIsNotNone(self.led_ring.solid(color))
+        self.assertIsNone(self.led_ring.solid(color))
+        time.sleep(0.5)
         status = self.led_ring.get_status()
         self.assertEqual(status.mode, LedMode.USER)
         self.assertEqual(status.animation, AnimationMode.SOLID)
         self.assertEqual([status.r, status.g, status.b], [255, 0, 255])
 
         with self.assertRaises(RobotCommandException):
-            self.led_ring.alternate([])
+            self.led_ring.solid([])
 
         with self.assertRaises(RobotCommandException):
-            self.led_ring.alternate(10)
+            self.led_ring.solid(10)
 
     def test_custom(self):
-        self.assertIsNotNone(self.led_ring.custom(led_colors=[[i / 30. * 255, 0, 255 - i / 30.] for i in range(30)]))
+        self.assertIsNone(self.led_ring.custom(led_colors=[[i / 30. * 255, 0, 255 - i / 30.] for i in range(30)]))
+        time.sleep(1)
         status = self.led_ring.get_status()
         self.assertEqual(status.mode, LedMode.USER)
         self.assertEqual(status.animation, AnimationMode.CUSTOM)

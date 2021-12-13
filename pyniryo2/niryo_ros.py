@@ -1,8 +1,11 @@
 # Python libraries
 import roslibpy
 import socket
+import time
 
-from .niryo_topic import NiryoTopic
+
+class NiryoRosTimeoutException(Exception):
+    pass
 
 
 class NiryoRos(roslibpy.Ros):
@@ -21,23 +24,30 @@ class NiryoRos(roslibpy.Ros):
         :param port: usually 9090
         :type port: int
         """
-
+        self.port = port
+        self.ip_address = ip_address
         super(NiryoRos, self).__init__(host=ip_address, port=port)
 
-        self.__pyniryo_ping_topic = NiryoTopic(self,
-                                               '/niryo_robot_pyniryo2/ping',
-                                               'std_msgs/Empty')
+        self.__connected = False
+        self.__pyniryo2_ip = socket.gethostbyname(socket.gethostname())
 
-        self.__pyniryo_pong_topic = roslibpy.Topic(self, '/chatter', 'std_msgs/String')
-        self.__pyniryo_pong_topic.subscribe(self.__ping_callback)
-
-        self.__pyniryo_ping_topic = NiryoTopic(self,
-                                               '/niryo_robot_pyniryo2/pong',
-                                               'std_msgs/String', )
+        self.__pyniryo_ping_service = roslibpy.Service(self, '/niryo_robot_pyniryo2/ping', 'niryo_robot_msgs/GetString')
 
         self.run()
+        time.sleep(0.1)
+        self.__pyniryo_ping_service.advertise(self.__ping_callback)
+        #self.wait_for_connection()
+        time.sleep(2)
 
-    def __ping_callback(self, *_):
-        hostname = socket.gethostname()
-        local_ip = socket.gethostbyname(hostname)
-        self.__pyniryo_ping_topic.publish({'data': local_ip})
+    def wait_for_connection(self):
+        start_time = time.time()
+        while not self.__connected:
+            time.sleep(0.1)
+            if time.time() - start_time > 15:
+                raise NiryoRosTimeoutException(
+                    "Connection timeout on ip {} and port {}".format(self.ip_address, self.port))
+    #
+    def __ping_callback(self, _request, response):
+        response['value'] = self.__pyniryo2_ip
+        self.__connected = True
+        return True

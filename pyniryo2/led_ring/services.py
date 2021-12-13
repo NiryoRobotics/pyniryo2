@@ -39,5 +39,5 @@ class LedRingServices(object):
 
     @staticmethod
     def color_to_color_rgba(color):
-        color_rgb = color if len(color >= 3) else color[:] + (3 - len(color)) * [0]
+        color_rgb = color if len(color) >= 3 else color[:] + (3 - len(color)) * [0]
         return {'r': color_rgb[0], 'g': color_rgb[1], 'b': color_rgb[2], 'a': 0}

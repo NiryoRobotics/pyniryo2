@@ -71,7 +71,7 @@ class LedRing(RobotCommander):
         :type color: list[float]
         :rtype: None
         """
-        self.__classic_check_and_execute_w_color(AnimationMode.FLASHING, color, 0, 0, True)
+        self.__classic_check_and_execute_w_color(AnimationMode.SOLID, color, 0, 0, True)
 
     def turn_off(self):
         """
@@ -549,7 +549,7 @@ class LedRing(RobotCommander):
         self._check_type(led_id, int)
 
         req = self._services.set_led_ring_color_request(led_id, color)
-        resp = self._services.set_led_ring_animation_service.call(req)
+        resp = self._services.set_led_ring_led_color_service.call(req)
         self._check_result_status(resp)
 
     # Usefull method Led Ring
@@ -578,7 +578,9 @@ class LedRing(RobotCommander):
         req = self._services.set_led_ring_request(animation, color_list=checked_color_list, period=period,
                                                   iterations=iterations, wait=wait)
         resp = self._services.set_led_ring_animation_service.call(req, callback=callback, timeout=timeout)
-        self._check_result_status(resp)
+
+        if callback:
+            self._check_result_status(resp)
 
     def __classic_check_and_execute_without_color(self, animation, period, iterations, wait, callback=None,
                                                   timeout=None):

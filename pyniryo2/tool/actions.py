@@ -19,28 +19,20 @@ class ToolActions(object):
             self.tool_action.cancel()
             self.tool_action.dispose()
 
-    def get_gripper_action_goal(self, tool_id, tool_cmd, speed):
+    def get_gripper_action_goal(self, tool_id, tool_cmd, speed, max_torque_percentage, hold_torque_percentage):
         self._check_instance(tool_cmd, ToolCommand)
         self._check_instance(tool_id, ToolID)
 
-        if tool_cmd == ToolCommand.OPEN_GRIPPER:
-            cmd = {'cmd_type': tool_cmd.value, 'tool_id': tool_id.value, 'gripper_open_speed': speed}
-        elif tool_cmd == ToolCommand.CLOSE_GRIPPER:
-            cmd = {'cmd_type': tool_cmd.value, 'tool_id': tool_id.value, 'gripper_close_speed': speed}
-        else:
-            raise TypeError
+        cmd = {'cmd_type': tool_cmd.value, 'tool_id': tool_id.value, 'speed': speed,
+               'max_torque_percentage': max_torque_percentage, 'hold_torque_percentage': hold_torque_percentage}
 
         return roslibpy.actionlib.Goal(self.tool_action, roslibpy.Message({'cmd': cmd}))
 
     def get_vacuum_pump_action_goal(self, tool_cmd):
         self._check_instance(tool_cmd, ToolCommand)
 
-        if tool_cmd == ToolCommand.PULL_AIR_VACUUM_PUMP:
-            cmd = {'cmd_type': tool_cmd.value, 'tool_id': ToolID.VACUUM_PUMP_1.value, 'activate': True}
-        elif tool_cmd == ToolCommand.PUSH_AIR_VACUUM_PUMP:
-            cmd = {'cmd_type': tool_cmd.value, 'tool_id': ToolID.VACUUM_PUMP_1.value, 'activate': False}
-        else:
-            raise TypeError
+        cmd = {'cmd_type': tool_cmd.value, 'tool_id': ToolID.VACUUM_PUMP_1.value,
+               'activate': tool_cmd == ToolCommand.PULL_AIR_VACUUM_PUMP}
 
         return roslibpy.actionlib.Goal(self.tool_action, roslibpy.Message({'cmd': cmd}))
 
@@ -48,14 +40,8 @@ class ToolActions(object):
         self._check_instance(tool_cmd, ToolCommand)
         pin = -1 if gpio is None else gpio.value
 
-        if tool_cmd == ToolCommand.ACTIVATE_DIGITAL_IO:
-            cmd = {'cmd_type': tool_cmd.value, 'tool_id': ToolID.ELECTROMAGNET_1.value, 'activate': True, 'gpio': pin}
-        elif tool_cmd == ToolCommand.DEACTIVATE_DIGITAL_IO:
-            cmd = {'cmd_type': tool_cmd.value, 'tool_id': ToolID.ELECTROMAGNET_1.value, 'activate': False, 'gpio': pin}
-        elif tool_cmd == ToolCommand.SETUP_DIGITAL_IO:
-            cmd = {'cmd_type': tool_cmd.value, 'tool_id': ToolID.ELECTROMAGNET_1.value, 'gpio': pin}
-        else:
-            raise TypeError
+        cmd = {'cmd_type': tool_cmd.value, 'tool_id': ToolID.ELECTROMAGNET_1.value,
+               'activate': tool_cmd == ToolCommand.ACTIVATE_DIGITAL_IO, 'gpio': pin}
 
         return roslibpy.actionlib.Goal(self.tool_action, roslibpy.Message({'cmd': cmd}))
 

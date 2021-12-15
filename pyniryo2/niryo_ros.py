@@ -36,6 +36,8 @@ class NiryoRos(roslibpy.Ros):
         self.run()
         time.sleep(0.1)
         self.__pyniryo_ping_service.advertise(self.__ping_callback)
+        self._hardware_version = self.get_param("/niryo_robot/hardware_versionn")
+
         #self.wait_for_connection()
         time.sleep(2)
 
@@ -51,3 +53,7 @@ class NiryoRos(roslibpy.Ros):
         response['value'] = self.__pyniryo2_ip
         self.__connected = True
         return True
+
+    @property
+    def hardware_version(self):
+        return self._hardware_version

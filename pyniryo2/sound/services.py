@@ -24,9 +24,9 @@ class SoundServices(object):
                                                      '/niryo_robot_sound/manage',
                                                      'niryo_robot_msgs/ManageSound')
 
-        self.set_sound_volume_service = roslibpy.Service(self.__client,
-                                                         '/niryo_robot_sound/text_to_speech',
-                                                         'niryo_robot_sound/TextToSpeech')
+        self.tts_service = roslibpy.Service(self.__client,
+                                            '/niryo_robot_sound/text_to_speech',
+                                            'niryo_robot_sound/TextToSpeech')
 
     @staticmethod
     def play_sound_request(sound_name, start_time_sec=0, end_time_sec=0, wait_end=False):
@@ -91,3 +91,16 @@ class SoundServices(object):
         """
         return roslibpy.ServiceRequest(
             {"sound_name": sound_name, "action": ManageSound.DELETE.value})
+
+    @staticmethod
+    def tts_request(text, language):
+        """
+
+        :param text:
+        :type text: str
+        :param language:
+        :type language: Language
+        :return:
+        :rtype: ServiceRequest
+        """
+        return roslibpy.ServiceRequest({"text": text, "language": language.value})

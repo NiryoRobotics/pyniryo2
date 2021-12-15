@@ -8,3 +8,15 @@ class ManageSound(Enum):
     """
     ADD = 1
     DELETE = 2
+
+
+@unique
+class Language(Enum):
+    """
+    Enumeration of the Text To Speech languages
+    """
+    ENGLISH = 0
+    FRENCH = 1
+    SPANISH = 3
+    MANDARIN = 4
+    PORTUGUESE = 5

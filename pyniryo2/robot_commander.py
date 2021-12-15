@@ -26,6 +26,10 @@ class RobotCommander(object):
     def __repr__(self):
         return self.__str__()
 
+    @property
+    def client(self):
+        return self._client
+
     # Parameters checker
     def _check_enum_belonging(self, value, enum_):
         """

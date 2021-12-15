@@ -3,6 +3,23 @@ from pyniryo2.robot_commander import RobotCommander
 
 from .services import SoundServices
 from .topics import SoundTopics
+from .enums import Language
+
+
+def check_ned2_version(func):
+    """
+    Decorator that check the robot version
+    """
+
+    def wrap(*args, **kwargs):
+        robot_instance = args[0]
+        if robot_instance.client.hardware_version != 'ned2':
+            raise Exception("Error Code : BAD_HARDWARE_VERSION\n"
+                            "Message : Wrong robot hardware version, feature only available on Ned2")
+
+        return func(*args, **kwargs)
+
+    return wrap
 
 
 class Sound(RobotCommander):
@@ -10,12 +27,17 @@ class Sound(RobotCommander):
     def __init__(self, client):
         super(Sound, self).__init__(client)
 
-        self._services = SoundServices(self._client)
-        self._topics = SoundTopics(self._client)
+        if self._client.hardware_version == 'ned2':
+            self._services = SoundServices(self._client)
+            self._topics = SoundTopics(self._client)
+        else:
+            self._services = None
+            self._topics = None
 
     def __call__(self, *args, **kwargs):
         self.play(*args, **kwargs)
 
+    @check_ned2_version
     @property
     def sounds(self):
         """
@@ -30,6 +52,7 @@ class Sound(RobotCommander):
         """
         return list(self._topics.sound_database_topic().values())
 
+    @check_ned2_version
     def get_sounds(self):
         """
         Returns the list of available sounds in the robot
@@ -43,6 +66,7 @@ class Sound(RobotCommander):
         """
         return self.sounds
 
+    @check_ned2_version
     def get_sound_duration(self, sound_name):
         """
         Get the duration of a sound in seconds
@@ -51,6 +75,7 @@ class Sound(RobotCommander):
 
             sound_name = sound.get_sounds()[0]
             sound_duration = sound.get_sound_duration(sound_name)
+            sound_duration = sound.get_sound_duration('test_sound.mp3')
 
         :return: Returns the duration of a sound in seconds
         :rtype: float
@@ -59,7 +84,8 @@ class Sound(RobotCommander):
         self._check_dict_belonging(sound_name, sounds)
         return sounds[sound_name]
 
-    def play(self, sound_name, start_time_sec=0, end_time_sec=0, wait_end=False):
+    @check_ned2_version
+    def play(self, sound_name, wait_end=False, start_time_sec=0, end_time_sec=0):
         """
         Play a sound that as already been imported by the user on the robot. 
 
@@ -69,11 +95,27 @@ class Sound(RobotCommander):
             sound.play_sound_user("test_sound.wav")
 
             # If you want to play the first sound of the ones that are already on the robot without knowing its name
-            sound_name_dic = sound.get_sounds()
-            sound.play_sound_user(str(sound_name_dic["sound_object"][0]["name"]))
+            sound_name = sound.get_sounds()[0]
+            sound_duration = sound.play(sound_name)
+
+            # Waits until the sound has been fully played
+            sound_duration = sound.play(sound_name, wait_end=True)
+
+            #  Doesn't wait until the sound has been fully played
+            sound_duration = sound.play(sound_name, wait_end=False)
+
+            # Plays sound from 1.1 seconds from start to 4.3 seconds from start
+            sound_duration = sound.play(sound_name, start_time_sec=1.1, end_time_sec=4.3)
+
 
         :param: sound_name: Name of the sound that will be played
         :type sound_name: str
+        :param wait_end: wait for the end of the sound before exiting the function
+        :type wait_end: bool
+        :param start_time_sec: start the sound from this value in seconds
+        :type start_time_sec: float
+        :param end_time_sec: end the sound at this value in seconds
+        :type end_time_sec: float
         :rtype: None
         """
         self._check_instance(sound_name, str)
@@ -81,19 +123,21 @@ class Sound(RobotCommander):
         resp = self._services.play_sound_service.call(req)
         self._check_result_status(resp)
 
+    @check_ned2_version
     def stop_sound(self):
         """
         Stop a sound being played. It will get automatically the name of the sound being played and stop it. 
 
         Example: ::
 
-        self.sound.stop_sound()
+            self.sound.stop_sound()
 
         :rtype: None
         """
         resp = self._services.stop_sound_service.call()
         self._check_result_status(resp)
 
+    @check_ned2_version
     @property
     def sound_state(self):
         """
@@ -118,6 +162,7 @@ class Sound(RobotCommander):
         """
         return self._topics.current_sound_topic
 
+    @check_ned2_version
     @property
     def volume(self):
         """
@@ -142,6 +187,7 @@ class Sound(RobotCommander):
         """
         return self._topics.volume_topic
 
+    @check_ned2_version
     @property
     def get_volume(self):
         """
@@ -157,6 +203,7 @@ class Sound(RobotCommander):
         """
         return self._topics.volume_topic()
 
+    @check_ned2_version
     def set_sound_volume(self, sound_volume):
         """
         Set the volume of the robot. You can set it between 0 and 100 (0: sound off and 100: sound max).
@@ -178,6 +225,7 @@ class Sound(RobotCommander):
         resp = self._services.set_sound_volume_service.call(req)
         self._check_result_status(resp)
 
+    @check_ned2_version
     def delete_sound_user(self, sound_name):
         """
         Delete a sound imported on the robot
@@ -195,6 +243,7 @@ class Sound(RobotCommander):
         resp = self._services.manage_sound_service.call(req)
         self._check_result_status(resp)
 
+    @check_ned2_version
     def import_sound(self, sound_name, sound_data):
         """
         Import a sound on the RaspberryPi of the robot. To do that,
@@ -217,4 +266,35 @@ class Sound(RobotCommander):
         """
         req = self._services.import_sound_request(sound_name, sound_data)
         resp = self._services.manage_sound_service.call(req)
+        self._check_result_status(resp)
+
+    @check_ned2_version
+    def say(self, text, language=Language.ENGLISH):
+        """
+        Use gtts (Google Text To Speech) to interpret a string as sound
+        Languages available are:
+            - English: Language. ENGLISH
+            - French: Language.FRENCH
+            - Spanish: Language.SPANISH
+            - Mandarin: Language.MANDARIN
+            - Portuguese: Language.PORTUGUESE
+
+        Example ::
+
+            robot.say("Hello", Language.ENGLISH)
+            robot.say("Bonjour", Language.FRENCH)
+            robot.say("Hola", Language.SPANISH)
+
+
+        :param text: Text that needs to be spoken < 100 char
+        :type text: string
+        :param language: language of the text
+        :type language: Language
+        :rtype: None
+        """
+        self._check_enum_belonging(language, Language)
+        self._check_type(text, str)
+
+        req = self._services.tts_request(text, language)
+        resp = self._services.tts_service.call(req)
         self._check_result_status(resp)

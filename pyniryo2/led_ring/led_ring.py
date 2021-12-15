@@ -2,11 +2,26 @@
 import numpy as np
 
 from pyniryo2.robot_commander import RobotCommander
-# from pyniryo2.objects import PoseObject
 
 from .services import LedRingServices
 from .topics import LedRingTopics
 from .enums import AnimationMode
+
+
+def check_ned2_version(func):
+    """
+    Decorator that check the robot version
+    """
+
+    def wrap(*args, **kwargs):
+        robot_instance = args[0]
+        if robot_instance.client.hardware_version != 'ned2':
+            raise Exception("Error Code : BAD_HARDWARE_VERSION\n"
+                            "Message : Wrong robot hardware version, feature only available on Ned2")
+
+        return func(*args, **kwargs)
+
+    return wrap
 
 
 class LedRing(RobotCommander):
@@ -20,6 +35,7 @@ class LedRing(RobotCommander):
 
     # - Get current status and state of led ring
 
+    @check_ned2_version
     @property
     def status(self):
         """
@@ -44,6 +60,7 @@ class LedRing(RobotCommander):
         """
         return self._topics.led_ring_status_topic
 
+    @check_ned2_version
     def get_status(self):
         """
         Get Led Ring status.
@@ -59,6 +76,7 @@ class LedRing(RobotCommander):
         return self._topics.led_ring_status_topic()
 
     # - Control Led Ring with available animations
+    @check_ned2_version
     def solid(self, color):
         """
         Set the whole Led Ring to a fixed color.
@@ -73,6 +91,7 @@ class LedRing(RobotCommander):
         """
         self.__classic_check_and_execute_w_color(AnimationMode.SOLID, color, 0, 0, True)
 
+    @check_ned2_version
     def turn_off(self):
         """
         Turn off all LEDs
@@ -85,6 +104,7 @@ class LedRing(RobotCommander):
         """
         self.__classic_check_and_execute_without_color(AnimationMode.NONE, 0, 0, True)
 
+    @check_ned2_version
     def flash(self, color, period=0, iterations=0, wait=False, callback=None, timeout=None):
         """
         Flashes a color according to a frequency. The frequency is equal to 1 / period.
@@ -129,6 +149,7 @@ class LedRing(RobotCommander):
         self.__classic_check_and_execute_w_color(AnimationMode.FLASHING, color, period, iterations, wait, callback,
                                                  timeout)
 
+    @check_ned2_version
     def alternate(self, color_list, period=0, iterations=0, wait=False, callback=None, timeout=None):
         """
         Several colors are alternated one after the other.
@@ -174,6 +195,7 @@ class LedRing(RobotCommander):
                                                       callback,
                                                       timeout)
 
+    @check_ned2_version
     def chase(self, color, period=00, iterations=0, wait=False, callback=None, timeout=None):
         """
         Movie theater light style chaser animation.
@@ -213,6 +235,7 @@ class LedRing(RobotCommander):
         self.__classic_check_and_execute_w_color(AnimationMode.CHASE, color, period, iterations, wait, callback,
                                                  timeout)
 
+    @check_ned2_version
     def wipe(self, color, period=0, wait=False, callback=None, timeout=None):
         """
         Wipe a color across the Led Ring, light a Led at a time.
@@ -248,6 +271,7 @@ class LedRing(RobotCommander):
         self.__classic_check_and_execute_w_color(AnimationMode.COLOR_WIPE, color, period, 0, wait, callback,
                                                  timeout)
 
+    @check_ned2_version
     def go_up(self, color, period=0, iterations=0, wait=False, callback=None, timeout=None):
         """
         LEDs turn on like a loading circle, and are then all turned off at once.
@@ -287,6 +311,7 @@ class LedRing(RobotCommander):
         self.__classic_check_and_execute_w_color(AnimationMode.GO_UP, color, period, iterations, wait, callback,
                                                  timeout)
 
+    @check_ned2_version
     def go_up_down(self, color, period=0, iterations=0, wait=False, callback=None, timeout=None):
         """
         LEDs turn on like a loading circle, and are turned off the same way.
@@ -327,6 +352,7 @@ class LedRing(RobotCommander):
                                                  callback,
                                                  timeout)
 
+    @check_ned2_version
     def breath(self, color, period=0, iterations=0, wait=False, callback=None, timeout=None):
         """
         Variation of the light intensity of the LED ring, similar to human breathing.
@@ -367,6 +393,7 @@ class LedRing(RobotCommander):
         self.__classic_check_and_execute_w_color(AnimationMode.BREATH, color, period, iterations, wait, callback,
                                                  timeout)
 
+    @check_ned2_version
     def snake(self, color, period=0, iterations=0, wait=False, callback=None, timeout=None):
         """
         A small coloured snake (certainly a python :D ) runs around the LED ring.
@@ -405,6 +432,7 @@ class LedRing(RobotCommander):
         self.__classic_check_and_execute_w_color(AnimationMode.SNAKE, color, period, iterations, wait, callback,
                                                  timeout)
 
+    @check_ned2_version
     def rainbow(self, period=0, iterations=0, wait=False, callback=None, timeout=None):
         """
         Draw rainbow that fades across all LEDs at once.
@@ -441,6 +469,7 @@ class LedRing(RobotCommander):
         self.__classic_check_and_execute_without_color(AnimationMode.RAINBOW, period, iterations, wait, callback,
                                                        timeout)
 
+    @check_ned2_version
     def rainbow_cycle(self, period=0, iterations=0, wait=False, callback=None, timeout=None):
         """
         Draw rainbow that uniformly distributes itself across all LEDs.
@@ -477,6 +506,7 @@ class LedRing(RobotCommander):
         self.__classic_check_and_execute_without_color(AnimationMode.RAINBOW_CYLE, period, iterations, wait, callback,
                                                        timeout)
 
+    @check_ned2_version
     def rainbow_chase(self, period=0, iterations=0, wait=False, callback=None, timeout=None):
         """
         Rainbow chase animation, like the led_ring_chase method.
@@ -513,6 +543,7 @@ class LedRing(RobotCommander):
         self.__classic_check_and_execute_without_color(AnimationMode.RAINBOW_CHASE, period, iterations, wait, callback,
                                                        timeout)
 
+    @check_ned2_version
     def custom(self, led_colors):
         """
         Sends a colour command to all LEDs of the LED ring.

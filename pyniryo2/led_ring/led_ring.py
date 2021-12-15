@@ -595,7 +595,9 @@ class LedRing(RobotCommander):
         req = self._services.set_led_ring_request(animation, color_list=checked_color, period=period,
                                                   iterations=iterations, wait=wait)
         resp = self._services.set_led_ring_animation_service.call(req, callback=callback, timeout=timeout)
-        self._check_result_status(resp)
+
+        if not callback:
+            self._check_result_status(resp)
 
     def __classic_check_and_execute_w_color_list(self, animation, color_list, period, iterations, wait, callback=None,
                                                  timeout=None):
@@ -610,7 +612,7 @@ class LedRing(RobotCommander):
                                                   iterations=iterations, wait=wait)
         resp = self._services.set_led_ring_animation_service.call(req, callback=callback, timeout=timeout)
 
-        if callback:
+        if not callback:
             self._check_result_status(resp)
 
     def __classic_check_and_execute_without_color(self, animation, period, iterations, wait, callback=None,
@@ -623,8 +625,10 @@ class LedRing(RobotCommander):
         req = self._services.set_led_ring_request(animation, period=period, iterations=iterations,
                                                   wait=wait)
         resp = self._services.set_led_ring_animation_service.call(req, callback=callback, timeout=timeout)
-        self._check_result_status(resp)
 
+        if not callback:
+            self._check_result_status(resp)
+            
     def _check_color(self, color):
         checked_color = []
         self._check_type(color, list)

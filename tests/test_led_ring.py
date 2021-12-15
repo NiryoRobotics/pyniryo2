@@ -2,6 +2,7 @@
 import unittest
 import time
 import random
+from threading import Event
 
 from pyniryo2.led_ring import AnimationMode, LedMode
 from pyniryo2.led_ring import LedRing
@@ -10,11 +11,25 @@ from pyniryo2.niryo_ros import NiryoRos
 
 from pyniryo2.enums import RobotErrors
 
-robot_ip_address = "127.0.0.1"  # "192.168.1.92"
+robot_ip_address = "127.0.0.1"
 port = 9090
 
 test_order = [
-    "test_ledring",
+    "test_ledring_status",
+    "test_solid",
+    "test_set_led",
+    "test_custom",
+    "test_alternate",
+    "test_flash",
+    "test_chase",
+    "test_go_up",
+    "test_go_up_down",
+    "test_breath",
+    "test_snake",
+    "test_rainbow",
+    "test_rainbow_cycle",
+    "test_rainbow_chase",
+    "test_turn_off",
 ]
 
 WHITE = [255.0, 255.0, 255.0]
@@ -43,25 +58,37 @@ class BaseTest(unittest.TestCase):
 class TestLedRing(BaseTest):
     nb_leds = 30
 
-    def test_ledring(self):
+    def test_ledring_status(self):
         self.assertEqual(self.led_ring.get_status().mode, LedMode.USER)
 
-        self.test_solid()
-        self.test_set_led()
-        self.test_custom()
-        self.test_alternate()
-
+    def test_flash(self):
         self.test_classic_animation(self.led_ring.flash, AnimationMode.FLASHING)
+
+    def test_chase(self):
         self.test_classic_animation(self.led_ring.chase, AnimationMode.CHASE)
+
+    def test_go_up(self):
         self.test_classic_animation(self.led_ring.go_up, AnimationMode.GO_UP)
+
+    def test_go_up_down(self):
         self.test_classic_animation(self.led_ring.go_up_down, AnimationMode.GO_UP_AND_DOWN)
+
+    def test_breath(self):
         self.test_classic_animation(self.led_ring.breath, AnimationMode.BREATH)
+
+    def test_snake(self):
         self.test_classic_animation(self.led_ring.snake, AnimationMode.SNAKE)
 
+    def test_rainbow(self):
         self.test_rainbow_animation(self.led_ring.rainbow, AnimationMode.RAINBOW)
+
+    def test_rainbow_cycle(self):
         self.test_rainbow_animation(self.led_ring.rainbow_cycle, AnimationMode.RAINBOW_CYLE)
+
+    def test_rainbow_chase(self):
         self.test_rainbow_animation(self.led_ring.rainbow_chase, AnimationMode.RAINBOW_CHASE)
 
+    def test_turn_off(self):
         self.assertIsNone(self.led_ring.turn_off())
 
     def test_classic_animation(self, function, animation):
@@ -86,12 +113,18 @@ class TestLedRing(BaseTest):
         self.assertIsNone(self.led_ring.turn_off())
 
         start_time = time.time()
+        end_event = Event()
+        end_event.clear()
 
         def animation_callback(resp):
-            self.assertTrue(0 <= time.time() - start_time - duration < 1)
+            elapsed_time = time.time() - start_time
             self.assertEqual(resp['status'], RobotErrors.SUCCESS.value)
+            self.assertGreaterEqual(elapsed_time, duration - 1)
+            self.assertLessEqual(elapsed_time, duration + 1)
+            end_event.set()
 
         self.assertIsNone(function(color, period=period, iterations=iterations, wait=True, callback=animation_callback))
+        self.assertTrue(end_event.wait(timeout=duration + 2))
         self.assertIsNone(self.led_ring.turn_off())
 
         with self.assertRaises(RobotCommandException):
@@ -126,12 +159,18 @@ class TestLedRing(BaseTest):
         self.assertIsNone(self.led_ring.turn_off())
 
         start_time = time.time()
+        end_event = Event()
+        end_event.clear()
 
         def animation_callback(resp):
-            self.assertTrue(0 <= time.time() - start_time - duration < 1)
+            elapsed_time = time.time() - start_time
             self.assertEqual(resp['status'], RobotErrors.SUCCESS.value)
+            self.assertGreaterEqual(elapsed_time, duration - 1)
+            self.assertLessEqual(elapsed_time, duration + 1)
+            end_event.set()
 
         self.assertIsNone(function(period=period, iterations=iterations, wait=True, callback=animation_callback))
+        self.assertTrue(end_event.wait(timeout=duration + 2))
         self.assertIsNone(self.led_ring.turn_off())
 
         with self.assertRaises(RobotCommandException):
@@ -162,13 +201,26 @@ class TestLedRing(BaseTest):
         self.assertIsNone(self.led_ring.turn_off())
 
         start_time = time.time()
+        end_event = Event()
+        end_event.clear()
 
         def animation_callback(resp):
-            self.assertTrue(0 <= time.time() - start_time - duration < 1)
+            elapsed_time = time.time() - start_time
             self.assertEqual(resp['status'], RobotErrors.SUCCESS.value)
+            self.assertGreaterEqual(elapsed_time, duration - 1)
+            self.assertLessEqual(elapsed_time, duration + 1)
+            end_event.set()
 
         self.assertIsNone(self.led_ring.alternate(colors, period=period, iterations=iterations, wait=True,
                                                   callback=animation_callback))
+        self.assertTrue(end_event.wait(timeout=duration + 2))
+
+        def animation_callback_stop(resp):
+            self.assertEqual(resp['status'], RobotErrors.STOPPED.value)
+            self.assertGreater(time.time() - start_time, 1)
+
+        self.assertIsNone(self.led_ring.alternate(colors, period=period, iterations=iterations, wait=True,
+                                                  callback=animation_callback_stop))
         self.assertIsNone(self.led_ring.turn_off())
 
         with self.assertRaises(RobotCommandException):
@@ -203,12 +255,18 @@ class TestLedRing(BaseTest):
         self.assertIsNone(self.led_ring.turn_off())
 
         start_time = time.time()
+        end_event = Event()
+        end_event.clear()
 
         def animation_callback(resp):
-            self.assertTrue(0 <= time.time() - start_time - period < 1)
+            elapsed_time = time.time() - start_time
             self.assertEqual(resp['status'], RobotErrors.SUCCESS.value)
+            self.assertGreaterEqual(elapsed_time, period - 1)
+            self.assertLessEqual(elapsed_time, period + 1)
+            end_event.set()
 
         self.assertIsNone(self.led_ring.alternate(color, period=period, wait=True, callback=animation_callback))
+        self.assertTrue(end_event.wait(timeout=period + 2))
         self.assertIsNone(self.led_ring.turn_off())
 
         with self.assertRaises(RobotCommandException):
@@ -259,7 +317,6 @@ class TestLedRing(BaseTest):
 def suite():
     suite = unittest.TestSuite()
     for function_name in test_order:
-        print('TEST FUNCTION: ', function_name)
         suite.addTest(TestLedRing(function_name))
     return suite
 

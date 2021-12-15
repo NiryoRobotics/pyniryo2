@@ -37,7 +37,6 @@ class Sound(RobotCommander):
     def __call__(self, *args, **kwargs):
         self.play(*args, **kwargs)
 
-    @check_ned2_version
     @property
     def sounds(self):
         """
@@ -50,7 +49,7 @@ class Sound(RobotCommander):
         :return: Returns the list of available sounds in the robot
         :rtype: list[str]
         """
-        return list(self._topics.sound_database_topic().values())
+        return list(self._topics.sound_database_topic().keys())
 
     @check_ned2_version
     def get_sounds(self):
@@ -119,27 +118,27 @@ class Sound(RobotCommander):
         :rtype: None
         """
         self._check_instance(sound_name, str)
-        req = self._services.play_sound_service(sound_name, start_time_sec, end_time_sec, wait_end)
+        req = self._services.play_sound_request(sound_name, start_time_sec, end_time_sec, wait_end)
         resp = self._services.play_sound_service.call(req)
         self._check_result_status(resp)
 
     @check_ned2_version
-    def stop_sound(self):
+    def stop(self):
         """
         Stop a sound being played. It will get automatically the name of the sound being played and stop it. 
 
         Example: ::
 
-            self.sound.stop_sound()
+            self.sound.stop()
 
         :rtype: None
         """
-        resp = self._services.stop_sound_service.call()
+        req = self._services.stop_sound_request()
+        resp = self._services.stop_sound_service.call(req)
         self._check_result_status(resp)
 
-    @check_ned2_version
     @property
-    def sound_state(self):
+    def state(self):
         """
         Returns the sound state client which can be used synchronously or asynchronously
         to obtain the current played sound.
@@ -147,22 +146,21 @@ class Sound(RobotCommander):
         Examples: ::
 
             # Get last value
-            sound.sound_state()
-            sound.sound_state.value
+            sound.state()
+            sound.state.value
 
             # Subscribe a callback
             def sound_callback(sound_name):
                 print sound_name
 
-            sound.sound_state.subscribe(sound_callback)
-            sound.sound_state.unsubscribe()
+            sound.state.subscribe(sound_callback)
+            sound.state.unsubscribe()
 
         :return: sound state topic instance
         :rtype: NiryoTopic
         """
         return self._topics.current_sound_topic
 
-    @check_ned2_version
     @property
     def volume(self):
         """
@@ -188,7 +186,6 @@ class Sound(RobotCommander):
         return self._topics.volume_topic
 
     @check_ned2_version
-    @property
     def get_volume(self):
         """
         Returns the volume of the robot. The sound can be set between 0 (sound off) and 100 (sound max)
@@ -196,7 +193,7 @@ class Sound(RobotCommander):
         Examples: ::
 
             # Get the volume of the sound
-            sound.get_sound_volume()
+            sound.get_volume()
 
         :return: int8 corresponding to the volume (0: sound off, 100: sound max)
         :rtype: int8
@@ -204,7 +201,7 @@ class Sound(RobotCommander):
         return self._topics.volume_topic()
 
     @check_ned2_version
-    def set_sound_volume(self, sound_volume):
+    def set_volume(self, sound_volume):
         """
         Set the volume of the robot. You can set it between 0 and 100 (0: sound off and 100: sound max).
         If you put less than 0, the volume will be set to 0.
@@ -213,7 +210,7 @@ class Sound(RobotCommander):
         Example: ::
 
             # Set the volume to 25
-            self.sound.set_sound_volume(25)
+            self.sound.set_volume(25)
             self.sound.play_sound_user("test_sound.wav")
 
 
@@ -221,18 +218,19 @@ class Sound(RobotCommander):
         :type sound_volume: int8
         :rtype: None
         """
+        self._check_range_belonging(sound_volume, 0, 200)
         req = self._services.set_sound_volume_request(sound_volume)
         resp = self._services.set_sound_volume_service.call(req)
         self._check_result_status(resp)
 
     @check_ned2_version
-    def delete_sound_user(self, sound_name):
+    def delete(self, sound_name):
         """
         Delete a sound imported on the robot
 
         Example: ::
 
-            self.sound.delete_sound_user("test_sound.wav")
+            self.sound.delete("test_sound.wav")
 
 
         :param sound_name: For example, test.wav
@@ -244,7 +242,7 @@ class Sound(RobotCommander):
         self._check_result_status(resp)
 
     @check_ned2_version
-    def import_sound(self, sound_name, sound_data):
+    def save(self, sound_name, sound_data):
         """
         Import a sound on the RaspberryPi of the robot. To do that,
         you will need the encoded data from a wav or mp3 sound.
@@ -256,7 +254,7 @@ class Sound(RobotCommander):
             sound_name = "test_import_sound.wav"
             with open(sound_name, 'r') as f:
                 sound_data = f.read()
-            sound.import_sound(sound_name, sound_data)
+            sound.save(sound_name, sound_data)
 
         :param sound_name: For example, test.wav
         :type sound_name: string

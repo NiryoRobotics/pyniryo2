@@ -1,24 +1,25 @@
 #!/usr/bin/env python
 import unittest
-import roslibpy
 import time
 
 from pyniryo2.exceptions import RobotCommandException
-
+from pyniryo2.niryo_ros import NiryoRos
+from pyniryo2.sound.enums import Language
 from pyniryo2.sound.sound import Sound
+from pyniryo2.niryo_topic import NiryoTopic
 
 robot_ip_address = "127.0.0.1"
 port = 9090
 
-test_order = ["test_sound_run",
-              "test_bad_params_errors"]
+test_order = ["test_volume",
+              "test_sound",
+              "test_say"]
 
 
 class BaseTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.client = roslibpy.Ros(host=robot_ip_address, port=port)
-        cls.client.run()
+        cls.client = NiryoRos(ip_address=robot_ip_address, port=port)
         cls.sound = Sound(cls.client)
 
     @classmethod
@@ -28,45 +29,63 @@ class BaseTest(unittest.TestCase):
 
 # noinspection PyTypeChecker
 class TestSound(BaseTest):
-    def test_sound_run(self):
-        sound_name_dic = self.sound.get_sound_user()
-        self.sound.play_sound_user(str(sound_name_dic["sound_object"][0]["name"]))
-        self.assertIsInstance(self.sound.get_sound_user_state(), bool)
-        self.assertFalse(self.sound.get_sound_user_state())
-        self.assertIsNone(time.sleep(1))
+    def test_sound(self):
+        self.assertIsInstance(self.sound.sounds, list)
+        self.assertIsNotNone(self.sound.get_sounds())
+        self.assertEqual(self.sound.sounds, self.sound.get_sounds())
 
-        self.assertIsInstance(self.sound.get_sound_volume(), int)
-        self.sound.set_sound_volume(0)
-        self.assertEqual(self.sound.get_sound_volume(), 0)
-        self.sound.set_sound_volume(150)
-        self.assertEqual(self.sound.get_sound_volume(), 100)
-        self.sound.set_sound_volume(-50)
-        self.assertEqual(self.sound.get_sound_volume(), 0)
-        self.assertIsNone(time.sleep(1))
+        sound_names = self.sound.sounds
+        random_sound_name = sound_names[0]
+        self.assertTrue(0 < self.sound.get_sound_duration(random_sound_name))
 
-        self.assertIsInstance(self.sound.get_sound_user(), dict)
-        sound_name_dic = self.sound.get_sound_user()
+        start_time = time.time()
+        self.assertIsNone(self.sound.play(random_sound_name, True, 0.5, 1.5))
+        self.assertTrue(1 <= time.time() - start_time <= 1.5)
 
-        self.assertIsInstance(sound_name_dic["sound_object"][0]["name"], unicode)
-        self.assertIsInstance(sound_name_dic["sound_object"][0]["duration"], float)
-        self.assertEqual(str(sound_name_dic["sound_object"][0]["name"]), "botw_item.wav")
-        number_sounds = len(sound_name_dic["sound_object"])
-        self.assertIsNone(time.sleep(1))
+        start_time = time.time()
+        self.assertIsNone(self.sound.play(random_sound_name, False))
+        self.assertTrue(time.time() - start_time <= 0.5)
 
-        self.sound.delete_sound_user(str(sound_name_dic["sound_object"][0]["name"]))
-        sound_name_dic = self.sound.get_sound_user()
-        self.assertEqual(len(sound_name_dic["sound_object"]), number_sounds-1)
-        self.assertIsNone(time.sleep(1))
-
-    def test_bad_params_errors(self):
-        with self.assertRaises(RobotCommandException):
-            self.sound.play_sound_user(2)
-        
-        with self.assertRaises(RobotCommandException):
-            self.sound.set_sound_volume("a")
+        self.assertEqual(self.sound.state(), random_sound_name)
+        self.assertIsNone(self.sound.stop())
+        time.sleep(0.1)
+        self.assertNotEqual(self.sound.state(), random_sound_name)
 
         with self.assertRaises(RobotCommandException):
-            self.sound.delete_sound_user(4)
+            self.sound.play(450)
+
+        with self.assertRaises(RobotCommandException):
+            self.sound.play(True)
+
+    def test_say(self):
+        for language in Language:
+            start_time = time.time()
+            self.assertIsNone(self.sound.say('This is a test', language))
+            self.assertTrue(time.time() - start_time > 0.5)
+
+        with self.assertRaises(RobotCommandException):
+            self.sound.say('This is a test', 0)
+
+        with self.assertRaises(RobotCommandException):
+            self.sound.say(450, Language.ENGLISH)
+
+    def test_volume(self):
+        self.assertIsInstance(self.sound.volume, NiryoTopic)
+        self.assertIsNotNone(self.sound.volume.value)
+        self.assertIsNotNone(self.sound.get_volume())
+        self.assertEqual(self.sound.get_volume(), self.sound.volume())
+
+        self.assertIsNone(self.sound.set_volume(50))
+        self.assertEqual(self.sound.volume(), 50)
+
+        self.assertIsNone(self.sound.set_volume(100))
+        self.assertEqual(self.sound.volume(), 100)
+
+        with self.assertRaises(RobotCommandException):
+            self.sound.set_volume(-100)
+
+        with self.assertRaises(RobotCommandException):
+            self.sound.set_volume(300)
 
 def suite():
     suite = unittest.TestSuite()

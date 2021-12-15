@@ -31,4 +31,4 @@ def current_sound_conversion(msg):
 
 
 def volume_sound_conversion(msg):
-    return str(msg["data"])
+    return int(msg["data"])

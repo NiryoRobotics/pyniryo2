@@ -6,6 +6,38 @@ from .services import IOServices
 from .topics import IOTopics
 
 
+def check_ned2_version(func):
+    """
+    Decorator that check the robot version
+    """
+
+    def wrap(*args, **kwargs):
+        robot_instance = args[0]
+        if robot_instance.client.hardware_version != 'ned2':
+            raise Exception("Error Code : BAD_HARDWARE_VERSION\n"
+                            "Message : Wrong robot hardware version, feature only available on Ned2")
+
+        return func(*args, **kwargs)
+
+    return wrap
+
+
+def check_ned_one_version(func):
+    """
+    Decorator that check the robot version
+    """
+
+    def wrap(*args, **kwargs):
+        robot_instance = args[0]
+        if robot_instance.client.hardware_version != 'ned2':
+            raise Exception("Error Code : BAD_HARDWARE_VERSION\n"
+                            "Message : Wrong robot hardware version, feature only available on Ned1 and One")
+
+        return func(*args, **kwargs)
+
+    return wrap
+
+
 class IO(RobotCommander):
     # --- Public functions --- #
     def __init__(self, client):
@@ -66,6 +98,7 @@ class IO(RobotCommander):
 
         return resp["value"]
 
+    @check_ned_one_version
     def set_pin_mode(self, pin_id, pin_mode):
         """
         Set pin number pin_id to mode pin_mode

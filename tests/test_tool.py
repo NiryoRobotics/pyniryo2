@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import time
 import unittest
-import roslibpy
 import numpy as np
 from threading import Event
 
@@ -9,6 +8,7 @@ from pyniryo2.exceptions import RobotCommandException
 from pyniryo2.niryo_topic import NiryoTopic
 from pyniryo2.enums import RobotErrors
 from pyniryo2.objects import PoseObject
+from pyniryo2.niryo_ros import NiryoRos
 
 from pyniryo2.tool.tool import Tool
 from pyniryo2.tool.enums import ToolID
@@ -33,8 +33,7 @@ test_order = ["test_tool_id",
 class BaseTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.client = roslibpy.Ros(host=robot_ip_address, port=port)
-        cls.client.run()
+        cls.client = NiryoRos(ip_address=robot_ip_address, port=port)
         cls.tool = Tool(cls.client)
         cls.io = IO(cls.client)
         cls.arm = Arm(cls.client)
@@ -88,20 +87,21 @@ class TestTool(BaseTest):
         with self.assertRaises(RobotCommandException):
             self.tool.setup_electromagnet(0)
 
-        self.assertIsNone(self.io.set_pin_mode(PinID.GPIO_1A, PinMode.INPUT))
-        self.assertIsNone(self.tool.setup_electromagnet(PinID.GPIO_1A))
+        pin = PinID.DO4 if self.tool.client.hardware_version == 'ned2' else PinID.GPIO_1A
+        self.assertIsNone(self.io.set_pin_mode(pin, PinMode.INPUT))
+        self.assertIsNone(self.tool.setup_electromagnet(pin))
         self.assertEqual(self.tool.get_current_tool_id(), ToolID.ELECTROMAGNET_1)
-        self.assertEqual(self.io.get_digital_io_state(PinID.GPIO_1A).mode, PinMode.OUTPUT)
+        self.assertEqual(self.io.get_digital_io_state(pin).mode, PinMode.OUTPUT)
 
         self.assertIsNone(self.tool.activate_electromagnet())
-        self.assertEqual(self.io.digital_read(PinID.GPIO_1A), PinState.HIGH)
+        self.assertEqual(self.io.digital_read(pin), PinState.HIGH)
         self.assertIsNone(self.tool.deactivate_electromagnet())
-        self.assertEqual(self.io.digital_read(PinID.GPIO_1A), PinState.LOW)
+        self.assertEqual(self.io.digital_read(pin), PinState.LOW)
 
-        self.assertIsNone(self.tool.activate_electromagnet(PinID.GPIO_1A))
-        self.assertEqual(self.io.digital_read(PinID.GPIO_1A), PinState.HIGH)
-        self.assertIsNone(self.tool.deactivate_electromagnet(PinID.GPIO_1A))
-        self.assertEqual(self.io.digital_read(PinID.GPIO_1A), PinState.LOW)
+        self.assertIsNone(self.tool.activate_electromagnet(pin))
+        self.assertEqual(self.io.digital_read(pin), PinState.HIGH)
+        self.assertIsNone(self.tool.deactivate_electromagnet(pin))
+        self.assertEqual(self.io.digital_read(pin), PinState.LOW)
 
         tool_event = Event()
         tool_event.clear()
@@ -111,17 +111,17 @@ class TestTool(BaseTest):
 
         self.assertIsNone(self.tool.activate_electromagnet(callback=tool_callback))
         self.assertTrue(tool_event.wait(10))
-        self.assertEqual(self.io.digital_read(PinID.GPIO_1A), PinState.HIGH)
+        self.assertEqual(self.io.digital_read(pin), PinState.HIGH)
         tool_event.clear()
 
         self.assertIsNone(self.tool.deactivate_electromagnet(callback=tool_callback))
         self.assertTrue(tool_event.wait(10))
-        self.assertEqual(self.io.digital_read(PinID.GPIO_1A), PinState.LOW)
+        self.assertEqual(self.io.digital_read(pin), PinState.LOW)
 
         self.assertIsNone(self.tool.grasp_with_tool())
-        self.assertEqual(self.io.digital_read(PinID.GPIO_1A), PinState.HIGH)
+        self.assertEqual(self.io.digital_read(pin), PinState.HIGH)
         self.assertIsNone(self.tool.release_with_tool())
-        self.assertEqual(self.io.digital_read(PinID.GPIO_1A), PinState.LOW)
+        self.assertEqual(self.io.digital_read(pin), PinState.LOW)
 
         # Exceptions
         with self.assertRaises(RobotCommandException):
@@ -146,6 +146,9 @@ class TestTool(BaseTest):
             self.assertIsNone(self.tool.open_gripper())
             self.assertIsNone(self.tool.open_gripper(800))
             self.assertIsNone(self.tool.open_gripper(speed=800.5))
+            self.assertIsNone(self.tool.open_gripper(max_torque_percentage=100))
+            self.assertIsNone(self.tool.open_gripper(hold_torque_percentage=50))
+            self.assertIsNone(self.tool.open_gripper(max_torque_percentage=100, hold_torque_percentage=50))
             tool_event.clear()
             self.assertIsNone(self.tool.open_gripper(callback=tool_callback))
             self.assertTrue(tool_event.wait(10))
@@ -156,10 +159,21 @@ class TestTool(BaseTest):
                 self.tool.open_gripper(0)
             with self.assertRaises(RobotCommandException):
                 self.tool.open_gripper(1001)
+            with self.assertRaises(RobotCommandException):
+                self.tool.open_gripper(max_torque_percentage=200)
+            with self.assertRaises(RobotCommandException):
+                self.tool.open_gripper(max_torque_percentage=-10)
+            with self.assertRaises(RobotCommandException):
+                self.tool.open_gripper(hold_torque_percentage=140)
+            with self.assertRaises(RobotCommandException):
+                self.tool.open_gripper(hold_torque_percentage=-20)
 
             self.assertIsNone(self.tool.close_gripper())
             self.assertIsNone(self.tool.close_gripper(800))
             self.assertIsNone(self.tool.close_gripper(speed=800.5))
+            self.assertIsNone(self.tool.close_gripper(max_torque_percentage=100))
+            self.assertIsNone(self.tool.close_gripper(hold_torque_percentage=50))
+            self.assertIsNone(self.tool.close_gripper(max_torque_percentage=100, hold_torque_percentage=50))
             tool_event.clear()
             self.assertIsNone(self.tool.close_gripper(callback=tool_callback))
             self.assertTrue(tool_event.wait(10))
@@ -170,6 +184,14 @@ class TestTool(BaseTest):
                 self.tool.close_gripper(0)
             with self.assertRaises(RobotCommandException):
                 self.tool.close_gripper(1001)
+            with self.assertRaises(RobotCommandException):
+                self.tool.close_gripper(max_torque_percentage=200)
+            with self.assertRaises(RobotCommandException):
+                self.tool.close_gripper(max_torque_percentage=-10)
+            with self.assertRaises(RobotCommandException):
+                self.tool.close_gripper(hold_torque_percentage=140)
+            with self.assertRaises(RobotCommandException):
+                self.tool.close_gripper(hold_torque_percentage=-20)
 
             self.assertIsNone(self.tool.grasp_with_tool())
             self.assertIsNone(self.tool.release_with_tool())
@@ -183,7 +205,8 @@ class TestTool(BaseTest):
             self.assertTrue(tool_event.wait(10))
 
         # Exceptions
-        self.assertIsNone(self.tool.setup_electromagnet(PinID.GPIO_1A))
+        pin = PinID.DO4 if self.tool.client.hardware_version == 'ned2' else PinID.GPIO_1A
+        self.assertIsNone(self.tool.setup_electromagnet(pin))
         with self.assertRaises(RobotCommandException):
             self.tool.open_gripper()
         with self.assertRaises(RobotCommandException):
@@ -220,7 +243,8 @@ class TestTool(BaseTest):
             self.assertTrue(tool_event.wait(10))
 
         # Exceptions
-        self.assertIsNone(self.tool.setup_electromagnet(PinID.GPIO_1A))
+        pin = PinID.DO4 if self.tool.client.hardware_version == 'ned2' else PinID.GPIO_1A
+        self.assertIsNone(self.tool.setup_electromagnet(pin))
         with self.assertRaises(RobotCommandException):
             self.tool.pull_air_vacuum_pump()
         with self.assertRaises(RobotCommandException):

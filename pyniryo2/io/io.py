@@ -1,9 +1,10 @@
-# Communication imports
 from pyniryo2.enums import RobotErrors
+from pyniryo2.exceptions import RobotCommandException
 from pyniryo2.robot_commander import RobotCommander
 from .enums import PinID, PinMode, PinState
 from .services import IOServices
 from .topics import IOTopics
+from .objects import DigitalPinObject, AnalogPinObject
 
 
 def check_ned2_version(func):
@@ -85,18 +86,17 @@ class IO(RobotCommander):
         Return the value of a digital io.
 
         :type pin_id: PinID or str
-        :return: digital io value
-        :rtype: bool
+        :return: digital io object
+        :rtype: DigitalPinObject
         """
         self._check_instance(pin_id, (PinID, str))
+        states = self._topics.digital_io_topic()
 
-        req = self._services.get_io_request(pin_id)
-        resp = self._services.get_digital_io_service.call(req)
+        for state in states:
+            if state.pin_id == pin_id or state.name == pin_id:
+                return state
 
-        if resp["status"] < RobotErrors.SUCCESS.value:
-            return None
-
-        return resp["value"]
+        raise RobotCommandException('IO {} not found'.format(pin_id))
 
     @check_ned_one_version
     def set_pin_mode(self, pin_id, pin_mode):
@@ -137,7 +137,7 @@ class IO(RobotCommander):
         :rtype: None
         """
         self._check_instance(pin_id, (PinID, str))
-        self._check_instance(pin_id, (PinState, bool))
+        self._check_instance(digital_state, (PinState, bool))
 
         req = self._services.set_io_state_request(pin_id, digital_state)
         resp = self._services.set_digital_io_state_service.call(req)
@@ -157,7 +157,15 @@ class IO(RobotCommander):
         :type pin_id: PinID or str
         :rtype: bool
         """
-        return self.get_digital_io_state(pin_id)
+        self._check_instance(pin_id, (PinID, str))
+
+        req = self._services.get_io_request(pin_id)
+        resp = self._services.get_digital_io_service.call(req)
+
+        if resp["status"] < RobotErrors.SUCCESS.value:
+            return None
+
+        return resp["value"]
 
     @property
     def analog_io_states(self):
@@ -201,18 +209,17 @@ class IO(RobotCommander):
         Only available on Ned2.
 
         :type pin_id: PinID or str
-        :return: digital io value
-        :rtype: bool
+        :return: analog io object
+        :rtype: AnalogPinObject
         """
         self._check_instance(pin_id, (PinID, str))
+        states = self._topics.analog_io_topic()
 
-        req = self._services.get_io_request(pin_id)
-        resp = self._services.get_analog_io_service.call(req)
+        for state in states:
+            if state.pin_id == pin_id or state.name == pin_id:
+                return state
 
-        if resp["status"] < RobotErrors.SUCCESS.value:
-            return None
-
-        return resp["value"]
+        raise RobotCommandException('Analog IO {} not found'.format(pin_id))
 
     def analog_write(self, pin_id, value):
         """
@@ -231,7 +238,8 @@ class IO(RobotCommander):
         :rtype: None
         """
         self._check_instance(pin_id, (PinID, str))
-        self._check_instance(pin_id, (PinState, bool))
+        self._check_instance(value, (float, int))
+        self._check_range_belonging(value, 0, 5)
 
         req = self._services.set_io_state_request(pin_id, value)
         resp = self._services.set_analog_io_state_service.call(req)
@@ -252,7 +260,15 @@ class IO(RobotCommander):
         :type pin_id: PinID or str
         :rtype: bool
         """
-        return self.get_analog_io_state(pin_id)
+        self._check_instance(pin_id, (PinID, str))
+
+        req = self._services.get_io_request(pin_id)
+        resp = self._services.get_analog_io_service.call(req)
+
+        if resp["status"] < RobotErrors.SUCCESS.value:
+            return None
+
+        return resp["value"]
 
     @property
     def custom_button_state(self):

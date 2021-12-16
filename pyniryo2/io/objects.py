@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # coding=utf-8
 
+from pyniryo2.io.enums import PinID, PinMode, PinState
+
+
 class DigitalPinObject:
     """
     Object used to store information on digital pins
@@ -8,9 +11,11 @@ class DigitalPinObject:
 
     def __init__(self, name, mode, value):
         # Name
+        self.pin_id = PinID(name)
+        # Name
         self.name = name
         # Input or output
-        self.mode = mode
+        self.mode = PinMode(mode)
         # True / False
         self.value = value
 
@@ -31,9 +36,11 @@ class AnalogPinObject:
 
     def __init__(self, name, mode, value):
         # Name
+        self.pin_id = PinID(name)
+        # Name
         self.name = name
         # Input or output
-        self.mode = mode
+        self.mode = PinMode(mode)
         # Tension
         self.value = value
 

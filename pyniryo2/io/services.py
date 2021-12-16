@@ -1,6 +1,6 @@
 import roslibpy
 
-from pyniryo2.io.enums import PinID
+from pyniryo2.io.enums import PinID, PinState
 
 
 class IOServices(object):
@@ -21,24 +21,25 @@ class IOServices(object):
                                                        'niryo_robot_rpi/GetDigitalIO')
 
         self.set_analog_io_state_service = roslibpy.Service(self.__client,
-                                                             '/niryo_robot_rpi/set_analog_io',
-                                                             'niryo_robot_rpi/SetAnalogIO')
+                                                            '/niryo_robot_rpi/set_analog_io',
+                                                            'niryo_robot_rpi/SetAnalogIO')
 
         self.get_analog_io_service = roslibpy.Service(self.__client,
-                                                       '/niryo_robot_rpi/set_digital_io',
-                                                       'niryo_robot_rpi/GetAnalogIO')
+                                                      '/niryo_robot_rpi/get_analog_io',
+                                                      'niryo_robot_rpi/GetAnalogIO')
 
     @staticmethod
     def set_io_mode_request(pin, value):
         pin_name = pin.value if isinstance(pin, PinID) else pin
-        return roslibpy.ServiceRequest({"pin": pin_name, "value": value.value})
+        return roslibpy.ServiceRequest({"name": pin_name, "mode": value.value})
 
     @staticmethod
     def set_io_state_request(pin, value):
         pin_name = pin.value if isinstance(pin, PinID) else pin
-        return roslibpy.ServiceRequest({"pin": pin_name, "value": value.value})
+        pin_value = value.value if isinstance(value, PinState) else value
+        return roslibpy.ServiceRequest({"name": pin_name, "value": pin_value})
 
     @staticmethod
     def get_io_request(pin):
         pin_name = pin.value if isinstance(pin, PinID) else pin
-        return roslibpy.ServiceRequest({"pin": pin_name})
+        return roslibpy.ServiceRequest({"name": pin_name})

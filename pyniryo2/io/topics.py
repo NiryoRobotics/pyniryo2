@@ -1,5 +1,5 @@
 from pyniryo2.io.enums import PinMode
-from pyniryo2.io.objects import DigitalPinObject
+from pyniryo2.io.objects import DigitalPinObject, AnalogPinObject
 from pyniryo2.niryo_topic import NiryoTopic
 
 
@@ -31,8 +31,8 @@ def digital_io_state_topic_conversion(msg):
 
 
 def analog_io_state_topic_conversion(msg):
-    analog_inputs = [DigitalPinObject(str(ai['name']), PinMode.INPUT, ai['value']) for ai in msg["analog_inputs"]]
-    analog_outputs = [DigitalPinObject(str(ao['name']), PinMode.OUTPUT, ao['value']) for ao in msg["analog_outputs"]]
+    analog_inputs = [AnalogPinObject(str(ai['name']), PinMode.INPUT, ai['value']) for ai in msg["analog_inputs"]]
+    analog_outputs = [AnalogPinObject(str(ao['name']), PinMode.OUTPUT, ao['value']) for ao in msg["analog_outputs"]]
     return analog_inputs + analog_outputs
 
 

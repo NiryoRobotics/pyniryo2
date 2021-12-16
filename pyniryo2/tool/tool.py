@@ -337,7 +337,7 @@ class Tool(RobotCommander):
         :type pin_id: PinID
         :rtype: None
         """
-        self._check_enum_belonging(pin_id, PinID)
+        self._check_instance(pin_id, (PinID, str))
 
         req = self._services.equip_electromagnet_service_request()
         self._services.equip_electromagnet_service.call(req)
@@ -370,7 +370,7 @@ class Tool(RobotCommander):
         :rtype: None
         """
         if pin_id is not None:
-            self._check_enum_belonging(pin_id, PinID)
+            self._check_instance(pin_id, (PinID, str))
 
         if self.get_current_tool_id() != ToolID.ELECTROMAGNET_1:
             if pin_id:
@@ -409,7 +409,7 @@ class Tool(RobotCommander):
         :rtype: None
         """
         if pin_id is not None:
-            self._check_enum_belonging(pin_id, PinID)
+            self._check_instance(pin_id, (PinID, str))
 
         if self.get_current_tool_id() != ToolID.ELECTROMAGNET_1:
             if pin_id:

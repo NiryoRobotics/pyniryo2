@@ -16,9 +16,9 @@ from pyniryo2.tool.enums import ToolID
 from pyniryo2.arm.arm import Arm
 
 from pyniryo2.io.io import IO
-from pyniryo2.io.enums import PinID, PinState, PinMode
+from pyniryo2.io.enums import PinID, PinMode
 
-robot_ip_address = "127.0.0.1"
+robot_ip_address = "192.168.1.98"
 port = 9090
 
 test_order = ["test_tool_id",
@@ -40,7 +40,7 @@ class BaseTest(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        cls.client.terminate()
+        cls.client.close()
 
     @staticmethod
     def assertAlmostEqualVector(a, b, decimal=1):
@@ -87,21 +87,19 @@ class TestTool(BaseTest):
         with self.assertRaises(RobotCommandException):
             self.tool.setup_electromagnet(0)
 
-        pin = PinID.DO4 if self.tool.client.hardware_version == 'ned2' else PinID.GPIO_1A
-        self.assertIsNone(self.io.set_pin_mode(pin, PinMode.INPUT))
+        pin = PinID.DO2 if self.tool.client.hardware_version == 'ned2' else PinID.GPIO_1A
+        if self.tool.client.hardware_version != 'ned2':
+            self.assertIsNone(self.io.set_pin_mode(pin, PinMode.INPUT))
         self.assertIsNone(self.tool.setup_electromagnet(pin))
         self.assertEqual(self.tool.get_current_tool_id(), ToolID.ELECTROMAGNET_1)
         self.assertEqual(self.io.get_digital_io_state(pin).mode, PinMode.OUTPUT)
 
         self.assertIsNone(self.tool.activate_electromagnet())
-        self.assertEqual(self.io.digital_read(pin), PinState.HIGH)
+        time.sleep(0.5)
+        self.assertEqual(self.io.digital_read(pin), True)
         self.assertIsNone(self.tool.deactivate_electromagnet())
-        self.assertEqual(self.io.digital_read(pin), PinState.LOW)
-
-        self.assertIsNone(self.tool.activate_electromagnet(pin))
-        self.assertEqual(self.io.digital_read(pin), PinState.HIGH)
-        self.assertIsNone(self.tool.deactivate_electromagnet(pin))
-        self.assertEqual(self.io.digital_read(pin), PinState.LOW)
+        time.sleep(0.5)
+        self.assertEqual(self.io.digital_read(pin), False)
 
         tool_event = Event()
         tool_event.clear()
@@ -111,17 +109,17 @@ class TestTool(BaseTest):
 
         self.assertIsNone(self.tool.activate_electromagnet(callback=tool_callback))
         self.assertTrue(tool_event.wait(10))
-        self.assertEqual(self.io.digital_read(pin), PinState.HIGH)
+        self.assertEqual(self.io.digital_read(pin), True)
         tool_event.clear()
 
         self.assertIsNone(self.tool.deactivate_electromagnet(callback=tool_callback))
         self.assertTrue(tool_event.wait(10))
-        self.assertEqual(self.io.digital_read(pin), PinState.LOW)
+        self.assertEqual(self.io.digital_read(pin), False)
 
         self.assertIsNone(self.tool.grasp_with_tool())
-        self.assertEqual(self.io.digital_read(pin), PinState.HIGH)
+        self.assertEqual(self.io.digital_read(pin), True)
         self.assertIsNone(self.tool.release_with_tool())
-        self.assertEqual(self.io.digital_read(pin), PinState.LOW)
+        self.assertEqual(self.io.digital_read(pin), False)
 
         # Exceptions
         with self.assertRaises(RobotCommandException):

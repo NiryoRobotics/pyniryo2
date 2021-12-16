@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import time
 import unittest
-import roslibpy
 from threading import Event
 
 from pyniryo2.exceptions import RobotCommandException

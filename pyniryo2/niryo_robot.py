@@ -103,7 +103,7 @@ class NiryoRobot(object):
         :rtype: None
         """
         if self.__client is not None and self.__client.is_connected:
-            self.__client.terminate()
+            self.__client.close()
 
     @staticmethod
     def wait(duration):

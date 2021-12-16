@@ -1,6 +1,7 @@
 import roslibpy.actionlib
 
 from pyniryo2.tool.enums import ToolCommand, ToolID
+from pyniryo2.io.enums import PinID
 from pyniryo2.exceptions import RobotCommandException
 
 
@@ -38,7 +39,10 @@ class ToolActions(object):
 
     def get_electromagnet_action_goal(self, tool_cmd, gpio=None):
         self._check_instance(tool_cmd, ToolCommand)
-        pin = -1 if gpio is None else gpio.value
+        if gpio is not None:
+            self._check_instance(gpio, (PinID, str))
+
+        pin = "" if gpio is None else gpio.value if isinstance(gpio, PinID) else gpio
 
         cmd = {'cmd_type': tool_cmd.value, 'tool_id': ToolID.ELECTROMAGNET_1.value,
                'activate': tool_cmd == ToolCommand.ACTIVATE_DIGITAL_IO, 'gpio': pin}

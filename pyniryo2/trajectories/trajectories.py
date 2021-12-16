@@ -30,7 +30,7 @@ class Trajectories(RobotCommander):
 
         :param trajectory_name: name of the trajectory
         :type trajectory_name: str
-        :raises NiryoRosWrapperException: If trajectory file doesn't exist TODO: what does it raise?
+        :raises NiryoRosWrapperException: Raise RobotCommandException if trajectory file doesn't exist
         :return: list of [x, y, z, qx, qy, qz, qw]
         :rtype: list[list[float]]
         """
@@ -39,6 +39,7 @@ class Trajectories(RobotCommander):
         req = self._services.get_trajectory_from_name_request(trajectory_name)
         response = self._services.get_trajectory_from_name_service.call(req)
         self._check_result_status(response)
+
         pose_quat_list = self._services.trajectory_dict_to_list(response["list_poses"])
         return pose_quat_list
 

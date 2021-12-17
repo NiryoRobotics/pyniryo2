@@ -26,7 +26,7 @@ class BaseTest(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        cls.client.terminate()
+        cls.client.close()
 
 
 # noinspection PyTypeChecker

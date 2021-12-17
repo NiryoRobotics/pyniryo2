@@ -51,7 +51,7 @@ class BaseTest(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         cls.led_ring.turn_off()
-        cls.client.terminate()
+        cls.client.close()
 
 
 # noinspection PyTypeChecker

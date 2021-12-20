@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import unittest
-import roslibpy
 from threading import Event
 import numpy as np
 

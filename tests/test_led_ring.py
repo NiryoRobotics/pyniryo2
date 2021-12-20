@@ -4,8 +4,8 @@ import time
 import random
 from threading import Event
 
-from pyniryo2.led_ring import AnimationMode, LedMode
-from pyniryo2.led_ring import LedRing
+from pyniryo2.led_ring.enums import AnimationMode, LedMode
+from pyniryo2.led_ring.led_ring import LedRing
 from pyniryo2.exceptions import RobotCommandException
 from pyniryo2.niryo_ros import NiryoRos
 

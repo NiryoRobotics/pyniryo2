@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import time
 import unittest
-import roslibpy
 
 from pyniryo2.exceptions import RobotCommandException
 from pyniryo2.niryo_ros import NiryoRos

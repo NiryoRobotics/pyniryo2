@@ -2,6 +2,9 @@
 import roslibpy
 import socket
 import time
+from threading import Thread
+
+from pyniryo2.niryo_topic import NiryoTopic
 
 
 class NiryoRosTimeoutException(Exception):
@@ -28,31 +31,30 @@ class NiryoRos(roslibpy.Ros):
         self.ip_address = ip_address
         super(NiryoRos, self).__init__(host=ip_address, port=port)
 
-        self.__connected = False
+        self.should_run = False
         self.__pyniryo2_ip = socket.gethostbyname(socket.gethostname())
 
-        self.__pyniryo_ping_service = roslibpy.Service(self, '/niryo_robot_pyniryo2/ping', 'niryo_robot_msgs/GetString')
+        self.__ping_loop_thread = Thread(target=self.__ping_loop)
+        self.__pyniryo_ping_publisher = NiryoTopic(self, '/ping_pyniryo', 'std_msgs/Bool')
 
-        self.run()
-        time.sleep(0.1)
-        self.__pyniryo_ping_service.advertise(self.__ping_callback)
+        self.run(timeout=5)
+        self.__ping_loop_thread.start()
         self._hardware_version = self.get_param("/niryo_robot/hardware_version")
+        time.sleep(0.5)
 
-        #self.wait_for_connection()
-        time.sleep(2)
+    def close(self):
+        self.should_run = False
+        super(NiryoRos, self).close()
 
-    def wait_for_connection(self):
-        start_time = time.time()
-        while not self.__connected:
+    def terminate(self):
+        self.should_run = False
+        super(NiryoRos, self).terminate()
+
+    def __ping_loop(self):
+        self.should_run = True
+        while self.is_connected and self.should_run:
+            self.__pyniryo_ping_publisher.publish({'data': True})
             time.sleep(0.1)
-            if time.time() - start_time > 15:
-                raise NiryoRosTimeoutException(
-                    "Connection timeout on ip {} and port {}".format(self.ip_address, self.port))
-    #
-    def __ping_callback(self, _request, response):
-        response['value'] = self.__pyniryo2_ip
-        self.__connected = True
-        return True
 
     @property
     def hardware_version(self):

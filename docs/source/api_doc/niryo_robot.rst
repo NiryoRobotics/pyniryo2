@@ -20,7 +20,7 @@ This section reference all existing functions of the NiryoRobot client, which in
 - Access to the entire PyNiryo2 API
 
 All functions to control the robot are accessible via an instance of
-the class :ref:`NiryoRobot` ::
+the class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::
 
 
     robot = NiryoRobot(<robot_ip_address>)
@@ -29,7 +29,7 @@ the class :ref:`NiryoRobot` ::
     robot.wait(2) # wait 2 seconds
     robot.end()
 
-See examples on :ref:`Examples Section <Examples: Basics>`
+See examples on :ref:`Examples Section <source/examples/examples_basics:Examples: Basics>`
 
 
 List of functions subsections:

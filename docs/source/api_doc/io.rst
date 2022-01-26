@@ -1,8 +1,8 @@
 I/Os
 =====================================
 
-This file presents the different :ref:`I/Os - Command functions`,
-:ref:`I/Os - Enums`, :ref:`I/Os - Niryo Topics` & :ref:`I/Os - Objects` available with the  Arm API
+This file presents the different :ref:`source/api_doc/io:I/Os - Command functions`,
+:ref:`source/api_doc/io:I/Os - Enums`, :ref:`source/api_doc/io:I/Os - Niryo Topics` & :ref:`source/api_doc/io:I/Os - Objects` available with the  Arm API
 
 
 I/Os - Command functions
@@ -19,7 +19,7 @@ This section reference all existing functions to control your robot, which inclu
 - Setting IOs value
 
 All functions to control the robot are accessible via an instance of
-the class :ref:`NiryoRobot` ::
+the class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::
 
 
     robot = NiryoRobot(<robot_ip_address>)
@@ -28,7 +28,7 @@ the class :ref:`NiryoRobot` ::
     robot.io.digital_write(PinID.GPIO_1A, PinState.HIGH)
     ...
 
-See examples on :ref:`Examples Section <Examples: Conveyor>`
+See examples on :ref:`Examples Section <source/examples/examples_conveyor:Examples: Conveyor>`
 
 List of functions subsections:
 
@@ -55,7 +55,7 @@ Read & Write functions
 I/Os - Niryo Topics
 ------------------------------------
 
-The use of these functions is explained in the :ref:`NiryoTopic` section.
+The use of these functions is explained in the :ref:`source/api_doc/niryo_topics:NiryoTopic` section.
 They allow the acquisition of data in real time by callbacks or by direct call.
 
 .. list-table:: I/O's Niryo Topics

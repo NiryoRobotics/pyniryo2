@@ -32,7 +32,7 @@ the class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::
     robot.tool.release_with_tool()
     ...
 
-See examples on :ref:`Examples Section <source/example/examples_tool_action:Examples: Tool Action>`
+See examples on :ref:`Examples Section <source/examples/examples_tool_action:Examples: Tool Action>`
 
 List of functions subsections:
 

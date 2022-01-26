@@ -9,6 +9,7 @@ Arm - Command functions
 
 .. automodule:: pyniryo2.arm.arm
    :members:
+   :noindex:
 
 
 This section reference all existing functions to control your robot arm, which include
@@ -118,7 +119,7 @@ List of enums:
     :members:
     :undoc-members:
     :member-order: bysource
-
+    :noindex:
 
 Arm - Objects
 ------------------------------------
@@ -127,3 +128,4 @@ Arm - Objects
     :members:
     :no-undoc-members:
     :member-order: bysource
+    :noindex:

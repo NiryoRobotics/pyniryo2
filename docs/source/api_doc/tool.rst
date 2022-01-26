@@ -10,6 +10,7 @@ Tool - Command Functions
 
 .. automodule:: pyniryo2.tool.tool
    :members:
+   :noindex:
 
 
 This section reference all existing functions to control your robot, which include
@@ -107,3 +108,4 @@ List of enums:
     :members:
     :undoc-members:
     :member-order: bysource
+    :noindex:

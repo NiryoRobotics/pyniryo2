@@ -9,6 +9,7 @@ Saved poses - Command functions
 
 .. automodule:: pyniryo2.saved_poses.saved_poses
    :members:
+   :noindex:
 
 This section reference all existing functions to control your robot, which include
 

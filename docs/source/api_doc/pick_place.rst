@@ -9,6 +9,7 @@ Pick & Place - Command functions
 
 .. automodule:: pyniryo2.pick_place.pick_place
    :members:
+   :noindex:
 
 This section reference all existing functions to control your robot, which include
 

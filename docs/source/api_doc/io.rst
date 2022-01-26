@@ -10,6 +10,7 @@ I/Os - Command functions
 
 .. automodule:: pyniryo2.io.io
    :members:
+   :noindex:
 
 This section reference all existing functions to control your robot, which include
 
@@ -84,6 +85,7 @@ List of enums:
     :members:
     :undoc-members:
     :member-order: bysource
+    :noindex:
 
 I/Os - Objects
 ------------------------------------
@@ -92,3 +94,4 @@ I/Os - Objects
     :members:
     :undoc-members:
     :member-order: bysource
+    :noindex:

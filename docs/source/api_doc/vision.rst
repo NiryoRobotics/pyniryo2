@@ -10,6 +10,7 @@ Vision - Command functions
 
 .. automodule:: pyniryo2.vision.vision
    :members:
+   :noindex:
 
 
 This section reference all existing functions to control your robot arm, which include
@@ -97,6 +98,7 @@ List of enums:
     :members:
     :undoc-members:
     :member-order: bysource
+    :noindex:
 
 
 Vision - Namedtuple
@@ -106,3 +108,4 @@ Vision - Namedtuple
     :members:
     :no-undoc-members:
     :member-order: bysourceclass
+    :noindex:

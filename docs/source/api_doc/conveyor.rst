@@ -10,6 +10,7 @@ Conveyor - Command functions
 
 .. automodule:: pyniryo2.conveyor.conveyor
    :members:
+   :noindex:
 
 This section reference all existing functions to control your robot, which include
 
@@ -73,6 +74,7 @@ List of enums:
     :undoc-members:
     :exclude-members:
     :member-order: bysource
+    :noindex:
 
 
 Conveyor - Namedtuple
@@ -82,3 +84,4 @@ Conveyor - Namedtuple
     :members:
     :no-undoc-members:
     :member-order: bysource
+    :noindex:

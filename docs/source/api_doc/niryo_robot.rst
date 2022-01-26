@@ -10,6 +10,7 @@ NiryoRobot - Command functions
 
 .. automodule:: pyniryo2.niryo_robot
    :members:
+   :noindex:
 
 This section reference all existing functions of the NiryoRobot client, which include
 
@@ -73,7 +74,7 @@ List of enums:
     :members:
     :undoc-members:
     :member-order: bysource
-
+    :noindex:
 
 Globals Objects
 ------------------------------------
@@ -84,3 +85,4 @@ Globals Objects
     :members:
     :no-undoc-members:
     :member-order: bysource
+    :noindex:

@@ -9,6 +9,7 @@ Trajectories - Command functions
 
 .. automodule:: pyniryo2.trajectories.trajectories
    :members:
+   :noindex:
 
 This section reference all existing functions to control your robot, which include
 

@@ -1,7 +1,7 @@
 Trajectories
 =====================================
 
-This file presents the different :ref:`Trajectories - Command functions` available with the Trajectories API
+This file presents the different :ref:`source/api_doc/trajectories:Trajectories - Command functions` available with the Trajectories API
 
 
 Trajectories - Command functions
@@ -17,7 +17,7 @@ This section reference all existing functions to control your robot, which inclu
 - Managing saved trajectories
 
 All functions to control the robot are accessible via an instance of
-the class :ref:`NiryoRobot` ::
+the class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::
 
 
     robot = NiryoRobot(<robot_ip_address>)
@@ -27,7 +27,7 @@ the class :ref:`NiryoRobot` ::
         robot.trajectories.execute_trajectory_saved(trajectories[0])
     ...
 
-See examples on :ref:`Examples Section <Examples: Movement>`
+See examples on :ref:`Examples Section <source/examples/examples_movement:Examples: Movement>`
 
 List of functions subsections:
 

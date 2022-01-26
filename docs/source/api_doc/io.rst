@@ -39,16 +39,17 @@ List of functions subsections:
 State functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: IO
-    :members: digital_io_states, get_digital_io_states, get_digital_io_state, set_pin_mode
-    :member-order: bysource
+.. autoproperty:: IO.digital_io_states
+.. autoproperty:: IO.get_digital_io_states
+.. automethod:: IO.get_digital_io_state
+
 
 Read & Write functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: IO
-    :members: set_pin_mode, digital_write, digital_read
-    :member-order: bysource
+.. automethod:: IO.set_pin_mode
+.. automethod:: IO.digital_write
+.. automethod:: IO.digital_read
 
 I/Os - Niryo Topics
 ------------------------------------

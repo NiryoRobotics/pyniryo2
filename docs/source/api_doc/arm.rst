@@ -40,33 +40,38 @@ List of functions subsections:
 Calibration functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: Arm
-    :members: calibrate, calibrate_auto, request_new_calibration, reset_calibration, need_calibration
-    :member-order: bysource
+.. automethod:: Arm.calibrate
+.. automethod:: Arm.calibrate_auto
+.. automethod:: Arm.request_new_calibration
+.. automethod:: Arm.reset_calibration
+.. automethod:: Arm.need_calibration
 
 
 Robot status functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: Arm
-    :members: hardware_status, joints_state, get_joints, joints, pose, get_pose, get_pose_quat
-    :member-order: bysource
+.. autoproperty:: Arm.hardware_status
+.. autoproperty:: Arm.joints_state
+.. automethod:: Arm.get_joints
+.. autoproperty:: Arm.joints
+.. autoproperty:: Arm.pose
+.. autoproperty:: Arm.get_pose
+.. automethod:: Arm.get_pose_quat
 
 
 Learning mode functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: Arm
-    :members:  learning_mode, get_learning_mode, set_learning_mode
-    :member-order: bysource
+.. autoproperty:: Arm.learning_mode
+.. automethod:: Arm.get_learning_mode
+.. automethod:: Arm.set_learning_mode
 
 
 Kinematics functions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: Arm
-    :members: forward_kinematics, inverse_kinematics
-    :member-order: bysource
+.. automethod:: Arm.forward_kinematics
+.. automethod:: Arm.inverse_kinematics
 
 
 Arm - Niryo Topics

@@ -1,8 +1,8 @@
 Arm
 =====================================
 
-This file presents the different :ref:`Arm - Command functions`,
-:ref:`Arm - Enums`, :ref:`Arm - Niryo Topics` & :ref:`Arm - Objects` available with the  Arm API
+This file presents the different :ref:`source/api_doc/arm:Arm - Command functions`,
+:ref:`source/api_doc/arm:Arm - Enums`, :ref:`source/api_doc/arm:Arm - Niryo Topics` & :ref:`source/api_doc/arm:Arm - Objects` available with the  Arm API
 
 Arm - Command functions
 ------------------------------------
@@ -20,7 +20,7 @@ This section reference all existing functions to control your robot arm, which i
 - Calibrating the robot
 
 All functions to control the robot are accessible via an instance of
-the class :ref:`NiryoRobot` ::
+the class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::
 
 
     robot = NiryoRobot(<robot_ip_address>)
@@ -29,7 +29,7 @@ the class :ref:`NiryoRobot` ::
     robot.arm.move_joints([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
     ...
 
-See examples on :ref:`Examples Section <Examples: Basics>`
+See examples on :ref:`Examples Section <source/examples/examples_basics:Examples: Basics>`
 
 List of functions subsections:
 
@@ -78,7 +78,7 @@ Kinematics functions
 Arm - Niryo Topics
 ------------------------------------
 
-The use of these functions is explained in the :ref:`NiryoTopic` section.
+The use of these functions is explained in the :ref:`source/api_doc/niryo_topics:NiryoTopic` section.
 They allow the acquisition of data in real time by callbacks or by direct call.
 
 .. list-table:: Arm's Niryo Topics

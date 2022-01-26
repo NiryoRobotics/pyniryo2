@@ -2,7 +2,7 @@ import sys
 
 import os
 
-sys.path.append(os.path.abspath('../pyniryo2'))
+sys.path.append(os.path.abspath('..'))
 # Kindda hack the import to import shared config file
 sys.path.append(os.path.abspath('.'))
 from front_end.config import shared_conf
@@ -10,7 +10,7 @@ from front_end.config import base_conf
 
 # -- Project information -----------------------------------------------------
 
-project = u'PyNiryo'
+project = u'PyNiryo2'
 copyright = shared_conf.copyright
 author = shared_conf.author
 

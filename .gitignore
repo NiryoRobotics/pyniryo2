@@ -1,6 +1,25 @@
-/.idea
-/dist
-/build
-/pyniryo2.egg-info
-/docs/_build
+*.log
 *.pyc
+.cache/
+.coverage
+.idea/
+.vscode/
+*.egg-info/
+build/
+dist/
+docs/build/
+docs/_build
+venv/
+wheelhouse/
+
+/examples/dev/
+dev/
+
+# Mac Stuff
+.DS_Store
+
+# -- Docs
+_build/
+*.mo
+docs_build/
+generated_pdfs/

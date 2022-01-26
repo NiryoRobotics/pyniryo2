@@ -1,8 +1,8 @@
 Tool
 =====================================
 
-This file presents the different :ref:`Tool - Command functions`,
-:ref:`Tool - Enums` & :ref:`Tool - Niryo Topics` available with the Tool API
+This file presents the different :ref:`source/api_doc/tool:Tool - Command functions`,
+:ref:`source/api_doc/tool:Tool - Enums` & :ref:`source/api_doc/tool:Tool - Niryo Topics` available with the Tool API
 
 
 Tool - Command Functions
@@ -22,7 +22,7 @@ This section reference all existing functions to control your robot, which inclu
 - Management of the TCP
 
 All functions to control the robot are accessible via an instance of
-the class :ref:`NiryoRobot` ::
+the class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::
 
 
     robot = NiryoRobot(<robot_ip_address>)
@@ -32,7 +32,7 @@ the class :ref:`NiryoRobot` ::
     robot.tool.release_with_tool()
     ...
 
-See examples on :ref:`Examples Section <Examples: Tool Action>`
+See examples on :ref:`Examples Section <source/example/examples_tool_action:Examples: Tool Action>`
 
 List of functions subsections:
 
@@ -44,42 +44,42 @@ List of functions subsections:
 Tool functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: Tool
-    :members: update_tool, tool, get_current_tool_id, grasp_with_tool, release_with_tool
-    :member-order: bysource
+.. automethod:: Tool.update_tool
+.. autoproperty:: Tool.tool
+.. autoproperty:: Tool.get_current_tool_id
+.. automethod:: Tool.grasp_with_tool
+.. automethod:: Tool.release_with_tool
 
 Grippers functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: Tool
-    :members: open_gripper, close_gripper
-    :member-order: bysource
+.. automethod:: Tool.open_gripper
+.. automethod:: Tool.close_gripper
 
 Vacuum pump functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: Tool
-    :members: pull_air_vacuum_pump, push_air_vacuum_pump
-    :member-order: bysource
+.. automethod:: Tool.pull_air_vacuum_pump
+.. automethod:: Tool.push_air_vacuum_pump
 
 Electromagnet functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: Tool
-    :members: setup_electromagnet, activate_electromagnet, deactivate_electromagnet
-    :member-order: bysource
+.. automethod:: Tool.setup_electromagnet
+.. automethod:: Tool.activate_electromagnet
+.. automethod:: Tool.deactivate_electromagnet
 
 TCP functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: Tool
-    :members: enable_tcp, set_tcp, reset_tcp
-    :member-order: bysource
+.. automethod:: Tool.enable_tcp
+.. automethod:: Tool.set_tcp
+.. automethod:: Tool.reset_tcp
 
 Tool - Niryo Topics
 ------------------------------------
 
-The use of these functions is explained in the :ref:`NiryoTopic` section.
+The use of these functions is explained in the :ref:`source/api_doc/niryo_topics:NiryoTopic` section.
 They allow the acquisition of data in real time by callbacks or by direct call.
 
 .. list-table:: Tool's Niryo Topics

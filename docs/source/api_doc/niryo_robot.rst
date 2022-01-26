@@ -43,16 +43,22 @@ NiryoRobot functions
 
 * :class:`~.niryo_robot.NiryoRobot`
 
-.. autoclass:: NiryoRobot
-    :members: run, end, wait, client
-    :member-order: bysource
+.. automethod:: NiryoRobot.run
+.. automethod:: NiryoRobot.end
+.. automethod:: NiryoRobot.wait
+.. autoproperty:: NiryoRobot.client
 
 NiryoRobot properties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: NiryoRobot
-    :members: arm, conveyor, io, pick_place, saved_poses, tool, trajectories, vision
-    :member-order: bysource
+.. autoproperty:: NiryoRobot.arm
+.. autoproperty:: NiryoRobot.conveyor
+.. autoproperty:: NiryoRobot.io
+.. autoproperty:: NiryoRobot.pick_place
+.. autoproperty:: NiryoRobot.saved_poses
+.. autoproperty:: NiryoRobot.tool
+.. autoproperty:: NiryoRobot.trajectories
+.. autoproperty:: NiryoRobot.vision
 
 
 Globals Enums
@@ -63,7 +69,7 @@ List of enums:
 * :class:`~.enums.RobotErrors`
 * :class:`~.enums.ArmMoveCommandType`
 
-.. automodule:: enums
+.. automodule:: pyniryo2.enums
     :members:
     :undoc-members:
     :member-order: bysource
@@ -74,7 +80,7 @@ Globals Objects
 
 * :class:`~.objects.PoseObject`
 
-.. automodule:: objects
+.. automodule:: pyniryo2.objects
     :members:
     :no-undoc-members:
     :member-order: bysource

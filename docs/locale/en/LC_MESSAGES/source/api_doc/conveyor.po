@@ -1,0 +1,285 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Niryo All rights reserved. No part of this document
+# may be reproduced or transmitted in any form or by any means without prior
+# written consent of Niryo SAS
+# This file is distributed under the same license as the PyNiryo2 package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyNiryo2 v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/api_doc/conveyor.rst:2
+msgid "Conveyor"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:4
+msgid ""
+"This file presents the different :ref:`source/api_doc/conveyor:Conveyor -"
+" Command functions`, :ref:`source/api_doc/conveyor:Conveyor - Enums`, "
+":ref:`source/api_doc/conveyor:Conveyor - Niryo Topics` & "
+":ref:`source/api_doc/conveyor:Conveyor - Namedtuple` available with the  "
+"Arm API"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:9
+msgid "Conveyor - Command functions"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:15
+msgid ""
+"This section reference all existing functions to control your robot, "
+"which include"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:17
+msgid "Controlling conveyors"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:19
+msgid ""
+"All functions to control the robot are accessible via an instance of the "
+"class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:28
+msgid ""
+"See examples on :ref:`Examples Section "
+"<source/examples/examples_conveyor:Examples: Conveyor>`"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:30
+msgid "List of functions subsections:"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:37
+msgid "Conveyor functions"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.set_conveyor:1
+msgid ""
+"Scan if a conveyor is plugged or not on a can bus.  If a new conveyor is "
+"detected, activate it and return its conveyor ID.  If a conveyor is "
+"already set, return its ID"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:4
+#: pyniryo2.conveyor.conveyor.Conveyor.run_conveyor:3
+#: pyniryo2.conveyor.conveyor.Conveyor.set_conveyor:5
+#: pyniryo2.conveyor.conveyor.Conveyor.stop_conveyor:3
+#: pyniryo2.conveyor.conveyor.Conveyor.unset_conveyor:3
+msgid "Example: ::"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.set_conveyor:13
+msgid ":return : New conveyor ID :rtype: ConveyorID"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.unset_conveyor:1
+msgid "Remove and unset a conveyor previously plugged and set"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor
+#: pyniryo2.conveyor.conveyor.Conveyor.run_conveyor
+#: pyniryo2.conveyor.conveyor.Conveyor.stop_conveyor
+#: pyniryo2.conveyor.conveyor.Conveyor.unset_conveyor
+msgid "Parameters"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.unset_conveyor:10
+msgid "Basically, ConveyorID.ID_1 or ConveyorID.ID_2"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:58 of
+#: pyniryo2.conveyor.conveyor.Conveyor.control_conveyor
+#: pyniryo2.conveyor.conveyor.Conveyor.conveyors
+#: pyniryo2.conveyor.conveyor.Conveyor.get_conveyors_feedback
+#: pyniryo2.conveyor.conveyor.Conveyor.run_conveyor
+#: pyniryo2.conveyor.conveyor.Conveyor.stop_conveyor
+#: pyniryo2.conveyor.conveyor.Conveyor.unset_conveyor
+msgid "Return type"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.run_conveyor:1
+msgid "Run conveyor at id 'conveyor_id'"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.run_conveyor:12
+msgid "The conveyor id"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.run_conveyor:14
+msgid "speed percentage between 0% and 100%"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.run_conveyor:16
+msgid "direction = ConveyorDirection.FORWARD"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.stop_conveyor:1
+msgid "Stop conveyor at id 'conveyor_id'"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:1
+msgid ""
+"Control conveyor associated to conveyor_id. Then stops it if "
+"bool_control_on is False, else refreshes it speed and direction"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:26
+msgid "# Example 2"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:18
+msgid ""
+"# Set the conveyor and get its id, control it and then stop it after 3 "
+"seconds # It this second example, we control the conveyor at a speed of "
+"30% and in the backward direction"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:21
+msgid "import time"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:23
+msgid ""
+"conveyor_id = conveyor.set_conveyor() "
+"conveyor.control_conveyor(conveyor_id, True, 30, "
+"ConveyorDirection.BACKWARD.value) time.sleep(3) "
+"conveyor.stop_conveyor(conveyor_id)"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:30
+msgid "True for activate, False for deactivate"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:32
+msgid "New speed which is a percentage of maximum speed (0% to 100%)"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:34
+msgid "ConveyorDirection.FORWARD.value, ConveyorDirection.BACKWARD.value"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.get_conveyors_feedback:1
+msgid ""
+"Returns the conveyors feedback client which can be used synchronously or "
+"asynchronously to obtain the conveyors feedback: (conveyor_id, "
+"connection_state, running, speed, direction)"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.get_conveyors_feedback:4
+msgid "Examples: ::"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.conveyors
+#: pyniryo2.conveyor.conveyor.Conveyor.get_conveyors_feedback
+msgid "Returns"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.conveyors:3
+#: pyniryo2.conveyor.conveyor.Conveyor.get_conveyors_feedback:18
+msgid "namedtuple[conveyor_id, running, speed, direction]"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.conveyors:1
+msgid "Return list of registered conveyors"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:45
+msgid "Conveyor - Niryo Topics"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:47
+msgid ""
+"The use of these functions is explained in the "
+":ref:`source/api_doc/niryo_topics:NiryoTopic` section. They allow the "
+"acquisition of data in real time by callbacks or by direct call."
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:50
+msgid "Conveyors's Niryo Topics"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:56
+msgid "Name"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:57
+msgid "Function"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:59
+msgid "``/niryo_robot/conveyor/feedback``"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:60
+msgid ":attr:`~.conveyor.Conveyor.get_conveyors_feedback`"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:61
+msgid ":exc:`list` [ :class:`~.conveyor.objects.ConveyorInfo` ]"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:64
+msgid "Conveyor - Enums"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:66
+msgid "List of enums:"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:68
+msgid ":class:`~.conveyor.objects.ConveyorID`"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:69
+msgid ":class:`~.conveyor.objects.ConveyorDirection`"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:70
+msgid ":class:`~.conveyor.objects.ConveyorStatus`"
+msgstr ""
+
+#: of pyniryo2.conveyor.enums.ConveyorID:1
+msgid "Enumeration of the different Conveyor Ids"
+msgstr ""
+
+#: of pyniryo2.conveyor.enums.ConveyorDirection:1
+msgid "Enumeration of the directions of the conveyor"
+msgstr ""
+
+#: of pyniryo2.conveyor.enums.ConveyorStatus:1
+msgid "Enumeration of the different Conveyor status"
+msgstr ""
+
+#: ../../source/api_doc/conveyor.rst:81
+msgid "Conveyor - Namedtuple"
+msgstr ""
+
+#: ../../docstring of pyniryo2.conveyor.objects.ConveyorInfo.conveyor_id:1
+msgid "Alias for field number 0"
+msgstr ""
+
+#: ../../docstring of pyniryo2.conveyor.objects.ConveyorInfo.direction:1
+msgid "Alias for field number 3"
+msgstr ""
+
+#: ../../docstring of pyniryo2.conveyor.objects.ConveyorInfo.running:1
+msgid "Alias for field number 1"
+msgstr ""
+
+#: ../../docstring of pyniryo2.conveyor.objects.ConveyorInfo.speed:1
+msgid "Alias for field number 2"
+msgstr ""
+

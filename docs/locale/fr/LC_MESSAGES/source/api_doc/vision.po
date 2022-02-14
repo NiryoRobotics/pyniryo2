@@ -1,0 +1,472 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Niryo All rights reserved. No part of this document
+# may be reproduced or transmitted in any form or by any means without prior
+# written consent of Niryo SAS
+# This file is distributed under the same license as the PyNiryo2 package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyNiryo2 v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/api_doc/vision.rst:2
+msgid "Vision"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:4
+msgid ""
+"This file presents the different :ref:`source/api_doc/vision:Vision - "
+"Command functions`, :ref:`source/api_doc/vision:Vision - Enums`, "
+":ref:`source/api_doc/vision:Vision - Niryo Topics` & "
+":ref:`source/api_doc/vision:Vision - NamedTuple` available with the "
+"Vision API"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:9
+msgid "Vision - Command functions"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:16
+msgid ""
+"This section reference all existing functions to control your robot arm, "
+"which include"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:18
+msgid "Getting camera image"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:19
+msgid "Detecting objects"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:20
+msgid "Managing workspaces"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:22
+msgid ""
+"All functions to control the robot are accessible via an instance of the "
+"class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:32
+msgid ""
+"See examples on :ref:`Examples Section "
+"<source/examples/examples_vision:Examples: Vision>`"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:34
+msgid "List of functions subsections:"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:42
+msgid "Camera functions"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_img_compressed:1
+msgid ""
+"Get image from video stream in a compressed format. Use "
+"``uncompress_image`` from the vision package to uncompress it"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_camera_intrinsics:4
+#: pyniryo2.vision.vision.Vision.get_image_parameters:14
+#: pyniryo2.vision.vision.Vision.get_img_compressed:4
+msgid "Examples: ::"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.detect_object
+#: pyniryo2.vision.vision.Vision.get_image_parameters
+#: pyniryo2.vision.vision.Vision.get_img_compressed
+#: pyniryo2.vision.vision.Vision.get_target_pose_from_cam
+#: pyniryo2.vision.vision.Vision.get_target_pose_from_rel
+#: pyniryo2.vision.vision.Vision.move_to_object
+#: pyniryo2.vision.vision.Vision.vision_pick
+msgid "Returns"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_img_compressed:14
+msgid "string containing a JPEG compressed image"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:86 of
+#: pyniryo2.vision.vision.Vision.delete_workspace
+#: pyniryo2.vision.vision.Vision.detect_object
+#: pyniryo2.vision.vision.Vision.get_camera_intrinsics
+#: pyniryo2.vision.vision.Vision.get_image_parameters
+#: pyniryo2.vision.vision.Vision.get_img_compressed
+#: pyniryo2.vision.vision.Vision.get_target_pose_from_cam
+#: pyniryo2.vision.vision.Vision.get_target_pose_from_rel
+#: pyniryo2.vision.vision.Vision.get_workspace_list
+#: pyniryo2.vision.vision.Vision.get_workspace_ratio
+#: pyniryo2.vision.vision.Vision.move_to_object
+#: pyniryo2.vision.vision.Vision.save_workspace_from_points
+#: pyniryo2.vision.vision.Vision.save_workspace_from_robot_poses
+#: pyniryo2.vision.vision.Vision.set_brightness
+#: pyniryo2.vision.vision.Vision.set_contrast
+#: pyniryo2.vision.vision.Vision.set_saturation
+#: pyniryo2.vision.vision.Vision.vision_pick
+msgid "Return type"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_camera_intrinsics:1
+msgid ""
+"Get calibration object: camera intrinsics, distortions coefficients The "
+"topic return a namedtuple(intrinsics: list[list[float]], distortion: "
+"list[list[float]])"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_image_parameters:1
+msgid ""
+"Return the NiryoTopic to get last stream image parameters: Brightness "
+"factor, Contrast factor, Saturation factor. The topic return a "
+"namedtuple(brightness_factor: float, contrast_factor: float, "
+"saturation_factor: float)"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_image_parameters:5
+msgid ""
+"Brightness factor: How much to adjust the brightness. 0.5 will give a "
+"darkened image, 1 will give the original image while 2 will enhance the "
+"brightness by a factor of 2."
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_image_parameters:8
+msgid ""
+"Contrast factor: A factor of 1 gives original image. Making the factor "
+"towards 0 makes the image greyer, while factor>1 increases the contrast "
+"of the image."
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_image_parameters:11
+msgid ""
+"Saturation factor: 0 will give a black and white image, 1 will give the "
+"original image while 2 will enhance the saturation by a factor of 2."
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_image_parameters:29
+msgid ""
+"ImageParameters namedtuple containing the brightness factor, contrast "
+"factor and saturation factor."
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.set_brightness:1
+msgid "Modify image brightness"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.delete_workspace
+#: pyniryo2.vision.vision.Vision.detect_object
+#: pyniryo2.vision.vision.Vision.get_target_pose_from_cam
+#: pyniryo2.vision.vision.Vision.get_target_pose_from_rel
+#: pyniryo2.vision.vision.Vision.get_workspace_ratio
+#: pyniryo2.vision.vision.Vision.move_to_object
+#: pyniryo2.vision.vision.Vision.save_workspace_from_points
+#: pyniryo2.vision.vision.Vision.save_workspace_from_robot_poses
+#: pyniryo2.vision.vision.Vision.set_brightness
+#: pyniryo2.vision.vision.Vision.set_contrast
+#: pyniryo2.vision.vision.Vision.set_saturation
+#: pyniryo2.vision.vision.Vision.vision_pick
+msgid "Parameters"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.set_brightness:3
+msgid ""
+"How much to adjust the brightness. 0.5 will give a darkened image, 1 will"
+" give the original image while 2 will enhance the brightness by a factor "
+"of 2."
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.set_contrast:1
+msgid "Modify image contrast"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.set_contrast:3
+msgid ""
+"A factor of 1 gives original image. Making the factor towards 0 makes the"
+" image greyer, while factor>1 increases the contrast of the image."
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.set_saturation:1
+msgid "Modify image saturation"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.set_saturation:3
+msgid ""
+"How much to adjust the saturation. 0 will give a black and white image, 1"
+" will give the original image while 2 will enhance the saturation by a "
+"factor of 2."
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:53
+msgid "Detection functions"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_target_pose_from_cam:1
+msgid ""
+"First detects the specified object using the camera and then returns the "
+"robot pose in which the object can be picked with the current tool"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.detect_object:3
+#: pyniryo2.vision.vision.Vision.get_target_pose_from_cam:4
+#: pyniryo2.vision.vision.Vision.get_target_pose_from_rel:7
+#: pyniryo2.vision.vision.Vision.move_to_object:3
+#: pyniryo2.vision.vision.Vision.vision_pick:20
+msgid "name of the workspace"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_target_pose_from_cam:6
+#: pyniryo2.vision.vision.Vision.get_target_pose_from_rel:9
+#: pyniryo2.vision.vision.Vision.move_to_object:5
+#: pyniryo2.vision.vision.Vision.vision_pick:22
+msgid "offset between the workspace and the target height"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.detect_object:5
+#: pyniryo2.vision.vision.Vision.get_target_pose_from_cam:8
+#: pyniryo2.vision.vision.Vision.move_to_object:7
+#: pyniryo2.vision.vision.Vision.vision_pick:24
+msgid "shape of the target"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.detect_object:7
+#: pyniryo2.vision.vision.Vision.get_target_pose_from_cam:10
+#: pyniryo2.vision.vision.Vision.move_to_object:9
+#: pyniryo2.vision.vision.Vision.vision_pick:26
+msgid "color of the target"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.detect_object:9
+#: pyniryo2.vision.vision.Vision.get_target_pose_from_cam:12
+msgid "object_found, object_pose, object_shape, object_color"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.vision_pick:1
+msgid ""
+"Picks the specified object from the workspace. This function has multiple"
+" phases:"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.vision_pick:3
+msgid "1. detect object using the camera"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.vision_pick:4
+msgid "2. prepare the current tool for picking"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.vision_pick:5
+msgid "3. approach the object"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.vision_pick:6
+msgid "4. move down to the correct picking pose"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.vision_pick:7
+msgid "5. actuate the current tool"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.vision_pick:8
+msgid "6. lift the object"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.vision_pick:10
+msgid "Example::"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.move_to_object:11
+#: pyniryo2.vision.vision.Vision.vision_pick:28
+msgid "object_found, object_shape, object_color"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.move_to_object:1
+msgid "Same as `get_target_pose_from_cam` but directly moves to this position"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.detect_object:1
+msgid "Detect object in workspace and return its pose and characteristics"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:62
+msgid "Workspace functions"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_target_pose_from_rel:1
+msgid ""
+"Given a pose (x_rel, y_rel, yaw_rel) relative to a workspace, this "
+"function returns the robot pose in which the current tool will be able to"
+" pick an object at this pose."
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_target_pose_from_rel:4
+msgid ""
+"The height_offset argument (in m) defines how high the tool will hover "
+"over the workspace. If height_offset = 0, the tool will nearly touch the "
+"workspace."
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_target_pose_from_rel:11
+msgid "x relative pose (between 0 and 1)"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_target_pose_from_rel:13
+msgid "y relative pose (between 0 and 1)"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_target_pose_from_rel:15
+msgid "Angle in radians"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_target_pose_from_rel:18
+msgid "target_pose"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.save_workspace_from_robot_poses:1
+msgid ""
+"Save workspace by giving the poses of the robot to point its 4 corners "
+"with the calibration Tip. Corners should be in the good order. Markers' "
+"pose will be deduced from these poses"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.save_workspace_from_robot_poses:5
+msgid "Poses should be either a list [x, y, z, roll, pitch, yaw] or a PoseObject"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_workspace_ratio:3
+#: pyniryo2.vision.vision.Vision.save_workspace_from_points:4
+#: pyniryo2.vision.vision.Vision.save_workspace_from_robot_poses:7
+msgid "workspace name"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.save_workspace_from_points:1
+msgid ""
+"Save workspace by giving the points of worskpace's 4 corners. Points are "
+"written as [x, y, z] Corners should be in the good order."
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.delete_workspace:1
+msgid "Delete workspace from robot's memory"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.delete_workspace:3
+msgid "name of the saved workspace"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_workspace_ratio:1
+msgid "Get workspace ratio from robot's memory"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision.get_workspace_list:1
+msgid "Get list of workspaces' name store in robot's memory"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:73
+msgid "Vision - Niryo Topics"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:75
+msgid ""
+"The use of these functions is explained in the "
+":ref:`source/api_doc/niryo_topics:NiryoTopic` section. They allow the "
+"acquisition of data in real time by callbacks or by direct call."
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:78
+msgid "Vision's Niryo Topics"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:84
+msgid "Name"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:85
+msgid "Function"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:87
+msgid "``/niryo_robot_vision/compressed_video_stream``"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:88
+msgid ":attr:`~.vision.Vision.get_img_compressed`"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:89
+msgid ":exc:`list` [  :class:`numpy.uint8` ]"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:90
+msgid "``/niryo_robot_vision/camera_intrinsics``"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:91
+msgid ":attr:`~.vision.Vision.get_camera_intrinsics`"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:92
+msgid ":class:`~.vision.objects.CameraInfo`"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:95
+msgid "Vision - Enums"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:97
+msgid "List of enums:"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:99
+msgid ":class:`~.vision.enums.ObjectColor`"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:100
+msgid ":class:`~.vision.enums.ObjectShape`"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:101
+msgid ":class:`~.vision.enums.ManageWorkspace`"
+msgstr ""
+
+#: of pyniryo2.vision.enums.ObjectColor:1
+msgid "Enumeration of Colors available for image processing"
+msgstr ""
+
+#: of pyniryo2.vision.enums.ObjectShape:1
+msgid "Enumeration of Shapes available for image processing"
+msgstr ""
+
+#: of pyniryo2.vision.enums.ManageWorkspace:1
+msgid "Enumeration of actions available for workspaces management"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:111
+msgid "Vision - Namedtuple"
+msgstr ""
+
+#: ../../docstring of pyniryo2.vision.objects.CameraInfo.distortion:1
+#: pyniryo2.vision.objects.ImageParameters.contrast_factor:1
+msgid "Alias for field number 1"
+msgstr ""
+
+#: ../../docstring of pyniryo2.vision.objects.CameraInfo.intrinsics:1
+#: pyniryo2.vision.objects.ImageParameters.brightness_factor:1
+msgid "Alias for field number 0"
+msgstr ""
+
+#: ../../docstring of
+#: pyniryo2.vision.objects.ImageParameters.saturation_factor:1
+msgid "Alias for field number 2"
+msgstr ""
+

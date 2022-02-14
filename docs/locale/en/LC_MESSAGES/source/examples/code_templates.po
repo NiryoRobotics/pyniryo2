@@ -1,0 +1,68 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Niryo All rights reserved. No part of this document
+# may be reproduced or transmitted in any form or by any means without prior
+# written consent of Niryo SAS
+# This file is distributed under the same license as the PyNiryo2 package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyNiryo2 v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/examples/code_templates.rst:2
+msgid "Code templates"
+msgstr ""
+
+#: ../../source/examples/code_templates.rst:4
+msgid ""
+"As code structures are always the same, we wrote down few templates for "
+"you to start your code file with a good form"
+msgstr ""
+
+#: ../../source/examples/code_templates.rst:8
+msgid "The short template"
+msgstr ""
+
+#: ../../source/examples/code_templates.rst:10
+msgid "Very simple, straightforward ::"
+msgstr ""
+
+#: ../../source/examples/code_templates.rst:27
+msgid "Advanced template"
+msgstr ""
+
+#: ../../source/examples/code_templates.rst:29
+msgid ""
+"This template let the user defined his own process but it handles "
+"connection, calibration, tool equipping, and make the robot go to sleep "
+"at the end ::"
+msgstr ""
+
+#: ../../source/examples/code_templates.rst:63
+msgid "Advanced template for conveyor"
+msgstr ""
+
+#: ../../source/examples/code_templates.rst:65
+msgid ""
+"Same as :ref:`source/examples/code_templates:Advanced template` but with "
+"a conveyor ::"
+msgstr ""
+
+#: ../../source/examples/code_templates.rst:102
+msgid "Advanced template for vision"
+msgstr ""
+
+#: ../../source/examples/code_templates.rst:104
+msgid "Huge template for vision users ! ::"
+msgstr ""
+

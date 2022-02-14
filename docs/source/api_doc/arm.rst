@@ -1,14 +1,15 @@
 Arm
 =====================================
 
-This file presents the different :ref:`Arm - Command functions`,
-:ref:`Arm - Enums`, :ref:`Arm - Niryo Topics` & :ref:`Arm - Objects` available with the  Arm API
+This file presents the different :ref:`source/api_doc/arm:Arm - Command functions`,
+:ref:`source/api_doc/arm:Arm - Enums`, :ref:`source/api_doc/arm:Arm - Niryo Topics` & :ref:`source/api_doc/arm:Arm - Objects` available with the  Arm API
 
 Arm - Command functions
 ------------------------------------
 
 .. automodule:: pyniryo2.arm.arm
    :members:
+   :noindex:
 
 
 This section reference all existing functions to control your robot arm, which include
@@ -19,7 +20,7 @@ This section reference all existing functions to control your robot arm, which i
 - Calibrating the robot
 
 All functions to control the robot are accessible via an instance of
-the class :ref:`NiryoRobot` ::
+the class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::
 
 
     robot = NiryoRobot(<robot_ip_address>)
@@ -28,7 +29,7 @@ the class :ref:`NiryoRobot` ::
     robot.arm.move_joints([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
     ...
 
-See examples on :ref:`Examples Section <Examples: Basics>`
+See examples on :ref:`Examples Section <source/examples/examples_basics:Examples: Basics>`
 
 List of functions subsections:
 
@@ -40,39 +41,44 @@ List of functions subsections:
 Calibration functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: Arm
-    :members: calibrate, calibrate_auto, request_new_calibration, reset_calibration, need_calibration
-    :member-order: bysource
+.. automethod:: Arm.calibrate
+.. automethod:: Arm.calibrate_auto
+.. automethod:: Arm.request_new_calibration
+.. automethod:: Arm.reset_calibration
+.. automethod:: Arm.need_calibration
 
 
 Robot status functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: Arm
-    :members: hardware_status, joints_state, get_joints, joints, pose, get_pose, get_pose_quat
-    :member-order: bysource
+.. autoproperty:: Arm.hardware_status
+.. autoproperty:: Arm.joints_state
+.. automethod:: Arm.get_joints
+.. autoproperty:: Arm.joints
+.. autoproperty:: Arm.pose
+.. autoproperty:: Arm.get_pose
+.. automethod:: Arm.get_pose_quat
 
 
 Learning mode functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: Arm
-    :members:  learning_mode, get_learning_mode, set_learning_mode
-    :member-order: bysource
+.. autoproperty:: Arm.learning_mode
+.. automethod:: Arm.get_learning_mode
+.. automethod:: Arm.set_learning_mode
 
 
 Kinematics functions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: Arm
-    :members: forward_kinematics, inverse_kinematics
-    :member-order: bysource
+.. automethod:: Arm.forward_kinematics
+.. automethod:: Arm.inverse_kinematics
 
 
 Arm - Niryo Topics
 ------------------------------------
 
-The use of these functions is explained in the :ref:`NiryoTopic` section.
+The use of these functions is explained in the :ref:`source/api_doc/niryo_topics:NiryoTopic` section.
 They allow the acquisition of data in real time by callbacks or by direct call.
 
 .. list-table:: Arm's Niryo Topics
@@ -113,7 +119,7 @@ List of enums:
     :members:
     :undoc-members:
     :member-order: bysource
-
+    :noindex:
 
 Arm - Objects
 ------------------------------------
@@ -122,3 +128,4 @@ Arm - Objects
     :members:
     :no-undoc-members:
     :member-order: bysource
+    :noindex:

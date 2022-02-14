@@ -3,7 +3,7 @@ Examples: Tool Action
 
 This page shows how to control Ned's tools
 
-If you want see more, you can look at :ref:`PyNiryo - Tools<Tool>`
+If you want see more, you can look at :ref:`PyNiryo - Tools<source/api_doc/tool:Tool>`
 
 .. important::
     In this section, it is supposed that you are already connected to a calibrated robot.
@@ -30,7 +30,7 @@ The line to equip a new tool is ::
     robot.tool.update_tool()
 
 .. note::
-    For the :ref:`Grasping <Grasping>` and :ref:`Releasing <Releasing>` sections,
+    For the :ref:`Grasping <source/examples/examples_tool_action:Grasping>` and :ref:`Releasing <source/examples/examples_tool_action:Releasing>` sections,
     this command should be added in your codes ! If you wan to use a specific
     tool, you need to store the |tool_id| you are using in a variable named ``tool_used``
 
@@ -191,7 +191,7 @@ order to calculate approach poses more easily
 
 .. note::
     To see more about |pose_object|, go look at
-    :ref:`PoseObject dedicated section <How to use the PoseObject>`
+    :ref:`PoseObject dedicated section <source/examples/examples_movement:How to use the PoseObject>`
 
  ::
 

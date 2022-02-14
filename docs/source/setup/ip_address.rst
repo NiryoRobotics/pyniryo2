@@ -37,7 +37,7 @@ of Niryo Studio to see which robots are available
 
 *TODO: faire plus clair via des images/screenshots*
 
-You can also :ref:`make the IP permanent <Make IP permanent>` so that
+You can also :ref:`make the IP permanent <source/setup/ip_address:Make IP permanent>` so that
 you won't have to search for it next time
 
 

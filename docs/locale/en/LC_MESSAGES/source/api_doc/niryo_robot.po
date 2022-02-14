@@ -1,0 +1,228 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Niryo All rights reserved. No part of this document
+# may be reproduced or transmitted in any form or by any means without prior
+# written consent of Niryo SAS
+# This file is distributed under the same license as the PyNiryo2 package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyNiryo2 v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/api_doc/niryo_robot.rst:2
+msgid "NiryoRobot"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:4
+msgid ""
+"The NiryoRobot class includes the different APIs of the PyNiryo2 library."
+" It allows the connection of the program to the robot via roslibpy. This "
+"interface facilitates and centralizes all the control functions of the "
+"Niryo environment and products."
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:9
+msgid "NiryoRobot - Command functions"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:15
+msgid ""
+"This section reference all existing functions of the NiryoRobot client, "
+"which include"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:17
+msgid "Connecting to your Ned"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:18
+msgid "Disconnecting from your Ned"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:19
+msgid "Waiting"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:20
+msgid "Access to the entire PyNiryo2 API"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:22
+msgid ""
+"All functions to control the robot are accessible via an instance of the "
+"class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:32
+msgid ""
+"See examples on :ref:`Examples Section "
+"<source/examples/examples_basics:Examples: Basics>`"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:35
+msgid "List of functions subsections:"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:43
+msgid "NiryoRobot functions"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:45
+msgid ":class:`~.niryo_robot.NiryoRobot`"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.run:1
+msgid ""
+"Connect to your robot and ROS This function is already called at the "
+"initialization of the class. It is therefore not necessary to call it "
+"again, except to reconnect the robot. ::"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.arm
+#: pyniryo2.niryo_robot.NiryoRobot.client
+#: pyniryo2.niryo_robot.NiryoRobot.conveyor pyniryo2.niryo_robot.NiryoRobot.end
+#: pyniryo2.niryo_robot.NiryoRobot.io
+#: pyniryo2.niryo_robot.NiryoRobot.pick_place
+#: pyniryo2.niryo_robot.NiryoRobot.run
+#: pyniryo2.niryo_robot.NiryoRobot.saved_poses
+#: pyniryo2.niryo_robot.NiryoRobot.tool
+#: pyniryo2.niryo_robot.NiryoRobot.trajectories
+#: pyniryo2.niryo_robot.NiryoRobot.vision pyniryo2.niryo_robot.NiryoRobot.wait
+#: pyniryo2.objects.PoseObject.copy_with_offsets
+#: pyniryo2.objects.PoseObject.to_list
+msgid "Return type"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.end:1
+msgid "Disconnect from your robot and ROS: ::"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.wait:1
+msgid "Wait for a certain time"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.wait
+msgid "Parameters"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.wait:3
+msgid "duration in seconds"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.client:1
+msgid ""
+"Get the ROS client: "
+"https://roslibpy.readthedocs.io/en/latest/reference/index.html#roslibpy.Ros"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.client
+msgid "Returns"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.client:3
+msgid "ROS client"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:53
+msgid "NiryoRobot properties"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.arm:1
+msgid "Access to the Arm API"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.arm:3
+#: pyniryo2.niryo_robot.NiryoRobot.conveyor:3
+#: pyniryo2.niryo_robot.NiryoRobot.io:3
+#: pyniryo2.niryo_robot.NiryoRobot.pick_place:3
+#: pyniryo2.niryo_robot.NiryoRobot.saved_poses:3
+#: pyniryo2.niryo_robot.NiryoRobot.tool:3
+#: pyniryo2.niryo_robot.NiryoRobot.trajectories:3
+#: pyniryo2.niryo_robot.NiryoRobot.vision:3
+msgid "Example: ::"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.conveyor:1
+msgid "Access to the Conveyor API"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.io:1
+msgid "Access to the I/Os API"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.pick_place:1
+msgid "Access to the PickPlace API"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.saved_poses:1
+msgid "Access to the SavedPoses API"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.tool:1
+msgid "Access to the Tool API"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.trajectories:1
+msgid "Access to the Trajectories API"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.vision:1
+msgid "Access to the Vision API"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:66
+msgid "Globals Enums"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:68
+msgid "List of enums:"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:70
+msgid ":class:`~.enums.RobotErrors`"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:71
+msgid ":class:`~.enums.ArmMoveCommandType`"
+msgstr ""
+
+#: of pyniryo2.enums.RobotErrors:1
+msgid "An enumeration."
+msgstr ""
+
+#: of pyniryo2.enums.ArmMoveCommandType:1
+msgid "Enumeration of Arm Move Command : it used for move commands"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:80
+msgid "Globals Objects"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:82
+msgid ":class:`~.objects.PoseObject`"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject:1
+msgid "Pose object which stores x, y, z, roll, pitch & yaw parameters"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject.copy_with_offsets:1
+msgid "Create a new pose from copying from copying actual pose with offsets"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject.to_list:1
+msgid ""
+"Return a list [x, y, z, roll, pitch, yaw] corresponding to the pose's "
+"parameters"
+msgstr ""
+

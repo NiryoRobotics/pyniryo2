@@ -10,6 +10,7 @@ NiryoRobot - Command functions
 
 .. automodule:: pyniryo2.niryo_robot
    :members:
+   :noindex:
 
 This section reference all existing functions of the NiryoRobot client, which include
 
@@ -19,7 +20,7 @@ This section reference all existing functions of the NiryoRobot client, which in
 - Access to the entire PyNiryo2 API
 
 All functions to control the robot are accessible via an instance of
-the class :ref:`NiryoRobot` ::
+the class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::
 
 
     robot = NiryoRobot(<robot_ip_address>)
@@ -28,7 +29,7 @@ the class :ref:`NiryoRobot` ::
     robot.wait(2) # wait 2 seconds
     robot.end()
 
-See examples on :ref:`Examples Section <Examples: Basics>`
+See examples on :ref:`Examples Section <source/examples/examples_basics:Examples: Basics>`
 
 
 List of functions subsections:
@@ -43,16 +44,22 @@ NiryoRobot functions
 
 * :class:`~.niryo_robot.NiryoRobot`
 
-.. autoclass:: NiryoRobot
-    :members: run, end, wait, client
-    :member-order: bysource
+.. automethod:: NiryoRobot.run
+.. automethod:: NiryoRobot.end
+.. automethod:: NiryoRobot.wait
+.. autoproperty:: NiryoRobot.client
 
 NiryoRobot properties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: NiryoRobot
-    :members: arm, conveyor, io, pick_place, saved_poses, tool, trajectories, vision
-    :member-order: bysource
+.. autoproperty:: NiryoRobot.arm
+.. autoproperty:: NiryoRobot.conveyor
+.. autoproperty:: NiryoRobot.io
+.. autoproperty:: NiryoRobot.pick_place
+.. autoproperty:: NiryoRobot.saved_poses
+.. autoproperty:: NiryoRobot.tool
+.. autoproperty:: NiryoRobot.trajectories
+.. autoproperty:: NiryoRobot.vision
 
 
 Globals Enums
@@ -63,18 +70,19 @@ List of enums:
 * :class:`~.enums.RobotErrors`
 * :class:`~.enums.ArmMoveCommandType`
 
-.. automodule:: enums
+.. automodule:: pyniryo2.enums
     :members:
     :undoc-members:
     :member-order: bysource
-
+    :noindex:
 
 Globals Objects
 ------------------------------------
 
 * :class:`~.objects.PoseObject`
 
-.. automodule:: objects
+.. automodule:: pyniryo2.objects
     :members:
     :no-undoc-members:
     :member-order: bysource
+    :noindex:

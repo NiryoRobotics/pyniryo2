@@ -1,8 +1,8 @@
 Conveyor
 =====================================
 
-This file presents the different :ref:`Conveyor - Command functions`,
-:ref:`Conveyor - Enums`, :ref:`Conveyor - Niryo Topics` & :ref:`Conveyor - Namedtuple` available with the  Arm API
+This file presents the different :ref:`source/api_doc/conveyor:Conveyor - Command functions`,
+:ref:`source/api_doc/conveyor:Conveyor - Enums`, :ref:`source/api_doc/conveyor:Conveyor - Niryo Topics` & :ref:`source/api_doc/conveyor:Conveyor - Namedtuple` available with the  Arm API
 
 
 Conveyor - Command functions
@@ -10,13 +10,14 @@ Conveyor - Command functions
 
 .. automodule:: pyniryo2.conveyor.conveyor
    :members:
+   :noindex:
 
 This section reference all existing functions to control your robot, which include
 
 - Controlling conveyors
 
 All functions to control the robot are accessible via an instance of
-the class :ref:`NiryoRobot` ::
+the class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::
 
     robot = NiryoRobot(<robot_ip_address>)
 
@@ -24,7 +25,7 @@ the class :ref:`NiryoRobot` ::
     robot.conveyor.run_conveyor(conveyor_id)
     ...
 
-See examples on :ref:`Examples Section <Examples: Conveyor>`
+See examples on :ref:`Examples Section <source/examples/examples_conveyor:Examples: Conveyor>`
 
 List of functions subsections:
 
@@ -43,7 +44,7 @@ Conveyor functions
 Conveyor - Niryo Topics
 ------------------------------------
 
-The use of these functions is explained in the :ref:`NiryoTopic` section.
+The use of these functions is explained in the :ref:`source/api_doc/niryo_topics:NiryoTopic` section.
 They allow the acquisition of data in real time by callbacks or by direct call.
 
 .. list-table:: Conveyors's Niryo Topics
@@ -73,6 +74,7 @@ List of enums:
     :undoc-members:
     :exclude-members:
     :member-order: bysource
+    :noindex:
 
 
 Conveyor - Namedtuple
@@ -82,3 +84,4 @@ Conveyor - Namedtuple
     :members:
     :no-undoc-members:
     :member-order: bysource
+    :noindex:

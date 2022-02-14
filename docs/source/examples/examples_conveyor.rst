@@ -3,7 +3,7 @@ Examples: Conveyor
 
 This document shows how to use Ned's conveyor belt
 
-If you want see more about Ned's conveyor belt functions, you can look at :ref:`PyNiryo - Conveyor<Conveyor>`
+If you want see more about Ned's conveyor belt functions, you can look at :ref:`PyNiryo - Conveyor<source/api_doc/conveyor:Conveyor>`
 
 .. danger::
     If you are using the real robot, make sure the environment around it is clear

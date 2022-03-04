@@ -21,82 +21,90 @@ msgstr ""
 
 #: ../../source/api_doc/pick_place.rst:2
 msgid "Pick & Place"
-msgstr ""
+msgstr "Pick & Place"
 
 #: ../../source/api_doc/pick_place.rst:4
 msgid ""
 "This file presents the different :ref:`source/api_doc/pick_place:Pick & "
 "Place - Command functions` available with the Pick & Place API"
 msgstr ""
+"Ce fichier présente les différentes :ref:`source/api_doc/pick_place:Pick & "
+"Place - Fonctions de Commadne` disponible avec l'API du Pick & Place"
 
 #: ../../source/api_doc/pick_place.rst:8
 msgid "Pick & Place - Command functions"
-msgstr ""
+msgstr "Pick & Place - Fonctions de contrôle"
 
 #: ../../source/api_doc/pick_place.rst:14
 msgid ""
 "This section reference all existing functions to control your robot, "
 "which include"
 msgstr ""
+"Cette section répertorie toutes les fonctions de contrôle du robot, "
+"ce qui inclut"
 
 #: ../../source/api_doc/pick_place.rst:16
 msgid "Picking objects"
-msgstr ""
+msgstr "Saisie d'objets"
 
 #: ../../source/api_doc/pick_place.rst:17
 msgid "Placing objects"
-msgstr ""
+msgstr "Dépôt d'objets"
 
 #: ../../source/api_doc/pick_place.rst:20
 msgid ""
 "All functions to control the robot are accessible via an instance of the "
 "class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
 msgstr ""
+"Toutes les fonctions de contrôle du robot sont accessibles grâce à une instance de "
+"class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
 
 #: ../../source/api_doc/pick_place.rst:30
 msgid ""
 "See examples on :ref:`Examples Section "
 "<source/examples/examples_vision:Examples: Vision>`"
 msgstr ""
+"Voir les exemples sur :ref:`Examples Section "
+"<source/examples/examples_vision:Examples: Vision>`"
 
 #: ../../source/api_doc/pick_place.rst:32
 msgid "List of functions subsections:"
-msgstr ""
+msgstr "Liste des fonctions de sous-sections"
 
 #: ../../source/api_doc/pick_place.rst:40
 msgid "Pick & Place functions"
-msgstr ""
+msgstr "Fonctions de Pick & Place"
 
 #: of pyniryo2.pick_place.pick_place.PickPlace.pick_from_pose:1
 msgid "Execute a picking from a pose."
-msgstr ""
+msgstr "Réalise une saisie à partir d'une position"
 
 #: of pyniryo2.pick_place.pick_place.PickPlace.pick_from_pose:3
 msgid "A picking is described as :"
-msgstr ""
+msgstr "Une saisie est décrit comme :"
 
 #: of pyniryo2.pick_place.pick_place.PickPlace.pick_from_pose:5
 msgid "* going over the object"
-msgstr ""
+msgstr "* va au dessus de l'objet"
 
 #: of pyniryo2.pick_place.pick_place.PickPlace.pick_from_pose:6
 #: pyniryo2.pick_place.pick_place.PickPlace.place_from_pose:6
 msgid "* going down until height = z"
-msgstr ""
+msgstr "* descend jusqu'à ce que la hauteur = z"
 
 #: of pyniryo2.pick_place.pick_place.PickPlace.pick_from_pose:7
 msgid "* grasping with tool"
-msgstr ""
+msgstr "* saisie avec le préhenseur"
 
 #: of pyniryo2.pick_place.pick_place.PickPlace.pick_from_pose:8
 msgid "* going back over the object"
-msgstr ""
+msgstr "* retourne au dessus de l'objet"
 
 #: of pyniryo2.pick_place.pick_place.PickPlace.pick_and_place
 #: pyniryo2.pick_place.pick_place.PickPlace.pick_from_pose
 #: pyniryo2.pick_place.pick_place.PickPlace.place_from_pose
 msgid "Parameters"
-msgstr ""
+msgstr "Paramètres"
 
 #: of pyniryo2.pick_place.pick_place.PickPlace.pick_from_pose:10
 #: pyniryo2.pick_place.pick_place.PickPlace.place_from_pose:10
@@ -104,46 +112,49 @@ msgid ""
 "either 6 args (1 for each coordinates) or a list of 6 coordinates or a "
 "PoseObject"
 msgstr ""
+"Soit 6 arguments (1 pour chaque coordonnées) ou une liste de 6 coordonnées ou un "
+"PoseObject"
 
 #: of pyniryo2.pick_place.pick_place.PickPlace.pick_and_place
 #: pyniryo2.pick_place.pick_place.PickPlace.pick_from_pose
 #: pyniryo2.pick_place.pick_place.PickPlace.place_from_pose
 msgid "Return type"
-msgstr ""
+msgstr "Type de retour"
 
 #: of pyniryo2.pick_place.pick_place.PickPlace.place_from_pose:1
 msgid "Execute a placing from a position."
-msgstr ""
+msgstr "Réalise un dépôt à partir d'une position"
 
 #: of pyniryo2.pick_place.pick_place.PickPlace.place_from_pose:3
 msgid "A placing is described as :"
-msgstr ""
+msgstr "Un dépôt est décrit comme :"
 
 #: of pyniryo2.pick_place.pick_place.PickPlace.place_from_pose:5
 msgid "* going over the place"
-msgstr ""
+msgstr "* va au dessus de l'emplacement"
 
 #: of pyniryo2.pick_place.pick_place.PickPlace.place_from_pose:7
 msgid "* releasing the object with tool"
-msgstr ""
+msgstr "* relâche l'objet avec l'outil"
 
 #: of pyniryo2.pick_place.pick_place.PickPlace.place_from_pose:8
 msgid "* going back over the place"
-msgstr ""
+msgstr "* retourne au dessus de l'emplacement"
 
 #: of pyniryo2.pick_place.pick_place.PickPlace.pick_and_place:1
 msgid "Execute a pick then a place"
-msgstr ""
+msgstr "Réalise le pick, ensuite le place"
 
 #: of pyniryo2.pick_place.pick_place.PickPlace.pick_and_place:3
 msgid "Pick Pose : [x, y, z, roll, pitch, yaw] or PoseObject"
-msgstr ""
+msgstr "Position de Pick : [x, y, z, roll, pitch, yaw] ou PoseObject"
 
 #: of pyniryo2.pick_place.pick_place.PickPlace.pick_and_place:5
 msgid "Place Pose : [x, y, z, roll, pitch, yaw] or PoseObject"
-msgstr ""
+msgstr Position de Place : [x, y, z, roll, pitch, yaw] ou PoseObject"
 
 #: of pyniryo2.pick_place.pick_place.PickPlace.pick_and_place:7
 msgid "Distance from waypoints before smoothing trajectory"
-msgstr ""
+msgstr "Distance entre les points de passage avant le lissage de la trajectoire"
+
 

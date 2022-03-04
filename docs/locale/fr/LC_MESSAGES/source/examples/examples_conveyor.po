@@ -21,41 +21,48 @@ msgstr ""
 
 #: ../../source/examples/examples_conveyor.rst:2
 msgid "Examples: Conveyor"
-msgstr ""
+msgstr "Exemples: Convoyeur"
 
 #: ../../source/examples/examples_conveyor.rst:4
 msgid "This document shows how to use Ned's conveyor belt"
-msgstr ""
+msgstr "Cette page montre comment utiliser le covnoyeur du Ned"
 
 #: ../../source/examples/examples_conveyor.rst:6
 msgid ""
 "If you want see more about Ned's conveyor belt functions, you can look at"
 " :ref:`PyNiryo - Conveyor<source/api_doc/conveyor:Conveyor>`"
 msgstr ""
+"Si vous voulez en savoir plus sur les fonctions du convoyeur, vous pouvez regarder"
+" :ref:`PyNiryo - Conveyor<source/api_doc/conveyor:Conveyor>`"
 
 #: ../../source/examples/examples_conveyor.rst:9
 msgid ""
 "If you are using the real robot, make sure the environment around it is "
 "clear"
 msgstr ""
+"Si vous utilisez un robot réel, assurez vous que son environnement est sans obstacles"
 
 #: ../../source/examples/examples_conveyor.rst:12
 msgid "Simple Conveyor control"
-msgstr ""
+msgstr "Contrôle simple du convoyeur"
 
 #: ../../source/examples/examples_conveyor.rst:13
 msgid ""
 "This short example show how to connect a conveyor and launch its motor "
 "(control it by setting its speed and direction) : ::"
 msgstr ""
+"Cet exemple court montre comment se connecter au convoyeur et lancer ses moteurs"
+"(le contrôler en réglant sa vitesse et sa direction) : ::"
 
 #: ../../source/examples/examples_conveyor.rst:37
 msgid "Advanced Conveyor control"
-msgstr ""
+msgstr "Contrôle avancés du convoyeur"
 
 #: ../../source/examples/examples_conveyor.rst:38
 msgid ""
 "This example shows how to do a certain amount of pick & place by using "
 "the conveyor with the infrared sensor ::"
 msgstr ""
+"Cet exemple montre comment effectuer un certain nombre de pick & place en utilisant "
+"le convoyeur et le capteur infrarouge ::"
 

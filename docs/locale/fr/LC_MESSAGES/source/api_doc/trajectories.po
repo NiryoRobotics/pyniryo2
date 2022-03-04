@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"POT-Creation-Date: 2022-02-21 09:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../../source/api_doc/trajectories.rst:2
 msgid "Trajectories"
-msgstr ""
+msgstr "Trajectoires"
 
 #: ../../source/api_doc/trajectories.rst:4
 msgid ""
@@ -29,56 +29,67 @@ msgid ""
 ":ref:`source/api_doc/trajectories:Trajectories - Command functions` "
 "available with the Trajectories API"
 msgstr ""
+"Ce fichier présente les différentes "
+":ref:`source/api_doc/trajectories:Trajectories - Command functions` "
+"disponibles avec l'API des Trajectoires"
 
 #: ../../source/api_doc/trajectories.rst:8
 msgid "Trajectories - Command functions"
-msgstr ""
+msgstr "Trajectoires - Fonctions de Commande"
 
 #: ../../source/api_doc/trajectories.rst:14
 msgid ""
 "This section reference all existing functions to control your robot, "
 "which include"
 msgstr ""
+"Cette section fait référence à toutes les fonctions de contrôle du robot "
+"existante, ce qui inclut"
 
 #: ../../source/api_doc/trajectories.rst:16
 msgid "Playing smoothed waypointed trajectories"
-msgstr ""
+msgstr "Effectue une trajectoire par points d'intérêts lissée"
 
 #: ../../source/api_doc/trajectories.rst:17
 msgid "Managing saved trajectories"
-msgstr ""
+msgstr "Gère les trajectoires sauvegardées"
 
 #: ../../source/api_doc/trajectories.rst:19
 msgid ""
 "All functions to control the robot are accessible via an instance of the "
 "class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
 msgstr ""
+"Toutes les fonctions pour contrôler le robot sont accessibles grâce à une"
+" instance de la classe :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
 
 #: ../../source/api_doc/trajectories.rst:30
 msgid ""
 "See examples on :ref:`Examples Section "
 "<source/examples/examples_movement:Examples: Movement>`"
 msgstr ""
+"Voir des exemples dans la section :ref:`Section Exemples "
+"<source/examples/examples_movement:Examples: Movement>`"
 
 #: ../../source/api_doc/trajectories.rst:32
 msgid "List of functions subsections:"
-msgstr ""
+msgstr "Liste des fonctions de sous-sections"
 
 #: ../../source/api_doc/trajectories.rst:39
 msgid "Trajectories functions"
-msgstr ""
+msgstr "Fonctions de Trajectoires"
 
 #: of pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved:1
 msgid ""
 "Get saved trajectory from robot intern storage Will raise error if "
 "position does not exist"
 msgstr ""
+"Obtient la trajectoire sauvegardée dans la mémoire interne du robot. "
+"Génère une erreur si la trajectoire n'existe pas"
 
 #: of pyniryo2.trajectories.trajectories.Trajectories.delete_trajectory:3
 #: pyniryo2.trajectories.trajectories.Trajectories.get_saved_trajectory_list:3
 #: pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved:4
 msgid "Example: ::"
-msgstr ""
+msgstr "Exemple: ::"
 
 #: of
 #: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_from_poses
@@ -86,11 +97,11 @@ msgstr ""
 #: pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved
 #: pyniryo2.trajectories.trajectories.Trajectories.save_trajectory
 msgid "Parameters"
-msgstr ""
+msgstr "Paramètres"
 
 #: of pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved:8
 msgid "name of the trajectory"
-msgstr ""
+msgstr "nom de la trajectoire"
 
 #: of pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved
 msgid "Raises"
@@ -102,11 +113,11 @@ msgstr ""
 
 #: of pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved
 msgid "Returns"
-msgstr ""
+msgstr "Retourne"
 
 #: of pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved:11
 msgid "list of [x, y, z, qx, qy, qz, qw]"
-msgstr ""
+msgstr "liste de [x, y, z, qx, qy, qz, qw]"
 
 #: of pyniryo2.trajectories.trajectories.Trajectories.delete_trajectory
 #: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_from_poses
@@ -115,7 +126,7 @@ msgstr ""
 #: pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved
 #: pyniryo2.trajectories.trajectories.Trajectories.save_trajectory
 msgid "Return type"
-msgstr ""
+msgstr "Type de retour"
 
 #: of
 #: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_saved:1
@@ -124,25 +135,29 @@ msgid ""
 " in parameter, the function will be blocking. Otherwise, the callback "
 "will be called when the execution of the function is finished."
 msgstr ""
+"Execute une trajectoire depuis la mémoire du Ned. Si une fonction de "
+"rappel n'est pas donnée en paramètre, cette fonction sera bloquante. "
+"Sinon, la fonction de rappel sera appelé quand l'exécution de la fonction"
+" est terminée."
 
 #: of
 #: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_from_poses:5
 #: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_saved:5
 #: pyniryo2.trajectories.trajectories.Trajectories.save_trajectory:3
 msgid "Examples: ::"
-msgstr ""
+msgstr "Exemples: ::"
 
 #: of
 #: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_from_poses:30
 #: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_saved:21
 msgid "Callback invoked on successful execution."
-msgstr ""
+msgstr "Fonction de rappel lancée en cas de réussite lors de l'exécutio"
 
 #: of
 #: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_from_poses:34
 #: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_saved:23
 msgid "Distance from waypoints before smoothing trajectory"
-msgstr ""
+msgstr "Distance avec les points d'intérêts avant lissage de la trajectoire"
 
 #: of
 #: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_from_poses:1
@@ -151,23 +166,29 @@ msgid ""
 "passed in parameter, the function will be blocking. Otherwise, the "
 "callback will be called when the execution of the function is finished."
 msgstr ""
+"Réalise la trajectory à partir d'une liste de positions. Si une fonction "
+"de rappel n'est pas passée en paramètre, cette fonction sera bloquante. "
+"Sinon la fonction de rappel sera appelé une fois l'exécution de la "
+"fonction terminée."
 
 #: of
 #: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_from_poses:32
 #: pyniryo2.trajectories.trajectories.Trajectories.save_trajectory:16
 msgid "List of: [x,y,z,qx,qy,qz,qw] or [x,y,z,roll,pitch,yaw] or PoseObject"
-msgstr ""
+msgstr "Liste de: [x,y,z,qx,qy,qz,qw] ou [x,y,z,roll,pitch,yaw] ou PoseObject"
 
 #: of pyniryo2.trajectories.trajectories.Trajectories.save_trajectory:1
 msgid "Save trajectory in robot's memory"
-msgstr ""
+msgstr "Sauvegarde la trajectoire dans la mémoire du robot"
 
 #: of pyniryo2.trajectories.trajectories.Trajectories.delete_trajectory:1
 msgid "Delete trajectory from robot's memory"
-msgstr ""
+msgstr "Supprime la trajectoire de la mémoire du robot"
 
 #: of
 #: pyniryo2.trajectories.trajectories.Trajectories.get_saved_trajectory_list:1
 msgid "Get list of trajectories' name saved in robot memory"
 msgstr ""
+"Obtient la liste des noms des trajectoires présentent dans la mémoire du "
+"robot"
 

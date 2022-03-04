@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"POT-Creation-Date: 2022-03-04 17:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,20 +61,30 @@ msgid "True if already subscribed, False otherwise."
 msgstr ""
 
 #: of pyniryo2.niryo_topic.NiryoTopic.is_subscribed
+#: pyniryo2.niryo_topic.NiryoTopic.publish
 #: pyniryo2.niryo_topic.NiryoTopic.subscribe
 #: pyniryo2.niryo_topic.NiryoTopic.unsubscribe
 #: pyniryo2.niryo_topic.NiryoTopic.value
 msgid "Return type"
 msgstr ""
 
+#: of pyniryo2.niryo_topic.NiryoTopic.publish:1
+msgid "Publish a message on the topic"
+msgstr ""
+
+#: of pyniryo2.niryo_topic.NiryoTopic.publish
+#: pyniryo2.niryo_topic.NiryoTopic.subscribe
+msgid "Parameters"
+msgstr ""
+
+#: of pyniryo2.niryo_topic.NiryoTopic.publish:3
+msgid "jsonified topic message content"
+msgstr ""
+
 #: of pyniryo2.niryo_topic.NiryoTopic.subscribe:1
 msgid ""
 "Subscribe a callback to the topic. A TopicException will be thrown if the"
 " topic is already subscribed."
-msgstr ""
-
-#: of pyniryo2.niryo_topic.NiryoTopic.subscribe
-msgid "Parameters"
 msgstr ""
 
 #: of pyniryo2.niryo_topic.NiryoTopic.subscribe:3

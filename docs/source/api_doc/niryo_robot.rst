@@ -44,7 +44,6 @@ NiryoRobot functions
 
 * :class:`~.niryo_robot.NiryoRobot`
 
-.. automethod:: NiryoRobot.run
 .. automethod:: NiryoRobot.end
 .. automethod:: NiryoRobot.wait
 .. autoproperty:: NiryoRobot.client

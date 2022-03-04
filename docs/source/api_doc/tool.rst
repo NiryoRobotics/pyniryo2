@@ -76,12 +76,6 @@ TCP functions
 .. automethod:: Tool.set_tcp
 .. automethod:: Tool.reset_tcp
 
-TCP functions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. autoclass:: Tool
-    :members: enable_tcp, set_tcp, reset_tcp
-    :member-order: bysource
 
 Tool - Niryo Topics
 ------------------------------------

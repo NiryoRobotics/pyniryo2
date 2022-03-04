@@ -1,5 +1,6 @@
 # - Imports
 import numpy as np
+import functools
 
 from pyniryo2.robot_commander import RobotCommander
 
@@ -12,7 +13,7 @@ def check_ned2_version(func):
     """
     Decorator that check the robot version
     """
-
+    @functools.wraps(func)
     def wrap(*args, **kwargs):
         robot_instance = args[0]
         if robot_instance.client.hardware_version != 'ned2':

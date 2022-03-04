@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-21 09:12+0000\n"
+"POT-Creation-Date: 2022-03-04 17:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,14 +30,19 @@ msgid ""
 ":ref:`source/api_doc/io:I/Os - Niryo Topics` & "
 ":ref:`source/api_doc/io:I/Os - Objects` available with the  Arm API"
 msgstr ""
-"Ce fichier présente les différentes :ref:`source/api_doc/io:I/Os - Command "
-"functions`, :ref:`source/api_doc/io:I/Os - Enums`, "
+"Ce fichier présente les différentes :ref:`source/api_doc/io:I/Os - "
+"Command functions`, :ref:`source/api_doc/io:I/Os - Enums`, "
 ":ref:`source/api_doc/io:I/Os - Niryo Topics` & "
 ":ref:`source/api_doc/io:I/Os - Objects` disponible avec l'API du bras"
 
 #: ../../source/api_doc/io.rst:9
 msgid "I/Os - Command functions"
 msgstr "I/Os - Fonctions de contrôle"
+
+#: of pyniryo2.io.io.check_ned2_version:1
+#: pyniryo2.io.io.check_ned_one_version:1
+msgid "Decorator that check the robot version"
+msgstr "Décorateur qui vérifie la version du robot"
 
 #: ../../source/api_doc/io.rst:15
 msgid ""
@@ -83,6 +88,27 @@ msgstr "Liste des fonctions de sous-sections"
 msgid "State functions"
 msgstr "Fonctions des Etats"
 
+#: of pyniryo2.io.io.IO.digital_io_states:1
+msgid "Return the value of digital ios."
+msgstr "Retourne la valeur des E/S digitales."
+
+#: of pyniryo2.io.io.IO.digital_io_states
+#: pyniryo2.io.io.IO.get_digital_io_state
+#: pyniryo2.io.io.IO.get_digital_io_states
+msgid "Returns"
+msgstr "Retourne"
+
+#: of pyniryo2.io.io.IO.digital_io_states:3
+msgid "State, Name, Mode of the pin"
+msgstr "Etat, Nom, Broche, Mode de la broche"
+
+#: ../../source/api_doc/io.rst:69 of pyniryo2.io.io.IO.digital_io_states
+#: pyniryo2.io.io.IO.digital_read pyniryo2.io.io.IO.digital_write
+#: pyniryo2.io.io.IO.get_digital_io_state
+#: pyniryo2.io.io.IO.get_digital_io_states
+msgid "Return type"
+msgstr "Type de retour"
+
 #: of pyniryo2.io.io.IO.get_digital_io_states:1
 msgid ""
 "Returns the io state client which can be used synchronously or "
@@ -94,53 +120,37 @@ msgstr ""
 "l'état de l'io retourne une liste de DigitalPinObject"
 
 #: of pyniryo2.io.io.IO.digital_read:3 pyniryo2.io.io.IO.digital_write:3
-#: pyniryo2.io.io.IO.get_digital_io_states:4 pyniryo2.io.io.IO.set_pin_mode:3
+#: pyniryo2.io.io.IO.get_digital_io_states:4
 msgid "Examples: ::"
 msgstr "Exemples: ::"
-
-#: of pyniryo2.io.io.IO.get_digital_io_state
-#: pyniryo2.io.io.IO.get_digital_io_states
-msgid "Returns"
-msgstr "Retourne"
 
 #: of pyniryo2.io.io.IO.get_digital_io_states:17
 msgid "io state topic instance"
 msgstr "Instance du topic de l'état de l'io"
-
-#: ../../source/api_doc/io.rst:69 of pyniryo2.io.io.IO.digital_read
-#: pyniryo2.io.io.IO.digital_write pyniryo2.io.io.IO.get_digital_io_state
-#: pyniryo2.io.io.IO.get_digital_io_states pyniryo2.io.io.IO.set_pin_mode
-msgid "Return type"
-msgstr "Type de retour"
 
 #: of pyniryo2.io.io.IO.get_digital_io_state:1
 msgid "Return the value of a digital io."
 msgstr "Retourne la valeur d'un io numérique"
 
 #: of pyniryo2.io.io.IO.get_digital_io_state:4
-msgid "State, Name, Pin, Mode of the pin"
-msgstr "Etat, Nom, Broche, Mode de la broche"
+msgid "digital io object"
+msgstr "Objet E/S digitale"
 
 #: ../../source/api_doc/io.rst:49
 msgid "Read & Write functions"
 msgstr "Fonctions de Lecture & Ecriture"
 
-#: of pyniryo2.io.io.IO.set_pin_mode:1
-msgid "Set pin number pin_id to mode pin_mode"
-msgstr "Règle la broche numéro pin_id dans le mode pin_mode"
+#: of pyniryo2.io.io.IO.digital_write:1
+msgid "Set pin_id state to digital_state"
+msgstr "Règle l'état de pin_id à digital_state"
 
 #: of pyniryo2.io.io.IO.digital_read pyniryo2.io.io.IO.digital_write
-#: pyniryo2.io.io.IO.set_pin_mode
 msgid "Parameters"
 msgstr "Paramètres"
 
-#: of pyniryo2.io.io.IO.digital_write:1
-msgid "Set pin_id state to digital_state"
-msgstr "Règle l'état de pin_id en digital_state"
-
 #: of pyniryo2.io.io.IO.digital_read:1
-msgid "Read pin number pin_id and return its state"
-msgstr "Lit la broche numéro pin_id et retourne son état"
+msgid "Return the value of a digital pin."
+msgstr "Retourne la valeur d'une E/S digitale"
 
 #: ../../source/api_doc/io.rst:56
 msgid "I/Os - Niryo Topics"
@@ -217,7 +227,14 @@ msgstr "Enumeration des broches du robot"
 msgid "I/Os - Objects"
 msgstr "I/Os - Objets"
 
-#: of pyniryo2.io.objects.DigitalPinObject:1
+#: of pyniryo2.io.objects.AnalogPinObject:1
+#: pyniryo2.io.objects.DigitalPinObject:1
 msgid "Object used to store information on digital pins"
 msgstr "Objet utilisé pour sauvegarder des informations sur les broches numériques"
+
+#~ msgid "Set pin number pin_id to mode pin_mode"
+#~ msgstr "Règle la broche numéro pin_id dans le mode pin_mode"
+
+#~ msgid "Read pin number pin_id and return its state"
+#~ msgstr "Lit la broche numéro pin_id et retourne son état"
 

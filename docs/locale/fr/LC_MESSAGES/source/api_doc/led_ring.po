@@ -1,0 +1,457 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Niryo All rights reserved. No part of this document
+# may be reproduced or transmitted in any form or by any means without prior
+# written consent of Niryo SAS
+# This file is distributed under the same license as the PyNiryo2 package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyNiryo2 v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-04 18:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/api_doc/led_ring.rst:2
+msgid "Led Ring"
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:4
+msgid ""
+"This file presents the different :ref:`functions "
+"<source/api_doc/led_ring:Led Ring - Command functions>`, :ref:`enums "
+"<source/api_doc/led_ring:Led Ring - Enums>`, :ref:`topics "
+"<source/api_doc/led_ring:Led Ring - Niryo Topics>` and :ref:`objects "
+"<source/api_doc/led_ring:Led Ring - Objects>` available with the Led Ring"
+" API"
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:10
+msgid "Led Ring - Command functions"
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:16
+msgid ""
+"This section reference all existing functions to control the Led Ring, "
+"which are several parameterizable animations. All functions are "
+"accessible via an instance of the class :ref:`NiryoRobot "
+"<source/api_doc/niryo_robot:NiryoRobot>` ::"
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:26
+msgid "List of functions:"
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:32
+msgid ":class:`LedRing`"
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.check_ned2_version.<locals>.wrap:1
+msgid ""
+"Returns the Led Ring status client which can be used synchronously or "
+"asynchronously to obtain the current Led Ring status (cf "
+"LedRingStatusObject)."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.alternate:3
+#: pyniryo2.led_ring.led_ring.LedRing.breath:3
+#: pyniryo2.led_ring.led_ring.LedRing.chase:3
+#: pyniryo2.led_ring.led_ring.LedRing.flash:3
+#: pyniryo2.led_ring.led_ring.LedRing.go_up:3
+#: pyniryo2.led_ring.led_ring.LedRing.go_up_down:3
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow:3
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow_chase:3
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow_cycle:3
+#: pyniryo2.led_ring.led_ring.LedRing.snake:3
+#: pyniryo2.led_ring.led_ring.LedRing.wipe:3
+#: pyniryo2.led_ring.led_ring.check_ned2_version.<locals>.wrap:4
+msgid "Examples: ::"
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.get_status
+#: pyniryo2.led_ring.led_ring.check_ned2_version.<locals>.wrap
+msgid "Returns"
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.check_ned2_version.<locals>.wrap:17
+msgid "Led Ring status topic."
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:66 of
+#: pyniryo2.led_ring.led_ring.LedRing.alternate
+#: pyniryo2.led_ring.led_ring.LedRing.breath
+#: pyniryo2.led_ring.led_ring.LedRing.chase
+#: pyniryo2.led_ring.led_ring.LedRing.custom
+#: pyniryo2.led_ring.led_ring.LedRing.flash
+#: pyniryo2.led_ring.led_ring.LedRing.get_status
+#: pyniryo2.led_ring.led_ring.LedRing.go_up
+#: pyniryo2.led_ring.led_ring.LedRing.go_up_down
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow_chase
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow_cycle
+#: pyniryo2.led_ring.led_ring.LedRing.set_led_color
+#: pyniryo2.led_ring.led_ring.LedRing.snake
+#: pyniryo2.led_ring.led_ring.LedRing.solid
+#: pyniryo2.led_ring.led_ring.LedRing.turn_off
+#: pyniryo2.led_ring.led_ring.LedRing.wipe
+#: pyniryo2.led_ring.led_ring.check_ned2_version.<locals>.wrap
+msgid "Return type"
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.get_status:1
+msgid "Get Led Ring status."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.custom:4
+#: pyniryo2.led_ring.led_ring.LedRing.get_status:3
+#: pyniryo2.led_ring.led_ring.LedRing.set_led_color:3
+#: pyniryo2.led_ring.led_ring.LedRing.solid:3
+#: pyniryo2.led_ring.led_ring.LedRing.turn_off:3
+msgid "Example: ::"
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.get_status:8
+msgid ""
+"Object with the current led ring mode, the animation played and the color"
+" used"
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.solid:1
+msgid "Set the whole Led Ring to a fixed color."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.alternate
+#: pyniryo2.led_ring.led_ring.LedRing.breath
+#: pyniryo2.led_ring.led_ring.LedRing.chase
+#: pyniryo2.led_ring.led_ring.LedRing.custom
+#: pyniryo2.led_ring.led_ring.LedRing.flash
+#: pyniryo2.led_ring.led_ring.LedRing.go_up
+#: pyniryo2.led_ring.led_ring.LedRing.go_up_down
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow_chase
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow_cycle
+#: pyniryo2.led_ring.led_ring.LedRing.set_led_color
+#: pyniryo2.led_ring.led_ring.LedRing.snake
+#: pyniryo2.led_ring.led_ring.LedRing.solid
+#: pyniryo2.led_ring.led_ring.LedRing.wipe
+msgid "Parameters"
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.breath:20
+#: pyniryo2.led_ring.led_ring.LedRing.chase:19
+#: pyniryo2.led_ring.led_ring.LedRing.flash:24
+#: pyniryo2.led_ring.led_ring.LedRing.go_up:19
+#: pyniryo2.led_ring.led_ring.LedRing.go_up_down:19
+#: pyniryo2.led_ring.led_ring.LedRing.set_led_color:9
+#: pyniryo2.led_ring.led_ring.LedRing.snake:18
+#: pyniryo2.led_ring.led_ring.LedRing.solid:7
+#: pyniryo2.led_ring.led_ring.LedRing.wipe:19
+msgid "Led color in a list of size 3[R, G, B]. RGB channels from 0 to 255."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.turn_off:1
+msgid "Turn off all LEDs"
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.flash:1
+msgid ""
+"Flashes a color according to a frequency. The frequency is equal to 1 / "
+"period."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.alternate:27
+#: pyniryo2.led_ring.led_ring.LedRing.breath:22
+#: pyniryo2.led_ring.led_ring.LedRing.chase:21
+#: pyniryo2.led_ring.led_ring.LedRing.flash:26
+#: pyniryo2.led_ring.led_ring.LedRing.go_up:21
+#: pyniryo2.led_ring.led_ring.LedRing.go_up_down:21
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow:19
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow_chase:19
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow_cycle:19
+#: pyniryo2.led_ring.led_ring.LedRing.wipe:21
+msgid ""
+"Execution time for a pattern in seconds. If 0, the default time will be "
+"used."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.flash:28
+msgid "Number of consecutive flashes. If 0, the Led Ring flashes endlessly."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.alternate:31
+#: pyniryo2.led_ring.led_ring.LedRing.chase:26
+#: pyniryo2.led_ring.led_ring.LedRing.flash:30
+msgid ""
+"The service wait for the animation to finish all iterations or not to "
+"answer. If iterations is 0, the service answers immediately."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.alternate:34
+#: pyniryo2.led_ring.led_ring.LedRing.breath:30
+#: pyniryo2.led_ring.led_ring.LedRing.chase:29
+#: pyniryo2.led_ring.led_ring.LedRing.flash:33
+#: pyniryo2.led_ring.led_ring.LedRing.go_up:29
+#: pyniryo2.led_ring.led_ring.LedRing.go_up_down:29
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow:26
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow_chase:26
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow_cycle:26
+#: pyniryo2.led_ring.led_ring.LedRing.snake:28
+#: pyniryo2.led_ring.led_ring.LedRing.wipe:25
+msgid "Callback invoked on successful execution."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.alternate:36
+#: pyniryo2.led_ring.led_ring.LedRing.breath:32
+#: pyniryo2.led_ring.led_ring.LedRing.chase:31
+#: pyniryo2.led_ring.led_ring.LedRing.flash:35
+#: pyniryo2.led_ring.led_ring.LedRing.go_up:31
+#: pyniryo2.led_ring.led_ring.LedRing.go_up_down:31
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow:28
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow_chase:28
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow_cycle:28
+#: pyniryo2.led_ring.led_ring.LedRing.snake:30
+#: pyniryo2.led_ring.led_ring.LedRing.wipe:27
+msgid "Timeout for the operation, in seconds. Only used if blocking."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.alternate:1
+msgid "Several colors are alternated one after the other."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.alternate:25
+msgid "Led color list of lists of size 3[R, G, B]. RGB channels from 0 to 255."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.alternate:29
+msgid ""
+"Number of consecutive alternations. If 0, the Led Ring alternates "
+"endlessly."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.chase:1
+msgid "Movie theater light style chaser animation."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.chase:23
+msgid ""
+"Number of consecutive chase. If 0, the animation continues endlessly. One"
+" chase just lights one Led every 3 LEDs."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.wipe:1
+msgid "Wipe a color across the Led Ring, light a Led at a time."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.wipe:23
+msgid "The service wait for the animation to finish or not to answer."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.snake:1
+msgid "A small coloured snake (certainly a python :D ) runs around the LED ring."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.snake:20
+msgid ""
+"Execution time for a pattern in seconds. If 0, the default duration will "
+"be used."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.breath:24
+#: pyniryo2.led_ring.led_ring.LedRing.go_up:23
+#: pyniryo2.led_ring.led_ring.LedRing.go_up_down:23
+#: pyniryo2.led_ring.led_ring.LedRing.snake:22
+msgid ""
+"Number of consecutive turns around the Led Ring. If 0, the animation "
+"continues endlessly."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.breath:27
+#: pyniryo2.led_ring.led_ring.LedRing.go_up:26
+#: pyniryo2.led_ring.led_ring.LedRing.go_up_down:26
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow:23
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow_chase:23
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow_cycle:23
+#: pyniryo2.led_ring.led_ring.LedRing.snake:25
+msgid ""
+"The service wait for the animation to finish or not to answer. If "
+"iterations is 0, the service answers immediately."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.breath:1
+msgid ""
+"Variation of the light intensity of the LED ring, similar to human "
+"breathing."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.rainbow:1
+msgid "Draw rainbow that fades across all LEDs at once."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.rainbow:21
+msgid "Number of consecutive rainbows. If 0, the animation continues endlessly."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.rainbow_cycle:1
+msgid "Draw rainbow that uniformly distributes itself across all LEDs."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.rainbow_chase:21
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow_cycle:21
+msgid ""
+"Number of consecutive rainbow cycles. If 0, the animation continues "
+"endlessly."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.rainbow_chase:1
+msgid "Rainbow chase animation, like the led_ring_chase method."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.go_up:1
+msgid "LEDs turn on like a loading circle, and are then all turned off at once."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.go_up_down:1
+msgid "LEDs turn on like a loading circle, and are turned off the same way."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.custom:1
+msgid ""
+"Sends a colour command to all LEDs of the LED ring. The function expects "
+"a list of colours for the 30 LEDs  of the robot."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.custom:9
+msgid ""
+"List of size 30 of led color in a list of size 3[R, G, B]. RGB channels "
+"from 0 to 255."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.set_led_color:1
+msgid "Lights up an LED in one colour. RGB colour between 0 and 255."
+msgstr ""
+
+#: of pyniryo2.led_ring.led_ring.LedRing.set_led_color:7
+msgid "Id of the led: between 0 and 29"
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:53
+msgid "Led Ring - Niryo Topics"
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:55
+msgid ""
+"The use of these functions is explained in the :ref:`NiryoTopics "
+"<source/api_doc/niryo_topics:NiryoTopic>`, section. They allow the "
+"acquisition of data in real time by callbacks or by direct call."
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:58
+msgid "Led Ring's Niryo Topics"
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:64
+msgid "Name"
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:65
+msgid "Function"
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:67
+msgid "``/status``"
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:68
+msgid ":attr:`~.led_ring.LedRing.status`"
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:69
+msgid ":class:`~.led_ring.objects.LedRingStatusObject`"
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:74
+msgid "Led Ring - Enums"
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:76
+msgid "List of enums:"
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:78
+msgid ":class:`~.led_ring.enums.AnimationMode`"
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:79
+msgid ":class:`~.led_ring.enums.LedMode`"
+msgstr ""
+
+#: of pyniryo2.led_ring.enums.AnimationMode:1
+msgid "Enumeration of animations available for the user to control the Led Ring"
+msgstr ""
+
+#: of pyniryo2.led_ring.enums.LedMode:1
+msgid "Enumeration of available Led Mode"
+msgstr ""
+
+#: ../../source/api_doc/led_ring.rst:88
+msgid "Led Ring - Objects"
+msgstr ""
+
+#: of pyniryo2.led_ring.objects.LedRingStatusObject:1
+msgid "Object used to store Led Ring status"
+msgstr ""
+
+#~ msgid "Led Ring - Niryo Topics"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This file presents the different "
+#~ ":ref:`Led Ring - Command functions`, "
+#~ ":ref:`Led Ring - Enums`, :ref:`Led Ring"
+#~ " - Niryo Topics` & :ref:`Led Ring "
+#~ "- Objects` available with the Led "
+#~ "Ring API"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This section reference all existing "
+#~ "functions to control the Led Ring, "
+#~ "which are several parameterizable animations."
+#~ " All functions are accessible via an"
+#~ " instance of the class :ref:`NiryoRobot`"
+#~ " ::"
+#~ msgstr ""
+
+#~ msgid "01 Led Ring - Niryo Topics ------------------------------------"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The use of these functions is "
+#~ "explained in the :ref:`NiryoTopic` section."
+#~ " They allow the acquisition of data"
+#~ " in real time by callbacks or "
+#~ "by direct call."
+#~ msgstr ""
+
+#~ msgid "``/led_ring_status``"
+#~ msgstr ""
+
+#~ msgid ":attr:`~.led_ring.LedRing.led_ring_status`"
+#~ msgstr ""
+
+#~ msgid "``led_ring_current_state``"
+#~ msgstr ""
+
+#~ msgid ":attr:`~.led_ring.LedRing.led_ring_colors`"
+#~ msgstr ""
+
+#~ msgid ":class:`~.led_ring.LedRingStateObject`"
+#~ msgstr ""
+

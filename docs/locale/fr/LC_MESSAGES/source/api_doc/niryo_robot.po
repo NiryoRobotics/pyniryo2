@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-21 09:12+0000\n"
+"POT-Creation-Date: 2022-03-04 17:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,10 +30,10 @@ msgid ""
 "interface facilitates and centralizes all the control functions of the "
 "Niryo environment and products."
 msgstr ""
-"La classe NiryoRobot inclut les différentes APIs de la librairie PyNiryo2. "
-"Elle permet la connexion entre le programme et le robot en utilisant roslibpy. "
-"Cette interface facilite et centralise toutes les fonctions de contrôle "
-"de l'environnement Niryo et de ses produits."
+"La classe NiryoRobot inclut les différentes APIs de la librairie "
+"PyNiryo2. Elle permet la connexion entre le programme et le robot en "
+"utilisant roslibpy. Cette interface facilite et centralise toutes les "
+"fonctions de contrôle de l'environnement Niryo et de ses produits."
 
 #: ../../source/api_doc/niryo_robot.rst:9
 msgid "NiryoRobot - Command functions"
@@ -91,22 +91,15 @@ msgstr "Fonctions du NiryoRobot"
 msgid ":class:`~.niryo_robot.NiryoRobot`"
 msgstr ":class:`~.niryo_robot.NiryoRobot`"
 
-#: of pyniryo2.niryo_robot.NiryoRobot.run:1
-msgid ""
-"Connect to your robot and ROS This function is already called at the "
-"initialization of the class. It is therefore not necessary to call it "
-"again, except to reconnect the robot. ::"
-msgstr ""
-"Se connecte à votre robot et à ROS. Cette fonction est déjà appélée à "
-"l'initialisation de la classe. Il n'est donc pas nécessaire de l'appeler"
-" à nouveau, sauf pour se reconnecter au robot. ::"
+#: of pyniryo2.niryo_robot.NiryoRobot.end:1
+msgid "Disconnect from your robot and ROS: ::"
+msgstr "Se déconnecte du robot et de ROS"
 
 #: of pyniryo2.niryo_robot.NiryoRobot.arm
 #: pyniryo2.niryo_robot.NiryoRobot.client
 #: pyniryo2.niryo_robot.NiryoRobot.conveyor pyniryo2.niryo_robot.NiryoRobot.end
 #: pyniryo2.niryo_robot.NiryoRobot.io
 #: pyniryo2.niryo_robot.NiryoRobot.pick_place
-#: pyniryo2.niryo_robot.NiryoRobot.run
 #: pyniryo2.niryo_robot.NiryoRobot.saved_poses
 #: pyniryo2.niryo_robot.NiryoRobot.tool
 #: pyniryo2.niryo_robot.NiryoRobot.trajectories
@@ -115,10 +108,6 @@ msgstr ""
 #: pyniryo2.objects.PoseObject.to_list
 msgid "Return type"
 msgstr "Type de retour"
-
-#: of pyniryo2.niryo_robot.NiryoRobot.end:1
-msgid "Disconnect from your robot and ROS: ::"
-msgstr "Se déconnecte du robot et de ROS"
 
 #: of pyniryo2.niryo_robot.NiryoRobot.wait:1
 msgid "Wait for a certain time"
@@ -148,7 +137,7 @@ msgstr "Retourne"
 msgid "ROS client"
 msgstr "Client ROS"
 
-#: ../../source/api_doc/niryo_robot.rst:53
+#: ../../source/api_doc/niryo_robot.rst:52
 msgid "NiryoRobot properties"
 msgstr "Propriétés du NiryoRobot"
 
@@ -195,19 +184,19 @@ msgstr "Accède à l'API des Trajectoires"
 msgid "Access to the Vision API"
 msgstr "Accède à l'API de Vision"
 
-#: ../../source/api_doc/niryo_robot.rst:66
+#: ../../source/api_doc/niryo_robot.rst:65
 msgid "Globals Enums"
 msgstr "Enumerations Gloables"
 
-#: ../../source/api_doc/niryo_robot.rst:68
+#: ../../source/api_doc/niryo_robot.rst:67
 msgid "List of enums:"
 msgstr "Liste des enumerations"
 
-#: ../../source/api_doc/niryo_robot.rst:70
+#: ../../source/api_doc/niryo_robot.rst:69
 msgid ":class:`~.enums.RobotErrors`"
 msgstr ":class:`~.enums.RobotErrors`"
 
-#: ../../source/api_doc/niryo_robot.rst:71
+#: ../../source/api_doc/niryo_robot.rst:70
 msgid ":class:`~.enums.ArmMoveCommandType`"
 msgstr ":class:`~.enums.ArmMoveCommandType`"
 
@@ -221,11 +210,11 @@ msgstr ""
 "Enumeration de l'Arm Move Command : utilisé pour les contrôles de "
 "déplacement du bras"
 
-#: ../../source/api_doc/niryo_robot.rst:80
+#: ../../source/api_doc/niryo_robot.rst:79
 msgid "Globals Objects"
 msgstr "Objets Globaux"
 
-#: ../../source/api_doc/niryo_robot.rst:82
+#: ../../source/api_doc/niryo_robot.rst:81
 msgid ":class:`~.objects.PoseObject`"
 msgstr ":class:`~.objects.PoseObject`"
 
@@ -246,4 +235,19 @@ msgid ""
 msgstr ""
 "Retourne une liste [x, y, z, roll, pitch, yaw] correspondant aux "
 "paramètres de la position"
+
+#~ msgid ""
+#~ "Connect to your robot and ROS This"
+#~ " function is already called at the"
+#~ " initialization of the class. It is"
+#~ " therefore not necessary to call it"
+#~ " again, except to reconnect the "
+#~ "robot. ::"
+#~ msgstr ""
+#~ "Se connecte à votre robot et à "
+#~ "ROS. Cette fonction est déjà appélée "
+#~ "à l'initialisation de la classe. Il "
+#~ "n'est donc pas nécessaire de l'appeler"
+#~ " à nouveau, sauf pour se reconnecter"
+#~ " au robot. ::"
 

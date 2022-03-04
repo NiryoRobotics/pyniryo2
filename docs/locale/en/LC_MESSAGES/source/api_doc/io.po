@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"POT-Creation-Date: 2022-03-04 17:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,6 +33,11 @@ msgstr ""
 
 #: ../../source/api_doc/io.rst:9
 msgid "I/Os - Command functions"
+msgstr ""
+
+#: of pyniryo2.io.io.check_ned2_version:1
+#: pyniryo2.io.io.check_ned_one_version:1
+msgid "Decorator that check the robot version"
 msgstr ""
 
 #: ../../source/api_doc/io.rst:15
@@ -73,6 +78,27 @@ msgstr ""
 msgid "State functions"
 msgstr ""
 
+#: of pyniryo2.io.io.IO.digital_io_states:1
+msgid "Return the value of digital ios."
+msgstr ""
+
+#: of pyniryo2.io.io.IO.digital_io_states
+#: pyniryo2.io.io.IO.get_digital_io_state
+#: pyniryo2.io.io.IO.get_digital_io_states
+msgid "Returns"
+msgstr ""
+
+#: of pyniryo2.io.io.IO.digital_io_states:3
+msgid "State, Name, Mode of the pin"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:69 of pyniryo2.io.io.IO.digital_io_states
+#: pyniryo2.io.io.IO.digital_read pyniryo2.io.io.IO.digital_write
+#: pyniryo2.io.io.IO.get_digital_io_state
+#: pyniryo2.io.io.IO.get_digital_io_states
+msgid "Return type"
+msgstr ""
+
 #: of pyniryo2.io.io.IO.get_digital_io_states:1
 msgid ""
 "Returns the io state client which can be used synchronously or "
@@ -81,23 +107,12 @@ msgid ""
 msgstr ""
 
 #: of pyniryo2.io.io.IO.digital_read:3 pyniryo2.io.io.IO.digital_write:3
-#: pyniryo2.io.io.IO.get_digital_io_states:4 pyniryo2.io.io.IO.set_pin_mode:3
+#: pyniryo2.io.io.IO.get_digital_io_states:4
 msgid "Examples: ::"
-msgstr ""
-
-#: of pyniryo2.io.io.IO.get_digital_io_state
-#: pyniryo2.io.io.IO.get_digital_io_states
-msgid "Returns"
 msgstr ""
 
 #: of pyniryo2.io.io.IO.get_digital_io_states:17
 msgid "io state topic instance"
-msgstr ""
-
-#: ../../source/api_doc/io.rst:69 of pyniryo2.io.io.IO.digital_read
-#: pyniryo2.io.io.IO.digital_write pyniryo2.io.io.IO.get_digital_io_state
-#: pyniryo2.io.io.IO.get_digital_io_states pyniryo2.io.io.IO.set_pin_mode
-msgid "Return type"
 msgstr ""
 
 #: of pyniryo2.io.io.IO.get_digital_io_state:1
@@ -105,28 +120,23 @@ msgid "Return the value of a digital io."
 msgstr ""
 
 #: of pyniryo2.io.io.IO.get_digital_io_state:4
-msgid "State, Name, Pin, Mode of the pin"
+msgid "digital io object"
 msgstr ""
 
 #: ../../source/api_doc/io.rst:49
 msgid "Read & Write functions"
 msgstr ""
 
-#: of pyniryo2.io.io.IO.set_pin_mode:1
-msgid "Set pin number pin_id to mode pin_mode"
-msgstr ""
-
-#: of pyniryo2.io.io.IO.digital_read pyniryo2.io.io.IO.digital_write
-#: pyniryo2.io.io.IO.set_pin_mode
-msgid "Parameters"
-msgstr ""
-
 #: of pyniryo2.io.io.IO.digital_write:1
 msgid "Set pin_id state to digital_state"
 msgstr ""
 
+#: of pyniryo2.io.io.IO.digital_read pyniryo2.io.io.IO.digital_write
+msgid "Parameters"
+msgstr ""
+
 #: of pyniryo2.io.io.IO.digital_read:1
-msgid "Read pin number pin_id and return its state"
+msgid "Return the value of a digital pin."
 msgstr ""
 
 #: ../../source/api_doc/io.rst:56
@@ -200,7 +210,17 @@ msgstr ""
 msgid "I/Os - Objects"
 msgstr ""
 
-#: of pyniryo2.io.objects.DigitalPinObject:1
+#: of pyniryo2.io.objects.AnalogPinObject:1
+#: pyniryo2.io.objects.DigitalPinObject:1
 msgid "Object used to store information on digital pins"
 msgstr ""
+
+#~ msgid "State, Name, Pin, Mode of the pin"
+#~ msgstr ""
+
+#~ msgid "Set pin number pin_id to mode pin_mode"
+#~ msgstr ""
+
+#~ msgid "Read pin number pin_id and return its state"
+#~ msgstr ""
 

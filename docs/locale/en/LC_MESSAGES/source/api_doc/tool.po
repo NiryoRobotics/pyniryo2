@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"POT-Creation-Date: 2022-03-04 17:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,10 +112,10 @@ msgid "Parameters"
 msgstr ""
 
 #: of pyniryo2.tool.tool.Tool.activate_electromagnet:18
-#: pyniryo2.tool.tool.Tool.close_gripper:18
+#: pyniryo2.tool.tool.Tool.close_gripper:27
 #: pyniryo2.tool.tool.Tool.deactivate_electromagnet:18
 #: pyniryo2.tool.tool.Tool.grasp_with_tool:19
-#: pyniryo2.tool.tool.Tool.open_gripper:18
+#: pyniryo2.tool.tool.Tool.open_gripper:27
 #: pyniryo2.tool.tool.Tool.pull_air_vacuum_pump:16
 #: pyniryo2.tool.tool.Tool.push_air_vacuum_pump:16
 #: pyniryo2.tool.tool.Tool.release_with_tool:19
@@ -131,7 +131,7 @@ msgstr ""
 msgid "Timeout for the operation, in seconds. Only used if blocking."
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:93 of
+#: ../../source/api_doc/tool.rst:100 of
 #: pyniryo2.tool.tool.Tool.activate_electromagnet
 #: pyniryo2.tool.tool.Tool.close_gripper
 #: pyniryo2.tool.tool.Tool.deactivate_electromagnet
@@ -189,15 +189,22 @@ msgstr ""
 
 #: of pyniryo2.tool.tool.Tool.open_gripper:1
 msgid ""
-"Open gripper associated to the equipped gripper with a speed 'speed' If a"
-" callback function is not passed in parameter, the function will be "
-"blocking. Otherwise, the callback will be called when the execution of "
-"the function is finished."
+"Open gripper associated to the equipped gripper. If a callback function "
+"is not passed in parameter, the function will be blocking. Otherwise, the"
+" callback will be called when the execution of the function is finished."
 msgstr ""
 
-#: of pyniryo2.tool.tool.Tool.close_gripper:16
-#: pyniryo2.tool.tool.Tool.open_gripper:16
-msgid "Between 100 & 1000"
+#: of pyniryo2.tool.tool.Tool.close_gripper:21
+#: pyniryo2.tool.tool.Tool.open_gripper:21
+msgid "Between 100 & 1000 (only for Niryo One and Ned1)"
+msgstr ""
+
+#: of pyniryo2.tool.tool.Tool.open_gripper:23
+msgid "Closing torque percentage (only for Ned2)"
+msgstr ""
+
+#: of pyniryo2.tool.tool.Tool.open_gripper:25
+msgid "Hold torque percentage after closing (only for Ned2)"
 msgstr ""
 
 #: of pyniryo2.tool.tool.Tool.close_gripper:1
@@ -206,6 +213,14 @@ msgid ""
 "callback function is not passed in parameter, the function will be "
 "blocking. Otherwise, the callback will be called when the execution of "
 "the function is finished."
+msgstr ""
+
+#: of pyniryo2.tool.tool.Tool.close_gripper:23
+msgid "Opening torque percentage (only for Ned2)"
+msgstr ""
+
+#: of pyniryo2.tool.tool.Tool.close_gripper:25
+msgid "Hold torque percentage after opening (only for Ned2)"
 msgstr ""
 
 #: ../../source/api_doc/tool.rst:60
@@ -254,7 +269,7 @@ msgid ""
 "the function is finished."
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:73
+#: ../../source/api_doc/tool.rst:73 ../../source/api_doc/tool.rst:80
 msgid "TCP functions"
 msgstr ""
 
@@ -288,50 +303,50 @@ msgid ""
 "according to the tool equipped."
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:80
+#: ../../source/api_doc/tool.rst:87
 msgid "Tool - Niryo Topics"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:82
+#: ../../source/api_doc/tool.rst:89
 msgid ""
 "The use of these functions is explained in the "
 ":ref:`source/api_doc/niryo_topics:NiryoTopic` section. They allow the "
 "acquisition of data in real time by callbacks or by direct call."
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:85
+#: ../../source/api_doc/tool.rst:92
 msgid "Tool's Niryo Topics"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:91
+#: ../../source/api_doc/tool.rst:98
 msgid "Name"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:92
+#: ../../source/api_doc/tool.rst:99
 msgid "Function"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:94
+#: ../../source/api_doc/tool.rst:101
 msgid "``/niryo_robot_tools_commander/current_id``"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:95
+#: ../../source/api_doc/tool.rst:102
 msgid ":attr:`~.tool.Tool.get_current_tool_id`"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:96 ../../source/api_doc/tool.rst:104
+#: ../../source/api_doc/tool.rst:103 ../../source/api_doc/tool.rst:111
 msgid ":class:`~.tool.enums.ToolID`"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:100
+#: ../../source/api_doc/tool.rst:107
 msgid "Tool - Enums"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:102
+#: ../../source/api_doc/tool.rst:109
 msgid "List of enums:"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:105
+#: ../../source/api_doc/tool.rst:112
 msgid ":class:`~.tool.enums.ToolCommand`"
 msgstr ""
 
@@ -342,4 +357,17 @@ msgstr ""
 #: of pyniryo2.tool.enums.ToolCommand:1
 msgid "An enumeration."
 msgstr ""
+
+#~ msgid ""
+#~ "Open gripper associated to the equipped"
+#~ " gripper with a speed 'speed' If "
+#~ "a callback function is not passed "
+#~ "in parameter, the function will be "
+#~ "blocking. Otherwise, the callback will "
+#~ "be called when the execution of "
+#~ "the function is finished."
+#~ msgstr ""
+
+#~ msgid "Between 100 & 1000"
+#~ msgstr ""
 

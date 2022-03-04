@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"POT-Creation-Date: 2022-03-04 17:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,7 +97,7 @@ msgid "Raises"
 msgstr ""
 
 #: of pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved:10
-msgid "If trajectory file doesn't exist TODO: what does it raise?"
+msgid "Raise RobotCommandException if trajectory file doesn't exist"
 msgstr ""
 
 #: of pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved
@@ -170,4 +170,6 @@ msgstr ""
 #: pyniryo2.trajectories.trajectories.Trajectories.get_saved_trajectory_list:1
 msgid "Get list of trajectories' name saved in robot memory"
 msgstr ""
+
+
 

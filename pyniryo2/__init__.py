@@ -9,6 +9,7 @@ from .saved_poses.saved_poses import SavedPoses
 from .tool.tool import Tool
 from .trajectories.trajectories import Trajectories
 from .vision.vision import Vision
+from .led_ring.led_ring import LedRing
 
 from .enums import *
 from .arm.enums import *
@@ -18,6 +19,7 @@ from .saved_poses.enums import *
 from .tool.enums import *
 from .trajectories.enums import *
 from .vision.enums import *
+from .led_ring.enums import *
 
 from .objects import PoseObject
 from .arm.objects import HardwareStatusObject, JointStateObject

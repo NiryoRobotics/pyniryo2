@@ -92,6 +92,7 @@ Master controls with PyNiryo2 with full detailed functions
    source/api_doc/saved_poses
    source/api_doc/pick_place
    source/api_doc/trajectories
+   source/api_doc/led_ring
    source/api_doc/niryo_topics
 
 

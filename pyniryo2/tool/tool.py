@@ -155,9 +155,9 @@ class Tool(RobotCommander):
             return self.deactivate_electromagnet(callback=callback)
 
     # - Gripper
-    def open_gripper(self, speed=500, callback=None):
+    def open_gripper(self, speed=500, max_torque_percentage=100, hold_torque_percentage=30, callback=None):
         """
-        Open gripper associated to the equipped gripper with a speed 'speed'
+        Open gripper associated to the equipped gripper.
         If a callback function is not passed in parameter, the function will be blocking.
         Otherwise, the callback will be called when the execution of the function is finished.
 
@@ -165,15 +165,24 @@ class Tool(RobotCommander):
 
             tool.update_tool()
             tool.open_gripper()
+
+            # Niryo One and Ned
             tool.open_gripper(speed=850)
+
+            # Ned2
+            tool.open_gripper(max_torque_percentage=100, hold_torque_percentage=50)
             
             def tool_callback(_msg)
                 print("Released")
                 
             tool.open_gripper(callback=tool_callback)
 
-        :param speed: Between 100 & 1000
+        :param speed: Between 100 & 1000 (only for Niryo One and Ned1)
         :type speed: int
+        :param max_torque_percentage: Closing torque percentage (only for Ned2)
+        :type max_torque_percentage: int
+        :param hold_torque_percentage: Hold torque percentage after closing (only for Ned2)
+        :type hold_torque_percentage: int
         :param callback: Callback invoked on successful execution.
         :type callback: function
         :rtype: None
@@ -181,17 +190,24 @@ class Tool(RobotCommander):
         speed = self._transform_to_type(speed, int)
         self._check_range_belonging(speed, 1, 1000)
 
+        max_torque_percentage = self._transform_to_type(max_torque_percentage, int)
+        self._check_range_belonging(max_torque_percentage, 0, 100)
+
+        hold_torque_percentage = self._transform_to_type(hold_torque_percentage, int)
+        self._check_range_belonging(hold_torque_percentage, 0, 100)
+
         tool_id = self.get_current_tool_id()
         if tool_id not in [ToolID.GRIPPER_1, ToolID.GRIPPER_2, ToolID.GRIPPER_3]:
             raise RobotCommandException("Call update_tool before using the open_gripper function")
 
-        goal = self._actions.get_gripper_action_goal(tool_id, ToolCommand.OPEN_GRIPPER, speed)
+        goal = self._actions.get_gripper_action_goal(tool_id, ToolCommand.OPEN_GRIPPER,
+                                                     speed, max_torque_percentage, hold_torque_percentage)
         goal.send(result_callback=callback)
 
         if callback is None:
             self._check_result_status(goal.wait(self.__action_timeout))
 
-    def close_gripper(self, speed=500, callback=None):
+    def close_gripper(self, speed=500, max_torque_percentage=100, hold_torque_percentage=30, callback=None):
         """
         Close gripper associated to 'gripper_id' with a speed 'speed'
         If a callback function is not passed in parameter, the function will be blocking.
@@ -201,15 +217,24 @@ class Tool(RobotCommander):
 
             tool.update_tool()
             tool.close_gripper()
+
+            # Niryo One and Ned
             tool.close_gripper(speed=850)
+
+            # Ned2
+            tool.close_gripper(max_torque_percentage=100, hold_torque_percentage=50)
 
             def tool_callback(_msg)
                 print("Grasped")
 
             tool.close_gripper(callback=tool_callback)
 
-        :param speed: Between 100 & 1000
+        :param speed: Between 100 & 1000 (only for Niryo One and Ned1)
         :type speed: int
+        :param max_torque_percentage: Opening torque percentage (only for Ned2)
+        :type max_torque_percentage: int
+        :param hold_torque_percentage: Hold torque percentage after opening (only for Ned2)
+        :type hold_torque_percentage: int
         :param callback: Callback invoked on successful execution.
         :type callback: function
         :rtype: None
@@ -217,11 +242,18 @@ class Tool(RobotCommander):
         speed = self._transform_to_type(speed, int)
         self._check_range_belonging(speed, 1, 1000)
 
+        max_torque_percentage = self._transform_to_type(max_torque_percentage, int)
+        self._check_range_belonging(max_torque_percentage, 0, 100)
+
+        hold_torque_percentage = self._transform_to_type(hold_torque_percentage, int)
+        self._check_range_belonging(hold_torque_percentage, 0, 100)
+
         tool_id = self.get_current_tool_id()
         if tool_id not in [ToolID.GRIPPER_1, ToolID.GRIPPER_2, ToolID.GRIPPER_3]:
             raise RobotCommandException("Call update_tool before using the close_gripper function")
 
-        goal = self._actions.get_gripper_action_goal(tool_id, ToolCommand.CLOSE_GRIPPER, speed)
+        goal = self._actions.get_gripper_action_goal(tool_id, ToolCommand.CLOSE_GRIPPER,
+                                                     speed, max_torque_percentage, hold_torque_percentage)
         goal.send(result_callback=callback)
 
         if callback is None:
@@ -305,7 +337,7 @@ class Tool(RobotCommander):
         :type pin_id: PinID
         :rtype: None
         """
-        self._check_enum_belonging(pin_id, PinID)
+        self._check_instance(pin_id, (PinID, str))
 
         req = self._services.equip_electromagnet_service_request()
         self._services.equip_electromagnet_service.call(req)
@@ -338,7 +370,7 @@ class Tool(RobotCommander):
         :rtype: None
         """
         if pin_id is not None:
-            self._check_enum_belonging(pin_id, PinID)
+            self._check_instance(pin_id, (PinID, str))
 
         if self.get_current_tool_id() != ToolID.ELECTROMAGNET_1:
             if pin_id:
@@ -377,7 +409,7 @@ class Tool(RobotCommander):
         :rtype: None
         """
         if pin_id is not None:
-            self._check_enum_belonging(pin_id, PinID)
+            self._check_instance(pin_id, (PinID, str))
 
         if self.get_current_tool_id() != ToolID.ELECTROMAGNET_1:
             if pin_id:

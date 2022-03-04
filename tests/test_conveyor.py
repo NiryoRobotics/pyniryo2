@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import time
 import unittest
-import roslibpy
 
 from pyniryo2.exceptions import RobotCommandException
+from pyniryo2.niryo_ros import NiryoRos
 
 from pyniryo2.conveyor.enums import ConveyorID, ConveyorDirection
 from pyniryo2.conveyor.conveyor import Conveyor
@@ -20,13 +20,12 @@ test_order = ["test_conveyor_set_run",
 class BaseTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.client = roslibpy.Ros(host=robot_ip_address, port=port)
-        cls.client.run()
+        cls.client = NiryoRos(ip_address=robot_ip_address, port=port)
         cls.conveyor = Conveyor(cls.client)
 
     @classmethod
     def tearDownClass(cls):
-        cls.client.terminate()
+        cls.client.close()
 
 
 # noinspection PyTypeChecker

@@ -6,6 +6,9 @@ from setuptools import find_packages, setup
 
 version = '1.0.0'
 
+SETUPTOOLS = "setuptools~=46.0.0"
+TEST_REQUIRES = ['coverage', 'pytest']
+
 with open('README.rst', 'r', encoding='utf-8') as f:
     readme = f.read()
 
@@ -41,7 +44,9 @@ kwargs = {
         "Topic :: Scientific/Engineering :: Image Recognition",
         "Topic :: Scientific/Engineering :: Human Machine Interfaces",
     ],
-    'tests_require': ['coverage', 'pytest'],
+    'setup_requires': [SETUPTOOLS],
+    'tests_require': TEST_REQUIRES,
+    'extras_require': {"test": TEST_REQUIRES, "setup": [SETUPTOOLS]},
     'packages': find_packages(exclude=('tests', 'tests.*')),
 
 }

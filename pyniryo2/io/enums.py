@@ -15,8 +15,8 @@ class PinState(Enum):
     """
     Pin State is either LOW or HIGH
     """
-    LOW = 0
-    HIGH = 1
+    LOW = False
+    HIGH = True
 
 
 @unique
@@ -24,12 +24,27 @@ class PinID(Enum):
     """
     Enumeration of Robot Pins
     """
-    GPIO_1A = 2
-    GPIO_1B = 3
-    GPIO_1C = 16
-    GPIO_2A = 26
-    GPIO_2B = 19
-    GPIO_2C = 6
+    GPIO_1A = "1A"
+    GPIO_1B = "1B"
+    GPIO_1C = "1C"
+    GPIO_2A = "2A"
+    GPIO_2B = "2B"
+    GPIO_2C = "2C"
 
-    SW_1 = 12
-    SW_2 = 13
+    SW_1 = "SW1"
+    SW_2 = "SW2"
+
+    DO1 = "DO1"
+    DO2 = "DO2"
+    DO3 = "DO3"
+    DO4 = "DO4"
+    DI1 = "DI1"
+    DI2 = "DI2"
+    DI3 = "DI3"
+    DI4 = "DI4"
+    DI5 = "DI5"
+
+    AI1 = "AI1"
+    AI2 = "AI2"
+    AO1 = "AO1"
+    AO2 = "AO2"

@@ -14,6 +14,9 @@ from .saved_poses.saved_poses import SavedPoses
 from .tool.tool import Tool
 from .trajectories.trajectories import Trajectories
 from .vision.vision import Vision
+from .led_ring.led_ring import LedRing
+from .sound.sound import Sound
+from .niryo_ros import NiryoRos
 
 
 class NiryoRobot(object):
@@ -32,35 +35,38 @@ class NiryoRobot(object):
         :param port:
         :type port:
         """
-        self.__host = None
-        self.__port = None
-        self.__client = None
+        self.__host = ip_address
+        self.__port = port
+        self.__client = NiryoRos(ip_address, port)
 
         self.__vision = None
         self.__pick_place = None
         self.__trajectories = None
         self.__tool = None
+        self.__sound = None
         self.__saved_poses = None
         self.__io = None
         self.__conveyor = None
         self.__arm = None
-
-        self.run(ip_address, port)
+        self.__led_ring = None
 
         self.__arm = Arm(self.__client)
         self.__conveyor = Conveyor(self.__client)
         self.__io = IO(self.__client)
         self.__saved_poses = SavedPoses(self.__client)
+        self.__sound = Sound(self.__client)
         self.__tool = Tool(self.__client)
         self.__trajectories = Trajectories(self.__client)
         self.__pick_place = PickPlace(self.__client, self.__arm, self.__tool, self.__trajectories)
         self.__vision = Vision(self.__client, self.__arm, self.__tool)
+        self.__led_ring = LedRing(self.__client)
 
     def __del__(self):
         del self.__vision
         del self.__pick_place
         del self.__trajectories
         del self.__tool
+        del self.__sound
         del self.__saved_poses
         del self.__io
         del self.__conveyor
@@ -84,31 +90,6 @@ class NiryoRobot(object):
         """
         return self.__client
 
-    def run(self, ip_address="127.0.0.1", port=9090):
-        """
-        Connect to your robot and ROS
-        This function is already called at the initialization of the class.
-        It is therefore not necessary to call it again, except to reconnect the robot. ::
-
-            # Start
-            robot = NiryoRobot("10.10.10.10")
-
-            # End
-            robot.end()
-
-            # Reconnect
-            robot_hotpot.run("10.10.10.10")
-
-        :type ip_address: str
-        :type port: int
-        :rtype: None
-        """
-        self.__host = ip_address
-        self.__port = port
-
-        self.__client = roslibpy.Ros(host=self.__host, port=self.__port)
-        self.__client.run()
-
     def end(self):
         """
         Disconnect from your robot and ROS: ::
@@ -122,7 +103,7 @@ class NiryoRobot(object):
         :rtype: None
         """
         if self.__client is not None and self.__client.is_connected:
-            self.__client.terminate()
+            self.__client.close()
 
     @staticmethod
     def wait(duration):
@@ -211,6 +192,17 @@ class NiryoRobot(object):
         return self.__saved_poses
 
     @property
+    def sound(self):
+        """
+        Access to the Sound API
+
+        Example: ::
+
+        :rtype: Sound
+        """
+        return self.__sound
+
+    @property
     def tool(self):
         """
         Access to the Tool API
@@ -256,3 +248,17 @@ class NiryoRobot(object):
         :rtype: Vision
         """
         return self.__vision
+
+    @property
+    def led_ring(self):
+        """
+        Access to the Led Ring API
+        Example: ::
+
+            robot = NiryoRobot(<robot_ip_address>)
+            niryo_robot.led_ring.led_ring_flash([20,255,78], iterations = 10, wait = True, frequency = 8)
+            niryo_robot.led_ring.led_ring_turn_off()
+
+        :rtype: LedRing
+        """
+        return self.__led_ring

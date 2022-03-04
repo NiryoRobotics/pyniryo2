@@ -15,7 +15,9 @@ robot_ip_address = "127.0.0.1"
 port = 9090
 
 test_order = ["get_digital_io_sate",
+              "get_analog_io_sate",
               "test_pin_mode",
+              "test_set_analog_pin_state",
               "test_set_digital_pin_state",
               ]
 
@@ -35,7 +37,7 @@ class BaseTest(unittest.TestCase):
 # noinspection PyTypeChecker
 class TestIO(BaseTest):
     def get_digital_io_sate(self):
-        for pin in [PinID.GPIO_1A, PinID.GPIO_1B, PinID.GPIO_2C, PinID.SW_1]:
+        for pin in [PinID.DO1, PinID.DI2, PinID.DO4]:
             self.assertIsInstance(self.io.get_digital_io_states, NiryoTopic)
             self.assertIsInstance(self.io.get_digital_io_states(), list)
             self.assertIsInstance(self.io.get_digital_io_states()[0], DigitalPinObject)
@@ -62,26 +64,47 @@ class TestIO(BaseTest):
             self.assertTrue(io_state_event.wait(10))
             self.assertIsNone(self.io.get_digital_io_states.unsubscribe())
 
+    def get_analog_io_sate(self):
+        for pin in [PinID.AO1, PinID.AI2]:
+            self.assertIsInstance(self.io.get_analog_io_states, NiryoTopic)
+            self.assertIsInstance(self.io.get_analog_io_states(), list)
+            self.assertIsInstance(self.io.get_analog_io_states()[0], AnalogPinObject)
+
+            self.assertIsInstance(self.io.get_analog_io_state(pin), AnalogPinObject)
+            self.assertIsInstance(self.io.analog_read(pin), (float, int))
+
+            io_state = self.io.get_analog_io_state(pin)
+            self.assertIsInstance(io_state.pin_id, PinID)
+            self.assertIsInstance(io_state.name, str)
+            self.assertIsInstance(io_state.mode, PinMode)
+            self.assertIsInstance(io_state.value, (float, int))
+            self.assertEqual(io_state.value, self.io.analog_read(pin))
+
+            io_state_event = Event()
+            io_state_event.clear()
+
+            def io_state_callback(io_state_list):
+                self.assertIsInstance(io_state_list, list)
+                self.assertIsInstance(io_state_list[0], DigitalPinObject)
+                io_state_event.set()
+
+            self.assertIsNone(self.io.get_digital_io_states.subscribe(io_state_callback))
+            self.assertTrue(io_state_event.wait(10))
+            self.assertIsNone(self.io.get_digital_io_states.unsubscribe())
+
     def test_pin_mode(self):
-        for pin_id in [PinID.GPIO_1A, PinID.GPIO_1B, PinID.GPIO_2C]:
-            self.assertIsNone(self.io.set_pin_mode(pin_id, PinMode.OUTPUT))
-            self.assertEqual(self.io.get_digital_io_state(pin_id), PinMode.OUTPUT)
+        for pin_in in [PinID.DI1, PinID.DO1, PinID.AI1, PinID.AO1]:
+            with self.assertRaises(RobotCommandException):
+                self.assertIsNone(self.io.set_pin_mode(pin_in, PinMode.OUTPUT))
 
-            self.assertIsNone(self.io.set_pin_mode(pin_id, PinMode.INPUT))
-            self.assertEqual(self.io.get_digital_io_state(pin_id), PinMode.INPUT)
-
-        with self.assertRaises(RobotCommandException):
-            self.io.set_pin_mode(PinID.SW_1, PinMode.INPUT)
+            with self.assertRaises(RobotCommandException):
+                self.assertIsNone(self.io.set_pin_mode(pin_in, PinMode.INPUT))
 
     def test_set_digital_pin_state(self):
         # with self.assertRaises(RobotCommandException):
         #    self.io.digital_write(PinID.DI3, PinState.HIGH)
 
-        for pin_id in [PinID.GPIO_1A, PinID.SW_1]:  # , PinID.DO4]:
-            if not pin_id.value.startswith("SW"):
-                self.assertIsNone(self.io.set_pin_mode(pin_id, PinMode.OUTPUT))
-                self.assertEqual(self.io.get_digital_io_state(pin_id), PinMode.OUTPUT)
-
+        for pin_id in [PinID.DO3]:  # , PinID.DO4]:
             self.assertIsNone(self.io.digital_write(pin_id, PinState.HIGH))
             time.sleep(0.1)
             self.assertEqual(self.io.get_digital_io_state(pin_id).value, True)
@@ -106,6 +129,28 @@ class TestIO(BaseTest):
         with self.assertRaises(RobotCommandException):
             self.io.digital_write(PinID.DO1, 0)
 
+    def test_set_analog_pin_state(self):
+        # with self.assertRaises(RobotCommandException):
+        #    self.io.digital_write(PinID.AI1, PinState.HIGH)
+
+        for pin_id in [PinID.AO1]:
+            for value in [5.0, 2.5, 0]:
+                self.assertIsNone(self.io.analog_write(pin_id, value))
+                time.sleep(0.1)
+                self.assertEqual(self.io.get_analog_io_state(pin_id).value, value)
+                self.assertEqual(self.io.analog_read(pin_id), value)
+
+            with self.assertRaises(RobotCommandException):
+                self.io.analog_write(pin_id, PinState.LOW)
+
+            with self.assertRaises(RobotCommandException):
+                self.io.analog_write(pin_id, -1)
+
+            with self.assertRaises(RobotCommandException):
+                self.io.analog_write(pin_id, 10)
+
+        with self.assertRaises(RobotCommandException):
+            self.io.analog_write(PinID.DO1, 0)
 
 
 def suite():

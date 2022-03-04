@@ -1,13 +1,12 @@
 #!/usr/bin/env python
-import time
 import unittest
-import roslibpy
 import numpy as np
 from threading import Event
 
 from pyniryo2.exceptions import RobotCommandException
 from pyniryo2.niryo_topic import NiryoTopic
 from pyniryo2.objects import PoseObject
+from pyniryo2.niryo_ros import NiryoRos
 
 from pyniryo2.vision.vision import Vision
 from pyniryo2.vision.objects import CameraInfo, ImageParameters
@@ -27,13 +26,12 @@ test_order = ["test_camera_info",
 class BaseTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.client = roslibpy.Ros(host=robot_ip_address, port=port)
-        cls.client.run()
+        cls.client = NiryoRos(ip_address=robot_ip_address, port=port)
         cls.vision = Vision(cls.client)
 
     @classmethod
     def tearDownClass(cls):
-        cls.client.terminate()
+        cls.client.close()
 
     @staticmethod
     def assertAlmostEqualVector(a, b, decimal=1):

@@ -8,6 +8,7 @@ from threading import Event
 
 from pyniryo2.niryo_topic import NiryoTopic
 from pyniryo2.exceptions import TopicException
+from pyniryo2.niryo_ros import NiryoRos
 
 simulation = "-simu" in sys.argv
 
@@ -20,12 +21,11 @@ port = 9090
 class BaseTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.client = roslibpy.Ros(host=robot_ip_address, port=port)
-        cls.client.run()
+        cls.client = NiryoRos(ip_address=robot_ip_address, port=port)
 
     @classmethod
     def tearDownClass(cls):
-        cls.client.terminate()
+        cls.client.close()
 
     @staticmethod
     def assertAlmostEqualVector(a, b, decimal=1):
@@ -69,7 +69,6 @@ class TestTopic(BaseTest):
         self.assertFalse(topic.is_subscribed)
 
     def test_type_conversion(self):
-
         def conversion_get_joint_name(msg):
             return str(msg["name"][0])
 

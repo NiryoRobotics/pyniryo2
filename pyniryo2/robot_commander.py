@@ -1,17 +1,19 @@
 # - Imports
-from __future__ import print_function
 
 # Python libraries
-# /
+from __future__ import print_function
 
 # Communication imports
 from .exceptions import RobotCommandException
 from .objects import PoseObject
 from .enums import RobotErrors
+from .niryo_ros import NiryoRos
 
 
 class RobotCommander(object):
     def __init__(self, client):
+        assert (isinstance(client, NiryoRos))
+
         self._client = client
 
         self._services = None
@@ -23,6 +25,10 @@ class RobotCommander(object):
 
     def __repr__(self):
         return self.__str__()
+
+    @property
+    def client(self):
+        return self._client
 
     # Parameters checker
     def _check_enum_belonging(self, value, enum_):
@@ -73,10 +79,19 @@ class RobotCommander(object):
         for value in values_list:
             self._check_type(value, type_)
 
+    def _check_length(self, values, length):
+        if len(values) != length:
+            self._raise_exception_length(len(values), length)
+
     @staticmethod
     def _check_result_status(result):
-        if result["status"] < RobotErrors.SUCCESS.value:
-            raise RobotCommandException("Error Code : {}\nMessage : {}".format(result["status"], result["message"]))
+        if "status" in result:
+            if result["status"] < RobotErrors.SUCCESS.value:
+                raise RobotCommandException("Error Code : {}\nMessage : {}".format(result["status"], result["message"]))
+        elif "success" in result:
+            if not result["success"]:
+                raise RobotCommandException("Success : Failure\nMessage : {}".format(result["status"], result["message"]))
+
 
     def _map_list(self, list_, type_):
         """
@@ -165,6 +180,9 @@ class RobotCommander(object):
     def _raise_exception_expected_range(self, range_min, range_max, given):
         raise RobotCommandException(
             "Expected the following condition: {} <= value <= {}\nGiven: {}".format(range_min, range_max, given))
+
+    def _raise_exception_length(self, expected_length, given):
+        raise RobotCommandException("Expected length: {}.\n Given: {}".format(expected_length, given))
 
     def _raise_exception(self, message):
         raise RobotCommandException("Exception message : {}".format(message))

@@ -1,15 +1,16 @@
 #!/usr/bin/env python
 import unittest
-import roslibpy
 from threading import Event
 import numpy as np
 
 from pyniryo2.exceptions import RobotCommandException
-from pyniryo2.trajectories.trajectories import Trajectories
-from pyniryo2.arm.arm import Arm
+from pyniryo2.niryo_ros import NiryoRos
 from pyniryo2.objects import PoseObject
 
-robot_ip_address = "192.168.1.52"
+from pyniryo2.trajectories.trajectories import Trajectories
+from pyniryo2.arm.arm import Arm
+
+robot_ip_address = "127.0.0.1"
 port = 9090
 
 test_order = ["test_creation_delete_trajectory",
@@ -22,15 +23,14 @@ test_order = ["test_creation_delete_trajectory",
 class BaseTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.client = roslibpy.Ros(host=robot_ip_address, port=port)
-        cls.client.run()
+        cls.client = NiryoRos(ip_address=robot_ip_address, port=port)
         cls.trajectories = Trajectories(cls.client)
         cls.arm = Arm(cls.client)
 
     @classmethod
     def tearDownClass(cls):
         cls.arm.go_to_sleep()
-        cls.client.terminate()
+        cls.client.close()
 
     @staticmethod
     def assertAlmostEqualVector(a, b, decimal=1):
@@ -103,7 +103,7 @@ class TestTrajectories(BaseTest):
 
     def test_execute_trajectory(self):
         # Testing trajectory from poses
-        self.assertTrue(self.arm.calibrate_auto())
+        self.assertIsNone(self.arm.calibrate_auto())
         self.go_to_neutral_pose()
         self.assertIsNone(self.trajectories.execute_trajectory_from_poses(self.robot_poses))
         self.assertAlmostEqualVector(self.arm.get_pose().quaternion_pose, self.robot_poses[-1])
@@ -140,7 +140,7 @@ class TestTrajectories(BaseTest):
             self.trajectories.execute_trajectory_saved(traj_name)
 
     def test_execute_trajectory_type(self):
-        self.assertTrue(self.arm.calibrate_auto())
+        self.assertIsNone(self.arm.calibrate_auto())
         self.go_to_neutral_pose()
         self.trajectories.execute_trajectory_from_poses([[0.3, 0.1, 0.3, 0., 0., 0., 1.],
                                                          PoseObject(0.3, -0.1, 0.3, 0., 0., 0.),

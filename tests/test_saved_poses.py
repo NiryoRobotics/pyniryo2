@@ -4,10 +4,11 @@ import roslibpy
 
 from pyniryo2.exceptions import RobotCommandException
 from pyniryo2.objects import PoseObject
+from pyniryo2.niryo_ros import NiryoRos
 
 from pyniryo2.saved_poses.saved_poses import SavedPoses
 
-robot_ip_address = "192.168.1.52"
+robot_ip_address = "127.0.0.1"
 port = 9090
 
 test_order = ["test_get_saved_poses_list",
@@ -19,13 +20,12 @@ test_order = ["test_get_saved_poses_list",
 class BaseTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.client = roslibpy.Ros(host=robot_ip_address, port=port)
-        cls.client.run()
+        cls.client = NiryoRos(ip_address=robot_ip_address, port=port)
         cls.saved_poses = SavedPoses(cls.client)
 
     @classmethod
     def tearDownClass(cls):
-        cls.client.terminate()
+        cls.client.close()
 
 
 # noinspection PyTypeChecker

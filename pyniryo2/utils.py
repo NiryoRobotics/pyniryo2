@@ -17,7 +17,7 @@ def pose_list_to_dict(pose_list):
 
 def pose_quat_dict_to_list(pose_dict):
     return [pose_dict["position"][axis] for axis in ["x", "y", "z"]] + \
-           [pose_dict["orientation"][axis] for axis in ["roll", "pitch", "yaw"]]
+           [pose_dict["orientation"][axis] for axis in ["x", "y", "z", "w"]]
 
 
 def pose_quat_list_to_dict(pose_list):

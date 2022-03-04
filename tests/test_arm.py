@@ -1,18 +1,18 @@
 #!/usr/bin/env python
 import time
-
 import unittest
-import roslibpy
 import numpy as np
 from threading import Event
 
 from pyniryo2.objects import PoseObject
-from pyniryo2.arm.objects import JointStateObject, HardwareStatusObject
+from pyniryo2.niryo_ros import NiryoRos
 from pyniryo2.exceptions import RobotCommandException
+
 from pyniryo2.arm.arm import Arm
+from pyniryo2.arm.objects import JointStateObject, HardwareStatusObject
 from pyniryo2.arm.enums import CalibrateMode, RobotAxis
 
-robot_ip_address = "192.168.1.52"
+robot_ip_address = "127.0.0.1"
 port = 9090
 
 test_order = ["test_hardware_status",
@@ -36,13 +36,12 @@ test_order = ["test_hardware_status",
 class BaseTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.client = roslibpy.Ros(host=robot_ip_address, port=port)
-        cls.client.run()
+        cls.client = NiryoRos(ip_address=robot_ip_address, port=port)
         cls.arm = Arm(cls.client)
 
     @classmethod
     def tearDownClass(cls):
-        cls.client.terminate()
+        cls.client.close()
 
     @staticmethod
     def assertAlmostEqualVector(a, b, decimal=1):

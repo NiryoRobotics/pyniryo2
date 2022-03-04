@@ -28,8 +28,8 @@ msgid ""
 "This file presents the different :ref:`source/api_doc/pick_place:Pick & "
 "Place - Command functions` available with the Pick & Place API"
 msgstr ""
-"Ce fichier présente les différentes :ref:`source/api_doc/pick_place:Pick & "
-"Place - Fonctions de Commadne` disponible avec l'API du Pick & Place"
+"Ce fichier présente les différentes :ref:`fonctions de commande <source/api_doc/pick_place:Pick & "
+"Place - Command functions>` disponible avec l'API du Pick & Place"
 
 #: ../../source/api_doc/pick_place.rst:8
 msgid "Pick & Place - Command functions"

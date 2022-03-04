@@ -83,10 +83,10 @@ class NiryoRobot(object):
     @property
     def client(self):
         """
-        Get the ROS client: https://roslibpy.readthedocs.io/en/latest/reference/index.html#roslibpy.Ros
+        Get the Niryo Ros client
 
-        :return: ROS client
-        :rtype: roslibpy.Ros
+        :return: NiryoRos client
+        :rtype: NiryoRos
         """
         return self.__client
 

@@ -22,6 +22,8 @@ class NiryoRos(roslibpy.Ros):
 
             ros_instance = NiryoRos("169.254.200.201") # Ethernet
 
+        Based on the roslibpy ROS client: https://roslibpy.readthedocs.io/en/latest/reference/index.html#roslibpy.Ros
+
         :param ip_address: ip of the ros master
         :type ip_address: string
         :param port: usually 9090

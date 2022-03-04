@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 17:48+0000\n"
+"POT-Creation-Date: 2022-03-04 18:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -142,7 +142,7 @@ msgstr ""
 "Délai d'exécution de l'opération, en secondes. Utilisé seulement en cas "
 "de blocage"
 
-#: ../../source/api_doc/tool.rst:100 of
+#: ../../source/api_doc/tool.rst:94 of
 #: pyniryo2.tool.tool.Tool.activate_electromagnet
 #: pyniryo2.tool.tool.Tool.close_gripper
 #: pyniryo2.tool.tool.Tool.deactivate_electromagnet
@@ -181,28 +181,28 @@ msgstr "Instance du topic de l'identifiant de l'outil"
 
 #: of pyniryo2.tool.tool.Tool.grasp_with_tool:1
 msgid ""
-"Grasp with tool | This action correspond to | - Close gripper for "
-"Grippers | - Pull Air for Vacuum pump | - Activate for Electromagnet If a"
-" callback function is not passed in parameter, the function will be "
-"blocking. Otherwise, the callback will be called when the execution of "
-"the function is finished."
+"Grasp with tool This action correspond to * Close gripper for Grippers * "
+"Pull Air for Vacuum pump * Activate for Electromagnet If a callback "
+"function is not passed in parameter, the function will be blocking. "
+"Otherwise, the callback will be called when the execution of the function"
+" is finished."
 msgstr ""
-"Saisie avec outil | Cette action correspond à | - Ferme le préhenseur "
-"pour Préhenseurs | - Aspire l'air pour la pompe à vide | - Active "
+"Saisie avec outil. Cette action correspond à - Ferme le préhenseur "
+"pour Préhenseurs - Aspire l'air pour la pompe à vide - Active "
 "l'électroaimant si une fonction de retour n'est pas passé en paramètre, "
 "la fonction sera bloquée. Sinon, la fonction de retour sera appelé quand "
 "l'exécuton de la fonction est finie."
 
 #: of pyniryo2.tool.tool.Tool.release_with_tool:1
 msgid ""
-"Release with tool | This action correspond to | - Open gripper for "
-"Grippers | - Push Air for Vacuum pump | - Deactivate for Electromagnet If"
-" a callback function is not passed in parameter, the function will be "
-"blocking. Otherwise, the callback will be called when the execution of "
-"the function is finished."
+"Release with tool. This action correspond to * Open gripper for Grippers *"
+" Push Air for Vacuum pump * Deactivate for Electromagnet If a callback "
+"function is not passed in parameter, the function will be blocking. "
+"Otherwise, the callback will be called when the execution of the function"
+" is finished."
 msgstr ""
-"Relâche avec l'outil | Cette action correspond à | - Ouvre le préhenseur "
-"pour Préhenseurs | - Relâche l'air pour la pompe à vide | - Désactive "
+"Relâche avec l'outil Cette action correspond à - Ouvre le préhenseur "
+"pour Préhenseurs - Relâche l'air pour la pompe à vide - Désactive "
 "l'électroaimant si une fonction de retour n'est pas passé en paramètre, "
 "la fonction sera bloquée. Sinon, la fonction de retour sera appelé quand "
 "l'exécuton de la fonction est finie."
@@ -233,7 +233,9 @@ msgstr "Pourcentage de couple de fermeture (uniquement pour le Ned2)"
 
 #: of pyniryo2.tool.tool.Tool.open_gripper:25
 msgid "Hold torque percentage after closing (only for Ned2)"
-msgstr "Pourcentage de couple de maintient après fermeture (uniquement pour le Ned2)"
+msgstr ""
+"Pourcentage de couple de maintient après fermeture (uniquement pour le "
+"Ned2)"
 
 #: of pyniryo2.tool.tool.Tool.close_gripper:1
 msgid ""
@@ -253,7 +255,9 @@ msgstr "Pourcentage de couple d'ouverture (uniquement pour le Ned2)"
 
 #: of pyniryo2.tool.tool.Tool.close_gripper:25
 msgid "Hold torque percentage after opening (only for Ned2)"
-msgstr "Pourcentage de couple de maintient après ouverture (uniquement pour le Ned2)"
+msgstr ""
+"Pourcentage de couple de maintient après ouverture (uniquement pour le "
+"Ned2)"
 
 #: ../../source/api_doc/tool.rst:60
 msgid "Vacuum pump functions"
@@ -315,7 +319,7 @@ msgstr ""
 "bloquée. Sinon, la fonction de retour sera appelé quand l'exécuton de la "
 "fonction est finie."
 
-#: ../../source/api_doc/tool.rst:73 ../../source/api_doc/tool.rst:80
+#: ../../source/api_doc/tool.rst:73
 msgid "TCP functions"
 msgstr "Fonctions du PCO"
 
@@ -360,11 +364,11 @@ msgstr ""
 "Réinitialise la transformation appliquée au PCO (Point Central de "
 "l'Outil). La valeur par défaut dépend de l'outil actuellement équipé."
 
-#: ../../source/api_doc/tool.rst:87
+#: ../../source/api_doc/tool.rst:81
 msgid "Tool - Niryo Topics"
 msgstr "Outil - Topics Niryo"
 
-#: ../../source/api_doc/tool.rst:89
+#: ../../source/api_doc/tool.rst:83
 msgid ""
 "The use of these functions is explained in the "
 ":ref:`source/api_doc/niryo_topics:NiryoTopic` section. They allow the "
@@ -375,39 +379,39 @@ msgstr ""
 "l'acquisition de données en temps réel par des fonctions de rappel ou des"
 " appels directs"
 
-#: ../../source/api_doc/tool.rst:92
+#: ../../source/api_doc/tool.rst:86
 msgid "Tool's Niryo Topics"
 msgstr "Topics Niryo pour les Outils"
 
-#: ../../source/api_doc/tool.rst:98
+#: ../../source/api_doc/tool.rst:92
 msgid "Name"
 msgstr "Nom"
 
-#: ../../source/api_doc/tool.rst:99
+#: ../../source/api_doc/tool.rst:93
 msgid "Function"
 msgstr "Fonction"
 
-#: ../../source/api_doc/tool.rst:101
+#: ../../source/api_doc/tool.rst:95
 msgid "``/niryo_robot_tools_commander/current_id``"
 msgstr "``/niryo_robot_tools_commander/current_id``"
 
-#: ../../source/api_doc/tool.rst:102
+#: ../../source/api_doc/tool.rst:96
 msgid ":attr:`~.tool.Tool.get_current_tool_id`"
 msgstr ":attr:`~.tool.Tool.get_current_tool_id`"
 
-#: ../../source/api_doc/tool.rst:103 ../../source/api_doc/tool.rst:111
+#: ../../source/api_doc/tool.rst:97 ../../source/api_doc/tool.rst:105
 msgid ":class:`~.tool.enums.ToolID`"
 msgstr ":class:`~.tool.enums.ToolID`"
 
-#: ../../source/api_doc/tool.rst:107
+#: ../../source/api_doc/tool.rst:101
 msgid "Tool - Enums"
 msgstr "Outil - Enumerations"
 
-#: ../../source/api_doc/tool.rst:109
+#: ../../source/api_doc/tool.rst:103
 msgid "List of enums:"
 msgstr "Liste des enumerations"
 
-#: ../../source/api_doc/tool.rst:112
+#: ../../source/api_doc/tool.rst:106
 msgid ":class:`~.tool.enums.ToolCommand`"
 msgstr ":class:`~.tool.enums.ToolCommand`"
 
@@ -421,4 +425,88 @@ msgstr "Une enumeration"
 
 #~ msgid "Between 100 & 1000"
 #~ msgstr "Entre 100 & 1000"
+
+#~ msgid ""
+#~ "Grasp with tool | This action "
+#~ "correspond to | - Close gripper "
+#~ "for Grippers | - Pull Air for "
+#~ "Vacuum pump | - Activate for "
+#~ "Electromagnet If a callback function is"
+#~ " not passed in parameter, the "
+#~ "function will be blocking. Otherwise, "
+#~ "the callback will be called when "
+#~ "the execution of the function is "
+#~ "finished."
+#~ msgstr ""
+#~ "Saisie avec outil | Cette action "
+#~ "correspond à | - Ferme le "
+#~ "préhenseur pour Préhenseurs | - Aspire"
+#~ " l'air pour la pompe à vide |"
+#~ " - Active l'électroaimant si une "
+#~ "fonction de retour n'est pas passé "
+#~ "en paramètre, la fonction sera bloquée."
+#~ " Sinon, la fonction de retour sera"
+#~ " appelé quand l'exécuton de la "
+#~ "fonction est finie."
+
+#~ msgid ""
+#~ "Release with tool | This action "
+#~ "correspond to | - Open gripper for"
+#~ " Grippers | - Push Air for "
+#~ "Vacuum pump | - Deactivate for "
+#~ "Electromagnet If a callback function is"
+#~ " not passed in parameter, the "
+#~ "function will be blocking. Otherwise, "
+#~ "the callback will be called when "
+#~ "the execution of the function is "
+#~ "finished."
+#~ msgstr ""
+#~ "Relâche avec l'outil | Cette action "
+#~ "correspond à | - Ouvre le "
+#~ "préhenseur pour Préhenseurs | - Relâche"
+#~ " l'air pour la pompe à vide |"
+#~ " - Désactive l'électroaimant si une "
+#~ "fonction de retour n'est pas passé "
+#~ "en paramètre, la fonction sera bloquée."
+#~ " Sinon, la fonction de retour sera"
+#~ " appelé quand l'exécuton de la "
+#~ "fonction est finie."
+
+#~ msgid "Grasp with tool his action correspond to"
+#~ msgstr ""
+
+#~ msgid "Close gripper for Grippers"
+#~ msgstr ""
+
+#~ msgid "Pull Air for Vacuum pump"
+#~ msgstr "Utilise la pompe à vide"
+
+#~ msgid "Activate for Electromagnet"
+#~ msgstr "Utilise l'électroaimant"
+
+#~ msgid ""
+#~ "If a callback function is not "
+#~ "passed in parameter, the function will"
+#~ " be blocking. Otherwise, the callback "
+#~ "will be called when the execution "
+#~ "of the function is finished."
+#~ msgstr ""
+#~ "Relâche l'air de la pompe à vide."
+#~ " Si une fonction de retour n'est "
+#~ "pas passé en paramètre, la fonction "
+#~ "sera bloquée. Sinon, la fonction de "
+#~ "retour sera appelé quand l'exécuton de"
+#~ " la fonction est finie."
+
+#~ msgid "Release with tool This action correspond to"
+#~ msgstr ""
+
+#~ msgid "Open gripper for Grippers"
+#~ msgstr ""
+
+#~ msgid "Push Air for Vacuum pump"
+#~ msgstr "Utilise la pompe à vide"
+
+#~ msgid "Deactivate for Electromagnet"
+#~ msgstr "Utilise l'électroaimant"
 

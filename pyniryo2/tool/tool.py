@@ -91,10 +91,10 @@ class Tool(RobotCommander):
     def grasp_with_tool(self, callback=None):
         """
         Grasp with tool
-        | This action correspond to
-        | - Close gripper for Grippers
-        | - Pull Air for Vacuum pump
-        | - Activate for Electromagnet
+        This action correspond to
+        * Close gripper for Grippers
+        * Pull Air for Vacuum pump
+        * Activate for Electromagnet
         If a callback function is not passed in parameter, the function will be blocking.
         Otherwise, the callback will be called when the execution of the function is finished.
 
@@ -124,10 +124,10 @@ class Tool(RobotCommander):
     def release_with_tool(self, callback=None):
         """
         Release with tool
-        | This action correspond to
-        | - Open gripper for Grippers
-        | - Push Air for Vacuum pump
-        | - Deactivate for Electromagnet
+        This action correspond to
+        * Open gripper for Grippers
+        * Push Air for Vacuum pump
+        * Deactivate for Electromagnet
         If a callback function is not passed in parameter, the function will be blocking.
         Otherwise, the callback will be called when the execution of the function is finished.
 

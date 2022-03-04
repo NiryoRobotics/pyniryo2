@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 17:48+0000\n"
+"POT-Creation-Date: 2022-03-04 18:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,9 +112,7 @@ msgid "duration in seconds"
 msgstr ""
 
 #: of pyniryo2.niryo_robot.NiryoRobot.client:1
-msgid ""
-"Get the ROS client: "
-"https://roslibpy.readthedocs.io/en/latest/reference/index.html#roslibpy.Ros"
+msgid "Get the Niryo Ros client"
 msgstr ""
 
 #: of pyniryo2.niryo_robot.NiryoRobot.client
@@ -122,7 +120,7 @@ msgid "Returns"
 msgstr ""
 
 #: of pyniryo2.niryo_robot.NiryoRobot.client:3
-msgid "ROS client"
+msgid "NiryoRos client"
 msgstr ""
 
 #: ../../source/api_doc/niryo_robot.rst:52
@@ -225,5 +223,13 @@ msgstr ""
 #~ " therefore not necessary to call it"
 #~ " again, except to reconnect the "
 #~ "robot. ::"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Get the ROS client: "
+#~ "https://roslibpy.readthedocs.io/en/latest/reference/index.html#roslibpy.Ros"
+#~ msgstr ""
+
+#~ msgid "ROS client"
 #~ msgstr ""
 

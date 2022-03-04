@@ -28,8 +28,8 @@ msgid ""
 "This file presents the different :ref:`source/api_doc/saved_poses:Saved "
 "poses - Command functions`, available with the Saved poses API"
 msgstr ""
-"Ce fichier présente les différentes :ref:`source/api_doc/saved_poses:Saved "
-"positions - Fonctions de commande`, disponibles avec l'API des positions sauvegardées"
+"Ce fichier présente les différentes :ref:`fonctions de commande <source/api_doc/saved_poses:Saved "
+"poses - Command functions>`, disponibles avec l'API des positions sauvegardées"
 
 #: ../../source/api_doc/saved_poses.rst:8
 msgid "Saved poses - Command functions"

@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../../source/api_doc/tool.rst:2
 msgid "Tool"
-msgstr ""
+msgstr "Outil"
 
 #: ../../source/api_doc/tool.rst:4
 msgid ""
@@ -30,60 +30,69 @@ msgid ""
 ":ref:`source/api_doc/tool:Tool - Niryo Topics` available with the Tool "
 "API"
 msgstr ""
+"Ce fichier présente les différentes :ref:`source/api_doc/tool:Tool - Command"
+" functions`, :ref:`source/api_doc/tool:Tool - Enums` & "
+":ref:`source/api_doc/tool:Tool - Niryo Topics` disponible avec l'outil"
 
 #: ../../source/api_doc/tool.rst:9
 msgid "Tool - Command Functions"
-msgstr ""
+msgstr "Outil - Fonctions de contrôle"
 
 #: ../../source/api_doc/tool.rst:16
 msgid ""
 "This section reference all existing functions to control your robot, "
 "which include"
 msgstr ""
+"Cette section fait référence à toutes les fonctions de contrôle du robot existante, "
+"ce qui inclut"
 
 #: ../../source/api_doc/tool.rst:18
 msgid "Using tools"
-msgstr ""
+msgstr "Utilise les outils"
 
 #: ../../source/api_doc/tool.rst:19
 msgid "Using grippers"
-msgstr ""
+msgstr "Utilise les préhenseurs"
 
 #: ../../source/api_doc/tool.rst:20
 msgid "Using the vacuum pump"
-msgstr ""
+msgstr "Utilise la pompe à vide"
 
 #: ../../source/api_doc/tool.rst:21
 msgid "Using the electromagnet"
-msgstr ""
+msgstr "Utilise l'électroaimant"
 
 #: ../../source/api_doc/tool.rst:22
 msgid "Management of the TCP"
-msgstr ""
+msgstr "Gestion du PCO"
 
 #: ../../source/api_doc/tool.rst:24
 msgid ""
 "All functions to control the robot are accessible via an instance of the "
 "class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
 msgstr ""
+"Toutes les fonctions de contrôle du robot sont accessibles grâce à une instance "
+"class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
 
 #: ../../source/api_doc/tool.rst:35
 msgid ""
 "See examples on :ref:`Examples Section "
 "<source/examples/examples_tool_action:Examples: Tool Action>`"
 msgstr ""
+"Voir des exemples sur :ref:`Examples Section "
+"<source/examples/examples_tool_action:Examples: Tool Action>`"
 
 #: ../../source/api_doc/tool.rst:37
 msgid "List of functions subsections:"
-msgstr ""
+msgstr "Liste des fonctions de sous-sections"
 
 #: ../../source/api_doc/tool.rst:45
 msgid "Tool functions"
-msgstr ""
+msgstr "Fonctions des outils"
 
 #: of pyniryo2.tool.tool.Tool.update_tool:1
 msgid "Update equipped tool"
-msgstr ""
+msgstr "Mise à jour de l'outil équipé"
 
 #: of pyniryo2.tool.tool.Tool.activate_electromagnet:5
 #: pyniryo2.tool.tool.Tool.close_gripper:5
@@ -96,7 +105,7 @@ msgstr ""
 #: pyniryo2.tool.tool.Tool.release_with_tool:9
 #: pyniryo2.tool.tool.Tool.set_tcp:4 pyniryo2.tool.tool.Tool.update_tool:3
 msgid "Examples: ::"
-msgstr ""
+msgstr "Exemple: ::"
 
 #: of pyniryo2.tool.tool.Tool.activate_electromagnet
 #: pyniryo2.tool.tool.Tool.close_gripper
@@ -109,7 +118,7 @@ msgstr ""
 #: pyniryo2.tool.tool.Tool.setup_electromagnet
 #: pyniryo2.tool.tool.Tool.update_tool
 msgid "Parameters"
-msgstr ""
+msgstr "Paramètres"
 
 #: of pyniryo2.tool.tool.Tool.activate_electromagnet:18
 #: pyniryo2.tool.tool.Tool.close_gripper:18
@@ -121,15 +130,15 @@ msgstr ""
 #: pyniryo2.tool.tool.Tool.release_with_tool:19
 #: pyniryo2.tool.tool.Tool.update_tool:17
 msgid "Callback invoked on successful execution."
-msgstr ""
+msgstr "Fonction de retour appelé en cas de réussite lors de l'exécution"
 
 #: of pyniryo2.tool.tool.Tool.update_tool:19
 msgid "Callback invoked on error."
-msgstr ""
+msgstr "Fonction de retour appelé en cas d'erreur lors de l'exécution"
 
 #: of pyniryo2.tool.tool.Tool.update_tool:21
 msgid "Timeout for the operation, in seconds. Only used if blocking."
-msgstr ""
+msgstr "Délai d'exécution de l'opération, en secondes. Utilisé seulement en cas de blocage"
 
 #: ../../source/api_doc/tool.rst:93 of
 #: pyniryo2.tool.tool.Tool.activate_electromagnet
@@ -144,15 +153,15 @@ msgstr ""
 #: pyniryo2.tool.tool.Tool.set_tcp pyniryo2.tool.tool.Tool.setup_electromagnet
 #: pyniryo2.tool.tool.Tool.tool pyniryo2.tool.tool.Tool.update_tool
 msgid "Return type"
-msgstr ""
+msgstr "Type du retour"
 
 #: of pyniryo2.tool.tool.Tool.get_current_tool_id pyniryo2.tool.tool.Tool.tool
 msgid "Returns"
-msgstr ""
+msgstr "Retourne"
 
 #: of pyniryo2.tool.tool.Tool.tool:1
 msgid "The equipped tool ID"
-msgstr ""
+msgstr "Identifiant de l'outil équipé"
 
 #: of pyniryo2.tool.tool.Tool.get_current_tool_id:1
 msgid ""
@@ -160,10 +169,13 @@ msgid ""
 "asynchronously to obtain the equipped tool Id. The topic returns a "
 "attribute of the ToolID enum."
 msgstr ""
+"Retourne le client de l'identifiant de l'outil équipé qui peut être utilisé "
+"de manière synchrone ou asynchrone pour récupérer l'identifiant de l'outil équipé."
+"Le topic retourne un attribut du ToolID enum"
 
 #: of pyniryo2.tool.tool.Tool.get_current_tool_id:18
 msgid "the equipped tool Id topic instance."
-msgstr ""
+msgstr "Instance du topic de l'identifiant de l'outil"
 
 #: of pyniryo2.tool.tool.Tool.grasp_with_tool:1
 msgid ""
@@ -173,6 +185,11 @@ msgid ""
 "blocking. Otherwise, the callback will be called when the execution of "
 "the function is finished."
 msgstr ""
+"Saisie avec outil | Cette action correspond à | - Ferme le préhenseur pour "
+"Préhenseurs | - Aspire l'air pour la pompe à vide | - Active l'électroaimant si une"
+" fonction de retour n'est pas passé en paramètre, la fonction sera bloquée. "
+"Sinon, la fonction de retour sera appelé quand l'exécuton de la fonction est "
+"finie."
 
 #: of pyniryo2.tool.tool.Tool.release_with_tool:1
 msgid ""
@@ -182,10 +199,15 @@ msgid ""
 "blocking. Otherwise, the callback will be called when the execution of "
 "the function is finished."
 msgstr ""
+"Relâche avec l'outil | Cette action correspond à | - Ouvre le préhenseur pour "
+"Préhenseurs | - Relâche l'air pour la pompe à vide | - Désactive l'électroaimant si une"
+" fonction de retour n'est pas passé en paramètre, la fonction sera bloquée. "
+"Sinon, la fonction de retour sera appelé quand l'exécuton de la fonction est "
+"finie."
 
 #: ../../source/api_doc/tool.rst:54
 msgid "Grippers functions"
-msgstr ""
+msgstr "Fonctions des Préhenseurs"
 
 #: of pyniryo2.tool.tool.Tool.open_gripper:1
 msgid ""
@@ -194,11 +216,15 @@ msgid ""
 "blocking. Otherwise, the callback will be called when the execution of "
 "the function is finished."
 msgstr ""
+"Ouvre le préhenseur associé au préhenseur équipé avec une vitesse 'vitesse'. Si une"
+" fonction de retour n'est pas passé en paramètre, la fonction sera bloquée. "
+"Sinon, la fonction de retour sera appelé quand l'exécuton de la fonction est "
+"finie."
 
 #: of pyniryo2.tool.tool.Tool.close_gripper:16
 #: pyniryo2.tool.tool.Tool.open_gripper:16
 msgid "Between 100 & 1000"
-msgstr ""
+msgstr "Entre 100 & 1000"
 
 #: of pyniryo2.tool.tool.Tool.close_gripper:1
 msgid ""
@@ -207,10 +233,14 @@ msgid ""
 "blocking. Otherwise, the callback will be called when the execution of "
 "the function is finished."
 msgstr ""
+"Ferme le préhenseur associé au 'gripper_id' à la vitesse 'vitesse'. Si une"
+" fonction de retour n'est pas passé en paramètre, la fonction sera bloquée. "
+"Sinon, la fonction de retour sera appelé quand l'exécuton de la fonction est "
+"finie."
 
 #: ../../source/api_doc/tool.rst:60
 msgid "Vacuum pump functions"
-msgstr ""
+msgstr "Fonctions de la Pompe à vide"
 
 #: of pyniryo2.tool.tool.Tool.pull_air_vacuum_pump:1
 msgid ""
@@ -218,6 +248,10 @@ msgid ""
 "parameter, the function will be blocking. Otherwise, the callback will be"
 " called when the execution of the function is finished."
 msgstr ""
+"Aspire l'air de la pompe à vide. Si une"
+" fonction de retour n'est pas passé en paramètre, la fonction sera bloquée. "
+"Sinon, la fonction de retour sera appelé quand l'exécuton de la fonction est "
+"finie."
 
 #: of pyniryo2.tool.tool.Tool.push_air_vacuum_pump:1
 msgid ""
@@ -225,18 +259,22 @@ msgid ""
 "parameter, the function will be blocking. Otherwise, the callback will be"
 " called when the execution of the function is finished."
 msgstr ""
+"Relâche l'air de la pompe à vide. Si une"
+" fonction de retour n'est pas passé en paramètre, la fonction sera bloquée. "
+"Sinon, la fonction de retour sera appelé quand l'exécuton de la fonction est "
+"finie."
 
 #: ../../source/api_doc/tool.rst:66
 msgid "Electromagnet functions"
-msgstr ""
+msgstr "Fonctions de l'électroaimant"
 
 #: of pyniryo2.tool.tool.Tool.setup_electromagnet:1
 msgid "Setup electromagnet on pin"
-msgstr ""
+msgstr "Installe l'électroaimant sur une broche"
 
 #: of pyniryo2.tool.tool.Tool.setup_electromagnet:3
 msgid "Example: ::"
-msgstr ""
+msgstr "Exemple: ::"
 
 #: of pyniryo2.tool.tool.Tool.activate_electromagnet:1
 msgid ""
@@ -245,6 +283,10 @@ msgid ""
 "blocking. Otherwise, the callback will be called when the execution of "
 "the function is finished."
 msgstr ""
+"Active l'électroaimant associé à electromagnet_id sur le pin_id. Si une"
+" fonction de retour n'est pas passé en paramètre, la fonction sera bloquée. "
+"Sinon, la fonction de retour sera appelé quand l'exécuton de la fonction est "
+"finie."
 
 #: of pyniryo2.tool.tool.Tool.deactivate_electromagnet:1
 msgid ""
@@ -253,10 +295,14 @@ msgid ""
 "blocking. Otherwise, the callback will be called when the execution of "
 "the function is finished."
 msgstr ""
+"Désactive l'électroaimant associé à electromagnet_id sur le pin_id. Si une"
+" fonction de retour n'est pas passé en paramètre, la fonction sera bloquée. "
+"Sinon, la fonction de retour sera appelé quand l'exécuton de la fonction est "
+"finie."
 
 #: ../../source/api_doc/tool.rst:73
 msgid "TCP functions"
-msgstr ""
+msgstr "Fonctions du PCO"
 
 #: of pyniryo2.tool.tool.Tool.enable_tcp:1
 msgid ""
@@ -265,32 +311,43 @@ msgid ""
 "value depends on the gripper equipped. If deactivation is requested, the "
 "TCP will be coincident with the tool_link."
 msgstr ""
+"Active ou désactive la fonction PCO (Point Central de l'Outil). Si une "
+"activation est demandée, la dernière valeur pour le PCO va être "
+"appliquée. Par défaut la valeur dépend du préhenseur équipé. Si la "
+"désactivation est demandée, le PCO va coincider avec le repère "
+"'tool_link'."
 
 #: of pyniryo2.tool.tool.Tool.enable_tcp:6
 msgid "True to enable, False otherwise."
-msgstr ""
+msgstr "True pour activer, False pour désactiver."
 
 #: of pyniryo2.tool.tool.Tool.set_tcp:1
 msgid ""
 "Activates the TCP function (Tool Center Point) and defines the "
 "transformation between the tool_link frame and the TCP frame."
 msgstr ""
+"Active la fonction de PCO (Point Central de l'Outil) et définit la "
+"transformation entre le repère 'tool_link' et le repère du PCO."
 
 #: of pyniryo2.tool.tool.Tool.set_tcp:10
 msgid ""
 "either 6 args (1 for each coordinates) or a list of 6 coordinates or a "
 "``PoseObject``"
 msgstr ""
+"Soit 6 arguments (1 pour chaque coordonnées) ou une liste de 6 coordonnées ou "
+"un ``PoseObject``"
 
 #: of pyniryo2.tool.tool.Tool.reset_tcp:1
 msgid ""
 "Reset the TCP (Tool Center Point) transformation. The PCO will be reset "
 "according to the tool equipped."
 msgstr ""
+"Réinitialise la transformation appliquée au PCO (Point Central de "
+"l'Outil). La valeur par défaut dépend de l'outil actuellement équipé."
 
 #: ../../source/api_doc/tool.rst:80
 msgid "Tool - Niryo Topics"
-msgstr ""
+msgstr "Outil - Topics Niryo"
 
 #: ../../source/api_doc/tool.rst:82
 msgid ""
@@ -298,48 +355,51 @@ msgid ""
 ":ref:`source/api_doc/niryo_topics:NiryoTopic` section. They allow the "
 "acquisition of data in real time by callbacks or by direct call."
 msgstr ""
+"L'utilisation de ces fonctions est expliqué dans la section "
+":ref:`source/api_doc/niryo_topics:NiryoTopic`. Elles permettent l'acquisition "
+"de données en temps réel par des fonctions de rappel ou des appels directs"
 
 #: ../../source/api_doc/tool.rst:85
 msgid "Tool's Niryo Topics"
-msgstr ""
+msgstr "Topics Niryo pour les Outils"
 
 #: ../../source/api_doc/tool.rst:91
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #: ../../source/api_doc/tool.rst:92
 msgid "Function"
-msgstr ""
+msgstr "Fonction"
 
 #: ../../source/api_doc/tool.rst:94
 msgid "``/niryo_robot_tools_commander/current_id``"
-msgstr ""
+msgstr "``/niryo_robot_tools_commander/current_id``"
 
 #: ../../source/api_doc/tool.rst:95
 msgid ":attr:`~.tool.Tool.get_current_tool_id`"
-msgstr ""
+msgstr ":attr:`~.tool.Tool.get_current_tool_id`"
 
 #: ../../source/api_doc/tool.rst:96 ../../source/api_doc/tool.rst:104
 msgid ":class:`~.tool.enums.ToolID`"
-msgstr ""
+msgstr ":class:`~.tool.enums.ToolID`"
 
 #: ../../source/api_doc/tool.rst:100
 msgid "Tool - Enums"
-msgstr ""
+msgstr "Outil - Enumerations"
 
 #: ../../source/api_doc/tool.rst:102
 msgid "List of enums:"
-msgstr ""
+msgstr "Liste des enumerations"
 
 #: ../../source/api_doc/tool.rst:105
 msgid ":class:`~.tool.enums.ToolCommand`"
-msgstr ""
+msgstr ":class:`~.tool.enums.ToolCommand`"
 
 #: of pyniryo2.tool.enums.ToolID:1
 msgid "Enumeration of Tools IDs"
-msgstr ""
+msgstr "Enumeration des identifiants des Outils"
 
 #: of pyniryo2.tool.enums.ToolCommand:1
 msgid "An enumeration."
-msgstr ""
+msgstr "Une enumeration"
 

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"POT-Creation-Date: 2022-02-21 09:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,39 +21,47 @@ msgstr ""
 
 #: ../../source/examples/examples_vision.rst:2
 msgid "Examples: Vision"
-msgstr ""
+msgstr "Exemples: Vision"
 
 #: ../../source/examples/examples_vision.rst:4
 msgid "This page shows how to use Ned's vision set"
-msgstr ""
+msgstr "Cette page explique comment utiliser le set vision du Ned"
 
 #: ../../source/examples/examples_vision.rst:7
 msgid ""
 "If you want see more about Ned's vision functions, you can look at "
 ":ref:`PyNiryo - Vision<source/api_doc/vision:Vision>`"
 msgstr ""
+"Si vous voulez en savoir plus sur les fonctions de vision du Ned, vous "
+"pouvez regarder :ref:`PyNiryo - Vision<source/api_doc/vision:Vision>`"
 
 #: ../../source/examples/examples_vision.rst:9
 msgid ""
 "If you want to see how to do image processing, go check out the Pyniryo "
 "(first version) doc."
 msgstr ""
+"Si vous voulez voir comment faire du traitement d'image, regardez "
+"la première version de la documentation PyNiryo2"
 
 #: ../../source/examples/examples_vision.rst:12
 msgid ""
 "Even if you do not own a Vision Set, you can still realize these examples"
 " with the Gazebo simulation version"
 msgstr ""
+"Même si vous n'avez pas de set vision, vous pouvez toujours faire ces "
+"exemples avec la version du simulateur Gazebo"
 
 #: ../../source/examples/examples_vision.rst:16
 msgid ""
 "If you are using the real robot, make sure the environment around it is "
 "clear"
 msgstr ""
+"Si vous utilisez un robot physique, assurez vous que son environnement ne"
+" présente pas d'obstacles"
 
 #: ../../source/examples/examples_vision.rst:20
 msgid "Needed piece of code"
-msgstr ""
+msgstr "Bout de code nécessaire"
 
 #: ../../source/examples/examples_vision.rst:22
 msgid ""
@@ -61,12 +69,18 @@ msgid ""
 "workspace. In this page, the workspace used is named ``workspace_1``. To "
 "create it, the user should go on Niryo Studio !"
 msgstr ""
+"Dans le but de réaliser les exemples suivants, vous devez créer un "
+"workspace vision Dans cette page, le workspace utilisé est appelé "
+"`workspace_1``.. Pour le créer, l'utilisateur devrait aller sur Niryo "
+"Studio !"
 
 #: ../../source/examples/examples_vision.rst:26
 msgid ""
 "As the examples start always the same, add the following lines at the "
 "beginning of codes ::"
 msgstr ""
+"Le début des exemples étant toujours pareil, ajoutez les lignes suivantes"
+" au début de vos codes ::"
 
 #: ../../source/examples/examples_vision.rst:62
 msgid ""
@@ -74,10 +88,14 @@ msgid ""
 "API in terms of vision. We advise you to look at :ref:`API - "
 "Vision<source/api_doc/vision:Vision>` to understand more deeply"
 msgstr ""
+"Tous les exemples qui suivent sont une petite partie de ce qui peut être "
+"réalisé avec l'API en termes de vision. Nous vous conseillons de regarder"
+" :ref:`API - Vision<source/api_doc/vision:Vision>` pour comprendre plus "
+"en profondeur"
 
 #: ../../source/examples/examples_vision.rst:67
 msgid "Simple Vision Pick & Place"
-msgstr ""
+msgstr "Simple Pick & Place par Vision"
 
 #: ../../source/examples/examples_vision.rst:68
 msgid ""
@@ -85,28 +103,37 @@ msgid ""
 "Place, with a close difference : the camera detects where the robot has "
 "to go in order to pick !"
 msgstr ""
+"Le but d'un Pick & Place par Vision est le même qu'un Pick & Place "
+"classique, avec une légère différence : le robot détecte où le robot doit"
+" aller pour saisir !"
 
 #: ../../source/examples/examples_vision.rst:71
 msgid ""
 "This short example show how to do your first vision pick using the "
 ":meth:`~.vision.Vision.vision_pick` function : ::"
 msgstr ""
+"Ce court exemple montre comment réaliser votre première saisie par vision"
+" en utilisant :meth:`~.vision.Vision.vision_pick` function : ::"
 
 #: ../../source/examples/examples_vision.rst:85
 msgid "Code Details - Simple Vision Pick and Place"
-msgstr ""
+msgstr "Détails de code - Simple Pick and Place par Vision"
 
 #: ../../source/examples/examples_vision.rst:87
 msgid ""
 "To execute a Vision pick, we firstly need to go to a place where the "
 "robot will be able to see the workspace ::"
 msgstr ""
+"Pour réaliser une saisie par vision, vous devez vous mettre dans une "
+"position où le robot peut voir le workspace ::"
 
 #: ../../source/examples/examples_vision.rst:92
 msgid ""
 "Then, we try to perform a vision pick in the workspace with the "
 ":meth:`~.vision.Vision.vision_pick` function ::"
 msgstr ""
+"Ensuite, nous essayons de réaliser un pick par vision dans le workspace "
+"avec la fonction :meth:`~.vision.Vision.vision_pick` function ::"
 
 #: ../../source/examples/examples_vision.rst:98
 msgid ""
@@ -115,6 +142,10 @@ msgid ""
 ":class:`~.vision.enums.ObjectColor`, and store the shape and the color of"
 " the detected object ! We won't use them for this first example."
 msgstr ""
+"Les variables ``shape_ret`` et ``color_ret`` sont respectivement du type "
+":class:`~.vision.enums.ObjectShape` et "
+":class:`~.vision.enums.ObjectColor`, et stocke la forme et la couleur de "
+"l'objet détecté ! Nous ne les utiliserons pas pour ce premier exemple."
 
 #: ../../source/examples/examples_vision.rst:103
 msgid ""
@@ -122,22 +153,25 @@ msgid ""
 " has been found and picked, or not. Thus, if the pick worked, we can go "
 "place the object at the place pose. ::"
 msgstr ""
+"La variable ``obj_found`` est un booléen qui indique si un objet a été "
+"trouvé et saisie, ou non. Ainsi, si la saisie a fonctionné, on peut aller"
+" déposer l'objet à la position de dépôt. ::"
 
 #: ../../source/examples/examples_vision.rst:110
 msgid "Finally, we turn learning mode on::"
-msgstr ""
+msgstr "Enfin, on ative le mode apprentissage"
 
 #: ../../source/examples/examples_vision.rst:116
 msgid "If you ``obj_found`` variable indicates ``False``, check that :"
-msgstr ""
+msgstr "Si votre variable ``obj_found`` indique ``Faux``, regarde ça :"
 
 #: ../../source/examples/examples_vision.rst:118
 msgid "Nothing obstruct the camera field of view"
-msgstr ""
+msgstr "Rien n'obstrue le champ de vision de la caméra"
 
 #: ../../source/examples/examples_vision.rst:119
 msgid "Workspace's 4 markers are visible"
-msgstr ""
+msgstr "Les 4 marqueurs du workspace sont visibles"
 
 #: ../../source/examples/examples_vision.rst:120
 msgid "At least 1 object is placed fully inside the workspace"
@@ -145,7 +179,7 @@ msgstr ""
 
 #: ../../source/examples/examples_vision.rst:123
 msgid "First conditioning via Vision"
-msgstr ""
+msgstr "Premier conditionnement par la vision"
 
 #: ../../source/examples/examples_vision.rst:124
 msgid ""
@@ -153,20 +187,27 @@ msgid ""
 " Place. In this example, we will see how to condition multiple objects "
 "according to a straight line ::"
 msgstr ""
+"Dans la plus part des cas d'usage, robot devra réaliser plus d'un Pick & "
+"Place. Dans cet exemple, nous verrons comment conditionner plusieurs "
+"objets selon une ligne droite ::"
 
 #: ../../source/examples/examples_vision.rst:155
 msgid "Code Details - First Conditioning via Vision"
-msgstr ""
+msgstr "Détails de code - Premier conditionnement par vision"
 
 #: ../../source/examples/examples_vision.rst:157
 msgid ""
 "We want to catch ``max_catch_count`` objects, and space each of them by "
 "``offset_size`` meter ::"
 msgstr ""
+"On veut attraper ``max_catch_count`` objets, et de les séparer de "
+"``offset_size`` mètre ::"
 
 #: ../../source/examples/examples_vision.rst:163
 msgid "We start a loop until the robot has caught ``max_catch_count`` objects ::"
 msgstr ""
+"On démarre une boucle jusqu'à ce qu'on attrape ``max_catch_count`` objets"
+" ::"
 
 #: ../../source/examples/examples_vision.rst:168
 #: ../../source/examples/examples_vision.rst:274
@@ -174,12 +215,17 @@ msgid ""
 "For each iteration, we firstly go to the observation pose and then, try "
 "to make a vision pick in the workspace ::"
 msgstr ""
+"Pour chaque itération, on se rend dans un premier temps à la position "
+"d'observation et ensuite, essaye de faire un pick par vision dans le "
+"workspace"
 
 #: ../../source/examples/examples_vision.rst:176
 msgid ""
 "If the vision pick failed, we wait 0.1 second and then, start a new "
 "iteration ::"
 msgstr ""
+"Si le pick par vision échoue, on attend 0.1 seconde, on lance ensuite une"
+" nouvelle itération ::"
 
 #: ../../source/examples/examples_vision.rst:182
 #: ../../source/examples/examples_vision.rst:289
@@ -187,19 +233,21 @@ msgid ""
 "Else, we compute the new place position according to the number of "
 "catches, and then, go placing the object at that place ::"
 msgstr ""
+"Sinon, on calcule la nouvelle position selon le nombre de saisies, "
+"ensuite, on dépose l'objet à cette position ::"
 
 #: ../../source/examples/examples_vision.rst:188
 msgid "We also increment the ``catch_count`` variable ::"
-msgstr ""
+msgstr "On incrémente également la variable ``catch_count`` ::"
 
 #: ../../source/examples/examples_vision.rst:192
 #: ../../source/examples/examples_vision.rst:313
 msgid "Once the target catch number is achieved, we go to sleep ::"
-msgstr ""
+msgstr "Une fois que le nombre de cible attrapé est atteint, on se met en veille"
 
 #: ../../source/examples/examples_vision.rst:198
 msgid "Multi Reference Conditioning"
-msgstr ""
+msgstr "Conditionnement Multi-référence"
 
 #: ../../source/examples/examples_vision.rst:199
 msgid ""
@@ -209,10 +257,15 @@ msgid ""
 ":class:`~.vision.enums.ObjectColor` returned by "
 ":meth:`~.vision.Vision.vision_pick` function ::"
 msgstr ""
+"Lors d'une tâche de conditionnement, les objets ne seront pas forcément "
+"placés au même endroit en fonction de leur type. Dans cet exemple, nous "
+"verrons comment aligner des objets en fonction de leur couleur, en "
+"utilisant l'élémnet couleur :class:`~.vision.enums.ObjectColor` retourné "
+"par la fonction :meth:`~.vision.Vision.vision_pick` ::"
 
 #: ../../source/examples/examples_vision.rst:253
 msgid "Code Details - Multi Reference Conditioning"
-msgstr ""
+msgstr "Détails de code - Conditionnement Multi-Reference"
 
 #: ../../source/examples/examples_vision.rst:255
 msgid ""
@@ -221,22 +274,31 @@ msgid ""
 "its color. The number of catches for each color will be store on a "
 "dictionary ``count_dict`` ::"
 msgstr ""
+"On souhaite attraper des objets jusqu'à ce que le pick par vision échoue "
+"``max_failure_count`` fois. Chaque objet sera placé dans une colonne "
+"spécifique en fonction de sa couleur. Le nombre de saisies pour chaque "
+"couleur est enregistré dans un dictionnaire ``count_dict`` ::"
 
 #: ../../source/examples/examples_vision.rst:281
 msgid ""
 "If the vision pick failed, we wait 0.1 second and then, start a new "
 "iteration, without forgetting the increment the failure counter ::"
 msgstr ""
+"Si la saisie par vision échoue, on attend 0.1 seconde, on commence "
+"ensuite une nouvelle iteration, sans oublier d'augmenter le compteur "
+"d'échec ::"
 
 #: ../../source/examples/examples_vision.rst:308
 msgid ""
 "We increment the ``count_dict`` dictionary and reset "
 "``try_without_success`` ::"
 msgstr ""
+"On incrémente le dictionnaire ``count_dict`` et on réinitialise "
+"``try_without_success`` ::"
 
 #: ../../source/examples/examples_vision.rst:318
 msgid "Sorting Pick with Conveyor"
-msgstr ""
+msgstr "Tri avec un convoyeur"
 
 #: ../../source/examples/examples_vision.rst:320
 msgid ""
@@ -245,10 +307,14 @@ msgid ""
 "type of object by stopping the conveyor as soon as the object is detected"
 " on the workspace ::"
 msgstr ""
+"Une manière intéressante d'amener des objets au robot, est d'utiliser le "
+"convoyeur. Dans ces exemples, on verra comment attraper seulement un "
+"certain type d'objet en stoppant le convoyeur dès que l'objet est détecté"
+" dans le workspace ::"
 
 #: ../../source/examples/examples_vision.rst:367
 msgid "Code Details - Sort Picking"
-msgstr ""
+msgstr "Détails de code - Tri"
 
 #: ../../source/examples/examples_vision.rst:369
 msgid ""
@@ -258,36 +324,55 @@ msgid ""
 "<pyniryo2.vision.enums.ObjectShape.CIRCLE>` and :attr:`ObjectColor.RED "
 "<pyniryo2.vision.enums.ObjectColor.RED>` ::"
 msgstr ""
+"Dans un premier temps, on initialise le processus : on veut que le robot "
+"attrape 4 cerlces rouges. Pour cela, on règle les variables "
+"``shape_expected`` et ``color_expected`` avec :attr:`ObjectShape.CIRCLE "
+"<pyniryo2.vision.enums.ObjectShape.CIRCLE>` et :attr:`ObjectColor.RED "
+"<pyniryo2.vision.enums.ObjectColor.RED>` ::"
 
 #: ../../source/examples/examples_vision.rst:379
 msgid ""
 "We activate the connection with the conveyor and start a loop until the "
 "robot has caught ``max_catch_count`` objects ::"
 msgstr ""
+"On active la connexion avec le convoyeur et on démarre une boucle jusqu'à"
+" ce quele robot ait attrapé ``max_catch_count`` objets ::"
 
 #: ../../source/examples/examples_vision.rst:387
 msgid ""
 "For each iteration, we firstly run the conveyor belt (if the later is "
 "already running, nothing will happen), then go to the observation pose ::"
 msgstr ""
+"Pour chaque itération,  on démarre d'abord le convoyeur (s'il est déjà en"
+" train de tourner, cela ne fait rien), on se déplace ensuite à la "
+"position d'observation ::"
 
 #: ../../source/examples/examples_vision.rst:395
 msgid ""
 "We then check if an object corresponding to our criteria is in the "
 "workspace. If not, we wait 0.5 second and then, start a new iteration ::"
 msgstr ""
+"On vérifie ensuite si un objet correspond à notre critère est dans le "
+"workspace. Sinon, on attend 0.5 seconde, on démarre ensuite une nouvelle "
+"itération ::"
 
 #: ../../source/examples/examples_vision.rst:405
 msgid "Else, stop the conveyor and try to make a vision pick ::"
 msgstr ""
+"Sinon, on stoppe le convoyeur et on essaye de faire une saisie par vision"
+" ::"
 
 #: ../../source/examples/examples_vision.rst:416
 msgid "If Vision Pick succeed, compute new place pose, and place the object ::"
 msgstr ""
+"Si la saisie par vision réussie, on calcule une nouvelle position de "
+"dépôt, et on y place l'objet ::"
 
 #: ../../source/examples/examples_vision.rst:424
 msgid ""
 "Once the target catch number is achieved, we stop the conveyor and go to "
 "sleep ::"
 msgstr ""
+"Une fois que le nombre de cible attrapée est atteint, on arrête le "
+"convoyeur et on se met en veille ::"
 

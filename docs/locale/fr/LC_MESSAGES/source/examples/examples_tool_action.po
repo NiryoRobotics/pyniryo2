@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"POT-Creation-Date: 2022-02-21 09:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,43 +21,51 @@ msgstr ""
 
 #: ../../source/examples/examples_tool_action.rst:2
 msgid "Examples: Tool Action"
-msgstr ""
+msgstr "Examples: Action Outil"
 
 #: ../../source/examples/examples_tool_action.rst:4
 msgid "This page shows how to control Ned's tools"
-msgstr ""
+msgstr "Cette page explique comment utiliser les outils du Ned"
 
 #: ../../source/examples/examples_tool_action.rst:6
 msgid ""
 "If you want see more, you can look at :ref:`PyNiryo - "
 "Tools<source/api_doc/tool:Tool>`"
 msgstr ""
+"Si vous voulez en savoir plus, vous pouvez regarder :ref:`PyNiryo - "
+"Outils<source/api_doc/tool:Tool>`"
 
 #: ../../source/examples/examples_tool_action.rst:9
 msgid ""
 "In this section, it is supposed that you are already connected to a "
 "calibrated robot. The robot instance is save in the variable ``robot``"
 msgstr ""
+"Dans cette section, il est supposé que vous êtes déjà connecté à un robot"
+" calibré. L'instance robot est sauvegarder dans la variable ``robot``"
 
 #: ../../source/examples/examples_tool_action.rst:13
 msgid ""
 "If you are using the real robot, make sure the environment around it is "
 "clear"
 msgstr ""
+"Si vous utilisez un robot physique, assurez vous que son environnement ne"
+" présente aucun obstacle"
 
 #: ../../source/examples/examples_tool_action.rst:16
 msgid "Tool control"
-msgstr ""
+msgstr "Contrôle des outils"
 
 #: ../../source/examples/examples_tool_action.rst:19
 msgid "Equip Tool"
-msgstr ""
+msgstr "Equiper l'outil"
 
 #: ../../source/examples/examples_tool_action.rst:21
 msgid ""
 "In order to use a tool, it should be plugged mechanically to the robot "
 "but also connected software wise."
 msgstr ""
+"Afin d'utiliser l'outil, il doit être branché méchaniquement au robot "
+"mais aussi connecté d'un point de vue logiciel"
 
 #: ../../source/examples/examples_tool_action.rst:24
 msgid ""
@@ -65,10 +73,13 @@ msgid ""
 "which take no argument. It will scan motor connections and set the new "
 "tool !"
 msgstr ""
+"Pour ce faire, nous utilisons la fonction :meth:`~.tool.Tool.update_tool`"
+" qui ne prend pas d'argument. Celle-ci vérifie la connexion moteur et "
+"règle le nouvel outil !"
 
 #: ../../source/examples/examples_tool_action.rst:28
 msgid "The line to equip a new tool is ::"
-msgstr ""
+msgstr "La ligne pour équiper un nouvel outil est ::"
 
 #: ../../source/examples/examples_tool_action.rst:33
 msgid ""
@@ -78,118 +89,138 @@ msgid ""
 "a specific tool, you need to store the |tool_id| you are using in a "
 "variable named ``tool_used``"
 msgstr ""
+"Pour les sections :ref:`Grasping "
+"<source/examples/examples_tool_action:Grasping>` et :ref:`Releasing "
+"<source/examples/examples_tool_action:Releasing>` cette commande doit "
+"être ajoutée à vos codes ! Si vous souhaitez utiliser un outil en "
+"particulier, vous devez enregistrer le |tool_id| que vous utilisez dans "
+"une variable appelée ``tool_used``"
 
 #: ../../source/examples/examples_tool_action.rst:39
 msgid "Grasping"
-msgstr ""
+msgstr "Grasping"
 
 #: ../../source/examples/examples_tool_action.rst:41
 msgid ""
 "To grasp with any tool, you can use the function "
 ":meth:`~.tool.Tool.grasp_with_tool`. This action correspond to :"
 msgstr ""
+"Pour saisir avec n'importe quel outil, vous pouvez utiliser la fonction "
+":meth:`~.tool.Tool.grasp_with_tool`. Cette action correspond à :"
 
 #: ../../source/examples/examples_tool_action.rst:44
 msgid "Close gripper for Grippers"
-msgstr ""
+msgstr "Ferme le préhenseur pour les préhenseurs"
 
 #: ../../source/examples/examples_tool_action.rst:45
 msgid "Pull Air for Vacuum pump"
-msgstr ""
+msgstr "Aspire l'air pour la pompe à vide"
 
 #: ../../source/examples/examples_tool_action.rst:46
 msgid "Activate for Electromagnet"
-msgstr ""
+msgstr "Active pour l'électroaimant"
 
 #: ../../source/examples/examples_tool_action.rst:48
 msgid "The line to grasp is ::"
-msgstr ""
+msgstr "La ligne pour saisir est ::"
 
 #: ../../source/examples/examples_tool_action.rst:52
 msgid "To grasp an object by specifying the tool ::"
-msgstr ""
+msgstr "Pour saisir un objet en spécifiant l'outil ::"
 
 #: ../../source/examples/examples_tool_action.rst:65
 msgid "Releasing"
-msgstr ""
+msgstr "Releasing"
 
 #: ../../source/examples/examples_tool_action.rst:67
 msgid ""
 "To release with any tool, you can use the function "
 ":meth:`~.tool.Tool.release_with_tool`. This action correspond to:"
 msgstr ""
+"Pour relaĉher avec n'importe quel outil, vous pouvez utiliser la fonction"
+" :meth:`~.tool.Tool.release_with_tool`. Cette action correspond à:"
 
 #: ../../source/examples/examples_tool_action.rst:70
 msgid "Open gripper for Grippers"
-msgstr ""
+msgstr "Ouvrir le préhenseur pour les préhenseurs"
 
 #: ../../source/examples/examples_tool_action.rst:71
 msgid "Push Air for Vacuum pump"
-msgstr ""
+msgstr "Expulser l'air pour la pompe à vide"
 
 #: ../../source/examples/examples_tool_action.rst:72
 msgid "Deactivate for Electromagnet"
-msgstr ""
+msgstr "Désactiver pour l'électroaimant"
 
 #: ../../source/examples/examples_tool_action.rst:74
 msgid "To release an object by specifying parameters ::"
-msgstr ""
+msgstr "Pour relâcher un objet en spécifiant les paramètres"
 
 #: ../../source/examples/examples_tool_action.rst:87
 msgid "Pick & Place with tools"
-msgstr ""
+msgstr "Pick & Place avec les outils"
 
 #: ../../source/examples/examples_tool_action.rst:89
 msgid ""
 "A Pick & Place is a action which consists in going to a certain pose in "
 "order to pick an object and then, going to another pose to place it."
 msgstr ""
+"Un Pick & Place est une action qui consiste en : aller à une certaine "
+"position pour saisir un objet et ensuite aller à une autre position pour "
+"le déposer."
 
 #: ../../source/examples/examples_tool_action.rst:92
 msgid "This operation can be proceed as follows :"
-msgstr ""
+msgstr "Cette opération se déroule comme ceci :"
 
 #: ../../source/examples/examples_tool_action.rst:94
 msgid "Going over the object with a certain offset to avoid collision"
 msgstr ""
+"Se place au dessus d'un objet avec un certain offset pour éviter la "
+"collision"
 
 #: ../../source/examples/examples_tool_action.rst:95
 msgid "Going down until object's height"
-msgstr ""
+msgstr "Descend jusqu'à atteindre la hauteur de l'objet"
 
 #: ../../source/examples/examples_tool_action.rst:96
 msgid "Grasping with tool"
-msgstr ""
+msgstr "Saisie avec l'outil"
 
 #: ../../source/examples/examples_tool_action.rst:97
 msgid "Going back to step 1's pose."
-msgstr ""
+msgstr "Retourne à la position de l'étape 1"
 
 #: ../../source/examples/examples_tool_action.rst:98
 msgid "Going over the place pose with a certain offset to avoid collision"
 msgstr ""
+"Se place au dessus de la position de dépôt avec un certain offset pour "
+"éviter la collision"
 
 #: ../../source/examples/examples_tool_action.rst:99
 msgid "Going down until place's height"
-msgstr ""
+msgstr "Descend jusqu'à la hauteur de la position"
 
 #: ../../source/examples/examples_tool_action.rst:100
 msgid "Releasing the object with tool"
-msgstr ""
+msgstr "Relâche l'objet avec l'outil"
 
 #: ../../source/examples/examples_tool_action.rst:101
 msgid "Going back to step 5's pose."
-msgstr ""
+msgstr "Retourne à la position de l'étape 5"
 
 #: ../../source/examples/examples_tool_action.rst:104
+#, fuzzy
 msgid ""
 "There is a plenty of ways to perform a pick and place with PyNiryo. "
 "Methods will be presented from the lowest to highest level"
 msgstr ""
+"Il y a pleins de manières de réaliser un Pick & Place avec PyNiryo2. Les "
+"méthodes vous seront présentées du niveau le plus bas au plus haut."
 
 #: ../../source/examples/examples_tool_action.rst:108
 msgid "Code Baseline"
-msgstr ""
+msgstr "Baseline du code"
 
 #: ../../source/examples/examples_tool_action.rst:110
 msgid ""
@@ -197,48 +228,64 @@ msgid ""
 "function won't be rewritten for every method. So that, you will need to "
 "use the code and implement the Pick & Place function to it  ::"
 msgstr ""
+"Par soucis de brièveté, l'ensemble des parties du code, à part celle "
+"concernant la fonction Pick & Place, ne seront pas réecrites pour chaque "
+"méthode. Il vous faudra donc utiliser le code et y implémenter la "
+"fonction de Pick & Place. ::"
 
 #: ../../source/examples/examples_tool_action.rst:149
 msgid "First Solution : the heaviest"
-msgstr ""
+msgstr "Première solution : la plus lourde"
 
 #: ../../source/examples/examples_tool_action.rst:150
 msgid ""
 "For this first function, everything steps is done by hand, as well as "
 "poses computing"
 msgstr ""
+"Pour cette première fonction, toutes les étapes sont faites à la main, "
+"ainsi que le calcul des positions."
 
 #: ../../source/examples/examples_tool_action.rst:154
 msgid ""
 "In this example, the tool used is a Gripper. If you want to use another "
 "tool than a gripper, do not forget to adapt grasp & release functions !"
 msgstr ""
+"Dans cet exemple, l'outil utilisé est un préhenseur. Si vous souhaitez "
+"utiliser un outil différent, n'oubliez pas d'adapter les fonctions grasp "
+"& release !"
 
 #: ../../source/examples/examples_tool_action.rst:188
 msgid "Second Solution : Use of PoseObject"
-msgstr ""
+msgstr "Seconde solution : utiliser un PoseObject"
 
 #: ../../source/examples/examples_tool_action.rst:189
 msgid ""
 "For the second solution, we use a  |pose_object| in order to calculate "
 "approach poses more easily"
 msgstr ""
+"Pour cette seconde solution, nous utilisons un |pose_object| afin de "
+"calculer plus facilement la position d'approche."
 
 #: ../../source/examples/examples_tool_action.rst:193
 msgid ""
 "To see more about |pose_object|, go look at :ref:`PoseObject dedicated "
 "section <source/examples/examples_movement:How to use the PoseObject>`"
 msgstr ""
+"Pour en apprendre d'avantage à propos de |pose_object|, consultez la "
+":ref:`section dédiée à PoseObject <source/examples/examples_movement:How "
+"to use the PoseObject>`."
 
 #: ../../source/examples/examples_tool_action.rst:224
 msgid "Third Solution : Pick from pose & Place from pose functions"
-msgstr ""
+msgstr "Troisième solution : fonctions Pick from Pose et Place from Pose"
 
 #: ../../source/examples/examples_tool_action.rst:225
 msgid ""
 "For those who already look at the API Documentation, you may have see "
 "pick & place dedicated functions !"
 msgstr ""
+"Pour ceux ayant déjà pris connaissance de la documentation de l'API, il "
+"est possible que vous ayez déjà vu les fonctions dédiées au Pick & Place."
 
 #: ../../source/examples/examples_tool_action.rst:228
 msgid ""
@@ -246,20 +293,30 @@ msgid ""
 " :meth:`~.pick_place.PickPlace.place_from_pose` in order to split our "
 "function in only 2 commands ! ::"
 msgstr ""
+"Dans cet exemple, on utilise "
+":meth:`~.pick_place.PickPlace.pick_from_pose` et "
+":meth:`~.pick_place.PickPlace.place_from_pose` afin de séparer notre "
+"fonction en deux commandes ! ::"
 
 #: ../../source/examples/examples_tool_action.rst:240
 msgid "Fourth Solution : All in one"
-msgstr ""
+msgstr "Quatrième solution : tout en un"
 
 #: ../../source/examples/examples_tool_action.rst:241
 msgid ""
 "The example exposed in the previous section could be useful if you want "
 "to do an action between the pick & the place phases."
 msgstr ""
+"Les exemples proposés dans les sections précédentes peuvent être utiles "
+"si vous souhaitez qu'une action se produise entre les phases de Pick & "
+"Place."
 
 #: ../../source/examples/examples_tool_action.rst:244
 msgid ""
 "For those who want to do everything in one command, you can use the "
 ":meth:`~.pick_place.PickPlace.pick_and_place` function ! ::"
 msgstr ""
+"Pour ceux qui souhaiteraient faire tout avec une seule commande, vous "
+"pouvez utiliser la fonction :meth:`~.pick_place.PickPlace.pick_and_place`"
+" ::"
 

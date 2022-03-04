@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"POT-Creation-Date: 2022-02-21 09:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,19 +21,23 @@ msgstr ""
 
 #: ../../source/examples/examples_movement.rst:2
 msgid "Examples: Movement"
-msgstr ""
+msgstr "Exemples: Mouvement"
 
 #: ../../source/examples/examples_movement.rst:4
 msgid ""
 "This document shows how to control Ned in order to make Move Joints & "
 "Move Pose."
 msgstr ""
+"Cette page explique comment contrôler le Ned pour lui faire réaliser des "
+"Move Joints & des Move Pose."
 
 #: ../../source/examples/examples_movement.rst:6
 msgid ""
 "If you want see more, you can look at :ref:`PyNiryo - "
 "Arm<source/api_doc/arm:Arm>`"
 msgstr ""
+"Si vous voulez en savoir plus, vous pouvez regarder :ref:`PyNiryo - "
+"Bras<source/api_doc/arm:Arm>`"
 
 #: ../../source/examples/examples_movement.rst:9
 msgid ""
@@ -41,28 +45,34 @@ msgid ""
 " calibrated robot. The robot instance is save in the variable ``robot``. "
 "To know how to do so, go look at section :doc:`examples_basics`"
 msgstr ""
+"Dans les sections suivantes, il est supposé que vous êtes connecté à un "
+"robot calibré. L'instance du robot est sauvegardée dans la variable "
+"``robot``. Pour savoir comment faire, regardez la section "
+":doc:`examples_basics`"
 
 #: ../../source/examples/examples_movement.rst:14
 msgid ""
 "If you are using the real robot, make sure the environment around it is "
 "clear"
 msgstr ""
+"Si vous utilisez un vrai robot, assurez vous que son environnement est "
+"sans obstacles"
 
 #: ../../source/examples/examples_movement.rst:17
 msgid "Joints"
-msgstr ""
+msgstr "Joints"
 
 #: ../../source/examples/examples_movement.rst:20
 msgid "Move Joints"
-msgstr ""
+msgstr "Move Joints"
 
 #: ../../source/examples/examples_movement.rst:21
 msgid "To make a moveJ, you need to pass :"
-msgstr ""
+msgstr "Pour effectuer un moveJ, vous devez transmettre :"
 
 #: ../../source/examples/examples_movement.rst:23
 msgid "a list of 6 floats : ``[j1, j2, j3, j4, j5, j6]``"
-msgstr ""
+msgstr "une liste de 6 valeurs décimales : ``[j1, j2, j3, j4, j5, j6]``"
 
 #: ../../source/examples/examples_movement.rst:25
 msgid ""
@@ -70,6 +80,9 @@ msgid ""
 ":meth:`~.arm.Arm.move_joints` or a via the ``joints`` setter, at your "
 "convenience::"
 msgstr ""
+"Il est possible de transmettre ces paramètres à la fonction "
+":meth:`~.arm.Arm.move_joints` ou grâce au ``joints`` setter, à votre "
+"convenance::"
 
 #: ../../source/examples/examples_movement.rst:37
 msgid ""
@@ -77,10 +90,13 @@ msgid ""
 "In your future scripts, chose the one you prefer, but try to remain "
 "consistent to keep a good readability"
 msgstr ""
+"Vous noterez que ces 4 commandes réalisent exactement la même chose !"
+" Dans vos futurs scripts, choisissez celle que vous préférez, mais "
+"essayez de rester consistant pour gagner en visibilité"
 
 #: ../../source/examples/examples_movement.rst:42
 msgid "Get Joints"
-msgstr ""
+msgstr "Get Joints"
 
 #: ../../source/examples/examples_movement.rst:43
 msgid ""
@@ -88,6 +104,9 @@ msgid ""
 ":meth:`~.arm.Arm.get_joints` or the ``joints`` getter. Both will return a"
 " list of the 6 joints position::"
 msgstr ""
+"Pour obtenir les positions courantes des axes, vous pouvez utiliser la "
+"fonction :meth:`~.arm.Arm.get_joints` ou le ``joints`` getter. Les deux "
+"retournent une liste de 6 positions d'axes"
 
 #: ../../source/examples/examples_movement.rst:53
 msgid ""
@@ -95,40 +114,46 @@ msgid ""
 "means that we can retrieve joints value in 6 variables by writing ``j1, "
 "j2, j3, j4, j5, j6 = robot.arm.get_joints()``"
 msgstr ""
+"Comme nous développons en Python, nous pouvons dépiler une liste "
+"facilement, ce qui signifie qu'on peut récupérer les valeurs des axes en "
+"écrivant ``j1, j2, j3, j4, j5, j6 = robot.arm.get_joints()``"
 
 #: ../../source/examples/examples_movement.rst:57
 msgid "Pose"
-msgstr ""
+msgstr "Pose"
 
 #: ../../source/examples/examples_movement.rst:60
 msgid "Move Pose"
-msgstr ""
+msgstr "Move Pose"
 
 #: ../../source/examples/examples_movement.rst:61
 msgid "To perform a moveP, you can pass :"
-msgstr ""
+msgstr "Pour réaliser un moveP, vous pouvez transmettre :"
 
 #: ../../source/examples/examples_movement.rst:63
 msgid "a list of 6 floats : [x, y, z, roll, pitch, yaw]"
-msgstr ""
+msgstr "une liste de 6 valeurs décimales : [x, y, z, roll, pitch, yaw]"
 
 #: ../../source/examples/examples_movement.rst:64
 msgid "a |pose_object|"
-msgstr ""
+msgstr "un |pose_object|"
 
 #: ../../source/examples/examples_movement.rst:66
 msgid ""
 "As for MoveJ, it is possible to pass these parameters the function "
 ":meth:`~.arm.Arm.move_pose` or the ``pose`` setter, at your convenience::"
 msgstr ""
+"Comme pour MoveJ, il est possible de transmettre ces paramètres à la "
+"fonction :meth:`~.arm.Arm.move_pose` ou avec le ``pose`` setter, à votre "
+"convenance::"
 
 #: ../../source/examples/examples_movement.rst:83
 msgid "Each of these 6 commands are doing the same thing"
-msgstr ""
+msgstr "Chacunes de ces 6 commandes font la même chose"
 
 #: ../../source/examples/examples_movement.rst:86
 msgid "Get Pose"
-msgstr ""
+msgstr "Get Pose"
 
 #: ../../source/examples/examples_movement.rst:87
 msgid ""
@@ -136,10 +161,13 @@ msgid ""
 ":attr:`~.arm.Arm.get_pose` or the ``pose`` getter. Both will return a "
 "|pose_object| ::"
 msgstr ""
+"Pour avoir la position de l'endeffecteur, vous pouvez utiliser la "
+"fonction :attr:`~.arm.Arm.get_pose` ou avec le ``pose`` getter. Les deux "
+"retournent un |pose_object| ::"
 
 #: ../../source/examples/examples_movement.rst:99
 msgid "How to use the PoseObject"
-msgstr ""
+msgstr "Comment utilisez le PoseObject"
 
 #: ../../source/examples/examples_movement.rst:100
 msgid ""
@@ -148,6 +176,10 @@ msgid ""
 " converted into a list if needed with the method "
 ":meth:`~.objects.PoseObject.to_list`"
 msgstr ""
+"Le |pose_object| est un objet Python qui permet de sauvegarder les 6 "
+"coordonnées d'une pose (x, y, z, roll, pitch, yaw) en une seule instance."
+" Cela peut être converti en liste si besoin avec la méthode " 
+":meth:`~.objects.PoseObject.to_list`"
 
 #: ../../source/examples/examples_movement.rst:105
 msgid ""
@@ -157,4 +189,9 @@ msgid ""
 "of a for loop, you can use the "
 ":meth:`~.objects.PoseObject.copy_with_offsets` method::"
 msgstr ""
+"Cela permet de créer un nouveau |pose_object| avec un décalage, plus "
+"simple que de copier une liste et de modifier seulement 1 ou 2 valeurs. "
+"Par exemple, imaginez que vous souhaitez décaler la position de dépôt de "
+"5 centimètres à chaque itération dans une boucle for, vous pouvez "
+"utilisez :meth:`~.objects.PoseObject.copy_with_offsets` method::"
 

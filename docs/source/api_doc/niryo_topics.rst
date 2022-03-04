@@ -13,6 +13,7 @@ NiryoTopic - Usage
 
 .. automodule:: pyniryo2.niryo_topic
    :members:
+   :noindex:
 
 Here is a simple example of using the class without conversion: ::
 
@@ -63,6 +64,7 @@ NiryoTopic - Class
 
 * :class:`~.niryo_topic.NiryoTopic`
 
-.. autoclass:: NiryoTopic
-    :members: subscribe, unsubscribe, value, is_subscribed
-    :member-order: bysource
+.. automethod:: NiryoTopic.subscribe
+.. automethod:: NiryoTopic.unsubscribe
+.. autoproperty:: NiryoTopic.value
+.. autoproperty:: NiryoTopic.is_subscribed

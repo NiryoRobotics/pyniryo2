@@ -3,7 +3,7 @@ Examples: Movement
 
 This document shows how to control Ned in order to make Move Joints & Move Pose.
 
-If you want see more, you can look at :ref:`PyNiryo - Conveyor<Arm>`
+If you want see more, you can look at :ref:`PyNiryo - Arm<source/api_doc/arm:Arm>`
 
 .. important::
     In following sections, it is supposed that you are already connected to a calibrated robot.

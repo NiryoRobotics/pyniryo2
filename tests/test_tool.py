@@ -18,7 +18,7 @@ from pyniryo2.arm.arm import Arm
 from pyniryo2.io.io import IO
 from pyniryo2.io.enums import PinID, PinMode
 
-robot_ip_address = "192.168.1.98"
+robot_ip_address = "127.0.0.1"
 port = 9090
 
 test_order = ["test_tool_id",

@@ -1,0 +1,206 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Niryo All rights reserved. No part of this document
+# may be reproduced or transmitted in any form or by any means without prior
+# written consent of Niryo SAS
+# This file is distributed under the same license as the PyNiryo2 package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyNiryo2 v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/api_doc/io.rst:2
+msgid "I/Os"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:4
+msgid ""
+"This file presents the different :ref:`source/api_doc/io:I/Os - Command "
+"functions`, :ref:`source/api_doc/io:I/Os - Enums`, "
+":ref:`source/api_doc/io:I/Os - Niryo Topics` & "
+":ref:`source/api_doc/io:I/Os - Objects` available with the  Arm API"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:9
+msgid "I/Os - Command functions"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:15
+msgid ""
+"This section reference all existing functions to control your robot, "
+"which include"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:17
+msgid "Getting IOs status"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:18
+msgid "Setting IOs mode"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:19
+msgid "Setting IOs value"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:21
+msgid ""
+"All functions to control the robot are accessible via an instance of the "
+"class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:31
+msgid ""
+"See examples on :ref:`Examples Section "
+"<source/examples/examples_conveyor:Examples: Conveyor>`"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:33
+msgid "List of functions subsections:"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:41
+msgid "State functions"
+msgstr ""
+
+#: of pyniryo2.io.io.IO.get_digital_io_states:1
+msgid ""
+"Returns the io state client which can be used synchronously or "
+"asynchronously to obtain the io states. The io state client returns a "
+"list of DigitalPinObject."
+msgstr ""
+
+#: of pyniryo2.io.io.IO.digital_read:3 pyniryo2.io.io.IO.digital_write:3
+#: pyniryo2.io.io.IO.get_digital_io_states:4 pyniryo2.io.io.IO.set_pin_mode:3
+msgid "Examples: ::"
+msgstr ""
+
+#: of pyniryo2.io.io.IO.get_digital_io_state
+#: pyniryo2.io.io.IO.get_digital_io_states
+msgid "Returns"
+msgstr ""
+
+#: of pyniryo2.io.io.IO.get_digital_io_states:17
+msgid "io state topic instance"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:69 of pyniryo2.io.io.IO.digital_read
+#: pyniryo2.io.io.IO.digital_write pyniryo2.io.io.IO.get_digital_io_state
+#: pyniryo2.io.io.IO.get_digital_io_states pyniryo2.io.io.IO.set_pin_mode
+msgid "Return type"
+msgstr ""
+
+#: of pyniryo2.io.io.IO.get_digital_io_state:1
+msgid "Return the value of a digital io."
+msgstr ""
+
+#: of pyniryo2.io.io.IO.get_digital_io_state:4
+msgid "State, Name, Pin, Mode of the pin"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:49
+msgid "Read & Write functions"
+msgstr ""
+
+#: of pyniryo2.io.io.IO.set_pin_mode:1
+msgid "Set pin number pin_id to mode pin_mode"
+msgstr ""
+
+#: of pyniryo2.io.io.IO.digital_read pyniryo2.io.io.IO.digital_write
+#: pyniryo2.io.io.IO.set_pin_mode
+msgid "Parameters"
+msgstr ""
+
+#: of pyniryo2.io.io.IO.digital_write:1
+msgid "Set pin_id state to digital_state"
+msgstr ""
+
+#: of pyniryo2.io.io.IO.digital_read:1
+msgid "Read pin number pin_id and return its state"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:56
+msgid "I/Os - Niryo Topics"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:58
+msgid ""
+"The use of these functions is explained in the "
+":ref:`source/api_doc/niryo_topics:NiryoTopic` section. They allow the "
+"acquisition of data in real time by callbacks or by direct call."
+msgstr ""
+
+#: ../../source/api_doc/io.rst:61
+msgid "I/O's Niryo Topics"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:67
+msgid "Name"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:68
+msgid "Function"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:70
+msgid "``/niryo_robot_rpi/digital_io_state``"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:71
+msgid ":attr:`~.io.IO.get_digital_io_states`"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:72
+msgid ":exc:`list` [ :class:`~.io.objects.DigitalPinObject` ]"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:76
+msgid "I/Os - Enums"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:78
+msgid "List of enums:"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:80
+msgid ":class:`~.io.objects.PinMode`"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:81
+msgid ":class:`~.io.objects.PinState`"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:82
+msgid ":class:`~.io.objects.PinID`"
+msgstr ""
+
+#: of pyniryo2.io.enums.PinMode:1
+msgid "Enumeration of Pin Modes"
+msgstr ""
+
+#: of pyniryo2.io.enums.PinState:1
+msgid "Pin State is either LOW or HIGH"
+msgstr ""
+
+#: of pyniryo2.io.enums.PinID:1
+msgid "Enumeration of Robot Pins"
+msgstr ""
+
+#: ../../source/api_doc/io.rst:91
+msgid "I/Os - Objects"
+msgstr ""
+
+#: of pyniryo2.io.objects.DigitalPinObject:1
+msgid "Object used to store information on digital pins"
+msgstr ""
+

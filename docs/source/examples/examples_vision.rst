@@ -4,7 +4,7 @@ Examples: Vision
 This page shows how to use Ned's vision set
 
 | If you want see more about Ned's vision functions,
- you can look at :ref:`PyNiryo - Vision<Vision>`
+ you can look at :ref:`PyNiryo - Vision<source/api_doc/vision:Vision>`
 | If you want to see how to do image processing,
  go check out the Pyniryo (first version) doc.
 
@@ -60,7 +60,7 @@ As the examples start always the same, add the following lines at the beginning 
 
 .. hint::
     All the following examples are only of part of what can be made
-    with the API in terms of vision. We advise you to look at :ref:`API - Vision<Vision>`
+    with the API in terms of vision. We advise you to look at :ref:`API - Vision<source/api_doc/vision:Vision>`
     to understand more deeply
 
 Simple Vision Pick & Place

@@ -1,7 +1,7 @@
 Saved poses
 =====================================
 
-This file presents the different :ref:`Saved poses - Command functions`, available with the Saved poses API
+This file presents the different :ref:`source/api_doc/saved_poses:Saved poses - Command functions`, available with the Saved poses API
 
 
 Saved poses - Command functions
@@ -9,13 +9,14 @@ Saved poses - Command functions
 
 .. automodule:: pyniryo2.saved_poses.saved_poses
    :members:
+   :noindex:
 
 This section reference all existing functions to control your robot, which include
 
 - Management of saved poses
 
 All functions to control the robot are accessible via an instance of
-the class :ref:`NiryoRobot` ::
+the class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::
 
 
     robot = NiryoRobot(<robot_ip_address>)
@@ -24,7 +25,7 @@ the class :ref:`NiryoRobot` ::
     robot.saved_poses.get_pose_saved(pose_name_list[0])
     ...
 
-See examples on :ref:`Examples Section <Examples: Conveyor>`
+See examples on :ref:`Examples Section <source/examples/examples_conveyor:Examples: Conveyor>`
 
 List of functions subsections:
 

@@ -62,7 +62,7 @@ calibration, tool equipping, and make the robot go to sleep at the end ::
 Advanced template for conveyor
 --------------------------------------
 
-Same as :ref:`Advanced template` but with a conveyor ::
+Same as :ref:`source/examples/code_templates:Advanced template` but with a conveyor ::
 
     from pyniryo2 import *
 

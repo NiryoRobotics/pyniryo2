@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"POT-Creation-Date: 2022-02-21 09:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,25 +21,27 @@ msgstr ""
 
 #: ../../index.rst:46 ../../index.rst:53
 msgid "Setup"
-msgstr ""
+msgstr "Installation"
 
 #: ../../index.rst:62 ../../index.rst:66
 msgid "Examples"
-msgstr ""
+msgstr "Exemples"
 
 #: ../../index.rst:78 ../../index.rst:83
 msgid "API Documentation"
-msgstr ""
+msgstr "Documentation API"
 
 #: ../../index.rst:2
 msgid "Conveyor - API Documentation"
-msgstr ""
+msgstr "Convoyeur - Documentation API"
 
 #: ../../index.rst:9
 msgid ""
 "This documentation presents Ned's PyPi package, which is a TCP API made "
 "with Python."
 msgstr ""
+"Cette documentation présente le package PyPi de Ned, qui est une API "
+"TCP créée avec Python"
 
 #: ../../index.rst:12
 msgid ""
@@ -49,44 +51,58 @@ msgid ""
 "robot through a terminal. This API is based on `roslibpy "
 "<https://roslibpy.readthedocs.io/en/latest/index.html>`_."
 msgstr ""
+"Cette API permet aux développeurs de créer des programmes robotiques "
+"facilement et de contrôler les robots en communiquant à distance par le "
+"biais de leurs ordinateurs. Contrairement au Wrapper ROS Python, "
+"l'utilisateur ne nécessitera pas d'être connecté au robot par le biais "
+"d'un terminal. Cette API est basée sur `roslibpy "
+"<https://roslibpy.readthedocs.io/en/latest/index.html>`_."
 
 #: ../../index.rst:18
 msgid ""
 "This package is able to control Ned in simulation as well as the physical"
 " robot."
 msgstr ""
+"Ce package est capable de contrôler le Ned physique mais également en "
+"simulation."
 
 #: ../../index.rst:26
 msgid "Niryo Ned"
-msgstr ""
+msgstr "Niryo Ned"
 
 #: ../../index.rst:30
 msgid "Before getting started"
-msgstr ""
+msgstr "Avant de commencer"
 
 #: ../../index.rst:34
 msgid ""
 "If you haven’t already done so , make sure to learn about the ROS robot "
 "software by reading the |ros_doc|_."
-msgstr ""
+msgstr "
+"Si vous ne l'avez pas déjà fait, familiarisez vous avec le logiciel ROS du "
+"robot en lisant la |ros_doc|_. "
 
 #: ../../index.rst:37
 msgid ""
 "This documentation also contains everything you need to know if you want "
 "to use Ned through simulation."
 msgstr ""
+"Cette documentation contient également tout ce que vous devez savoir si "
+"vous souhaitez utiliser Ned en simulation."
 
 #: ../../index.rst:41
 msgid "Sections organization"
-msgstr ""
+msgstr "Organisation des sections"
 
 #: ../../index.rst:43
 msgid "This document is organized in 4 main sections"
-msgstr ""
+msgstr "Ce document est organisé en quatre sections principales."
 
 #: ../../index.rst:48
 msgid "Install & Setup your environment in order to use Ned with PyNiryo2."
 msgstr ""
+"Installez et mettez en place votre environnement afin d'utiliser Ned avec"
+" Pyniryo2."
 
 #: ../../index.rst:50
 msgid ""
@@ -94,30 +110,37 @@ msgid ""
 "<source/setup/installation>`, then :doc:`find your Robot IP address "
 "<source/setup/ip_address>` to be ready."
 msgstr ""
+"Dans un premier temps, suivez les :doc:`Instructions d'installation  "
+"<source/setup/installation>`, puis :doc:`Trouver l'adresse IP du robot"
+"<source/setup/ip_address>` pour être prêt."
 
 #: ../../index.rst:64
 msgid "Learn how to use the PyNiryo2 package to implement various tasks"
 msgstr ""
+"Apprenez comment utiliser le package PyNiryo2 afin d'implémenter diverses"
+" tâches."
 
 #: ../../index.rst:80
 msgid ""
 "Master controls with PyNiryo2 with full detailed functions :doc:`here "
 "<source/api_doc/niryo_robot>`"
 msgstr ""
+"Le master est contrôlé par PyNiryo2 via les fonctions détaillées "
+":doc:`ici <source/api_doc/niryo_robot>`."
 
 #: ../../index.rst:100
 msgid "Indices and tables"
-msgstr ""
+msgstr "Indexes et tableaux"
 
 #: ../../index.rst:102
 msgid ":ref:`genindex`"
-msgstr ""
+msgstr ":ref:`genindex`"
 
 #: ../../index.rst:103
 msgid ":ref:`modindex`"
-msgstr ""
+msgstr ":ref:`modindex`"
 
 #: ../../index.rst:104
 msgid ":ref:`search`"
-msgstr ""
+msgstr ":ref:`search`"
 

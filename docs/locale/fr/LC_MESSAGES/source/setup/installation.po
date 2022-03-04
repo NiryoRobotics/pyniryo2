@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"POT-Creation-Date: 2022-02-21 09:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,37 +21,44 @@ msgstr ""
 
 #: ../../source/setup/installation.rst:2
 msgid "Installation"
-msgstr ""
+msgstr "Installation"
 
 #: ../../source/setup/installation.rst:5
 msgid ""
 "The library uses `Python <https://www.python.org/>`_, which must be "
 "installed and available in your working environment"
 msgstr ""
+"La librairie utilise `Python <https://www.python.org/>`_, qui doit être "
+"installé et doit être disponible dans votre environnement de travail"
 
 #: ../../source/setup/installation.rst:6
 msgid "The version should be **equal or above** :"
-msgstr ""
+msgstr "La verson doit être **égale ou supérieure à :**"
 
 #: ../../source/setup/installation.rst:8
 msgid "2.7 if you are using Python 2"
-msgstr ""
+msgstr "2.7 si vous utilisez Python 2"
 
 #: ../../source/setup/installation.rst:9
 msgid "3.6 if you are using Python 3"
-msgstr ""
+msgstr "3.6 si vous utilisez Python 3"
 
 #: ../../source/setup/installation.rst:12
 msgid ""
 "To check your Python version, use the command ``python --version`` if you"
 " are using Python 2 and ``python3 --version`` if you are using Python3"
 msgstr ""
+"Pour vérifier votre version de Python, utilisez la commande ``python "
+"--version`` si vous utilisez Python 2 et ``python3 --version`` si vous "
+"utilisez Python 3"
 
 #: ../../source/setup/installation.rst:15
 msgid ""
 "The below sections explain how to install the library with **pip**, the "
 "package installer for Python"
 msgstr ""
+"Les sections ci-dessous expliquent comment intaller la librairie avec "
+"**pip**, l'installeur de packages de Python"
 
 #: ../../source/setup/installation.rst:19
 msgid ""
@@ -59,30 +66,37 @@ msgid ""
 "command ``pip`` will install packages in Python 2 version. You should use"
 " ``pip3`` instead in order to to target Python 3"
 msgstr ""
+"Si vous avez à la fois Python 2 & Python 3 installés sur votre "
+"ordinateur, la commande ``pip`` installera les packages en version Python"
+" 2. Vous devrez utiliser ``pip3`` à la place pour cibler Python 3"
 
 #: ../../source/setup/installation.rst:24
 msgid "Installation with pip"
-msgstr ""
+msgstr "Installation avec pip"
 
 #: ../../source/setup/installation.rst:26
 msgid "You need to have installed Numpy package beforehand : ::"
-msgstr ""
+msgstr "Vous devez avoir installé le package Numpy en amont: ::"
 
 #: ../../source/setup/installation.rst:31
 msgid "To install Ned's Python package via ``pip``, simply execute::"
 msgstr ""
+"Pour installer le package Python du Ned avec ``pip``, exécutez "
+"simplement::"
 
 #: ../../source/setup/installation.rst:35
 msgid ""
 "You can find more information about the PyPi package `here "
 "<https://pypi.org/project/pyniryo2/>`_"
 msgstr ""
+"Vous pouvez trouver plus d'informations à propos du package Pypi"
+" `ici <https://pypi.org/project/pyniryo2/>`_"
 
 #: ../../source/setup/installation.rst:40
 msgid "Uninstall"
-msgstr ""
+msgstr "Désinstaller"
 
 #: ../../source/setup/installation.rst:42
 msgid "To uninstall the library use ::"
-msgstr ""
+msgstr "Pour désinstaller la librairie, utilisez ::"
 

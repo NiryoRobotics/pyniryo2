@@ -21,98 +21,108 @@ msgstr ""
 
 #: ../../source/api_doc/saved_poses.rst:2
 msgid "Saved poses"
-msgstr ""
+msgstr "Positions sauvegardées"
 
 #: ../../source/api_doc/saved_poses.rst:4
 msgid ""
 "This file presents the different :ref:`source/api_doc/saved_poses:Saved "
 "poses - Command functions`, available with the Saved poses API"
 msgstr ""
+"Ce fichier présente les différentes :ref:`source/api_doc/saved_poses:Saved "
+"positions - Fonctions de commande`, disponibles avec l'API des positions sauvegardées"
 
 #: ../../source/api_doc/saved_poses.rst:8
 msgid "Saved poses - Command functions"
-msgstr ""
+msgstr "Positions sauvegardées - Fonctions de contrôle"
 
 #: ../../source/api_doc/saved_poses.rst:14
 msgid ""
 "This section reference all existing functions to control your robot, "
 "which include"
 msgstr ""
+"Cette section fait référence au fonctions de contrôle du robot existantes, "
+"ce qui inclut"
 
 #: ../../source/api_doc/saved_poses.rst:16
 msgid "Management of saved poses"
-msgstr ""
+msgstr "Gestion des positions sauvegardées"
 
 #: ../../source/api_doc/saved_poses.rst:18
 msgid ""
 "All functions to control the robot are accessible via an instance of the "
 "class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
 msgstr ""
+"Toutes les fonctions de contrôle du robot sont accessibles grâce à une instance "
+"class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
 
 #: ../../source/api_doc/saved_poses.rst:28
 msgid ""
 "See examples on :ref:`Examples Section "
 "<source/examples/examples_conveyor:Examples: Conveyor>`"
 msgstr ""
+"Voir les exemples sur :ref:`Examples Section "
+"<source/examples/examples_conveyor:Examples: Conveyor>`"
 
 #: ../../source/api_doc/saved_poses.rst:30
 msgid "List of functions subsections:"
-msgstr ""
+msgstr "Liste de fonctions de sous-sections"
 
 #: ../../source/api_doc/saved_poses.rst:37
 msgid "Saved poses functions"
-msgstr ""
+msgstr "Fonctions des positions sauvegardées"
 
 #: of pyniryo2.saved_poses.saved_poses.SavedPoses.get_pose_saved:1
 msgid "Get pose saved in from Ned's memory"
-msgstr ""
+msgstr "Obtient la position sauvegardée dans la mémoire du Ned"
 
 #: of pyniryo2.saved_poses.saved_poses.SavedPoses.delete_pose:3
 #: pyniryo2.saved_poses.saved_poses.SavedPoses.get_pose_saved:3
 #: pyniryo2.saved_poses.saved_poses.SavedPoses.get_saved_pose_list:3
 #: pyniryo2.saved_poses.saved_poses.SavedPoses.save_pose:3
 msgid "Examples: ::"
-msgstr ""
+msgstr "Exemples: ::"
 
 #: of pyniryo2.saved_poses.saved_poses.SavedPoses.get_pose_saved
 #: pyniryo2.saved_poses.saved_poses.SavedPoses.save_pose
 msgid "Parameters"
-msgstr ""
+msgstr "Paramètres"
 
 #: of pyniryo2.saved_poses.saved_poses.SavedPoses.get_pose_saved:7
 msgid "Pose name in robot's memory"
-msgstr ""
+msgstr "Nom de la position dans la mémoire du robot"
 
 #: of pyniryo2.saved_poses.saved_poses.SavedPoses.get_pose_saved
 msgid "Returns"
-msgstr ""
+msgstr "Retourne"
 
 #: of pyniryo2.saved_poses.saved_poses.SavedPoses.get_pose_saved:9
 msgid "Pose associated to pose_name"
-msgstr ""
+msgstr "Position associé à pose_name"
 
 #: of pyniryo2.saved_poses.saved_poses.SavedPoses.delete_pose
 #: pyniryo2.saved_poses.saved_poses.SavedPoses.get_pose_saved
 #: pyniryo2.saved_poses.saved_poses.SavedPoses.get_saved_pose_list
 #: pyniryo2.saved_poses.saved_poses.SavedPoses.save_pose
 msgid "Return type"
-msgstr ""
+msgstr "Type de retour"
 
 #: of pyniryo2.saved_poses.saved_poses.SavedPoses.save_pose:1
 msgid "Save pose (x, y, z, roll, pitch, yaw) in robot's memory"
-msgstr ""
+msgstr "Position sauvegardée (x, y, z, roll, pitch, yaw) dans la mémoire du robot"
 
 #: of pyniryo2.saved_poses.saved_poses.SavedPoses.save_pose:10
 msgid ""
 "either 6 args (1 for each coordinates) or a list of 6 coordinates or a "
 "PoseObject"
 msgstr ""
+"Soit 6 arguments (1 pour chaque coordonnées) ou une liste de 6 coordonnées ou un "
+"PoseObject"
 
 #: of pyniryo2.saved_poses.saved_poses.SavedPoses.delete_pose:1
 msgid "Delete pose from robot's memory"
-msgstr ""
+msgstr "Supprime la position de la mémoire du robot"
 
 #: of pyniryo2.saved_poses.saved_poses.SavedPoses.get_saved_pose_list:1
 msgid "Get list of poses' name saved in robot memory"
-msgstr ""
+msgstr "Obtient la liste des noms de positions sauvegardés dans la mémoire du robot"
 

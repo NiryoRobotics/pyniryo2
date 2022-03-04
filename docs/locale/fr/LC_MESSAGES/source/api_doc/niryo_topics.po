@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../../source/api_doc/niryo_topics.rst:2
 msgid "NiryoTopic"
-msgstr ""
+msgstr "NiryoTopic"
 
 #: ../../source/api_doc/niryo_topics.rst:4
 msgid ""
@@ -33,10 +33,15 @@ msgid ""
 "the topic as soon as it is published, or ask for only one value. Please "
 "refer to the Niryo robot ROS doc to see the compatible topics."
 msgstr ""
+"Pyniryo2 est basé sur la librairie python roslibpy pour collecter des informations du robot. "
+"Ces informations sont transmisent par ROS grâce à des topics. Cette classe est une redite de l'API `Topic roslibpy "
+"<https://roslibpy.readthedocs.io/en/latest/reference/index.html#topics>`_."
+" Cela permet de s'abonner à un topic pour collecter des informations dès qu'elles sont publiées, ou demandées pour "
+"une valeur. Merci de vous référer à la documentation ROS du robot Niryo pour voir les topics compatibles."
 
 #: ../../source/api_doc/niryo_topics.rst:12
 msgid "NiryoTopic - Usage"
-msgstr ""
+msgstr "NiryoTopic - Utilisation"
 
 #: of pyniryo2.niryo_topic.NiryoTopic:1
 msgid ""
@@ -45,77 +50,85 @@ msgid ""
 "instance "
 "(https://roslibpy.readthedocs.io/en/latest/reference/index.html#topics)"
 msgstr ""
+"Représente une instance Topic ROS. Elle supporte à la fois les requêtes pour une simple "
+"valeur et/ou pour une fonction de rappel. Cette classe est un wrapper de l'instance Topic "
+"roslibpy "
+"(https://roslibpy.readthedocs.io/en/latest/reference/index.html#topics)"
 
 #: of pyniryo2.niryo_topic.NiryoTopic.is_subscribed:1
 msgid "Return the topic connection status."
-msgstr ""
+msgstr "Retourne le status du topic de connexion"
 
 #: of pyniryo2.niryo_topic.NiryoTopic.is_subscribed
 #: pyniryo2.niryo_topic.NiryoTopic.subscribe
 #: pyniryo2.niryo_topic.NiryoTopic.value
 msgid "Returns"
-msgstr ""
+msgstr "Retourne"
 
 #: of pyniryo2.niryo_topic.NiryoTopic.is_subscribed:3
 msgid "True if already subscribed, False otherwise."
-msgstr ""
+msgstr "Vrai si déjà abonné, Faux sinon"
 
 #: of pyniryo2.niryo_topic.NiryoTopic.is_subscribed
 #: pyniryo2.niryo_topic.NiryoTopic.subscribe
 #: pyniryo2.niryo_topic.NiryoTopic.unsubscribe
 #: pyniryo2.niryo_topic.NiryoTopic.value
 msgid "Return type"
-msgstr ""
+msgstr "Type de retour"
 
 #: of pyniryo2.niryo_topic.NiryoTopic.subscribe:1
 msgid ""
 "Subscribe a callback to the topic. A TopicException will be thrown if the"
 " topic is already subscribed."
 msgstr ""
+"Abonne une fonction de retour au topic. Une TopicException est activée si le "
+"topic est déjà connecté"
 
 #: of pyniryo2.niryo_topic.NiryoTopic.subscribe
 msgid "Parameters"
-msgstr ""
+msgstr "Paramètres"
 
 #: of pyniryo2.niryo_topic.NiryoTopic.subscribe:3
 msgid "The callback function which is called at each incoming topic message."
-msgstr ""
+msgstr "La fonction de retour appelée à chaque nouvelle arrivée d'un message de topic"
 
 #: of pyniryo2.niryo_topic.NiryoTopic.subscribe:5
 msgid "None"
-msgstr ""
+msgstr "None"
 
 #: of pyniryo2.niryo_topic.NiryoTopic.unsubscribe:1
 msgid "Unsubscribe to the topic."
-msgstr ""
+msgstr "Désabonne du topic"
 
 #: of pyniryo2.niryo_topic.NiryoTopic.value:1
 msgid "Return the last value of the topic."
-msgstr ""
+msgstr "Retourne la valeur du topic"
 
 #: of pyniryo2.niryo_topic.NiryoTopic.value:3
 msgid ""
 "The last value of the topic. The value depends on the conversion function"
 " of the topic. By default, it will be a dict."
 msgstr ""
+"la dernière valeur du topic. La valeur dépend de la fonction de conversion"
+"du topic. Par défaut, ce sera un dictionnaire"
 
 #: ../../source/api_doc/niryo_topics.rst:18
 msgid "Here is a simple example of using the class without conversion: ::"
-msgstr ""
+msgstr "Ceci est un exemple simple d'utilisation de la classe sans conversion: ::"
 
 #: ../../source/api_doc/niryo_topics.rst:31
 msgid "Here is a simple example of using the class with conversion: ::"
-msgstr ""
+msgstr "Ceci est un exemple simple d'utilisation de la classe avec conversion: ::"
 
 #: ../../source/api_doc/niryo_topics.rst:44
 msgid "Here is a simple example of using the class with a callback: ::"
-msgstr ""
+msgstr "Ceci est un exemple simple d'utilisation de la classe avec une fonction de retour: ::"
 
 #: ../../source/api_doc/niryo_topics.rst:63
 msgid "NiryoTopic - Class"
-msgstr ""
+msgstr "NiryoTopic - Classe"
 
 #: ../../source/api_doc/niryo_topics.rst:65
 msgid ":class:`~.niryo_topic.NiryoTopic`"
-msgstr ""
+msgstr ":class:`~.niryo_topic.NiryoTopic`"
 

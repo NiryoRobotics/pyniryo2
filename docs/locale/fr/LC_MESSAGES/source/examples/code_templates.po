@@ -21,25 +21,27 @@ msgstr ""
 
 #: ../../source/examples/code_templates.rst:2
 msgid "Code templates"
-msgstr ""
+msgstr "Modèles de code"
 
 #: ../../source/examples/code_templates.rst:4
 msgid ""
 "As code structures are always the same, we wrote down few templates for "
 "you to start your code file with a good form"
 msgstr ""
+"Les structure de code étant toujours similaires, nous en avons écrit quelques uns "
+"pour vous permettre de commencer à coder dans le bon format"
 
 #: ../../source/examples/code_templates.rst:8
 msgid "The short template"
-msgstr ""
+msgstr "Les modèles courts"
 
 #: ../../source/examples/code_templates.rst:10
 msgid "Very simple, straightforward ::"
-msgstr ""
+msgstr "Simpliste, direct"
 
 #: ../../source/examples/code_templates.rst:27
 msgid "Advanced template"
-msgstr ""
+msgstr "Modèle Avancé"
 
 #: ../../source/examples/code_templates.rst:29
 msgid ""
@@ -47,22 +49,27 @@ msgid ""
 "connection, calibration, tool equipping, and make the robot go to sleep "
 "at the end ::"
 msgstr ""
+"Ce modèle permet à l'utilisateur de définir son propre processus mais gère "
+"la connexion, la calibration, l'équipement d'outil, et met le robot en veille "
+"à la fin ::"
 
 #: ../../source/examples/code_templates.rst:63
 msgid "Advanced template for conveyor"
-msgstr ""
+msgstr "Modèle avancé pour convoyeur"
 
 #: ../../source/examples/code_templates.rst:65
 msgid ""
 "Same as :ref:`source/examples/code_templates:Advanced template` but with "
 "a conveyor ::"
 msgstr ""
+"Comme le :ref:`source/examples/code_templates:Advanced template` mais avec "
+"un convoyeur ::"
 
 #: ../../source/examples/code_templates.rst:102
 msgid "Advanced template for vision"
-msgstr ""
+msgstr "Modèle avancé pour la vision"
 
 #: ../../source/examples/code_templates.rst:104
 msgid "Huge template for vision users ! ::"
-msgstr ""
+msgstr "Modèle conséquent pour les utilisateurs de vision ! ::"
 

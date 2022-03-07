@@ -9,7 +9,7 @@ from pyniryo2.conveyor.enums import ConveyorID, ConveyorDirection
 from pyniryo2.conveyor.conveyor import Conveyor
 from pyniryo2.conveyor.topics import ConveyorInfo
 
-robot_ip_address = "192.168.1.52"
+robot_ip_address = "127.0.0.1"
 port = 9090
 
 test_order = ["test_conveyor_set_run",

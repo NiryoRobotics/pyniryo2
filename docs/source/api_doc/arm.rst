@@ -37,6 +37,8 @@ List of functions subsections:
    :local:
    :depth: 1
 
+.. autoclass:: Arm
+
 
 Calibration functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -124,8 +126,15 @@ List of enums:
 Arm - Objects
 ------------------------------------
 
-.. automodule:: pyniryo2.arm.objects
-    :members:
-    :no-undoc-members:
-    :member-order: bysource
-    :noindex:
+* :class:`HardwareStatusObject`
+
+.. autoclass:: pyniryo2.arm.objects.HardwareStatusObject
+
+
+* :class:`JointStateObject`
+
+.. autoclass:: pyniryo2.arm.objects.JointStateObject
+
+* :class:`~.objects.PoseObject`
+
+.. autoclass:: pyniryo2.objects.PoseObject

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 18:59+0000\n"
+"POT-Creation-Date: 2022-03-07 15:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,7 +77,32 @@ msgstr ""
 msgid "List of functions subsections:"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:45
+#: of pyniryo2.tool.tool.Tool:1
+msgid "Tool robot functions"
+msgstr ""
+
+#: of pyniryo2.tool.tool.Tool:3 pyniryo2.tool.tool.Tool.setup_electromagnet:3
+msgid "Example: ::"
+msgstr ""
+
+#: of pyniryo2.tool.tool.Tool pyniryo2.tool.tool.Tool.activate_electromagnet
+#: pyniryo2.tool.tool.Tool.close_gripper
+#: pyniryo2.tool.tool.Tool.deactivate_electromagnet
+#: pyniryo2.tool.tool.Tool.enable_tcp pyniryo2.tool.tool.Tool.grasp_with_tool
+#: pyniryo2.tool.tool.Tool.open_gripper
+#: pyniryo2.tool.tool.Tool.pull_air_vacuum_pump
+#: pyniryo2.tool.tool.Tool.push_air_vacuum_pump
+#: pyniryo2.tool.tool.Tool.release_with_tool pyniryo2.tool.tool.Tool.set_tcp
+#: pyniryo2.tool.tool.Tool.setup_electromagnet
+#: pyniryo2.tool.tool.Tool.update_tool
+msgid "Parameters"
+msgstr ""
+
+#: of pyniryo2.tool.tool.Tool:8
+msgid "Niryo ROS client"
+msgstr ""
+
+#: ../../source/api_doc/tool.rst:47
 msgid "Tool functions"
 msgstr ""
 
@@ -96,19 +121,6 @@ msgstr ""
 #: pyniryo2.tool.tool.Tool.release_with_tool:9
 #: pyniryo2.tool.tool.Tool.set_tcp:4 pyniryo2.tool.tool.Tool.update_tool:3
 msgid "Examples: ::"
-msgstr ""
-
-#: of pyniryo2.tool.tool.Tool.activate_electromagnet
-#: pyniryo2.tool.tool.Tool.close_gripper
-#: pyniryo2.tool.tool.Tool.deactivate_electromagnet
-#: pyniryo2.tool.tool.Tool.enable_tcp pyniryo2.tool.tool.Tool.grasp_with_tool
-#: pyniryo2.tool.tool.Tool.open_gripper
-#: pyniryo2.tool.tool.Tool.pull_air_vacuum_pump
-#: pyniryo2.tool.tool.Tool.push_air_vacuum_pump
-#: pyniryo2.tool.tool.Tool.release_with_tool pyniryo2.tool.tool.Tool.set_tcp
-#: pyniryo2.tool.tool.Tool.setup_electromagnet
-#: pyniryo2.tool.tool.Tool.update_tool
-msgid "Parameters"
 msgstr ""
 
 #: of pyniryo2.tool.tool.Tool.activate_electromagnet:18
@@ -131,7 +143,7 @@ msgstr ""
 msgid "Timeout for the operation, in seconds. Only used if blocking."
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:94 of
+#: ../../source/api_doc/tool.rst:96 of
 #: pyniryo2.tool.tool.Tool.activate_electromagnet
 #: pyniryo2.tool.tool.Tool.close_gripper
 #: pyniryo2.tool.tool.Tool.deactivate_electromagnet
@@ -183,7 +195,7 @@ msgid ""
 " is finished."
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:54
+#: ../../source/api_doc/tool.rst:56
 msgid "Grippers functions"
 msgstr ""
 
@@ -223,7 +235,7 @@ msgstr ""
 msgid "Hold torque percentage after opening (only for Ned2)"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:60
+#: ../../source/api_doc/tool.rst:62
 msgid "Vacuum pump functions"
 msgstr ""
 
@@ -241,16 +253,12 @@ msgid ""
 " called when the execution of the function is finished."
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:66
+#: ../../source/api_doc/tool.rst:68
 msgid "Electromagnet functions"
 msgstr ""
 
 #: of pyniryo2.tool.tool.Tool.setup_electromagnet:1
 msgid "Setup electromagnet on pin"
-msgstr ""
-
-#: of pyniryo2.tool.tool.Tool.setup_electromagnet:3
-msgid "Example: ::"
 msgstr ""
 
 #: of pyniryo2.tool.tool.Tool.activate_electromagnet:1
@@ -269,7 +277,7 @@ msgid ""
 "the function is finished."
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:73
+#: ../../source/api_doc/tool.rst:75
 msgid "TCP functions"
 msgstr ""
 
@@ -303,50 +311,50 @@ msgid ""
 "according to the tool equipped."
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:81
+#: ../../source/api_doc/tool.rst:83
 msgid "Tool - Niryo Topics"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:83
+#: ../../source/api_doc/tool.rst:85
 msgid ""
 "The use of these functions is explained in the "
 ":ref:`source/api_doc/niryo_topics:NiryoTopic` section. They allow the "
 "acquisition of data in real time by callbacks or by direct call."
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:86
+#: ../../source/api_doc/tool.rst:88
 msgid "Tool's Niryo Topics"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:92
+#: ../../source/api_doc/tool.rst:94
 msgid "Name"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:93
+#: ../../source/api_doc/tool.rst:95
 msgid "Function"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:95
+#: ../../source/api_doc/tool.rst:97
 msgid "``/niryo_robot_tools_commander/current_id``"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:96
+#: ../../source/api_doc/tool.rst:98
 msgid ":attr:`~.tool.Tool.get_current_tool_id`"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:97 ../../source/api_doc/tool.rst:105
+#: ../../source/api_doc/tool.rst:99 ../../source/api_doc/tool.rst:107
 msgid ":class:`~.tool.enums.ToolID`"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:101
+#: ../../source/api_doc/tool.rst:103
 msgid "Tool - Enums"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:103
+#: ../../source/api_doc/tool.rst:105
 msgid "List of enums:"
 msgstr ""
 
-#: ../../source/api_doc/tool.rst:106
+#: ../../source/api_doc/tool.rst:108
 msgid ":class:`~.tool.enums.ToolCommand`"
 msgstr ""
 

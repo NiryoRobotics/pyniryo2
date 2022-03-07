@@ -38,6 +38,9 @@ List of functions subsections:
    :depth: 1
 
 
+.. autoclass:: Vision
+
+
 Camera functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

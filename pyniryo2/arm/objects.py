@@ -5,35 +5,49 @@
 class HardwareStatusObject:
     """
     Object used to store every hardware information
+
+    :ivar rpi_temperature: Number representing the rpi temperature
+    :vartype rpi_temperature: float
+    :ivar hardware_version: Number representing the hardware version
+    :vartype hardware_version: str
+    :ivar connection_up: Boolean indicating if the connection with the robot is up
+    :vartype connection_up: bool
+    :ivar error_message: Error message status on error
+    :vartype error_message: str
+    :ivar calibration_needed: Boolean indicating if a calibration is needed
+    :vartype calibration_needed: bool
+    :ivar calibration_in_progress: Boolean indicating if calibration is in progress
+    :vartype calibration_in_progress: bool
+    :ivar motor_names: List of motor names
+    :vartype motor_names: list[str]
+    :ivar motor_types: List of motor types
+    :vartype motor_types: list[str]
+    :ivar motors_temperature: List of motors_temperature
+    :vartype motors_temperature: list[float]
+    :ivar motors_voltage: List of motors_voltage
+    :vartype motors_voltage: list[float]
+    :ivar hardware_errors: List of hardware errors
+    :vartype hardware_errors: list[int]
+    :ivar hardware_error_messages: List of hardware error messages
+    :vartype hardware_error_messages: list[str]
+
     """
 
     def __init__(self):
-        # Number representing the rpi temperature
         self.rpi_temperature = None
-        # Number representing the hardware version
         self.hardware_version = None
-        # Boolean indicating if the connection with the robot is up
         self.connection_up = None
-        # Error message status on error
         self.error_message = None
-        # Boolean indicating if a calibration is needed
         self.calibration_needed = None
-        # Boolean indicating if calibration is in progress
         self.calibration_in_progress = None
 
         # Following list describe each motor
         # Row 0 for first motor, row 1 for second motor, row 2 for third motor, row 3 for fourth motor
-        # List of motor names
         self.motor_names = None
-        # List of motor types
         self.motor_types = None
-        # List of motors_temperature
         self.motors_temperature = None
-        # List of motors_voltage
         self.motors_voltage = None
-        # List of hardware errors
         self.hardware_errors = None
-        # List of hardware error messages
         self.hardware_error_messages = None
 
     def init_from_message(self, msg):
@@ -121,6 +135,15 @@ class HardwareStatusObject:
 class JointStateObject:
     """
     Object used to store every joint state information
+
+    :ivar name: List of joint names
+    :vartype name: list[str]
+    :ivar position: List of joint positions
+    :vartype position: list[float]
+    :ivar velocity: List of joint velocities
+    :vartype velocity: list[float]
+    :ivar effort: List of joint efforts
+    :vartype effort: list[float]
     """
 
     def __init__(self):

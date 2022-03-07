@@ -22,6 +22,17 @@ def object_pose_dict_to_pose_object(object_pose_dict):
 class Vision(RobotCommander):
     # --- Public functions --- #
     def __init__(self, client, arm=None, tool=None):
+        """
+        Vision robot functions
+
+        Example: ::
+
+            ros_instance = NiryoRos("10.10.10.10") # Hotspot
+            vision_interface = Vision(ros_instance)
+
+        :param client: Niryo ROS client
+        :type client: NiryoRos
+        """
         super(Vision, self).__init__(client)
 
         self._services = VisionServices(self._client)

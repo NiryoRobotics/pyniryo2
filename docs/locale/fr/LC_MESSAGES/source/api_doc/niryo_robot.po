@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 18:48+0000\n"
+"POT-Creation-Date: 2022-03-07 15:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,6 +64,10 @@ msgid "Access to the entire PyNiryo2 API"
 msgstr "Accès à l'API PyNiryo2 entière"
 
 #: ../../source/api_doc/niryo_robot.rst:22
+msgid ":class:`~.niryo_robot.NiryoRobot`"
+msgstr ":class:`~.niryo_robot.NiryoRobot`"
+
+#: ../../source/api_doc/niryo_robot.rst:24
 msgid ""
 "All functions to control the robot are accessible via an instance of the "
 "class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
@@ -71,7 +75,7 @@ msgstr ""
 "Toutes les fonctions pour contrôler le robot sont accessibles grâce à une"
 " instance de la classe :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
 
-#: ../../source/api_doc/niryo_robot.rst:32
+#: ../../source/api_doc/niryo_robot.rst:34
 msgid ""
 "See examples on :ref:`Examples Section "
 "<source/examples/examples_basics:Examples: Basics>`"
@@ -79,21 +83,47 @@ msgstr ""
 "Voir des exemples dans la :ref:`Section Exemples  "
 "<source/examples/examples_basics:Examples: Basics>`"
 
-#: ../../source/api_doc/niryo_robot.rst:35
+#: ../../source/api_doc/niryo_robot.rst:37
 msgid "List of functions subsections:"
 msgstr "Liste des fonctions de sous-sections"
 
-#: ../../source/api_doc/niryo_robot.rst:43
+#: ../../source/api_doc/niryo_robot.rst:45
 msgid "NiryoRobot functions"
 msgstr "Fonctions du NiryoRobot"
 
-#: ../../source/api_doc/niryo_robot.rst:45
-msgid ":class:`~.niryo_robot.NiryoRobot`"
-msgstr ":class:`~.niryo_robot.NiryoRobot`"
+#: of pyniryo2.niryo_robot.NiryoRobot:1
+msgid "Connect your robot to your computer: ::"
+msgstr "Connecte votre robot à votre ordinateur: ::"
 
-#: of pyniryo2.niryo_robot.NiryoRobot.end:1
-msgid "Disconnect from your robot and ROS: ::"
-msgstr "Se déconnecte du robot et de ROS"
+#: of pyniryo2.niryo_robot.NiryoRobot pyniryo2.niryo_robot.NiryoRobot.wait
+#: pyniryo2.objects.PoseObject.euler_to_quaternion
+#: pyniryo2.objects.PoseObject.quaternion_to_euler_angle
+msgid "Parameters"
+msgstr "Paramètres"
+
+#: of pyniryo2.niryo_robot.NiryoRobot:9
+msgid "robot ROS ip"
+msgstr "IP du ROS du robot"
+
+#: of pyniryo2.niryo_robot.NiryoRobot:11
+msgid "robot ROS port"
+msgstr "Port du ROS du robot"
+
+#: of pyniryo2.niryo_robot.NiryoRobot.client:1
+msgid "Get the Niryo Ros client"
+msgstr "Obtenir le client NiryoRos"
+
+#: of pyniryo2.niryo_robot.NiryoRobot.client
+#: pyniryo2.objects.PoseObject.euler_to_quaternion
+#: pyniryo2.objects.PoseObject.quaternion
+#: pyniryo2.objects.PoseObject.quaternion_pose
+#: pyniryo2.objects.PoseObject.quaternion_to_euler_angle
+msgid "Returns"
+msgstr "Retourne"
+
+#: of pyniryo2.niryo_robot.NiryoRobot.client:3
+msgid "NiryoRos client"
+msgstr "Client NiryoRos"
 
 #: of pyniryo2.niryo_robot.NiryoRobot.arm
 #: pyniryo2.niryo_robot.NiryoRobot.client
@@ -105,33 +135,25 @@ msgstr "Se déconnecte du robot et de ROS"
 #: pyniryo2.niryo_robot.NiryoRobot.trajectories
 #: pyniryo2.niryo_robot.NiryoRobot.vision pyniryo2.niryo_robot.NiryoRobot.wait
 #: pyniryo2.objects.PoseObject.copy_with_offsets
+#: pyniryo2.objects.PoseObject.euler_to_quaternion
+#: pyniryo2.objects.PoseObject.quaternion
+#: pyniryo2.objects.PoseObject.quaternion_pose
+#: pyniryo2.objects.PoseObject.quaternion_to_euler_angle
 #: pyniryo2.objects.PoseObject.to_list
 msgid "Return type"
 msgstr "Type de retour"
+
+#: of pyniryo2.niryo_robot.NiryoRobot.end:1
+msgid "Disconnect from your robot and ROS: ::"
+msgstr "Se déconnecte du robot et de ROS"
 
 #: of pyniryo2.niryo_robot.NiryoRobot.wait:1
 msgid "Wait for a certain time"
 msgstr "Attend un certain temps"
 
-#: of pyniryo2.niryo_robot.NiryoRobot.wait
-msgid "Parameters"
-msgstr "Paramètres"
-
 #: of pyniryo2.niryo_robot.NiryoRobot.wait:3
 msgid "duration in seconds"
 msgstr "durée en secondes"
-
-#: of pyniryo2.niryo_robot.NiryoRobot.client:1
-msgid "Get the Niryo Ros client"
-msgstr "Obtenir le client NiryoRos"
-
-#: of pyniryo2.niryo_robot.NiryoRobot.client
-msgid "Returns"
-msgstr "Retourne"
-
-#: of pyniryo2.niryo_robot.NiryoRobot.client:3
-msgid "NiryoRos client"
-msgstr "Client NiryoRos"
 
 #: ../../source/api_doc/niryo_robot.rst:52
 msgid "NiryoRobot properties"
@@ -180,19 +202,19 @@ msgstr "Accède à l'API des Trajectoires"
 msgid "Access to the Vision API"
 msgstr "Accède à l'API de Vision"
 
-#: ../../source/api_doc/niryo_robot.rst:65
+#: ../../source/api_doc/niryo_robot.rst:61
 msgid "Globals Enums"
 msgstr "Enumerations Gloables"
 
-#: ../../source/api_doc/niryo_robot.rst:67
+#: ../../source/api_doc/niryo_robot.rst:63
 msgid "List of enums:"
 msgstr "Liste des enumerations"
 
-#: ../../source/api_doc/niryo_robot.rst:69
+#: ../../source/api_doc/niryo_robot.rst:65
 msgid ":class:`~.enums.RobotErrors`"
 msgstr ":class:`~.enums.RobotErrors`"
 
-#: ../../source/api_doc/niryo_robot.rst:70
+#: ../../source/api_doc/niryo_robot.rst:66
 msgid ":class:`~.enums.ArmMoveCommandType`"
 msgstr ":class:`~.enums.ArmMoveCommandType`"
 
@@ -206,17 +228,45 @@ msgstr ""
 "Enumeration de l'Arm Move Command : utilisé pour les contrôles de "
 "déplacement du bras"
 
-#: ../../source/api_doc/niryo_robot.rst:79
+#: ../../source/api_doc/niryo_robot.rst:75
 msgid "Globals Objects"
 msgstr "Objets Globaux"
 
-#: ../../source/api_doc/niryo_robot.rst:81
+#: ../../source/api_doc/niryo_robot.rst:77
 msgid ":class:`~.objects.PoseObject`"
 msgstr ":class:`~.objects.PoseObject`"
 
 #: of pyniryo2.objects.PoseObject:1
 msgid "Pose object which stores x, y, z, roll, pitch & yaw parameters"
 msgstr "Objet Pose qui sauvegarde la paramètres x, y, z, roll, pitch & yaw "
+
+#: of pyniryo2.objects.PoseObject
+msgid "Variables"
+msgstr "Attributs"
+
+#: of pyniryo2.objects.PoseObject:3
+msgid "X (meter)"
+msgstr "X (mètres)"
+
+#: of pyniryo2.objects.PoseObject:5
+msgid "Y (meter)"
+msgstr "Y (mètres)"
+
+#: of pyniryo2.objects.PoseObject:7
+msgid "Z (meter)"
+msgstr "Z (mètres)"
+
+#: of pyniryo2.objects.PoseObject:9
+msgid "Roll (radian)"
+msgstr "Roulis (randian)"
+
+#: of pyniryo2.objects.PoseObject:11
+msgid "Pitch (radian)"
+msgstr "Tangage (radian)"
+
+#: of pyniryo2.objects.PoseObject:13
+msgid "Yaw (radian)"
+msgstr "Lacet (radian)"
 
 #: of pyniryo2.objects.PoseObject.copy_with_offsets:1
 msgid "Create a new pose from copying from copying actual pose with offsets"
@@ -231,6 +281,47 @@ msgid ""
 msgstr ""
 "Retourne une liste [x, y, z, roll, pitch, yaw] correspondant aux "
 "paramètres de la position"
+
+#: of pyniryo2.objects.PoseObject.quaternion:1
+msgid "Return the quaternion in a list [qx, qy, qz, qw]"
+msgstr "Retourne le quaternion sous forme de liste [qx, qy, qz, qw]"
+
+#: of pyniryo2.objects.PoseObject.quaternion:3
+msgid "quaternion [qx, qy, qz, qw]"
+msgstr "quaternion [qx, qy, qz, qw]"
+
+#: of pyniryo2.objects.PoseObject.quaternion_pose:1
+msgid "Return the position and the quaternion in a list [x, y, z, qx, qy, qz, qw]"
+msgstr "Retourne la positions et le quaternion dans une liste [x, y, z, qx, qy, qz, qw]"
+
+#: of pyniryo2.objects.PoseObject.quaternion_pose:3
+msgid "position [x, y, z] + quaternion [qx, qy, qz, qw]"
+msgstr "position [x, y, z] + quaternion [qx, qy, qz, qw]"
+
+#: of pyniryo2.objects.PoseObject.euler_to_quaternion:1
+#: pyniryo2.objects.PoseObject.quaternion_to_euler_angle:1
+msgid "Convert euler angles to quaternion"
+msgstr "Convertir les angles d'euler en quaternion"
+
+#: of pyniryo2.objects.PoseObject.euler_to_quaternion:3
+msgid "roll in radians"
+msgstr "roulis en radians"
+
+#: of pyniryo2.objects.PoseObject.euler_to_quaternion:5
+msgid "pitch in radians"
+msgstr "tagage en radians"
+
+#: of pyniryo2.objects.PoseObject.euler_to_quaternion:7
+msgid "yaw in radians"
+msgstr "lacet en radians"
+
+#: of pyniryo2.objects.PoseObject.euler_to_quaternion:9
+msgid "quaternion in a list [qx, qy, qz, qw]"
+msgstr "quaternion dans une liste [qx, qy qz, qw]"
+
+#: of pyniryo2.objects.PoseObject.quaternion_to_euler_angle:11
+msgid "euler angles in a list [roll, pitch, yaw]"
+msgstr "angles d'euler dans une liste [roulis, tangage, lacet]"
 
 #~ msgid ""
 #~ "Connect to your robot and ROS This"

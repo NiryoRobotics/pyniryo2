@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"POT-Creation-Date: 2022-03-07 15:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,7 +70,35 @@ msgstr ""
 msgid "List of functions subsections:"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:42
+#: of pyniryo2.vision.vision.Vision:1
+msgid "Vision robot functions"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision:3
+msgid "Example: ::"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision
+#: pyniryo2.vision.vision.Vision.delete_workspace
+#: pyniryo2.vision.vision.Vision.detect_object
+#: pyniryo2.vision.vision.Vision.get_target_pose_from_cam
+#: pyniryo2.vision.vision.Vision.get_target_pose_from_rel
+#: pyniryo2.vision.vision.Vision.get_workspace_ratio
+#: pyniryo2.vision.vision.Vision.move_to_object
+#: pyniryo2.vision.vision.Vision.save_workspace_from_points
+#: pyniryo2.vision.vision.Vision.save_workspace_from_robot_poses
+#: pyniryo2.vision.vision.Vision.set_brightness
+#: pyniryo2.vision.vision.Vision.set_contrast
+#: pyniryo2.vision.vision.Vision.set_saturation
+#: pyniryo2.vision.vision.Vision.vision_pick
+msgid "Parameters"
+msgstr ""
+
+#: of pyniryo2.vision.vision.Vision:8
+msgid "Niryo ROS client"
+msgstr ""
+
+#: ../../source/api_doc/vision.rst:45
 msgid "Camera functions"
 msgstr ""
 
@@ -100,7 +128,7 @@ msgstr ""
 msgid "string containing a JPEG compressed image"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:86 of
+#: ../../source/api_doc/vision.rst:89 of
 #: pyniryo2.vision.vision.Vision.delete_workspace
 #: pyniryo2.vision.vision.Vision.detect_object
 #: pyniryo2.vision.vision.Vision.get_camera_intrinsics
@@ -165,21 +193,6 @@ msgstr ""
 msgid "Modify image brightness"
 msgstr ""
 
-#: of pyniryo2.vision.vision.Vision.delete_workspace
-#: pyniryo2.vision.vision.Vision.detect_object
-#: pyniryo2.vision.vision.Vision.get_target_pose_from_cam
-#: pyniryo2.vision.vision.Vision.get_target_pose_from_rel
-#: pyniryo2.vision.vision.Vision.get_workspace_ratio
-#: pyniryo2.vision.vision.Vision.move_to_object
-#: pyniryo2.vision.vision.Vision.save_workspace_from_points
-#: pyniryo2.vision.vision.Vision.save_workspace_from_robot_poses
-#: pyniryo2.vision.vision.Vision.set_brightness
-#: pyniryo2.vision.vision.Vision.set_contrast
-#: pyniryo2.vision.vision.Vision.set_saturation
-#: pyniryo2.vision.vision.Vision.vision_pick
-msgid "Parameters"
-msgstr ""
-
 #: of pyniryo2.vision.vision.Vision.set_brightness:3
 msgid ""
 "How much to adjust the brightness. 0.5 will give a darkened image, 1 will"
@@ -208,7 +221,7 @@ msgid ""
 "factor of 2."
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:53
+#: ../../source/api_doc/vision.rst:56
 msgid "Detection functions"
 msgstr ""
 
@@ -299,7 +312,7 @@ msgstr ""
 msgid "Detect object in workspace and return its pose and characteristics"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:62
+#: ../../source/api_doc/vision.rst:65
 msgid "Workspace functions"
 msgstr ""
 
@@ -372,70 +385,70 @@ msgstr ""
 msgid "Get list of workspaces' name store in robot's memory"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:73
+#: ../../source/api_doc/vision.rst:76
 msgid "Vision - Niryo Topics"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:75
+#: ../../source/api_doc/vision.rst:78
 msgid ""
 "The use of these functions is explained in the "
 ":ref:`source/api_doc/niryo_topics:NiryoTopic` section. They allow the "
 "acquisition of data in real time by callbacks or by direct call."
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:78
+#: ../../source/api_doc/vision.rst:81
 msgid "Vision's Niryo Topics"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:84
+#: ../../source/api_doc/vision.rst:87
 msgid "Name"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:85
+#: ../../source/api_doc/vision.rst:88
 msgid "Function"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:87
+#: ../../source/api_doc/vision.rst:90
 msgid "``/niryo_robot_vision/compressed_video_stream``"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:88
+#: ../../source/api_doc/vision.rst:91
 msgid ":attr:`~.vision.Vision.get_img_compressed`"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:89
+#: ../../source/api_doc/vision.rst:92
 msgid ":exc:`list` [  :class:`numpy.uint8` ]"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:90
+#: ../../source/api_doc/vision.rst:93
 msgid "``/niryo_robot_vision/camera_intrinsics``"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:91
+#: ../../source/api_doc/vision.rst:94
 msgid ":attr:`~.vision.Vision.get_camera_intrinsics`"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:92
+#: ../../source/api_doc/vision.rst:95
 msgid ":class:`~.vision.objects.CameraInfo`"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:95
+#: ../../source/api_doc/vision.rst:98
 msgid "Vision - Enums"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:97
+#: ../../source/api_doc/vision.rst:100
 msgid "List of enums:"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:99
+#: ../../source/api_doc/vision.rst:102
 msgid ":class:`~.vision.enums.ObjectColor`"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:100
+#: ../../source/api_doc/vision.rst:103
 msgid ":class:`~.vision.enums.ObjectShape`"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:101
+#: ../../source/api_doc/vision.rst:104
 msgid ":class:`~.vision.enums.ManageWorkspace`"
 msgstr ""
 
@@ -451,8 +464,12 @@ msgstr ""
 msgid "Enumeration of actions available for workspaces management"
 msgstr ""
 
-#: ../../source/api_doc/vision.rst:111
+#: ../../source/api_doc/vision.rst:114
 msgid "Vision - Namedtuple"
+msgstr ""
+
+#: of pyniryo2.vision.objects.CameraInfo:1
+msgid "Create new instance of CameraInfo(intrinsics, distortion)"
 msgstr ""
 
 #: ../../docstring of pyniryo2.vision.objects.CameraInfo.distortion:1
@@ -463,6 +480,12 @@ msgstr ""
 #: ../../docstring of pyniryo2.vision.objects.CameraInfo.intrinsics:1
 #: pyniryo2.vision.objects.ImageParameters.brightness_factor:1
 msgid "Alias for field number 0"
+msgstr ""
+
+#: of pyniryo2.vision.objects.ImageParameters:1
+msgid ""
+"Create new instance of ImageParameters(brightness_factor, "
+"contrast_factor, saturation_factor)"
 msgstr ""
 
 #: ../../docstring of

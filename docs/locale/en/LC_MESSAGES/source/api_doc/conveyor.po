@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"POT-Creation-Date: 2022-03-07 15:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,19 +66,36 @@ msgstr ""
 msgid "Conveyor functions"
 msgstr ""
 
-#: of pyniryo2.conveyor.conveyor.Conveyor.set_conveyor:1
-msgid ""
-"Scan if a conveyor is plugged or not on a can bus.  If a new conveyor is "
-"detected, activate it and return its conveyor ID.  If a conveyor is "
-"already set, return its ID"
+#: of pyniryo2.conveyor.conveyor.Conveyor:1
+msgid "Conveyor robot functions"
 msgstr ""
 
-#: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:4
+#: of pyniryo2.conveyor.conveyor.Conveyor:3
+#: pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:4
 #: pyniryo2.conveyor.conveyor.Conveyor.run_conveyor:3
 #: pyniryo2.conveyor.conveyor.Conveyor.set_conveyor:5
 #: pyniryo2.conveyor.conveyor.Conveyor.stop_conveyor:3
 #: pyniryo2.conveyor.conveyor.Conveyor.unset_conveyor:3
 msgid "Example: ::"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor
+#: pyniryo2.conveyor.conveyor.Conveyor.control_conveyor
+#: pyniryo2.conveyor.conveyor.Conveyor.run_conveyor
+#: pyniryo2.conveyor.conveyor.Conveyor.stop_conveyor
+#: pyniryo2.conveyor.conveyor.Conveyor.unset_conveyor
+msgid "Parameters"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor:8
+msgid "Niryo ROS client"
+msgstr ""
+
+#: of pyniryo2.conveyor.conveyor.Conveyor.set_conveyor:1
+msgid ""
+"Scan if a conveyor is plugged or not on a can bus.  If a new conveyor is "
+"detected, activate it and return its conveyor ID.  If a conveyor is "
+"already set, return its ID"
 msgstr ""
 
 #: of pyniryo2.conveyor.conveyor.Conveyor.set_conveyor:13
@@ -87,13 +104,6 @@ msgstr ""
 
 #: of pyniryo2.conveyor.conveyor.Conveyor.unset_conveyor:1
 msgid "Remove and unset a conveyor previously plugged and set"
-msgstr ""
-
-#: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor
-#: pyniryo2.conveyor.conveyor.Conveyor.run_conveyor
-#: pyniryo2.conveyor.conveyor.Conveyor.stop_conveyor
-#: pyniryo2.conveyor.conveyor.Conveyor.unset_conveyor
-msgid "Parameters"
 msgstr ""
 
 #: of pyniryo2.conveyor.conveyor.Conveyor.unset_conveyor:10
@@ -265,6 +275,12 @@ msgstr ""
 
 #: ../../source/api_doc/conveyor.rst:81
 msgid "Conveyor - Namedtuple"
+msgstr ""
+
+#: of pyniryo2.conveyor.objects.ConveyorInfo:1
+msgid ""
+"Create new instance of ConveyorInfo(conveyor_id, running, speed, "
+"direction)"
 msgstr ""
 
 #: ../../docstring of pyniryo2.conveyor.objects.ConveyorInfo.conveyor_id:1

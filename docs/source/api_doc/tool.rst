@@ -41,6 +41,8 @@ List of functions subsections:
    :depth: 1
 
 
+.. autoclass:: Tool
+
 Tool functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

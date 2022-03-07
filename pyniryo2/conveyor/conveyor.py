@@ -9,6 +9,17 @@ from .topics import ConveyorTopics
 class Conveyor(RobotCommander):
     # --- Public functions --- #
     def __init__(self, client):
+        """
+        Conveyor robot functions
+
+        Example: ::
+
+            ros_instance = NiryoRos("10.10.10.10") # Hotspot
+            conveyor_interface = Conveyor(ros_instance)
+
+        :param client: Niryo ROS client
+        :type client: NiryoRos
+        """
         super(Conveyor, self).__init__(client)
 
         self._services = ConveyorServices(self._client)

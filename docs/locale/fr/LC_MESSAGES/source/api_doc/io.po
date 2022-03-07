@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 17:48+0000\n"
+"POT-Creation-Date: 2022-03-07 15:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,7 +84,24 @@ msgstr ""
 msgid "List of functions subsections:"
 msgstr "Liste des fonctions de sous-sections"
 
-#: ../../source/api_doc/io.rst:41
+#: of pyniryo2.io.io.IO:1
+msgid "IO robot functions"
+msgstr "Fonctions des E/S du robot"
+
+#: of pyniryo2.io.io.IO:3
+msgid "Example: ::"
+msgstr "Exemples: ::"
+
+#: of pyniryo2.io.io.IO pyniryo2.io.io.IO.digital_read
+#: pyniryo2.io.io.IO.digital_write
+msgid "Parameters"
+msgstr "Paramètres"
+
+#: of pyniryo2.io.io.IO:8
+msgid "Niryo ROS client"
+msgstr "Client Niryo ROS"
+
+#: ../../source/api_doc/io.rst:43
 msgid "State functions"
 msgstr "Fonctions des Etats"
 
@@ -102,7 +119,7 @@ msgstr "Retourne"
 msgid "State, Name, Mode of the pin"
 msgstr "Etat, Nom, Broche, Mode de la broche"
 
-#: ../../source/api_doc/io.rst:69 of pyniryo2.io.io.IO.digital_io_states
+#: ../../source/api_doc/io.rst:71 of pyniryo2.io.io.IO.digital_io_states
 #: pyniryo2.io.io.IO.digital_read pyniryo2.io.io.IO.digital_write
 #: pyniryo2.io.io.IO.get_digital_io_state
 #: pyniryo2.io.io.IO.get_digital_io_states
@@ -136,7 +153,7 @@ msgstr "Retourne la valeur d'un io numérique"
 msgid "digital io object"
 msgstr "Objet E/S digitale"
 
-#: ../../source/api_doc/io.rst:49
+#: ../../source/api_doc/io.rst:51
 msgid "Read & Write functions"
 msgstr "Fonctions de Lecture & Ecriture"
 
@@ -144,19 +161,15 @@ msgstr "Fonctions de Lecture & Ecriture"
 msgid "Set pin_id state to digital_state"
 msgstr "Règle l'état de pin_id à digital_state"
 
-#: of pyniryo2.io.io.IO.digital_read pyniryo2.io.io.IO.digital_write
-msgid "Parameters"
-msgstr "Paramètres"
-
 #: of pyniryo2.io.io.IO.digital_read:1
 msgid "Return the value of a digital pin."
 msgstr "Retourne la valeur d'une E/S digitale"
 
-#: ../../source/api_doc/io.rst:56
+#: ../../source/api_doc/io.rst:58
 msgid "I/Os - Niryo Topics"
 msgstr "I/Os - Topics Niryo"
 
-#: ../../source/api_doc/io.rst:58
+#: ../../source/api_doc/io.rst:60
 msgid ""
 "The use of these functions is explained in the "
 ":ref:`source/api_doc/niryo_topics:NiryoTopic` section. They allow the "
@@ -167,47 +180,47 @@ msgstr ""
 "récupération données en temps réel par des fonctions de retour ou des "
 "appels directs."
 
-#: ../../source/api_doc/io.rst:61
+#: ../../source/api_doc/io.rst:63
 msgid "I/O's Niryo Topics"
 msgstr "Topics Niryo des I/Os"
 
-#: ../../source/api_doc/io.rst:67
+#: ../../source/api_doc/io.rst:69
 msgid "Name"
 msgstr "Nom"
 
-#: ../../source/api_doc/io.rst:68
+#: ../../source/api_doc/io.rst:70
 msgid "Function"
 msgstr "Fonction"
 
-#: ../../source/api_doc/io.rst:70
+#: ../../source/api_doc/io.rst:72
 msgid "``/niryo_robot_rpi/digital_io_state``"
 msgstr "``/niryo_robot_rpi/digital_io_state``"
 
-#: ../../source/api_doc/io.rst:71
+#: ../../source/api_doc/io.rst:73
 msgid ":attr:`~.io.IO.get_digital_io_states`"
 msgstr ":attr:`~.io.IO.get_digital_io_states`"
 
-#: ../../source/api_doc/io.rst:72
+#: ../../source/api_doc/io.rst:74
 msgid ":exc:`list` [ :class:`~.io.objects.DigitalPinObject` ]"
 msgstr ":exc:`list` [ :class:`~.io.objects.DigitalPinObject` ]"
 
-#: ../../source/api_doc/io.rst:76
+#: ../../source/api_doc/io.rst:78
 msgid "I/Os - Enums"
 msgstr "I/Os - Enumerations"
 
-#: ../../source/api_doc/io.rst:78
+#: ../../source/api_doc/io.rst:80
 msgid "List of enums:"
 msgstr "Liste des enumerations"
 
-#: ../../source/api_doc/io.rst:80
+#: ../../source/api_doc/io.rst:82
 msgid ":class:`~.io.objects.PinMode`"
 msgstr ":class:`~.io.objects.PinMode`"
 
-#: ../../source/api_doc/io.rst:81
+#: ../../source/api_doc/io.rst:83
 msgid ":class:`~.io.objects.PinState`"
 msgstr ":class:`~.io.objects.PinState`"
 
-#: ../../source/api_doc/io.rst:82
+#: ../../source/api_doc/io.rst:84
 msgid ":class:`~.io.objects.PinID`"
 msgstr ":class:`~.io.objects.PinID`"
 
@@ -223,7 +236,7 @@ msgstr "Etat de la broche est soit BAS ou HAUT"
 msgid "Enumeration of Robot Pins"
 msgstr "Enumeration des broches du robot"
 
-#: ../../source/api_doc/io.rst:91
+#: ../../source/api_doc/io.rst:93
 msgid "I/Os - Objects"
 msgstr "I/Os - Objets"
 

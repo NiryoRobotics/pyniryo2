@@ -15,6 +15,17 @@ from .topics import ToolTopics
 
 class Tool(RobotCommander):
     def __init__(self, client):
+        """
+        Tool robot functions
+
+        Example: ::
+
+            ros_instance = NiryoRos("10.10.10.10") # Hotspot
+            tool_interface = Tool(ros_instance)
+
+        :param client: Niryo ROS client
+        :type client: NiryoRos
+        """
         super(Tool, self).__init__(client)
 
         self._services = ToolServices(self._client)

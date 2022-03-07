@@ -84,6 +84,8 @@ Master controls with PyNiryo2 with full detailed functions
    :caption: API Documentation
 
    source/api_doc/niryo_robot
+   source/api_doc/niryo_topics
+   source/api_doc/niryo_ros
    source/api_doc/arm
    source/api_doc/tool
    source/api_doc/vision
@@ -93,7 +95,8 @@ Master controls with PyNiryo2 with full detailed functions
    source/api_doc/pick_place
    source/api_doc/trajectories
    source/api_doc/led_ring
-   source/api_doc/niryo_topics
+   source/api_doc/sound
+
 
 
 

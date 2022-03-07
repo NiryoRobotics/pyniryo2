@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 18:48+0000\n"
+"POT-Creation-Date: 2022-03-07 15:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,31 +58,61 @@ msgid "Access to the entire PyNiryo2 API"
 msgstr ""
 
 #: ../../source/api_doc/niryo_robot.rst:22
+msgid ":class:`~.niryo_robot.NiryoRobot`"
+msgstr ""
+
+#: ../../source/api_doc/niryo_robot.rst:24
 msgid ""
 "All functions to control the robot are accessible via an instance of the "
 "class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
 msgstr ""
 
-#: ../../source/api_doc/niryo_robot.rst:32
+#: ../../source/api_doc/niryo_robot.rst:34
 msgid ""
 "See examples on :ref:`Examples Section "
 "<source/examples/examples_basics:Examples: Basics>`"
 msgstr ""
 
-#: ../../source/api_doc/niryo_robot.rst:35
+#: ../../source/api_doc/niryo_robot.rst:37
 msgid "List of functions subsections:"
 msgstr ""
 
-#: ../../source/api_doc/niryo_robot.rst:43
+#: ../../source/api_doc/niryo_robot.rst:45
 msgid "NiryoRobot functions"
 msgstr ""
 
-#: ../../source/api_doc/niryo_robot.rst:45
-msgid ":class:`~.niryo_robot.NiryoRobot`"
+#: of pyniryo2.niryo_robot.NiryoRobot:1
+msgid "Connect your robot to your computer: ::"
 msgstr ""
 
-#: of pyniryo2.niryo_robot.NiryoRobot.end:1
-msgid "Disconnect from your robot and ROS: ::"
+#: of pyniryo2.niryo_robot.NiryoRobot pyniryo2.niryo_robot.NiryoRobot.wait
+#: pyniryo2.objects.PoseObject.euler_to_quaternion
+#: pyniryo2.objects.PoseObject.quaternion_to_euler_angle
+msgid "Parameters"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot:9
+msgid "robot ROS ip"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot:11
+msgid "robot ROS port"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.client:1
+msgid "Get the Niryo Ros client"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.client
+#: pyniryo2.objects.PoseObject.euler_to_quaternion
+#: pyniryo2.objects.PoseObject.quaternion
+#: pyniryo2.objects.PoseObject.quaternion_pose
+#: pyniryo2.objects.PoseObject.quaternion_to_euler_angle
+msgid "Returns"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.client:3
+msgid "NiryoRos client"
 msgstr ""
 
 #: of pyniryo2.niryo_robot.NiryoRobot.arm
@@ -95,32 +125,24 @@ msgstr ""
 #: pyniryo2.niryo_robot.NiryoRobot.trajectories
 #: pyniryo2.niryo_robot.NiryoRobot.vision pyniryo2.niryo_robot.NiryoRobot.wait
 #: pyniryo2.objects.PoseObject.copy_with_offsets
+#: pyniryo2.objects.PoseObject.euler_to_quaternion
+#: pyniryo2.objects.PoseObject.quaternion
+#: pyniryo2.objects.PoseObject.quaternion_pose
+#: pyniryo2.objects.PoseObject.quaternion_to_euler_angle
 #: pyniryo2.objects.PoseObject.to_list
 msgid "Return type"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.end:1
+msgid "Disconnect from your robot and ROS: ::"
 msgstr ""
 
 #: of pyniryo2.niryo_robot.NiryoRobot.wait:1
 msgid "Wait for a certain time"
 msgstr ""
 
-#: of pyniryo2.niryo_robot.NiryoRobot.wait
-msgid "Parameters"
-msgstr ""
-
 #: of pyniryo2.niryo_robot.NiryoRobot.wait:3
 msgid "duration in seconds"
-msgstr ""
-
-#: of pyniryo2.niryo_robot.NiryoRobot.client:1
-msgid "Get the Niryo Ros client"
-msgstr ""
-
-#: of pyniryo2.niryo_robot.NiryoRobot.client
-msgid "Returns"
-msgstr ""
-
-#: of pyniryo2.niryo_robot.NiryoRobot.client:3
-msgid "NiryoRos client"
 msgstr ""
 
 #: ../../source/api_doc/niryo_robot.rst:52
@@ -170,19 +192,19 @@ msgstr ""
 msgid "Access to the Vision API"
 msgstr ""
 
-#: ../../source/api_doc/niryo_robot.rst:65
+#: ../../source/api_doc/niryo_robot.rst:61
 msgid "Globals Enums"
 msgstr ""
 
-#: ../../source/api_doc/niryo_robot.rst:67
+#: ../../source/api_doc/niryo_robot.rst:63
 msgid "List of enums:"
 msgstr ""
 
-#: ../../source/api_doc/niryo_robot.rst:69
+#: ../../source/api_doc/niryo_robot.rst:65
 msgid ":class:`~.enums.RobotErrors`"
 msgstr ""
 
-#: ../../source/api_doc/niryo_robot.rst:70
+#: ../../source/api_doc/niryo_robot.rst:66
 msgid ":class:`~.enums.ArmMoveCommandType`"
 msgstr ""
 
@@ -194,16 +216,44 @@ msgstr ""
 msgid "Enumeration of Arm Move Command : it used for move commands"
 msgstr ""
 
-#: ../../source/api_doc/niryo_robot.rst:79
+#: ../../source/api_doc/niryo_robot.rst:75
 msgid "Globals Objects"
 msgstr ""
 
-#: ../../source/api_doc/niryo_robot.rst:81
+#: ../../source/api_doc/niryo_robot.rst:77
 msgid ":class:`~.objects.PoseObject`"
 msgstr ""
 
 #: of pyniryo2.objects.PoseObject:1
 msgid "Pose object which stores x, y, z, roll, pitch & yaw parameters"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject
+msgid "Variables"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject:3
+msgid "X (meter)"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject:5
+msgid "Y (meter)"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject:7
+msgid "Z (meter)"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject:9
+msgid "Roll (radian)"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject:11
+msgid "Pitch (radian)"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject:13
+msgid "Yaw (radian)"
 msgstr ""
 
 #: of pyniryo2.objects.PoseObject.copy_with_offsets:1
@@ -214,6 +264,47 @@ msgstr ""
 msgid ""
 "Return a list [x, y, z, roll, pitch, yaw] corresponding to the pose's "
 "parameters"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject.quaternion:1
+msgid "Return the quaternion in a list [qx, qy, qz, qw]"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject.quaternion:3
+msgid "quaternion [qx, qy, qz, qw]"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject.quaternion_pose:1
+msgid "Return the position and the quaternion in a list [x, y, z, qx, qy, qz, qw]"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject.quaternion_pose:3
+msgid "position [x, y, z] + quaternion [qx, qy, qz, qw]"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject.euler_to_quaternion:1
+#: pyniryo2.objects.PoseObject.quaternion_to_euler_angle:1
+msgid "Convert euler angles to quaternion"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject.euler_to_quaternion:3
+msgid "roll in radians"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject.euler_to_quaternion:5
+msgid "pitch in radians"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject.euler_to_quaternion:7
+msgid "yaw in radians"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject.euler_to_quaternion:9
+msgid "quaternion in a list [qx, qy, qz, qw]"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject.quaternion_to_euler_angle:11
+msgid "euler angles in a list [roll, pitch, yaw]"
 msgstr ""
 
 #~ msgid ""

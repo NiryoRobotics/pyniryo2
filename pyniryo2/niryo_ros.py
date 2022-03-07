@@ -25,7 +25,7 @@ class NiryoRos(roslibpy.Ros):
         Based on the roslibpy ROS client: https://roslibpy.readthedocs.io/en/latest/reference/index.html#roslibpy.Ros
 
         :param ip_address: ip of the ros master
-        :type ip_address: string
+        :type ip_address: str
         :param port: usually 9090
         :type port: int
         """
@@ -55,9 +55,15 @@ class NiryoRos(roslibpy.Ros):
     def __ping_loop(self):
         self.should_run = True
         while self.is_connected and self.should_run:
-            self.__pyniryo_ping_publisher.publish({'data': True})
+            self.__pyniryo_ping_publisher.publish(roslibpy.Message({'data': True}))
             time.sleep(0.1)
 
     @property
     def hardware_version(self):
+        """
+        Get the hardware version of the robot (one, ned, ned2)
+
+        :return: The hardware version of the robot (one, ned, ned2)
+        :rtype: string
+        """
         return self._hardware_version

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"POT-Creation-Date: 2022-03-07 15:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,7 +73,28 @@ msgstr ""
 msgid "List of functions subsections:"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:42
+#: of pyniryo2.arm.arm.Arm:1
+msgid "Arm robot functions"
+msgstr ""
+
+#: of pyniryo2.arm.arm.Arm:3
+msgid "Example: ::"
+msgstr ""
+
+#: of pyniryo2.arm.arm.Arm pyniryo2.arm.arm.Arm.calibrate
+#: pyniryo2.arm.arm.Arm.calibrate_auto pyniryo2.arm.arm.Arm.forward_kinematics
+#: pyniryo2.arm.arm.Arm.inverse_kinematics
+#: pyniryo2.arm.arm.Arm.request_new_calibration
+#: pyniryo2.arm.arm.Arm.reset_calibration
+#: pyniryo2.arm.arm.Arm.set_learning_mode
+msgid "Parameters"
+msgstr ""
+
+#: of pyniryo2.arm.arm.Arm:8
+msgid "Niryo ROS client"
+msgstr ""
+
+#: ../../source/api_doc/arm.rst:44
 msgid "Calibration functions"
 msgstr ""
 
@@ -90,15 +111,6 @@ msgstr ""
 #: pyniryo2.arm.arm.Arm.learning_mode:5
 #: pyniryo2.arm.arm.Arm.request_new_calibration:3
 msgid "Examples: ::"
-msgstr ""
-
-#: of pyniryo2.arm.arm.Arm.calibrate pyniryo2.arm.arm.Arm.calibrate_auto
-#: pyniryo2.arm.arm.Arm.forward_kinematics
-#: pyniryo2.arm.arm.Arm.inverse_kinematics
-#: pyniryo2.arm.arm.Arm.request_new_calibration
-#: pyniryo2.arm.arm.Arm.reset_calibration
-#: pyniryo2.arm.arm.Arm.set_learning_mode
-msgid "Parameters"
 msgstr ""
 
 #: of pyniryo2.arm.arm.Arm.calibrate:20
@@ -120,7 +132,7 @@ msgstr ""
 msgid "Timeout for the operation, in seconds. Only used if blocking."
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:92 of pyniryo2.arm.arm.Arm.calibrate
+#: ../../source/api_doc/arm.rst:94 of pyniryo2.arm.arm.Arm.calibrate
 #: pyniryo2.arm.arm.Arm.calibrate_auto pyniryo2.arm.arm.Arm.forward_kinematics
 #: pyniryo2.arm.arm.Arm.get_joints pyniryo2.arm.arm.Arm.get_learning_mode
 #: pyniryo2.arm.arm.Arm.get_pose pyniryo2.arm.arm.Arm.get_pose_quat
@@ -166,7 +178,7 @@ msgstr ""
 msgid "True if calibration is needed, False otherwise."
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:52
+#: ../../source/api_doc/arm.rst:54
 msgid "Robot status functions"
 msgstr ""
 
@@ -248,7 +260,7 @@ msgid ""
 "qx, qy, qz, qw]"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:64
+#: ../../source/api_doc/arm.rst:66
 msgid "Learning mode functions"
 msgstr ""
 
@@ -279,7 +291,7 @@ msgstr ""
 msgid "``True`` or ``False``"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:72
+#: ../../source/api_doc/arm.rst:74
 msgid "Kinematics functions"
 msgstr ""
 
@@ -303,106 +315,106 @@ msgid ""
 "``PoseObject``"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:79
+#: ../../source/api_doc/arm.rst:81
 msgid "Arm - Niryo Topics"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:81
+#: ../../source/api_doc/arm.rst:83
 msgid ""
 "The use of these functions is explained in the "
 ":ref:`source/api_doc/niryo_topics:NiryoTopic` section. They allow the "
 "acquisition of data in real time by callbacks or by direct call."
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:84
+#: ../../source/api_doc/arm.rst:86
 msgid "Arm's Niryo Topics"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:90
+#: ../../source/api_doc/arm.rst:92
 msgid "Name"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:91
+#: ../../source/api_doc/arm.rst:93
 msgid "Function"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:93
+#: ../../source/api_doc/arm.rst:95
 msgid "``/joint_states``"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:94
+#: ../../source/api_doc/arm.rst:96
 msgid ":attr:`~.arm.Arm.joints_state`"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:95
+#: ../../source/api_doc/arm.rst:97
 msgid ":class:`~.arm.objects.JointStateObject`"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:96
+#: ../../source/api_doc/arm.rst:98
 msgid "``/niryo_robot/robot_state``"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:97
+#: ../../source/api_doc/arm.rst:99
 msgid ":attr:`~.arm.Arm.get_pose`"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:98
+#: ../../source/api_doc/arm.rst:100 ../../source/api_doc/arm.rst:138
 msgid ":class:`~.objects.PoseObject`"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:99
+#: ../../source/api_doc/arm.rst:101
 msgid "``/niryo_robot_hardware_interface/hardware_status``"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:100
+#: ../../source/api_doc/arm.rst:102
 msgid ":attr:`~.arm.Arm.hardware_status`"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:101
+#: ../../source/api_doc/arm.rst:103
 msgid ":class:`~.arm.objects.HardwareStatusObject`"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:102
+#: ../../source/api_doc/arm.rst:104
 msgid "``/niryo_robot/learning_mode/state``"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:103
+#: ../../source/api_doc/arm.rst:105
 msgid ":attr:`~.arm.Arm.learning_mode`"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:104
+#: ../../source/api_doc/arm.rst:106
 msgid ":exc:`bool`"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:105
+#: ../../source/api_doc/arm.rst:107
 msgid "``/niryo_robot/max_velocity_scaling_factor``"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:106
+#: ../../source/api_doc/arm.rst:108
 msgid ":attr:`~.arm.Arm.get_arm_max_velocity`"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:107
+#: ../../source/api_doc/arm.rst:109
 msgid ":exc:`float`"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:110
+#: ../../source/api_doc/arm.rst:112
 msgid "Arm - Enums"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:112
+#: ../../source/api_doc/arm.rst:114
 msgid "List of enums:"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:114
+#: ../../source/api_doc/arm.rst:116
 msgid ":class:`~.arm.enums.CalibrateMode`"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:115
+#: ../../source/api_doc/arm.rst:117
 msgid ":class:`~.arm.enums.RobotAxis`"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:116
+#: ../../source/api_doc/arm.rst:118
 msgid ":class:`~.arm.enums.JogShift`"
 msgstr ""
 
@@ -418,15 +430,120 @@ msgstr ""
 msgid "Enumeration of Jog Shift : it used for Jog commands"
 msgstr ""
 
-#: ../../source/api_doc/arm.rst:125
+#: ../../source/api_doc/arm.rst:127
 msgid "Arm - Objects"
+msgstr ""
+
+#: ../../source/api_doc/arm.rst:129
+msgid ":class:`HardwareStatusObject`"
 msgstr ""
 
 #: of pyniryo2.arm.objects.HardwareStatusObject:1
 msgid "Object used to store every hardware information"
 msgstr ""
 
+#: of pyniryo2.arm.objects.HardwareStatusObject
+#: pyniryo2.arm.objects.JointStateObject pyniryo2.objects.PoseObject
+msgid "Variables"
+msgstr ""
+
+#: of pyniryo2.arm.objects.HardwareStatusObject:3
+msgid "Number representing the rpi temperature"
+msgstr ""
+
+#: of pyniryo2.arm.objects.HardwareStatusObject:5
+msgid "Number representing the hardware version"
+msgstr ""
+
+#: of pyniryo2.arm.objects.HardwareStatusObject:7
+msgid "Boolean indicating if the connection with the robot is up"
+msgstr ""
+
+#: of pyniryo2.arm.objects.HardwareStatusObject:9
+msgid "Error message status on error"
+msgstr ""
+
+#: of pyniryo2.arm.objects.HardwareStatusObject:11
+msgid "Boolean indicating if a calibration is needed"
+msgstr ""
+
+#: of pyniryo2.arm.objects.HardwareStatusObject:13
+msgid "Boolean indicating if calibration is in progress"
+msgstr ""
+
+#: of pyniryo2.arm.objects.HardwareStatusObject:15
+msgid "List of motor names"
+msgstr ""
+
+#: of pyniryo2.arm.objects.HardwareStatusObject:17
+msgid "List of motor types"
+msgstr ""
+
+#: of pyniryo2.arm.objects.HardwareStatusObject:19
+msgid "List of motors_temperature"
+msgstr ""
+
+#: of pyniryo2.arm.objects.HardwareStatusObject:21
+msgid "List of motors_voltage"
+msgstr ""
+
+#: of pyniryo2.arm.objects.HardwareStatusObject:23
+msgid "List of hardware errors"
+msgstr ""
+
+#: of pyniryo2.arm.objects.HardwareStatusObject:25
+msgid "List of hardware error messages"
+msgstr ""
+
+#: ../../source/api_doc/arm.rst:134
+msgid ":class:`JointStateObject`"
+msgstr ""
+
 #: of pyniryo2.arm.objects.JointStateObject:1
 msgid "Object used to store every joint state information"
+msgstr ""
+
+#: of pyniryo2.arm.objects.JointStateObject:3
+msgid "List of joint names"
+msgstr ""
+
+#: of pyniryo2.arm.objects.JointStateObject:5
+msgid "List of joint positions"
+msgstr ""
+
+#: of pyniryo2.arm.objects.JointStateObject:7
+msgid "List of joint velocities"
+msgstr ""
+
+#: of pyniryo2.arm.objects.JointStateObject:9
+msgid "List of joint efforts"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject:1
+msgid "Pose object which stores x, y, z, roll, pitch & yaw parameters"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject:3
+msgid "X (meter)"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject:5
+msgid "Y (meter)"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject:7
+msgid "Z (meter)"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject:9
+msgid "Roll (radian)"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject:11
+msgid "Pitch (radian)"
+msgstr ""
+
+#: of pyniryo2.objects.PoseObject:13
+msgid "Yaw (radian)"
 msgstr ""
 

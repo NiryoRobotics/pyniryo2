@@ -21,6 +21,17 @@ from .actions import ArmActions
 class Arm(RobotCommander):
     # --- Public functions --- #
     def __init__(self, client):
+        """
+        Arm robot functions
+
+        Example: ::
+
+            ros_instance = NiryoRos("10.10.10.10") # Hotspot
+            arm_interface = Arm(ros_instance)
+
+        :param client: Niryo ROS client
+        :type client: NiryoRos
+        """
         super(Arm, self).__init__(client)
 
         self._services = ArmServices(self._client)

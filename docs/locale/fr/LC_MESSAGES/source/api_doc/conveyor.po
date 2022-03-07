@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-21 09:12+0000\n"
+"POT-Creation-Date: 2022-03-07 15:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,11 +31,12 @@ msgid ""
 ":ref:`source/api_doc/conveyor:Conveyor - Namedtuple` available with the  "
 "Arm API"
 msgstr ""
-"Ce fichier présente les différentes :ref:`source/api_doc/conveyor:Conveyor -"
-" Command functions`, :ref:`source/api_doc/conveyor:Conveyor - Enums`, "
+"Ce fichier présente les différentes "
+":ref:`source/api_doc/conveyor:Conveyor - Command functions`, "
+":ref:`source/api_doc/conveyor:Conveyor - Enums`, "
 ":ref:`source/api_doc/conveyor:Conveyor - Niryo Topics` & "
-":ref:`source/api_doc/conveyor:Conveyor - Namedtuple` disponible avec l'API "
-"du Bras"
+":ref:`source/api_doc/conveyor:Conveyor - Namedtuple` disponible avec "
+"l'API du Bras"
 
 #: ../../source/api_doc/conveyor.rst:9
 msgid "Conveyor - Command functions"
@@ -45,9 +46,9 @@ msgstr "Fonctions du convoyeur"
 msgid ""
 "This section reference all existing functions to control your robot, "
 "which include"
-msgstr "" 
-"Cette section fait référence à toutes les fonctions de contrôle du robot, "
-"ce qui inclut"
+msgstr ""
+"Cette section fait référence à toutes les fonctions de contrôle du robot,"
+" ce qui inclut"
 
 #: ../../source/api_doc/conveyor.rst:17
 msgid "Controlling conveyors"
@@ -77,6 +78,31 @@ msgstr "List des fonctions des sous-sections"
 msgid "Conveyor functions"
 msgstr "Fonctions du convoyeur"
 
+#: of pyniryo2.conveyor.conveyor.Conveyor:1
+msgid "Conveyor robot functions"
+msgstr "Fonctions du convoyeur"
+
+#: of pyniryo2.conveyor.conveyor.Conveyor:3
+#: pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:4
+#: pyniryo2.conveyor.conveyor.Conveyor.run_conveyor:3
+#: pyniryo2.conveyor.conveyor.Conveyor.set_conveyor:5
+#: pyniryo2.conveyor.conveyor.Conveyor.stop_conveyor:3
+#: pyniryo2.conveyor.conveyor.Conveyor.unset_conveyor:3
+msgid "Example: ::"
+msgstr "Exemple: ::"
+
+#: of pyniryo2.conveyor.conveyor.Conveyor
+#: pyniryo2.conveyor.conveyor.Conveyor.control_conveyor
+#: pyniryo2.conveyor.conveyor.Conveyor.run_conveyor
+#: pyniryo2.conveyor.conveyor.Conveyor.stop_conveyor
+#: pyniryo2.conveyor.conveyor.Conveyor.unset_conveyor
+msgid "Parameters"
+msgstr "Paramètres"
+
+#: of pyniryo2.conveyor.conveyor.Conveyor:8
+msgid "Niryo ROS client"
+msgstr "Client Niryo ROS"
+
 #: of pyniryo2.conveyor.conveyor.Conveyor.set_conveyor:1
 msgid ""
 "Scan if a conveyor is plugged or not on a can bus.  If a new conveyor is "
@@ -88,14 +114,6 @@ msgstr ""
 "identifiant. Si le convoyeur est déjà installé, il retourne son "
 "identifiant"
 
-#: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:4
-#: pyniryo2.conveyor.conveyor.Conveyor.run_conveyor:3
-#: pyniryo2.conveyor.conveyor.Conveyor.set_conveyor:5
-#: pyniryo2.conveyor.conveyor.Conveyor.stop_conveyor:3
-#: pyniryo2.conveyor.conveyor.Conveyor.unset_conveyor:3
-msgid "Example: ::"
-msgstr "Exemple: ::"
-
 #: of pyniryo2.conveyor.conveyor.Conveyor.set_conveyor:13
 msgid ":return : New conveyor ID :rtype: ConveyorID"
 msgstr ":return : Identifiant du Nouveau Convoyeur :rtype: ConveyorID"
@@ -103,13 +121,6 @@ msgstr ":return : Identifiant du Nouveau Convoyeur :rtype: ConveyorID"
 #: of pyniryo2.conveyor.conveyor.Conveyor.unset_conveyor:1
 msgid "Remove and unset a conveyor previously plugged and set"
 msgstr "Retire ou désactive un convoyeur déjà branché et installé"
-
-#: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor
-#: pyniryo2.conveyor.conveyor.Conveyor.run_conveyor
-#: pyniryo2.conveyor.conveyor.Conveyor.stop_conveyor
-#: pyniryo2.conveyor.conveyor.Conveyor.unset_conveyor
-msgid "Parameters"
-msgstr "Paramètres"
 
 #: of pyniryo2.conveyor.conveyor.Conveyor.unset_conveyor:10
 msgid "Basically, ConveyorID.ID_1 or ConveyorID.ID_2"
@@ -297,6 +308,13 @@ msgstr "Enumeration des différents états du convoyeur"
 #: ../../source/api_doc/conveyor.rst:81
 msgid "Conveyor - Namedtuple"
 msgstr "Convoyeur - Namedtuple"
+
+#: of pyniryo2.conveyor.objects.ConveyorInfo:1
+msgid ""
+"Create new instance of ConveyorInfo(conveyor_id, running, speed, "
+"direction)"
+msgstr "Crée une nouvelle instance de ConveyorInfo(conveyor_id, running, speed, "
+"direction)"
 
 #: ../../docstring of pyniryo2.conveyor.objects.ConveyorInfo.conveyor_id:1
 msgid "Alias for field number 0"

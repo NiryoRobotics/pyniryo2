@@ -1,4 +1,5 @@
 # Communication imports
+import functools
 from pyniryo2.robot_commander import RobotCommander
 
 from .services import SoundServices
@@ -11,6 +12,7 @@ def check_ned2_version(func):
     Decorator that check the robot version
     """
 
+    @functools.wraps(func)
     def wrap(*args, **kwargs):
         robot_instance = args[0]
         if robot_instance.client.hardware_version != 'ned2':
@@ -270,7 +272,9 @@ class Sound(RobotCommander):
     def say(self, text, language=Language.ENGLISH):
         """
         Use gtts (Google Text To Speech) to interpret a string as sound
-        Languages available are:
+
+        Languages available are: ::
+
             - English: Language. ENGLISH
             - French: Language.FRENCH
             - Spanish: Language.SPANISH

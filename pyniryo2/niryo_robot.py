@@ -2,7 +2,6 @@
 from __future__ import print_function
 
 # Python libraries
-import roslibpy
 import time
 
 # Communication imports
@@ -22,7 +21,7 @@ from .niryo_ros import NiryoRos
 class NiryoRobot(object):
     def __init__(self, ip_address="127.0.0.1", port=9090):
         """
-        Connect your orbot to your computer: ::
+        Connect your robot to your computer: ::
 
             robot_simulation = NiryoRobot("127.0.0.1") # Simulation
 
@@ -30,10 +29,10 @@ class NiryoRobot(object):
 
             robot_ethernet = NiryoRobot("169.254.200.201") # Ethernet
 
-        :param ip_address:
-        :type ip_address:
-        :param port:
-        :type port:
+        :param ip_address: robot ROS ip
+        :type ip_address: str
+        :param port: robot ROS port
+        :type port: int
         """
         self.__host = ip_address
         self.__port = port

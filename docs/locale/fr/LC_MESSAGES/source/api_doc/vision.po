@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"POT-Creation-Date: 2022-03-07 15:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,8 +34,8 @@ msgstr ""
 "Ce fichier présente les différentes :ref:`source/api_doc/vision:Vision - "
 "Command functions`, :ref:`source/api_doc/vision:Vision - Enums`, "
 ":ref:`source/api_doc/vision:Vision - Niryo Topics` & "
-":ref:`source/api_doc/vision:Vision - NamedTuple` disponible avec "
-"l'API de Vision"
+":ref:`source/api_doc/vision:Vision - NamedTuple` disponible avec l'API de"
+" Vision"
 
 #: ../../source/api_doc/vision.rst:9
 msgid "Vision - Command functions"
@@ -46,8 +46,8 @@ msgid ""
 "This section reference all existing functions to control your robot arm, "
 "which include"
 msgstr ""
-"Cette section fait référende à toutes les fonctions de contrôle du bras robotique existantes, "
-"ce qui inclut"
+"Cette section fait référende à toutes les fonctions de contrôle du bras "
+"robotique existantes, ce qui inclut"
 
 #: ../../source/api_doc/vision.rst:18
 msgid "Getting camera image"
@@ -66,22 +66,50 @@ msgid ""
 "All functions to control the robot are accessible via an instance of the "
 "class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
 msgstr ""
-"Toutes les fonctions de contrôle du bras sont accessibles grâce à une instance de"
-"class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
+"Toutes les fonctions de contrôle du bras sont accessibles grâce à une "
+"instance declass :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
 
 #: ../../source/api_doc/vision.rst:32
 msgid ""
 "See examples on :ref:`Examples Section "
 "<source/examples/examples_vision:Examples: Vision>`"
 msgstr ""
-"Voir les exemples dans :ref:`Examples Section"
-"<source/examples/examples_vision:Examples: Vision>`"
+"Voir les exemples dans :ref:`Examples "
+"Section<source/examples/examples_vision:Examples: Vision>`"
 
 #: ../../source/api_doc/vision.rst:34
 msgid "List of functions subsections:"
 msgstr "Liste des fonctions de sous-sections"
 
-#: ../../source/api_doc/vision.rst:42
+#: of pyniryo2.vision.vision.Vision:1
+msgid "Vision robot functions"
+msgstr "Vision - Fonctions de contrôle"
+
+#: of pyniryo2.vision.vision.Vision:3
+msgid "Example: ::"
+msgstr "Exemples: ::"
+
+#: of pyniryo2.vision.vision.Vision
+#: pyniryo2.vision.vision.Vision.delete_workspace
+#: pyniryo2.vision.vision.Vision.detect_object
+#: pyniryo2.vision.vision.Vision.get_target_pose_from_cam
+#: pyniryo2.vision.vision.Vision.get_target_pose_from_rel
+#: pyniryo2.vision.vision.Vision.get_workspace_ratio
+#: pyniryo2.vision.vision.Vision.move_to_object
+#: pyniryo2.vision.vision.Vision.save_workspace_from_points
+#: pyniryo2.vision.vision.Vision.save_workspace_from_robot_poses
+#: pyniryo2.vision.vision.Vision.set_brightness
+#: pyniryo2.vision.vision.Vision.set_contrast
+#: pyniryo2.vision.vision.Vision.set_saturation
+#: pyniryo2.vision.vision.Vision.vision_pick
+msgid "Parameters"
+msgstr "Paramètres"
+
+#: of pyniryo2.vision.vision.Vision:8
+msgid "Niryo ROS client"
+msgstr "Client Niryo Ros"
+
+#: ../../source/api_doc/vision.rst:45
 msgid "Camera functions"
 msgstr "Fonctions de la caméra"
 
@@ -113,7 +141,7 @@ msgstr "Retourne"
 msgid "string containing a JPEG compressed image"
 msgstr "Chaîne contenant l'image compréssée au format JPEG"
 
-#: ../../source/api_doc/vision.rst:86 of
+#: ../../source/api_doc/vision.rst:89 of
 #: pyniryo2.vision.vision.Vision.delete_workspace
 #: pyniryo2.vision.vision.Vision.detect_object
 #: pyniryo2.vision.vision.Vision.get_camera_intrinsics
@@ -139,9 +167,9 @@ msgid ""
 "topic return a namedtuple(intrinsics: list[list[float]], distortion: "
 "list[list[float]])"
 msgstr ""
-"Obtient l'objet de type calibration: Paramètres intrinsèques de la caméra, coefficients "
-"de distortion. Le topic retourne un namedtuple(intrinsics: list[list[float]], distortion: "
-"list[list[float]])"
+"Obtient l'objet de type calibration: Paramètres intrinsèques de la "
+"caméra, coefficients de distortion. Le topic retourne un "
+"namedtuple(intrinsics: list[list[float]], distortion: list[list[float]])"
 
 #: of pyniryo2.vision.vision.Vision.get_image_parameters:1
 msgid ""
@@ -150,10 +178,10 @@ msgid ""
 "namedtuple(brightness_factor: float, contrast_factor: float, "
 "saturation_factor: float)"
 msgstr ""
-"Retourne le NiryoTopic pour obtenir les Paramètres de la dernière image du flux vidéo: "
-"facteur de luminosité, facteur de contraste, facteur de saturation. Le topic retourne un "
-"namedtuple(brightness_factor: float, contrast_factor: float, "
-"saturation_factor: float)"
+"Retourne le NiryoTopic pour obtenir les Paramètres de la dernière image "
+"du flux vidéo: facteur de luminosité, facteur de contraste, facteur de "
+"saturation. Le topic retourne un namedtuple(brightness_factor: float, "
+"contrast_factor: float, saturation_factor: float)"
 
 #: of pyniryo2.vision.vision.Vision.get_image_parameters:5
 msgid ""
@@ -161,8 +189,9 @@ msgid ""
 "darkened image, 1 will give the original image while 2 will enhance the "
 "brightness by a factor of 2."
 msgstr ""
-"Facteur de luminosité : comment ajuster la luminosité. 0.5 donnera une image assombrie, "
-"1 donnera l'image originale tandis que 2 augmentera la luminosité par un facteur 2."
+"Facteur de luminosité : comment ajuster la luminosité. 0.5 donnera une "
+"image assombrie, 1 donnera l'image originale tandis que 2 augmentera la "
+"luminosité par un facteur 2."
 
 #: of pyniryo2.vision.vision.Vision.get_image_parameters:8
 msgid ""
@@ -170,44 +199,29 @@ msgid ""
 "towards 0 makes the image greyer, while factor>1 increases the contrast "
 "of the image."
 msgstr ""
-"Facteur de contraste: un facteur 1 donne l'image originale."
-"Plus le multiplicateur se rapproche de 0 et plus l'image deviendra grise,"
-" \"tandis qu'un facteur > 1 augmentera le contraste de l'image."
+"Facteur de contraste: un facteur 1 donne l'image originale.Plus le "
+"multiplicateur se rapproche de 0 et plus l'image deviendra grise, "
+"\"tandis qu'un facteur > 1 augmentera le contraste de l'image."
 
 #: of pyniryo2.vision.vision.Vision.get_image_parameters:11
 msgid ""
 "Saturation factor: 0 will give a black and white image, 1 will give the "
 "original image while 2 will enhance the saturation by a factor of 2."
 msgstr ""
-"Facteur de saturation: 0 donnera une image en noir et blanc, 1 donnera l'image "
-"originale tandis que 2 augmentera la saturation par un facteur 2.
+"Facteur de saturation: 0 donnera une image en noir et blanc, 1 donnera "
+"l'image originale tandis que 2 augmentera la saturation par un facteur 2"
 
 #: of pyniryo2.vision.vision.Vision.get_image_parameters:29
 msgid ""
 "ImageParameters namedtuple containing the brightness factor, contrast "
 "factor and saturation factor."
 msgstr ""
-"ImageParameters namedtuple contient le facteur de luminosité, le facteur de "
-"contraste et le facteur de saturation"
+"ImageParameters namedtuple contient le facteur de luminosité, le facteur "
+"de contraste et le facteur de saturation"
 
 #: of pyniryo2.vision.vision.Vision.set_brightness:1
 msgid "Modify image brightness"
 msgstr "Modifie la luminosité de l'image"
-
-#: of pyniryo2.vision.vision.Vision.delete_workspace
-#: pyniryo2.vision.vision.Vision.detect_object
-#: pyniryo2.vision.vision.Vision.get_target_pose_from_cam
-#: pyniryo2.vision.vision.Vision.get_target_pose_from_rel
-#: pyniryo2.vision.vision.Vision.get_workspace_ratio
-#: pyniryo2.vision.vision.Vision.move_to_object
-#: pyniryo2.vision.vision.Vision.save_workspace_from_points
-#: pyniryo2.vision.vision.Vision.save_workspace_from_robot_poses
-#: pyniryo2.vision.vision.Vision.set_brightness
-#: pyniryo2.vision.vision.Vision.set_contrast
-#: pyniryo2.vision.vision.Vision.set_saturation
-#: pyniryo2.vision.vision.Vision.vision_pick
-msgid "Parameters"
-msgstr "Paramètres"
 
 #: of pyniryo2.vision.vision.Vision.set_brightness:3
 msgid ""
@@ -227,9 +241,9 @@ msgid ""
 "A factor of 1 gives original image. Making the factor towards 0 makes the"
 " image greyer, while factor>1 increases the contrast of the image."
 msgstr ""
-"Un facteur 1 équivaut à l'image d'origine. "
-"Plus le multiplicateur se rapproche de 0 et plus l'image deviendra grise,"
-" \"tandis qu'un facteur > 1 augmentera le contraste de l'image."
+"Un facteur 1 équivaut à l'image d'origine. Plus le multiplicateur se "
+"rapproche de 0 et plus l'image deviendra grise, \"tandis qu'un facteur > "
+"1 augmentera le contraste de l'image."
 
 #: of pyniryo2.vision.vision.Vision.set_saturation:1
 msgid "Modify image saturation"
@@ -245,7 +259,7 @@ msgstr ""
 "équivaut à l'image d'origine, tandis que 2 va augmenter la saturation par"
 " un facteur de 2."
 
-#: ../../source/api_doc/vision.rst:53
+#: ../../source/api_doc/vision.rst:56
 msgid "Detection functions"
 msgstr "Fonctions de détection"
 
@@ -297,8 +311,9 @@ msgid ""
 "Picks the specified object from the workspace. This function has multiple"
 " phases:"
 msgstr ""
-"Saisit l'objet spécifié sur le workspace. Cette fonction possède plusieurs"
-" phases:"
+"Saisit l'objet spécifié sur le workspace. Cette fonction possède "
+"plusieurs phases:"
+
 #: of pyniryo2.vision.vision.Vision.vision_pick:3
 msgid "1. detect object using the camera"
 msgstr "1. détecte l'objet en utilisant la caméra"
@@ -334,13 +349,17 @@ msgstr "object_found, object_shape, object_color"
 
 #: of pyniryo2.vision.vision.Vision.move_to_object:1
 msgid "Same as `get_target_pose_from_cam` but directly moves to this position"
-msgstr "Comme `get_target_pose_from_cam` mais se déplace directement à cette position"
+msgstr ""
+"Comme `get_target_pose_from_cam` mais se déplace directement à cette "
+"position"
 
 #: of pyniryo2.vision.vision.Vision.detect_object:1
 msgid "Detect object in workspace and return its pose and characteristics"
-msgstr "Détecte un objet dans le workspace et retourne sa position et ses caractéristiques"
+msgstr ""
+"Détecte un objet dans le workspace et retourne sa position et ses "
+"caractéristiques"
 
-#: ../../source/api_doc/vision.rst:62
+#: ../../source/api_doc/vision.rst:65
 msgid "Workspace functions"
 msgstr "Fonctions du workspace"
 
@@ -359,9 +378,10 @@ msgid ""
 "The height_offset argument (in m) defines how high the tool will hover "
 "over the workspace. If height_offset = 0, the tool will nearly touch the "
 "workspace."
-msgstr "L'argument height_offset (en m) definit à quelle hauteur l'outil va passer "
-"au dessus du workspace. Si height_offset = 0, l'outil touchera presque le "
-"workspace."
+msgstr ""
+"L'argument height_offset (en m) definit à quelle hauteur l'outil va "
+"passer au dessus du workspace. Si height_offset = 0, l'outil touchera "
+"presque le workspace."
 
 #: of pyniryo2.vision.vision.Vision.get_target_pose_from_rel:11
 msgid "x relative pose (between 0 and 1)"
@@ -392,7 +412,9 @@ msgstr ""
 
 #: of pyniryo2.vision.vision.Vision.save_workspace_from_robot_poses:5
 msgid "Poses should be either a list [x, y, z, roll, pitch, yaw] or a PoseObject"
-msgstr "Les Positions doivent être une liste [x, y, z, roll, pitch, yaw] ou une PoseObject"
+msgstr ""
+"Les Positions doivent être une liste [x, y, z, roll, pitch, yaw] ou une "
+"PoseObject"
 
 #: of pyniryo2.vision.vision.Vision.get_workspace_ratio:3
 #: pyniryo2.vision.vision.Vision.save_workspace_from_points:4
@@ -405,8 +427,9 @@ msgid ""
 "Save workspace by giving the points of worskpace's 4 corners. Points are "
 "written as [x, y, z] Corners should be in the good order."
 msgstr ""
-"Sauvegarde le workspace en donnant les points des quatre coins du workspace. Les points sont "
-"écrit sous la forme [x, y, z]. Les coins doivent être donnés dans le bon ordre"
+"Sauvegarde le workspace en donnant les points des quatre coins du "
+"workspace. Les points sont écrit sous la forme [x, y, z]. Les coins "
+"doivent être donnés dans le bon ordre"
 
 #: of pyniryo2.vision.vision.Vision.delete_workspace:1
 msgid "Delete workspace from robot's memory"
@@ -422,75 +445,78 @@ msgstr "Obtient le ratio du workspace dans la mémoire du robot"
 
 #: of pyniryo2.vision.vision.Vision.get_workspace_list:1
 msgid "Get list of workspaces' name store in robot's memory"
-msgstr "Obtient la liste des noms des workspaces sauvegardés dans la mémoire du robot"
+msgstr ""
+"Obtient la liste des noms des workspaces sauvegardés dans la mémoire du "
+"robot"
 
-#: ../../source/api_doc/vision.rst:73
+#: ../../source/api_doc/vision.rst:76
 msgid "Vision - Niryo Topics"
 msgstr "Vision - Topics Niryo"
 
-#: ../../source/api_doc/vision.rst:75
+#: ../../source/api_doc/vision.rst:78
 msgid ""
 "The use of these functions is explained in the "
 ":ref:`source/api_doc/niryo_topics:NiryoTopic` section. They allow the "
 "acquisition of data in real time by callbacks or by direct call."
 msgstr ""
 "L'utilisation de ces fonctions est expliqué dans la section "
-":ref:`source/api_doc/niryo_topics:NiryoTopic`. Elle permettent d'obtenir les données "
-"en temps réel grâce aux fonctions de rappel ou par appel direct"
+":ref:`source/api_doc/niryo_topics:NiryoTopic`. Elle permettent d'obtenir "
+"les données en temps réel grâce aux fonctions de rappel ou par appel "
+"direct"
 
-#: ../../source/api_doc/vision.rst:78
+#: ../../source/api_doc/vision.rst:81
 msgid "Vision's Niryo Topics"
 msgstr "Topics de Vision Niryo"
 
-#: ../../source/api_doc/vision.rst:84
+#: ../../source/api_doc/vision.rst:87
 msgid "Name"
 msgstr "Nom"
 
-#: ../../source/api_doc/vision.rst:85
+#: ../../source/api_doc/vision.rst:88
 msgid "Function"
 msgstr "Fonctions"
 
-#: ../../source/api_doc/vision.rst:87
+#: ../../source/api_doc/vision.rst:90
 msgid "``/niryo_robot_vision/compressed_video_stream``"
 msgstr "``/niryo_robot_vision/compressed_video_stream``"
 
-#: ../../source/api_doc/vision.rst:88
+#: ../../source/api_doc/vision.rst:91
 msgid ":attr:`~.vision.Vision.get_img_compressed`"
 msgstr ":attr:`~.vision.Vision.get_img_compressed`"
 
-#: ../../source/api_doc/vision.rst:89
+#: ../../source/api_doc/vision.rst:92
 msgid ":exc:`list` [  :class:`numpy.uint8` ]"
 msgstr ":exc:`list` [  :class:`numpy.uint8` ]"
 
-#: ../../source/api_doc/vision.rst:90
+#: ../../source/api_doc/vision.rst:93
 msgid "``/niryo_robot_vision/camera_intrinsics``"
 msgstr "``/niryo_robot_vision/camera_intrinsics``"
 
-#: ../../source/api_doc/vision.rst:91
+#: ../../source/api_doc/vision.rst:94
 msgid ":attr:`~.vision.Vision.get_camera_intrinsics`"
 msgstr ":attr:`~.vision.Vision.get_camera_intrinsics`"
 
-#: ../../source/api_doc/vision.rst:92
+#: ../../source/api_doc/vision.rst:95
 msgid ":class:`~.vision.objects.CameraInfo`"
 msgstr ":class:`~.vision.objects.CameraInfo`"
 
-#: ../../source/api_doc/vision.rst:95
+#: ../../source/api_doc/vision.rst:98
 msgid "Vision - Enums"
 msgstr "Vision - Enumerations"
 
-#: ../../source/api_doc/vision.rst:97
+#: ../../source/api_doc/vision.rst:100
 msgid "List of enums:"
 msgstr "Liste des enumerations"
 
-#: ../../source/api_doc/vision.rst:99
+#: ../../source/api_doc/vision.rst:102
 msgid ":class:`~.vision.enums.ObjectColor`"
 msgstr ":class:`~.vision.enums.ObjectColor`"
 
-#: ../../source/api_doc/vision.rst:100
+#: ../../source/api_doc/vision.rst:103
 msgid ":class:`~.vision.enums.ObjectShape`"
 msgstr ":class:`~.vision.enums.ObjectShape`"
 
-#: ../../source/api_doc/vision.rst:101
+#: ../../source/api_doc/vision.rst:104
 msgid ":class:`~.vision.enums.ManageWorkspace`"
 msgstr ":class:`~.vision.enums.ManageWorkspace`"
 
@@ -506,9 +532,13 @@ msgstr "Enumeration des formes disponibles pour le traitement de l'image"
 msgid "Enumeration of actions available for workspaces management"
 msgstr "Enumeration des actions disponible pour la gestion des workspaces"
 
-#: ../../source/api_doc/vision.rst:111
+#: ../../source/api_doc/vision.rst:114
 msgid "Vision - Namedtuple"
 msgstr "Vision - Namedtuple"
+
+#: of pyniryo2.vision.objects.CameraInfo:1
+msgid "Create new instance of CameraInfo(intrinsics, distortion)"
+msgstr "Crée une nouvelle instance de CameraInfo(intrinsics, distortion)"
 
 #: ../../docstring of pyniryo2.vision.objects.CameraInfo.distortion:1
 #: pyniryo2.vision.objects.ImageParameters.contrast_factor:1
@@ -519,6 +549,14 @@ msgstr "Alias pour le champ numéro 1"
 #: pyniryo2.vision.objects.ImageParameters.brightness_factor:1
 msgid "Alias for field number 0"
 msgstr "Alias pour le champ numéro 0"
+
+#: of pyniryo2.vision.objects.ImageParameters:1
+msgid ""
+"Create new instance of ImageParameters(brightness_factor, "
+"contrast_factor, saturation_factor)"
+msgstr ""
+"Crée une nouvell instance de ImageParameters(brightness_factor, "
+"contrast_factor, saturation_factor)
 
 #: ../../docstring of
 #: pyniryo2.vision.objects.ImageParameters.saturation_factor:1

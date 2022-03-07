@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 18:59+0000\n"
+"POT-Creation-Date: 2022-03-07 15:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,7 +86,32 @@ msgstr ""
 msgid "List of functions subsections:"
 msgstr "Liste des fonctions de sous-sections"
 
-#: ../../source/api_doc/tool.rst:45
+#: of pyniryo2.tool.tool.Tool:1
+msgid "Tool robot functions"
+msgstr "Fonctions des outils"
+
+#: of pyniryo2.tool.tool.Tool:3 pyniryo2.tool.tool.Tool.setup_electromagnet:3
+msgid "Example: ::"
+msgstr "Exemple: ::"
+
+#: of pyniryo2.tool.tool.Tool pyniryo2.tool.tool.Tool.activate_electromagnet
+#: pyniryo2.tool.tool.Tool.close_gripper
+#: pyniryo2.tool.tool.Tool.deactivate_electromagnet
+#: pyniryo2.tool.tool.Tool.enable_tcp pyniryo2.tool.tool.Tool.grasp_with_tool
+#: pyniryo2.tool.tool.Tool.open_gripper
+#: pyniryo2.tool.tool.Tool.pull_air_vacuum_pump
+#: pyniryo2.tool.tool.Tool.push_air_vacuum_pump
+#: pyniryo2.tool.tool.Tool.release_with_tool pyniryo2.tool.tool.Tool.set_tcp
+#: pyniryo2.tool.tool.Tool.setup_electromagnet
+#: pyniryo2.tool.tool.Tool.update_tool
+msgid "Parameters"
+msgstr "Paramètres"
+
+#: of pyniryo2.tool.tool.Tool:8
+msgid "Niryo ROS client"
+msgstr ""
+
+#: ../../source/api_doc/tool.rst:47
 msgid "Tool functions"
 msgstr "Fonctions des outils"
 
@@ -106,19 +131,6 @@ msgstr "Mise à jour de l'outil équipé"
 #: pyniryo2.tool.tool.Tool.set_tcp:4 pyniryo2.tool.tool.Tool.update_tool:3
 msgid "Examples: ::"
 msgstr "Exemple: ::"
-
-#: of pyniryo2.tool.tool.Tool.activate_electromagnet
-#: pyniryo2.tool.tool.Tool.close_gripper
-#: pyniryo2.tool.tool.Tool.deactivate_electromagnet
-#: pyniryo2.tool.tool.Tool.enable_tcp pyniryo2.tool.tool.Tool.grasp_with_tool
-#: pyniryo2.tool.tool.Tool.open_gripper
-#: pyniryo2.tool.tool.Tool.pull_air_vacuum_pump
-#: pyniryo2.tool.tool.Tool.push_air_vacuum_pump
-#: pyniryo2.tool.tool.Tool.release_with_tool pyniryo2.tool.tool.Tool.set_tcp
-#: pyniryo2.tool.tool.Tool.setup_electromagnet
-#: pyniryo2.tool.tool.Tool.update_tool
-msgid "Parameters"
-msgstr "Paramètres"
 
 #: of pyniryo2.tool.tool.Tool.activate_electromagnet:18
 #: pyniryo2.tool.tool.Tool.close_gripper:27
@@ -142,7 +154,7 @@ msgstr ""
 "Délai d'exécution de l'opération, en secondes. Utilisé seulement en cas "
 "de blocage"
 
-#: ../../source/api_doc/tool.rst:94 of
+#: ../../source/api_doc/tool.rst:96 of
 #: pyniryo2.tool.tool.Tool.activate_electromagnet
 #: pyniryo2.tool.tool.Tool.close_gripper
 #: pyniryo2.tool.tool.Tool.deactivate_electromagnet
@@ -187,27 +199,27 @@ msgid ""
 "Otherwise, the callback will be called when the execution of the function"
 " is finished."
 msgstr ""
-"Saisie avec outil. Cette action correspond à - Ferme le préhenseur "
-"pour Préhenseurs - Aspire l'air pour la pompe à vide - Active "
-"l'électroaimant si une fonction de retour n'est pas passé en paramètre, "
-"la fonction sera bloquée. Sinon, la fonction de retour sera appelé quand "
-"l'exécuton de la fonction est finie."
+"Saisie avec outil. Cette action correspond à - Ferme le préhenseur pour "
+"Préhenseurs - Aspire l'air pour la pompe à vide - Active l'électroaimant "
+"si une fonction de retour n'est pas passé en paramètre, la fonction sera "
+"bloquée. Sinon, la fonction de retour sera appelé quand l'exécuton de la "
+"fonction est finie."
 
 #: of pyniryo2.tool.tool.Tool.release_with_tool:1
 msgid ""
-"Release with tool. This action correspond to * Open gripper for Grippers *"
+"Release with tool This action correspond to * Open gripper for Grippers *"
 " Push Air for Vacuum pump * Deactivate for Electromagnet If a callback "
 "function is not passed in parameter, the function will be blocking. "
 "Otherwise, the callback will be called when the execution of the function"
 " is finished."
 msgstr ""
-"Relâche avec l'outil Cette action correspond à - Ouvre le préhenseur "
-"pour Préhenseurs - Relâche l'air pour la pompe à vide - Désactive "
-"l'électroaimant si une fonction de retour n'est pas passé en paramètre, "
-"la fonction sera bloquée. Sinon, la fonction de retour sera appelé quand "
-"l'exécuton de la fonction est finie."
+"Saisie avec outil. Cette action correspond à - Ferme le préhenseur pour "
+"Préhenseurs - Aspire l'air pour la pompe à vide - Active l'électroaimant "
+"si une fonction de retour n'est pas passé en paramètre, la fonction sera "
+"bloquée. Sinon, la fonction de retour sera appelé quand l'exécuton de la "
+"fonction est finie."
 
-#: ../../source/api_doc/tool.rst:54
+#: ../../source/api_doc/tool.rst:56
 msgid "Grippers functions"
 msgstr "Fonctions des Préhenseurs"
 
@@ -259,7 +271,7 @@ msgstr ""
 "Pourcentage de couple de maintient après ouverture (uniquement pour le "
 "Ned2)"
 
-#: ../../source/api_doc/tool.rst:60
+#: ../../source/api_doc/tool.rst:62
 msgid "Vacuum pump functions"
 msgstr "Fonctions de la Pompe à vide"
 
@@ -283,17 +295,13 @@ msgstr ""
 "passé en paramètre, la fonction sera bloquée. Sinon, la fonction de "
 "retour sera appelé quand l'exécuton de la fonction est finie."
 
-#: ../../source/api_doc/tool.rst:66
+#: ../../source/api_doc/tool.rst:68
 msgid "Electromagnet functions"
 msgstr "Fonctions de l'électroaimant"
 
 #: of pyniryo2.tool.tool.Tool.setup_electromagnet:1
 msgid "Setup electromagnet on pin"
 msgstr "Installe l'électroaimant sur une broche"
-
-#: of pyniryo2.tool.tool.Tool.setup_electromagnet:3
-msgid "Example: ::"
-msgstr "Exemple: ::"
 
 #: of pyniryo2.tool.tool.Tool.activate_electromagnet:1
 msgid ""
@@ -319,7 +327,7 @@ msgstr ""
 "bloquée. Sinon, la fonction de retour sera appelé quand l'exécuton de la "
 "fonction est finie."
 
-#: ../../source/api_doc/tool.rst:73
+#: ../../source/api_doc/tool.rst:75
 msgid "TCP functions"
 msgstr "Fonctions du PCO"
 
@@ -364,11 +372,11 @@ msgstr ""
 "Réinitialise la transformation appliquée au PCO (Point Central de "
 "l'Outil). La valeur par défaut dépend de l'outil actuellement équipé."
 
-#: ../../source/api_doc/tool.rst:81
+#: ../../source/api_doc/tool.rst:83
 msgid "Tool - Niryo Topics"
 msgstr "Outil - Topics Niryo"
 
-#: ../../source/api_doc/tool.rst:83
+#: ../../source/api_doc/tool.rst:85
 msgid ""
 "The use of these functions is explained in the "
 ":ref:`source/api_doc/niryo_topics:NiryoTopic` section. They allow the "
@@ -379,39 +387,39 @@ msgstr ""
 "l'acquisition de données en temps réel par des fonctions de rappel ou des"
 " appels directs"
 
-#: ../../source/api_doc/tool.rst:86
+#: ../../source/api_doc/tool.rst:88
 msgid "Tool's Niryo Topics"
 msgstr "Topics Niryo pour les Outils"
 
-#: ../../source/api_doc/tool.rst:92
+#: ../../source/api_doc/tool.rst:94
 msgid "Name"
 msgstr "Nom"
 
-#: ../../source/api_doc/tool.rst:93
+#: ../../source/api_doc/tool.rst:95
 msgid "Function"
 msgstr "Fonction"
 
-#: ../../source/api_doc/tool.rst:95
+#: ../../source/api_doc/tool.rst:97
 msgid "``/niryo_robot_tools_commander/current_id``"
 msgstr "``/niryo_robot_tools_commander/current_id``"
 
-#: ../../source/api_doc/tool.rst:96
+#: ../../source/api_doc/tool.rst:98
 msgid ":attr:`~.tool.Tool.get_current_tool_id`"
 msgstr ":attr:`~.tool.Tool.get_current_tool_id`"
 
-#: ../../source/api_doc/tool.rst:97 ../../source/api_doc/tool.rst:105
+#: ../../source/api_doc/tool.rst:99 ../../source/api_doc/tool.rst:107
 msgid ":class:`~.tool.enums.ToolID`"
 msgstr ":class:`~.tool.enums.ToolID`"
 
-#: ../../source/api_doc/tool.rst:101
+#: ../../source/api_doc/tool.rst:103
 msgid "Tool - Enums"
 msgstr "Outil - Enumerations"
 
-#: ../../source/api_doc/tool.rst:103
+#: ../../source/api_doc/tool.rst:105
 msgid "List of enums:"
 msgstr "Liste des enumerations"
 
-#: ../../source/api_doc/tool.rst:106
+#: ../../source/api_doc/tool.rst:108
 msgid ":class:`~.tool.enums.ToolCommand`"
 msgstr ":class:`~.tool.enums.ToolCommand`"
 
@@ -509,4 +517,25 @@ msgstr "Une enumeration"
 
 #~ msgid "Deactivate for Electromagnet"
 #~ msgstr "Utilise l'électroaimant"
+
+#~ msgid ""
+#~ "Release with tool. This action "
+#~ "correspond to * Open gripper for "
+#~ "Grippers * Push Air for Vacuum "
+#~ "pump * Deactivate for Electromagnet If"
+#~ " a callback function is not passed"
+#~ " in parameter, the function will be"
+#~ " blocking. Otherwise, the callback will "
+#~ "be called when the execution of "
+#~ "the function is finished."
+#~ msgstr ""
+#~ "Relâche avec l'outil Cette action "
+#~ "correspond à - Ouvre le préhenseur "
+#~ "pour Préhenseurs - Relâche l'air pour"
+#~ " la pompe à vide - Désactive "
+#~ "l'électroaimant si une fonction de "
+#~ "retour n'est pas passé en paramètre, "
+#~ "la fonction sera bloquée. Sinon, la "
+#~ "fonction de retour sera appelé quand "
+#~ "l'exécuton de la fonction est finie."
 

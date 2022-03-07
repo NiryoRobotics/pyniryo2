@@ -27,6 +27,7 @@ extensions = base_conf.extensions
 autosectionlabel_maxdepth = 3
 # Avoid clash between same label in different document
 autosectionlabel_prefix_document = True
+autoclass_content = 'both'
 
 # Todo_extension
 todo_include_todos = True

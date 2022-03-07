@@ -42,6 +42,17 @@ def check_ned_one_version(func):
 class IO(RobotCommander):
     # --- Public functions --- #
     def __init__(self, client):
+        """
+        IO robot functions
+
+        Example: ::
+
+            ros_instance = NiryoRos("10.10.10.10") # Hotspot
+            io_interface = IO(ros_instance)
+
+        :param client: Niryo ROS client
+        :type client: NiryoRos
+        """
         super(IO, self).__init__(client)
 
         self._services = IOServices(self._client)

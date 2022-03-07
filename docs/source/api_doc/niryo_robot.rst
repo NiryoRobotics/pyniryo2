@@ -19,6 +19,8 @@ This section reference all existing functions of the NiryoRobot client, which in
 - Waiting
 - Access to the entire PyNiryo2 API
 
+* :class:`~.niryo_robot.NiryoRobot`
+
 All functions to control the robot are accessible via an instance of
 the class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::
 
@@ -42,23 +44,17 @@ List of functions subsections:
 NiryoRobot functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* :class:`~.niryo_robot.NiryoRobot`
-
-.. automethod:: NiryoRobot.end
-.. automethod:: NiryoRobot.wait
-.. autoproperty:: NiryoRobot.client
+.. autoclass:: NiryoRobot
+   :members: end, wait, client
+   :member-order: bysource
 
 NiryoRobot properties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoproperty:: NiryoRobot.arm
-.. autoproperty:: NiryoRobot.conveyor
-.. autoproperty:: NiryoRobot.io
-.. autoproperty:: NiryoRobot.pick_place
-.. autoproperty:: NiryoRobot.saved_poses
-.. autoproperty:: NiryoRobot.tool
-.. autoproperty:: NiryoRobot.trajectories
-.. autoproperty:: NiryoRobot.vision
+.. autoclass:: NiryoRobot
+   :members: arm, conveyor, io, pick_place, saved_poses, tool, trajectories, vision
+   :member-order: bysource
+   :noindex:
 
 
 Globals Enums
@@ -73,7 +69,7 @@ List of enums:
     :members:
     :undoc-members:
     :member-order: bysource
-    :noindex:
+
 
 Globals Objects
 ------------------------------------

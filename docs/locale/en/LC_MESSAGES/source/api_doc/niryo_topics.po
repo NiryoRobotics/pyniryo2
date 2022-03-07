@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 17:48+0000\n"
+"POT-Creation-Date: 2022-03-07 15:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,6 +46,31 @@ msgid ""
 "(https://roslibpy.readthedocs.io/en/latest/reference/index.html#topics)"
 msgstr ""
 
+#: of pyniryo2.niryo_topic.NiryoTopic pyniryo2.niryo_topic.NiryoTopic.publish
+#: pyniryo2.niryo_topic.NiryoTopic.subscribe
+msgid "Parameters"
+msgstr ""
+
+#: of pyniryo2.niryo_topic.NiryoTopic:4
+msgid "Instance of the ROS connection."
+msgstr ""
+
+#: of pyniryo2.niryo_topic.NiryoTopic:6
+msgid "Topic name."
+msgstr ""
+
+#: of pyniryo2.niryo_topic.NiryoTopic:8
+msgid "Topic type."
+msgstr ""
+
+#: of pyniryo2.niryo_topic.NiryoTopic:10
+msgid "convert the response of the topic in a specific type."
+msgstr ""
+
+#: of pyniryo2.niryo_topic.NiryoTopic:12
+msgid "Timeout while waiting a message."
+msgstr ""
+
 #: of pyniryo2.niryo_topic.NiryoTopic.is_subscribed:1
 msgid "Return the topic connection status."
 msgstr ""
@@ -70,11 +95,6 @@ msgstr ""
 
 #: of pyniryo2.niryo_topic.NiryoTopic.publish:1
 msgid "Publish a message on the topic"
-msgstr ""
-
-#: of pyniryo2.niryo_topic.NiryoTopic.publish
-#: pyniryo2.niryo_topic.NiryoTopic.subscribe
-msgid "Parameters"
 msgstr ""
 
 #: of pyniryo2.niryo_topic.NiryoTopic.publish:3

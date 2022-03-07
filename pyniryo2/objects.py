@@ -7,6 +7,20 @@ import numpy as np
 class PoseObject:
     """
     Pose object which stores x, y, z, roll, pitch & yaw parameters
+
+    :ivar x: X (meter)
+    :vartype x: float
+    :ivar y: Y (meter)
+    :vartype y: float
+    :ivar z: Z (meter)
+    :vartype z: float
+    :ivar roll: Roll (radian)
+    :vartype roll: float
+    :ivar pitch: Pitch (radian)
+    :vartype pitch: float
+    :ivar yaw: Yaw (radian)
+    :vartype yaw: float
+
     """
 
     def __init__(self, x, y, z, roll, pitch, yaw):
@@ -77,14 +91,39 @@ class PoseObject:
 
     @property
     def quaternion(self):
+        """
+        Return the quaternion in a list [qx, qy, qz, qw]
+
+        :return: quaternion [qx, qy, qz, qw]
+        :rtype: list[float, float, float, float]
+        """
         return self.euler_to_quaternion(self.roll, self.pitch, self.yaw)
 
     @property
     def quaternion_pose(self):
+        """
+        Return the position and the quaternion in a list [x, y, z, qx, qy, qz, qw]
+
+        :return: position [x, y, z] + quaternion [qx, qy, qz, qw]
+        :rtype: list[float, float, float, float, float, float, float]
+
+        """
         return [self.x, self.y, self.z] + list(self.euler_to_quaternion(self.roll, self.pitch, self.yaw))
 
     @staticmethod
     def euler_to_quaternion(roll, pitch, yaw):
+        """
+        Convert euler angles to quaternion
+
+        :param roll: roll in radians
+        :type roll: float
+        :param pitch: pitch in radians
+        :type pitch: float
+        :param yaw: yaw in radians
+        :type yaw: float
+        :return: quaternion in a list [qx, qy, qz, qw]
+        :rtype: list[float, float, float, float]
+        """
         qx = np.sin(roll / 2) * np.cos(pitch / 2) * np.cos(yaw / 2) - np.cos(roll / 2) * np.sin(pitch / 2) * np.sin(
             yaw / 2)
         qy = np.cos(roll / 2) * np.sin(pitch / 2) * np.cos(yaw / 2) + np.sin(roll / 2) * np.cos(pitch / 2) * np.sin(
@@ -97,20 +136,34 @@ class PoseObject:
         return [qx, qy, qz, qw]
 
     @staticmethod
-    def quaternion_to_euler_angle(x, y, z, w):
-        ysqr = y * y
+    def quaternion_to_euler_angle(qx, qy, qz, qw):
+        """
+        Convert euler angles to quaternion
 
-        t0 = +2.0 * (w * x + y * z)
-        t1 = +1.0 - 2.0 * (x * x + ysqr)
-        x_value = np.arctan2(t0, t1)
+        :param qx:
+        :type qx: float
+        :param qy:
+        :type qy: float
+        :param qz:
+        :type qz: float
+        :param qw:
+        :type qw: float
+        :return: euler angles in a list [roll, pitch, yaw]
+        :rtype: list[float, float, float]
+        """
+        ysqr = qy * qy
 
-        t2 = +2.0 * (w * y - z * x)
+        t0 = +2.0 * (qw * qx + qy * qz)
+        t1 = +1.0 - 2.0 * (qx * qx + ysqr)
+        roll = np.arctan2(t0, t1)
+
+        t2 = +2.0 * (qw * qy - qz * qx)
 
         t2 = np.clip(t2, a_min=-1.0, a_max=1.0)
-        y_value = np.arcsin(t2)
+        pitch = np.arcsin(t2)
 
-        t3 = +2.0 * (w * z + x * y)
-        t4 = +1.0 - 2.0 * (ysqr + z * z)
-        z_value = np.arctan2(t3, t4)
+        t3 = +2.0 * (qw * qz + qx * qy)
+        t4 = +1.0 - 2.0 * (ysqr + qz * qz)
+        yaw = np.arctan2(t3, t4)
 
-        return x_value, y_value, z_value
+        return roll, pitch, yaw

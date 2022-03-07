@@ -181,3 +181,12 @@ upload_pypi_job:
 release_gitlab_job:
   rules: *production_rules
   stage: release_gitlab
+
+pytest_job:
+  stage: test
+  script:
+    - pytest --junitxml=report.xml
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml

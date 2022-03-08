@@ -175,7 +175,7 @@ msgstr "Les 4 marqueurs du workspace sont visibles"
 
 #: ../../source/examples/examples_vision.rst:120
 msgid "At least 1 object is placed fully inside the workspace"
-msgstr ""
+msgstr "Au moins 1 objet est entièrement placé à l'intérieur du workspace"
 
 #: ../../source/examples/examples_vision.rst:123
 msgid "First conditioning via Vision"

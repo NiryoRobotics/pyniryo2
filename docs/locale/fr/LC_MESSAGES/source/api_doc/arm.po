@@ -520,7 +520,7 @@ msgstr "Booléen "
 
 #: of pyniryo2.arm.objects.HardwareStatusObject:13
 msgid "Boolean indicating if calibration is in progress"
-msgstr ""
+msgstr "Booléen indicant une la calibration est en cours"
 
 #: of pyniryo2.arm.objects.HardwareStatusObject:15
 msgid "List of motor names"

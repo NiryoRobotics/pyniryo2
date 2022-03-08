@@ -166,7 +166,7 @@ msgstr ""
 
 #: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:26
 msgid "# Example 2"
-msgstr ""
+msgstr "# Exemple 2"
 
 #: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:18
 msgid ""
@@ -174,10 +174,12 @@ msgid ""
 "seconds # It this second example, we control the conveyor at a speed of "
 "30% and in the backward direction"
 msgstr ""
+"# équipe le convoyeur et obtenir son identifiant, le contrôle et l'arrête après 3 secondes. "
+"# Dans ce deuxième exemple, nous contrôlons le convoyeur à une vitesse de 30% et dans le sens inverse."
 
 #: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:21
 msgid "import time"
-msgstr ""
+msgstr "import time"
 
 #: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:23
 msgid ""

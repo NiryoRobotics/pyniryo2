@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../../source/api_doc/vision.rst:2
 msgid "Vision"
-msgstr ""
+msgstr "Vision"
 
 #: ../../source/api_doc/vision.rst:4
 msgid ""

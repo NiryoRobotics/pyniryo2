@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 18:14+0000\n"
+"POT-Creation-Date: 2022-03-08 13:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../../source/api_doc/led_ring.rst:2
 msgid "Led Ring"
-msgstr ""
+msgstr "Anneau LED"
 
 #: ../../source/api_doc/led_ring.rst:4
 msgid ""
@@ -32,10 +32,16 @@ msgid ""
 "<source/api_doc/led_ring:Led Ring - Objects>` available with the Led Ring"
 " API"
 msgstr ""
+"Ce fichier présente les différentes :ref:`fonctions "
+"<source/api_doc/led_ring:Led Ring - Command functions>`, :ref:`enums "
+"<source/api_doc/led_ring:Led Ring - Enums>`, :ref:`topics "
+"<source/api_doc/led_ring:Led Ring - Niryo Topics>` et :ref:`objets "
+"<source/api_doc/led_ring:Led Ring - Objects>` disponibles avec l'API de "
+"l'anneau led."
 
 #: ../../source/api_doc/led_ring.rst:10
 msgid "Led Ring - Command functions"
-msgstr ""
+msgstr "Anneau LED - Fonctions de commande"
 
 #: ../../source/api_doc/led_ring.rst:16
 msgid ""
@@ -44,23 +50,66 @@ msgid ""
 "accessible via an instance of the class :ref:`NiryoRobot "
 "<source/api_doc/niryo_robot:NiryoRobot>` ::"
 msgstr ""
+"Cette section fait référence à toutes les fonctions existantes pour "
+"contrôler l'anneau LED', qui sont plusieurs animations paramétrables. "
+"Toutes les fonctions sont accessibles via une instance de la classe "
+":ref:`NiryoRobot <source/api_doc/niryo_robot:NiryoRobot>` ::"
 
 #: ../../source/api_doc/led_ring.rst:26
 msgid "List of functions:"
-msgstr ""
+msgstr "Liste des fonctions:"
 
 #: ../../source/api_doc/led_ring.rst:32
 msgid ":class:`LedRing`"
-msgstr ""
+msgstr ":class:`LedRing`"
 
-#: of pyniryo2.led_ring.led_ring.check_ned2_version.<locals>.wrap:1
+#: of pyniryo2.led_ring.led_ring.LedRing:1
+msgid "LedRing robot functions"
+msgstr "Fonctions de l'anneau LED du robot"
+
+#: of pyniryo2.led_ring.led_ring.LedRing:3
+#: pyniryo2.led_ring.led_ring.LedRing.custom:4
+#: pyniryo2.led_ring.led_ring.LedRing.get_status:3
+#: pyniryo2.led_ring.led_ring.LedRing.set_led_color:3
+#: pyniryo2.led_ring.led_ring.LedRing.solid:3
+#: pyniryo2.led_ring.led_ring.LedRing.turn_off:3
+msgid "Example: ::"
+msgstr "Exemple: ::"
+
+#: of pyniryo2.led_ring.led_ring.LedRing
+#: pyniryo2.led_ring.led_ring.LedRing.alternate
+#: pyniryo2.led_ring.led_ring.LedRing.breath
+#: pyniryo2.led_ring.led_ring.LedRing.chase
+#: pyniryo2.led_ring.led_ring.LedRing.custom
+#: pyniryo2.led_ring.led_ring.LedRing.flash
+#: pyniryo2.led_ring.led_ring.LedRing.go_up
+#: pyniryo2.led_ring.led_ring.LedRing.go_up_down
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow_chase
+#: pyniryo2.led_ring.led_ring.LedRing.rainbow_cycle
+#: pyniryo2.led_ring.led_ring.LedRing.set_led_color
+#: pyniryo2.led_ring.led_ring.LedRing.snake
+#: pyniryo2.led_ring.led_ring.LedRing.solid
+#: pyniryo2.led_ring.led_ring.LedRing.wipe
+msgid "Parameters"
+msgstr "Paramètres"
+
+#: of pyniryo2.led_ring.led_ring.LedRing:8
+msgid "Niryo ROS client"
+msgstr "Client Niryo Ros"
+
+#: ../../docstring of
+#: pyniryo2.led_ring.led_ring.check_ned2_version.<locals>.wrap:1
 msgid ""
 "Returns the Led Ring status client which can be used synchronously or "
 "asynchronously to obtain the current Led Ring status (cf "
 "LedRingStatusObject)."
 msgstr ""
+"Renvoie le client d'état de l'anneau LED qui peut être utilisé de manière"
+" synchrone ou asynchrone pour obtenir l'état actuel de l'anneau LED (cf "
+"LedRingStatusObject)."
 
-#: of pyniryo2.led_ring.led_ring.LedRing.alternate:3
+#: ../../docstring of pyniryo2.led_ring.led_ring.LedRing.alternate:3
 #: pyniryo2.led_ring.led_ring.LedRing.breath:3
 #: pyniryo2.led_ring.led_ring.LedRing.chase:3
 #: pyniryo2.led_ring.led_ring.LedRing.flash:3
@@ -73,18 +122,19 @@ msgstr ""
 #: pyniryo2.led_ring.led_ring.LedRing.wipe:3
 #: pyniryo2.led_ring.led_ring.check_ned2_version.<locals>.wrap:4
 msgid "Examples: ::"
-msgstr ""
+msgstr "Exemples: ::"
 
 #: of pyniryo2.led_ring.led_ring.LedRing.get_status
 #: pyniryo2.led_ring.led_ring.check_ned2_version.<locals>.wrap
 msgid "Returns"
-msgstr ""
+msgstr "Retour"
 
-#: of pyniryo2.led_ring.led_ring.check_ned2_version.<locals>.wrap:17
+#: ../../docstring of
+#: pyniryo2.led_ring.led_ring.check_ned2_version.<locals>.wrap:17
 msgid "Led Ring status topic."
-msgstr ""
+msgstr "Topic d'état de l'anneau LED."
 
-#: ../../source/api_doc/led_ring.rst:66 of
+#: ../../source/api_doc/led_ring.rst:53 of
 #: pyniryo2.led_ring.led_ring.LedRing.alternate
 #: pyniryo2.led_ring.led_ring.LedRing.breath
 #: pyniryo2.led_ring.led_ring.LedRing.chase
@@ -103,46 +153,23 @@ msgstr ""
 #: pyniryo2.led_ring.led_ring.LedRing.wipe
 #: pyniryo2.led_ring.led_ring.check_ned2_version.<locals>.wrap
 msgid "Return type"
-msgstr ""
+msgstr "Type de retour"
 
 #: of pyniryo2.led_ring.led_ring.LedRing.get_status:1
 msgid "Get Led Ring status."
-msgstr ""
-
-#: of pyniryo2.led_ring.led_ring.LedRing.custom:4
-#: pyniryo2.led_ring.led_ring.LedRing.get_status:3
-#: pyniryo2.led_ring.led_ring.LedRing.set_led_color:3
-#: pyniryo2.led_ring.led_ring.LedRing.solid:3
-#: pyniryo2.led_ring.led_ring.LedRing.turn_off:3
-msgid "Example: ::"
-msgstr ""
+msgstr "Obtenez le statut de l'anneau LED."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.get_status:8
 msgid ""
 "Object with the current led ring mode, the animation played and the color"
 " used"
 msgstr ""
+"Objet avec le mode de actuel du LED ring, l'animation jouée et la couleur"
+" utilisée"
 
 #: of pyniryo2.led_ring.led_ring.LedRing.solid:1
 msgid "Set the whole Led Ring to a fixed color."
-msgstr ""
-
-#: of pyniryo2.led_ring.led_ring.LedRing.alternate
-#: pyniryo2.led_ring.led_ring.LedRing.breath
-#: pyniryo2.led_ring.led_ring.LedRing.chase
-#: pyniryo2.led_ring.led_ring.LedRing.custom
-#: pyniryo2.led_ring.led_ring.LedRing.flash
-#: pyniryo2.led_ring.led_ring.LedRing.go_up
-#: pyniryo2.led_ring.led_ring.LedRing.go_up_down
-#: pyniryo2.led_ring.led_ring.LedRing.rainbow
-#: pyniryo2.led_ring.led_ring.LedRing.rainbow_chase
-#: pyniryo2.led_ring.led_ring.LedRing.rainbow_cycle
-#: pyniryo2.led_ring.led_ring.LedRing.set_led_color
-#: pyniryo2.led_ring.led_ring.LedRing.snake
-#: pyniryo2.led_ring.led_ring.LedRing.solid
-#: pyniryo2.led_ring.led_ring.LedRing.wipe
-msgid "Parameters"
-msgstr ""
+msgstr "Réglez l'ensemble de l'anneau Led sur une couleur fixe."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.breath:20
 #: pyniryo2.led_ring.led_ring.LedRing.chase:19
@@ -154,17 +181,19 @@ msgstr ""
 #: pyniryo2.led_ring.led_ring.LedRing.solid:7
 #: pyniryo2.led_ring.led_ring.LedRing.wipe:19
 msgid "Led color in a list of size 3[R, G, B]. RGB channels from 0 to 255."
-msgstr ""
+msgstr "Couleur de led dans une liste de taille 3[R, G, B]. Canaux RVB de 0 à 255."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.turn_off:1
 msgid "Turn off all LEDs"
-msgstr ""
+msgstr "Éteignez toutes les LED"
 
 #: of pyniryo2.led_ring.led_ring.LedRing.flash:1
 msgid ""
 "Flashes a color according to a frequency. The frequency is equal to 1 / "
 "period."
 msgstr ""
+"Clignote une couleur selon une fréquence. La fréquence est égale à 1 / "
+"période."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.alternate:27
 #: pyniryo2.led_ring.led_ring.LedRing.breath:22
@@ -180,10 +209,14 @@ msgid ""
 "Execution time for a pattern in seconds. If 0, the default time will be "
 "used."
 msgstr ""
+"Temps d'exécution d'un motif en secondes. Si 0, le temps par défaut sera "
+"utilisé."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.flash:28
 msgid "Number of consecutive flashes. If 0, the Led Ring flashes endlessly."
 msgstr ""
+"Nombre de clignotements consécutifs. Si 0, l'anneau LED clignote en "
+"continu."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.alternate:31
 #: pyniryo2.led_ring.led_ring.LedRing.chase:26
@@ -192,6 +225,8 @@ msgid ""
 "The service wait for the animation to finish all iterations or not to "
 "answer. If iterations is 0, the service answers immediately."
 msgstr ""
+"Le service attend que l'animation termine toutes les itérations ou ne "
+"réponde pas. Si itérations vaut 0, le service répond immédiatement."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.alternate:34
 #: pyniryo2.led_ring.led_ring.LedRing.breath:30
@@ -205,7 +240,7 @@ msgstr ""
 #: pyniryo2.led_ring.led_ring.LedRing.snake:28
 #: pyniryo2.led_ring.led_ring.LedRing.wipe:25
 msgid "Callback invoked on successful execution."
-msgstr ""
+msgstr "Rappel invoqué en cas d'exécution réussie."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.alternate:36
 #: pyniryo2.led_ring.led_ring.LedRing.breath:32
@@ -220,48 +255,52 @@ msgstr ""
 #: pyniryo2.led_ring.led_ring.LedRing.wipe:27
 msgid "Timeout for the operation, in seconds. Only used if blocking."
 msgstr ""
+"Délai d'attente de l'opération, en secondes. Utilisé uniquement en cas de"
+" blocage."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.alternate:1
 msgid "Several colors are alternated one after the other."
-msgstr ""
+msgstr "Plusieurs couleurs sont alternées les unes après les autres."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.alternate:25
 msgid "Led color list of lists of size 3[R, G, B]. RGB channels from 0 to 255."
 msgstr ""
+"Liste de couleur de LED sous forme d'une liste de taille 3[R, G, B]. "
+"Canaux RVB de 0 à 255."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.alternate:29
 msgid ""
 "Number of consecutive alternations. If 0, the Led Ring alternates "
 "endlessly."
-msgstr ""
+msgstr "Nombre d'alternances consécutives. Si 0, l'anneau LED alterne sans fin."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.chase:1
 msgid "Movie theater light style chaser animation."
-msgstr ""
+msgstr "Animation de 'chase' de style lumière de cinéma."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.chase:23
 msgid ""
 "Number of consecutive chase. If 0, the animation continues endlessly. One"
 " chase just lights one Led every 3 LEDs."
 msgstr ""
+"Nombre de poursuites consécutives. Si 0, l'animation continue "
+"indéfiniment. Un chase allume juste une LED toutes les 3 LED."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.wipe:1
 msgid "Wipe a color across the Led Ring, light a Led at a time."
 msgstr ""
+"Allumez une Led à la fois autour de l'anneau Led, jusqu'à l'allumer "
+"entièrement de la même couleur"
 
 #: of pyniryo2.led_ring.led_ring.LedRing.wipe:23
 msgid "The service wait for the animation to finish or not to answer."
-msgstr ""
+msgstr "Le service attend que l'animation se termine ou ne réponde pas."
 
-#: of pyniryo2.led_ring.led_ring.LedRing.snake:1
-msgid "A small coloured snake (certainly a python :D ) runs around the LED ring."
+#: of pyniryo2.led_ring.led_ring.LedRing.go_up:1
+msgid "LEDs turn on like a loading circle, and are then all turned off at once."
 msgstr ""
-
-#: of pyniryo2.led_ring.led_ring.LedRing.snake:20
-msgid ""
-"Execution time for a pattern in seconds. If 0, the default duration will "
-"be used."
-msgstr ""
+"Les LED s'allument comme un cercle de chargement, puis s'éteignent toutes"
+" en même temps."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.breath:24
 #: pyniryo2.led_ring.led_ring.LedRing.go_up:23
@@ -271,6 +310,8 @@ msgid ""
 "Number of consecutive turns around the Led Ring. If 0, the animation "
 "continues endlessly."
 msgstr ""
+"Nombre de tours consécutifs autour de l'anneau LED. Si 0, l'animation "
+"continue indéfiniment."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.breath:27
 #: pyniryo2.led_ring.led_ring.LedRing.go_up:26
@@ -283,24 +324,50 @@ msgid ""
 "The service wait for the animation to finish or not to answer. If "
 "iterations is 0, the service answers immediately."
 msgstr ""
+"Le service attend que l'animation se termine ou ne réponde pas. Si "
+"itérations vaut 0, le service répond immédiatement."
+
+#: of pyniryo2.led_ring.led_ring.LedRing.go_up_down:1
+msgid "LEDs turn on like a loading circle, and are turned off the same way."
+msgstr ""
+"Les LED s'allument comme un cercle de chargement et s'éteignent de la "
+"même manière."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.breath:1
 msgid ""
 "Variation of the light intensity of the LED ring, similar to human "
 "breathing."
 msgstr ""
+"Variation de l'intensité lumineuse de l'anneau LED, similaire à la "
+"respiration humaine."
+
+#: of pyniryo2.led_ring.led_ring.LedRing.snake:1
+msgid "A small coloured snake (certainly a python :D ) runs around the LED ring."
+msgstr ""
+"Un petit serpent coloré (certainement un python :D ) tourne autour de "
+"l'anneau LED."
+
+#: of pyniryo2.led_ring.led_ring.LedRing.snake:20
+msgid ""
+"Execution time for a pattern in seconds. If 0, the default duration will "
+"be used."
+msgstr ""
+"Temps d'exécution d'un motif en secondes. Si 0, la durée par défaut sera "
+"utilisée."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.rainbow:1
 msgid "Draw rainbow that fades across all LEDs at once."
-msgstr ""
+msgstr "Dessinez un arc-en-ciel qui s'estompe sur toutes les LED à la fois."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.rainbow:21
 msgid "Number of consecutive rainbows. If 0, the animation continues endlessly."
 msgstr ""
+"Nombre d'arcs-en-ciel consécutifs. Si 0, l'animation continue "
+"indéfiniment."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.rainbow_cycle:1
 msgid "Draw rainbow that uniformly distributes itself across all LEDs."
-msgstr ""
+msgstr "Dessinez un arc-en-ciel qui se répartit uniformément sur toutes les LED."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.rainbow_chase:21
 #: pyniryo2.led_ring.led_ring.LedRing.rainbow_cycle:21
@@ -308,105 +375,109 @@ msgid ""
 "Number of consecutive rainbow cycles. If 0, the animation continues "
 "endlessly."
 msgstr ""
+"Nombre de cycles arc-en-ciel consécutifs. Si 0, l'animation continue "
+"indéfiniment."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.rainbow_chase:1
 msgid "Rainbow chase animation, like the led_ring_chase method."
-msgstr ""
-
-#: of pyniryo2.led_ring.led_ring.LedRing.go_up:1
-msgid "LEDs turn on like a loading circle, and are then all turned off at once."
-msgstr ""
-
-#: of pyniryo2.led_ring.led_ring.LedRing.go_up_down:1
-msgid "LEDs turn on like a loading circle, and are turned off the same way."
-msgstr ""
+msgstr "Animation de chasse arc-en-ciel, comme la méthode led_ring_chase."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.custom:1
 msgid ""
 "Sends a colour command to all LEDs of the LED ring. The function expects "
 "a list of colours for the 30 LEDs  of the robot."
 msgstr ""
+"Envoie une commande de couleur à toutes les LED de l'anneau LED. La "
+"fonction attend une liste de couleurs pour les 30 LED du robot."
 
-#: of pyniryo2.led_ring.led_ring.LedRing.custom:9
+#: of pyniryo2.led_ring.led_ring.LedRing.custom:29
 msgid ""
 "List of size 30 of led color in a list of size 3[R, G, B]. RGB channels "
 "from 0 to 255."
 msgstr ""
+"Liste de taille 30 de couleur led dans une liste de taille 3[R, G, B]. "
+"Canaux RVB de 0 à 255."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.set_led_color:1
 msgid "Lights up an LED in one colour. RGB colour between 0 and 255."
-msgstr ""
+msgstr "Allume une LED d'une seule couleur. Couleur RVB entre 0 et 255."
 
 #: of pyniryo2.led_ring.led_ring.LedRing.set_led_color:7
 msgid "Id of the led: between 0 and 29"
-msgstr ""
+msgstr "Id de la led : entre 0 et 29"
 
-#: ../../source/api_doc/led_ring.rst:53
+#: ../../source/api_doc/led_ring.rst:40
 msgid "Led Ring - Niryo Topics"
-msgstr ""
+msgstr "Anneau Led - Niryo Topics"
 
-#: ../../source/api_doc/led_ring.rst:55
+#: ../../source/api_doc/led_ring.rst:42
 msgid ""
 "The use of these functions is explained in the :ref:`NiryoTopics "
 "<source/api_doc/niryo_topics:NiryoTopic>`, section. They allow the "
 "acquisition of data in real time by callbacks or by direct call."
 msgstr ""
+"L'utilisation de ces fonctions est expliquée dans la section "
+":ref:`NiryoTopics <source/api_doc/niryo_topics:NiryoTopic>`. Ils "
+"permettent l'acquisition de données en temps réel par rappels ou par "
+"appel direct."
 
-#: ../../source/api_doc/led_ring.rst:58
+#: ../../source/api_doc/led_ring.rst:45
 msgid "Led Ring's Niryo Topics"
-msgstr ""
+msgstr "Topic Niryo de l'anneau LED"
 
-#: ../../source/api_doc/led_ring.rst:64
+#: ../../source/api_doc/led_ring.rst:51
 msgid "Name"
-msgstr ""
+msgstr "Nom"
+
+#: ../../source/api_doc/led_ring.rst:52
+msgid "Function"
+msgstr "Fonction"
+
+#: ../../source/api_doc/led_ring.rst:54
+msgid "``/status``"
+msgstr "``/status``"
+
+#: ../../source/api_doc/led_ring.rst:55
+msgid ":attr:`~.led_ring.LedRing.status`"
+msgstr ":attr:`~.led_ring.LedRing.status`"
+
+#: ../../source/api_doc/led_ring.rst:56
+msgid ":class:`~.led_ring.objects.LedRingStatusObject`"
+msgstr ":class:`~.led_ring.objects.LedRingStatusObject`"
+
+#: ../../source/api_doc/led_ring.rst:61
+msgid "Led Ring - Enums"
+msgstr "Anneau Led - Énumérations"
+
+#: ../../source/api_doc/led_ring.rst:63
+msgid "List of enums:"
+msgstr "Liste des énumérations:"
 
 #: ../../source/api_doc/led_ring.rst:65
-msgid "Function"
-msgstr ""
-
-#: ../../source/api_doc/led_ring.rst:67
-msgid "``/status``"
-msgstr ""
-
-#: ../../source/api_doc/led_ring.rst:68
-msgid ":attr:`~.led_ring.LedRing.status`"
-msgstr ""
-
-#: ../../source/api_doc/led_ring.rst:69
-msgid ":class:`~.led_ring.objects.LedRingStatusObject`"
-msgstr ""
-
-#: ../../source/api_doc/led_ring.rst:74
-msgid "Led Ring - Enums"
-msgstr ""
-
-#: ../../source/api_doc/led_ring.rst:76
-msgid "List of enums:"
-msgstr ""
-
-#: ../../source/api_doc/led_ring.rst:78
 msgid ":class:`~.led_ring.enums.AnimationMode`"
-msgstr ""
+msgstr ":class:`~.led_ring.enums.AnimationMode`"
 
-#: ../../source/api_doc/led_ring.rst:79
+#: ../../source/api_doc/led_ring.rst:66
 msgid ":class:`~.led_ring.enums.LedMode`"
-msgstr ""
+msgstr ":class:`~.led_ring.enums.LedMode`"
 
 #: of pyniryo2.led_ring.enums.AnimationMode:1
 msgid "Enumeration of animations available for the user to control the Led Ring"
 msgstr ""
+"Énumération des animations disponibles pour que l'utilisateur contrôle "
+"l'anneau LED"
 
 #: of pyniryo2.led_ring.enums.LedMode:1
 msgid "Enumeration of available Led Mode"
-msgstr ""
+msgstr "Énumération des modes Led disponibles"
 
-#: ../../source/api_doc/led_ring.rst:88
+#: ../../source/api_doc/led_ring.rst:75
 msgid "Led Ring - Objects"
-msgstr ""
+msgstr "Anneau Led - Objets"
 
 #: of pyniryo2.led_ring.objects.LedRingStatusObject:1
 msgid "Object used to store Led Ring status"
-msgstr ""
+msgstr "Objet utilisé pour stocker l'état de l'anneau LED"
 
 #~ msgid "Led Ring - Niryo Topics"
 #~ msgstr ""

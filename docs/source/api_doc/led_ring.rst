@@ -31,23 +31,10 @@ List of functions:
 
 * :class:`LedRing`
 
-.. autoproperty:: LedRing.status
-.. automethod:: LedRing.get_status
-.. automethod:: LedRing.solid
-.. automethod:: LedRing.turn_off
-.. automethod:: LedRing.flash
-.. automethod:: LedRing.alternate
-.. automethod:: LedRing.chase
-.. automethod:: LedRing.wipe
-.. automethod:: LedRing.snake
-.. automethod:: LedRing.breath
-.. automethod:: LedRing.rainbow
-.. automethod:: LedRing.rainbow_cycle
-.. automethod:: LedRing.rainbow_chase
-.. automethod:: LedRing.go_up
-.. automethod:: LedRing.go_up_down
-.. automethod:: LedRing.custom
-.. automethod:: LedRing.set_led_color
+.. autoclass:: LedRing
+    :members:
+    :member-order: bysource
+
 
 Led Ring - Niryo Topics
 ------------------------------------

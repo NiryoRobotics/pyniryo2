@@ -11,10 +11,6 @@ Please refer to the Niryo robot ROS doc to see the compatible topics.
 NiryoTopic - Usage
 ------------------------------------
 
-.. automodule:: pyniryo2.niryo_topic
-   :members:
-   :noindex:
-
 Here is a simple example of using the class without conversion: ::
 
 
@@ -64,7 +60,6 @@ NiryoTopic - Class
 
 * :class:`~.niryo_topic.NiryoTopic`
 
-.. automethod:: NiryoTopic.subscribe
-.. automethod:: NiryoTopic.unsubscribe
-.. autoproperty:: NiryoTopic.value
-.. autoproperty:: NiryoTopic.is_subscribed
+.. autoclass:: pyniryo2.niryo_topic.NiryoTopic
+    :members:
+    :member-order: bysource

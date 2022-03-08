@@ -3,7 +3,7 @@ Sound
 
 This file presents the different :ref:`functions <source/api_doc/sound:Sound - Command functions>`,
 :ref:`enums <source/api_doc/sound:Sound - Enums>` and
-:ref:`topics <source/api_doc/sound:Sound - Niryo Topics>` available with the Led Ring API
+:ref:`topics <source/api_doc/sound:Sound - Niryo Topics>` available with the Sound API
 
 Sound - Command functions
 ------------------------------------
@@ -28,6 +28,7 @@ List of functions:
    :local:
    :depth: 1
 
+.. autoclass:: Sound
 
 Sound - Play
 ###########################
@@ -60,7 +61,7 @@ Sound - Niryo Topics
 The use of these functions is explained in the :ref:`NiryoTopics <source/api_doc/niryo_topics:NiryoTopic>`, section.
 They allow the acquisition of data in real time by callbacks or by direct call.
 
-.. list-table:: Led Ring's Niryo Topics
+.. list-table:: Sound's Niryo Topics
    :header-rows: 1
    :widths: auto
    :stub-columns: 0

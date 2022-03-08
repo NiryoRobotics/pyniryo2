@@ -27,6 +27,17 @@ def check_ned2_version(func):
 class Sound(RobotCommander):
     # --- Public functions --- #
     def __init__(self, client):
+        """
+        Sound robot functions
+
+        Example: ::
+
+            ros_instance = NiryoRos("10.10.10.10") # Hotspot
+            sound_interface = Sound(ros_instance)
+
+        :param client: Niryo ROS client
+        :type client: NiryoRos
+        """
         super(Sound, self).__init__(client)
 
         if self._client.hardware_version == 'ned2':

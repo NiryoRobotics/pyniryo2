@@ -22,9 +22,6 @@ class ConveyorCan(Enum):
     ConveyorID to control conveyors with CAN interface
     """
 
-    def __init__(self):
-        pass
-
     NONE = 0
     ID_1 = 12
     ID_2 = 13
@@ -35,9 +32,6 @@ class ConveyorTTL(Enum):
     """
     ConveyorID to control conveyors with TTL interface
     """
-
-    def __init__(self):
-        pass
 
     NONE = 0
     ID_1 = 9

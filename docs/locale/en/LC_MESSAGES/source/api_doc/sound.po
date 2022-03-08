@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-08 13:47+0000\n"
+"POT-Creation-Date: 2022-03-08 17:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -208,16 +208,20 @@ msgid ""
 " file. You also need to give the name of the sound you want to import."
 msgstr ""
 
-#: of pyniryo2.sound.sound.Sound.delete:8 pyniryo2.sound.sound.Sound.save:13
-msgid "For example, test.wav"
+#: of pyniryo2.sound.sound.Sound.save:16
+msgid "For example, test.wav. Il will be the nome of the sound in the robot"
 msgstr ""
 
-#: of pyniryo2.sound.sound.Sound.save:15
-msgid "encoded data from a sound (type can be wav or mp3)"
+#: of pyniryo2.sound.sound.Sound.save:18
+msgid "absolute path to the sound file"
 msgstr ""
 
 #: of pyniryo2.sound.sound.Sound.delete:1
 msgid "Delete a sound imported on the robot"
+msgstr ""
+
+#: of pyniryo2.sound.sound.Sound.delete:8
+msgid "For example, test.wav"
 msgstr ""
 
 #: of pyniryo2.sound.sound.Sound.get_sound_duration:1
@@ -322,5 +326,8 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Led Ring's Niryo Topics"
+#~ msgstr ""
+
+#~ msgid "encoded data from a sound (type can be wav or mp3)"
 #~ msgstr ""
 

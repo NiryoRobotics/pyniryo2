@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-08 13:47+0000\n"
+"POT-Creation-Date: 2022-03-08 17:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -234,17 +234,21 @@ msgstr ""
 "directement depuis ce fichier. Vous devez également donner le nom du son "
 "que vous souhaitez importer."
 
-#: of pyniryo2.sound.sound.Sound.delete:8 pyniryo2.sound.sound.Sound.save:13
-msgid "For example, test.wav"
-msgstr "Par exemple, test.wav"
+#: of pyniryo2.sound.sound.Sound.save:16
+msgid "For example, test.wav. Il will be the name of the sound in the robot"
+msgstr "Par exemple, test.wav. Ce sera le nom du son dans le robot"
 
-#: of pyniryo2.sound.sound.Sound.save:15
-msgid "encoded data from a sound (type can be wav or mp3)"
-msgstr "données encodées à partir d'un son (le type peut être wav ou mp3)"
+#: of pyniryo2.sound.sound.Sound.save:18
+msgid "absolute path to the sound file"
+msgstr "chemin absolu vers le fichier son"
 
 #: of pyniryo2.sound.sound.Sound.delete:1
 msgid "Delete a sound imported on the robot"
 msgstr "Supprimer un son importé sur le robot"
+
+#: of pyniryo2.sound.sound.Sound.delete:8
+msgid "For example, test.wav"
+msgstr "Par exemple, test.wav"
 
 #: of pyniryo2.sound.sound.Sound.get_sound_duration:1
 msgid "Get the duration of a sound in seconds"
@@ -343,4 +347,7 @@ msgstr "Énumération des langues Text To Speech"
 
 #~ msgid "Led Ring's Niryo Topics"
 #~ msgstr "Topic Niryo de Led Ring"
+
+#~ msgid "encoded data from a sound (type can be wav or mp3)"
+#~ msgstr "données encodées à partir d'un son (le type peut être wav ou mp3)"
 

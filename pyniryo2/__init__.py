@@ -1,3 +1,4 @@
+from .niryo_ros import NiryoRos
 from .niryo_robot import NiryoRobot
 from .niryo_topic import NiryoTopic
 
@@ -10,6 +11,7 @@ from .tool.tool import Tool
 from .trajectories.trajectories import Trajectories
 from .vision.vision import Vision
 from .led_ring.led_ring import LedRing
+from .sound.sound import Sound
 
 from .enums import *
 from .arm.enums import *
@@ -20,6 +22,7 @@ from .tool.enums import *
 from .trajectories.enums import *
 from .vision.enums import *
 from .led_ring.enums import *
+from .sound.enums import *
 
 from .objects import PoseObject
 from .arm.objects import HardwareStatusObject, JointStateObject

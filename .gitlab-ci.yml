@@ -182,13 +182,3 @@ release_gitlab_job:
   rules: *production_rules
   stage: release_gitlab
 
-pytest_job:
-  stage: test
-  before_script:
-      - pip install -r requirements.txt
-  script:
-    - pytest --junitxml=report.xml
-  artifacts:
-    when: always
-    reports:
-      junit: report.xml

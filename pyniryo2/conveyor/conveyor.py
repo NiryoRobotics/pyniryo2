@@ -1,9 +1,9 @@
 # Communication imports
 from pyniryo2.robot_commander import RobotCommander
 
-from .enums import ConveyorID, ConveyorDirection, ConveyorStatus
+from .enums import ConveyorID, ConveyorCan, ConveyorTTL, ConveyorDirection, ConveyorStatus
 from .services import ConveyorServices
-from .topics import ConveyorTopics
+from .topics import ConveyorTopics, conveyor_id_to_conveyor_type
 
 
 class Conveyor(RobotCommander):
@@ -44,7 +44,7 @@ class Conveyor(RobotCommander):
         """
         req = self._services.get_ping_and_set_conveyor_request()
         resp = self._services.ping_and_set_conveyor_service.call(req)
-        conveyor_id = ConveyorID(resp["id"])
+        conveyor_id = conveyor_id_to_conveyor_type(resp["id"])
 
         # If new conveyor has been found
         if conveyor_id != ConveyorID.NONE:
@@ -74,8 +74,10 @@ class Conveyor(RobotCommander):
         :type conveyor_id: ConveyorID
         :rtype: None
         """
-        self._check_enum_belonging(conveyor_id, ConveyorID)
-        req = self._services.unset_conveyor_request(conveyor_id)
+        self._check_enum_belonging(conveyor_id, (ConveyorID, ConveyorTTL, ConveyorID))
+        real_conv_id = self.__conveyor_number_to_conveyor_id(conveyor_id)
+
+        req = self._services.unset_conveyor_request(real_conv_id)
         resp = self._services.ping_and_set_conveyor_service.call(req)
         self._check_result_status(resp)
 
@@ -164,13 +166,14 @@ class Conveyor(RobotCommander):
         :type direction: ConveyorDirection
         :rtype: None
         """
-        self._check_enum_belonging(conveyor_id, ConveyorID)
+        self._check_enum_belonging(conveyor_id, (ConveyorID, ConveyorTTL, ConveyorID))
         self._check_type(control_on, bool)
         self._transform_to_type(speed, int)
         self._check_range_belonging(speed, 0, 100)
         self._check_enum_belonging(direction, ConveyorDirection)
 
-        req = self._services.control_conveyor_request(conveyor_id, control_on, speed, direction)
+        real_conv_id = self.__conveyor_number_to_conveyor_id(conveyor_id)
+        req = self._services.control_conveyor_request(real_conv_id, control_on, speed, direction)
         resp = self._services.control_conveyor_service.call(req)
 
         self._check_result_status(resp)
@@ -209,3 +212,22 @@ class Conveyor(RobotCommander):
         :rtype: namedtuple(ConveyorID, bool, int, ConveyorDirection)
         """
         return self._topics.conveyor_feedback_topic()
+
+    def __conveyor_number_to_conveyor_id(self, conveyor_number):
+        if conveyor_number == ConveyorID.ID_1:
+            return ConveyorTTL.ID_1 if self._client.hardware_version in ['ned2'] else ConveyorCan.ID_1
+        elif conveyor_number == ConveyorID.ID_2:
+            return ConveyorTTL.ID_2 if self._client.hardware_version in ['ned2'] else ConveyorCan.ID_2
+        else:
+            return conveyor_number
+
+    @staticmethod
+    def __conveyor_id_to_conveyor_number(conveyor_id):
+        if conveyor_id in [ConveyorTTL.ID_1, ConveyorCan.ID_1]:
+            return ConveyorID.ID_1
+        elif conveyor_id in [ConveyorTTL.ID_2, ConveyorCan.ID_2]:
+            return ConveyorID.ID_2
+        elif conveyor_id in [ConveyorTTL.NONE, ConveyorCan.NONE]:
+            return ConveyorID.NONE
+        else:
+            return conveyor_id

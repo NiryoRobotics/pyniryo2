@@ -19,7 +19,7 @@ test_order = ["test_hardware_status",
               "test_synchronous_calibration",
               #"test_calibration_callback",
               #"test_request_new_calibration_callback",
-              "test_learning_mode",
+              # "test_learning_mode",
               "test_joints_state",
               "test_pose_state",
               "test_move_joints",
@@ -129,13 +129,16 @@ class TestHardwareStatus(BaseTest):
         self.assertIsNone(setter_learning_mode(True))
         self.assertTrue(self.arm.get_learning_mode())
 
+        self.assertIsNone(time.sleep(2))
+
     def test_joints_state(self):
         self.assertIsNone(time.sleep(1))
         self.arm.learning_mode = False
+        self.assertIsNone(time.sleep(1))
         self.assertAlmostEqualVector(self.arm.joints_state().position, self.arm.joints)
         self.assertAlmostEqualVector(self.arm.joints_state.value.position, self.arm.get_joints())
         self.assertIsInstance(self.arm.joints_state(), JointStateObject)
-        self.arm.learning_mode = True
+        #self.arm.learning_mode = True
 
     def test_pose_state(self):
         self.assertIsNone(time.sleep(1))
@@ -202,7 +205,7 @@ class TestHardwareStatus(BaseTest):
         with self.assertRaises(RobotCommandException):
             self.arm.move_pose([0.54, 0.964, 0.34, "a", "m", CalibrateMode.AUTO])
 
-        self.arm.set_learning_mode(True)
+        #self.arm.set_learning_mode(True)
 
     def test_move_linear(self):
         self.assertIsNone(time.sleep(1))
@@ -235,7 +238,7 @@ class TestHardwareStatus(BaseTest):
         with self.assertRaises(RobotCommandException):
             self.arm.move_linear_pose([0.54, 0.964, "m", CalibrateMode.AUTO])
 
-        self.arm.set_learning_mode(True)
+        #self.arm.set_learning_mode(True)
 
     def test_stop_move(self):
         self.assertIsNone(time.sleep(1))
@@ -262,7 +265,7 @@ class TestHardwareStatus(BaseTest):
         self.assertIsNone(self.arm.go_to_sleep())
 
     def test_shift(self):
-        self.assertIsNone(time.sleep(1))
+        self.assertIsNone(time.sleep(3))
         end_move_event = Event()
         end_move_event.clear()
 
@@ -297,7 +300,7 @@ class TestHardwareStatus(BaseTest):
         self.assertIsNone(self.arm.go_to_sleep())
 
     def test_jog_joints(self):
-        self.assertIsNone(time.sleep(1))
+        self.assertIsNone(time.sleep(3))
         end_move_event = Event()
         end_move_event.clear()
 
@@ -325,7 +328,7 @@ class TestHardwareStatus(BaseTest):
         self.assertIsNone(self.arm.set_jog_control(False))
 
     def test_jog_pose(self):
-        self.assertIsNone(time.sleep(1))
+        self.assertIsNone(time.sleep(3))
         end_move_event = Event()
         end_move_event.clear()
 
@@ -411,7 +414,7 @@ class TestHardwareStatus(BaseTest):
         pose_reached = self.arm.get_pose()
         self.assertAlmostEqualVector(pose_target, pose_reached.to_list())
 
-        self.assertIsNone(self.arm.set_learning_mode(True))
+        #self.assertIsNone(self.arm.set_learning_mode(True))
 
 
 def suite():

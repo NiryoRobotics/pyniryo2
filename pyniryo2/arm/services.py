@@ -28,22 +28,23 @@ class ArmServices(object):
                                                            '/niryo_robot/kinematics/inverse',
                                                            'niryo_robot_arm_commander/GetIK')
 
-        self.set_max_velocity_scaling_factor_service = roslibpy.Service(self.__client,
-                                                                        '/niryo_robot_arm_commander/set_max_velocity_scaling_factor',
-                                                                        'niryo_robot_msgs/SetInt')
+        self.set_max_velocity_scaling_factor_service = roslibpy.Service(
+            self.__client,
+            '/niryo_robot_arm_commander/set_max_velocity_scaling_factor',
+            'niryo_robot_msgs/SetInt'
+        )
 
         self.enable_jog_controller_service = roslibpy.Service(self.__client,
-                                               '/niryo_robot/jog_interface/enable',
-                                               'niryo_robot_msgs/SetBool')
+                                                              '/niryo_robot/jog_interface/enable',
+                                                              'niryo_robot_msgs/SetBool')
 
         self.jog_shift_service = roslibpy.Service(self.__client,
-                                                              '/niryo_robot/jog_interface/jog_shift_commander',
-                                                              'niryo_robot_commander/JogShift')
+                                                  '/niryo_robot/jog_interface/jog_shift_commander',
+                                                  'niryo_robot_arm_commander/JogShift')
 
         self.stop_arm_service = roslibpy.Service(self.__client,
-                                                              '/niryo_robot_arm_commander/stop_command',
-                                                              'niryo_robot_msgs/Trigger')
-
+                                                 '/niryo_robot_arm_commander/stop_command',
+                                                 'niryo_robot_msgs/Trigger')
 
     @staticmethod
     def get_trigger_request():

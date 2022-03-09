@@ -249,9 +249,11 @@ class TestTool(BaseTest):
             self.tool.push_air_vacuum_pump()
 
     def test_tcp(self):
+        self.assertIsNone(time.sleep(1))
         self.assertIsNone(self.tool.reset_tcp())
         self.assertIsNone(self.tool.enable_tcp(False))
 
+        self.assertIsNone(time.sleep(2))
         test_pose = [0.3, 0.0, 0.2, 0.0, 1.57, 0.0]
         self.assertIsNone(self.arm.move_pose(test_pose))
         self.assertAlmostEqualVector(self.arm.pose.to_list()[:3], test_pose[:3])

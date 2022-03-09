@@ -74,7 +74,7 @@ class Conveyor(RobotCommander):
         :type conveyor_id: ConveyorID
         :rtype: None
         """
-        self._check_enum_belonging(conveyor_id, (ConveyorID, ConveyorTTL, ConveyorID))
+        self._check_instance(conveyor_id, (ConveyorID, ConveyorTTL, ConveyorCan))
         real_conv_id = self.__conveyor_number_to_conveyor_id(conveyor_id)
 
         req = self._services.unset_conveyor_request(real_conv_id)
@@ -166,7 +166,7 @@ class Conveyor(RobotCommander):
         :type direction: ConveyorDirection
         :rtype: None
         """
-        self._check_enum_belonging(conveyor_id, (ConveyorID, ConveyorTTL, ConveyorID))
+        self._check_instance(conveyor_id, (ConveyorID, ConveyorTTL, ConveyorCan))
         self._check_type(control_on, bool)
         self._transform_to_type(speed, int)
         self._check_range_belonging(speed, 0, 100)

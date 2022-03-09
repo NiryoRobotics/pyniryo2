@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"POT-Creation-Date: 2022-03-09 13:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,7 @@ msgid "API Documentation"
 msgstr ""
 
 #: ../../index.rst:2
-msgid "Conveyor - API Documentation"
+msgid "PyNiryo2 Documentation"
 msgstr ""
 
 #: ../../index.rst:9
@@ -105,19 +105,22 @@ msgid ""
 "<source/api_doc/niryo_robot>`"
 msgstr ""
 
-#: ../../index.rst:100
+#: ../../index.rst:104
 msgid "Indices and tables"
 msgstr ""
 
-#: ../../index.rst:102
+#: ../../index.rst:106
 msgid ":ref:`genindex`"
 msgstr ""
 
-#: ../../index.rst:103
+#: ../../index.rst:107
 msgid ":ref:`modindex`"
 msgstr ""
 
-#: ../../index.rst:104
+#: ../../index.rst:108
 msgid ":ref:`search`"
 msgstr ""
+
+#~ msgid "Conveyor - API Documentation"
+#~ msgstr ""
 

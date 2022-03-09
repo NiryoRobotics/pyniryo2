@@ -1,4 +1,4 @@
-Conveyor - API Documentation
+PyNiryo2 Documentation
 ================================
 
 .. image:: _static/PyNiryo_logo_2.png

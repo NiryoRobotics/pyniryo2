@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-21 09:12+0000\n"
+"POT-Creation-Date: 2022-03-09 13:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,16 +32,16 @@ msgid "API Documentation"
 msgstr "Documentation API"
 
 #: ../../index.rst:2
-msgid "Conveyor - API Documentation"
-msgstr "Convoyeur - Documentation API"
+msgid "PyNiryo2 Documentation"
+msgstr "Documentation PyNiryo2"
 
 #: ../../index.rst:9
 msgid ""
 "This documentation presents Ned's PyPi package, which is a TCP API made "
 "with Python."
 msgstr ""
-"Cette documentation présente le package PyPi de Ned, qui est une API "
-"TCP créée avec Python"
+"Cette documentation présente le package PyPi de Ned, qui est une API TCP "
+"créée avec Python"
 
 #: ../../index.rst:12
 msgid ""
@@ -78,9 +78,9 @@ msgstr "Avant de commencer"
 msgid ""
 "If you haven’t already done so , make sure to learn about the ROS robot "
 "software by reading the |ros_doc|_."
-msgstr "
-"Si vous ne l'avez pas déjà fait, familiarisez vous avec le logiciel ROS du "
-"robot en lisant la |ros_doc|_. "
+msgstr ""
+"Si vous ne l'avez pas déjà fait, familiarisez vous avec le logiciel ROS "
+"du robot en lisant la |ros_doc|_. "
 
 #: ../../index.rst:37
 msgid ""
@@ -111,8 +111,8 @@ msgid ""
 "<source/setup/ip_address>` to be ready."
 msgstr ""
 "Dans un premier temps, suivez les :doc:`Instructions d'installation  "
-"<source/setup/installation>`, puis :doc:`Trouver l'adresse IP du robot"
-"<source/setup/ip_address>` pour être prêt."
+"<source/setup/installation>`, puis :doc:`Trouver l'adresse IP du "
+"robot<source/setup/ip_address>` pour être prêt."
 
 #: ../../index.rst:64
 msgid "Learn how to use the PyNiryo2 package to implement various tasks"
@@ -128,19 +128,19 @@ msgstr ""
 "Le master est contrôlé par PyNiryo2 via les fonctions détaillées "
 ":doc:`ici <source/api_doc/niryo_robot>`."
 
-#: ../../index.rst:100
+#: ../../index.rst:104
 msgid "Indices and tables"
 msgstr "Indexes et tableaux"
 
-#: ../../index.rst:102
+#: ../../index.rst:106
 msgid ":ref:`genindex`"
 msgstr ":ref:`genindex`"
 
-#: ../../index.rst:103
+#: ../../index.rst:107
 msgid ":ref:`modindex`"
 msgstr ":ref:`modindex`"
 
-#: ../../index.rst:104
+#: ../../index.rst:108
 msgid ":ref:`search`"
 msgstr ":ref:`search`"
 

@@ -274,7 +274,7 @@ class Sound(RobotCommander):
             sound.play(sound_name)
 
 
-        :param sound_name: For example, test.wav. Il will be the nome of the sound in the robot
+        :param sound_name: For example, test.wav. Il will be the name of the sound in the robot
         :type sound_name: string
         :param sound_path: absolute path to the sound file
         :type sound_path: string

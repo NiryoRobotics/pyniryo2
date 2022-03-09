@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-08 17:03+0000\n"
+"POT-Creation-Date: 2022-03-09 13:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -234,11 +234,11 @@ msgstr ""
 "directement depuis ce fichier. Vous devez également donner le nom du son "
 "que vous souhaitez importer."
 
-#: of pyniryo2.sound.sound.Sound.save:16
+#: of pyniryo2.sound.sound.Sound.save:17
 msgid "For example, test.wav. Il will be the name of the sound in the robot"
 msgstr "Par exemple, test.wav. Ce sera le nom du son dans le robot"
 
-#: of pyniryo2.sound.sound.Sound.save:18
+#: of pyniryo2.sound.sound.Sound.save:19
 msgid "absolute path to the sound file"
 msgstr "chemin absolu vers le fichier son"
 

@@ -109,7 +109,7 @@ msgstr "Paramètres"
 
 #: of pyniryo2.tool.tool.Tool:8
 msgid "Niryo ROS client"
-msgstr ""
+msgstr "Client Niryo ROS"
 
 #: ../../source/api_doc/tool.rst:47
 msgid "Tool functions"

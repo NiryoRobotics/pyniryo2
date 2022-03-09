@@ -10,11 +10,7 @@ from pyniryo2.niryo_topic import NiryoTopic
 from pyniryo2.exceptions import TopicException
 from pyniryo2.niryo_ros import NiryoRos
 
-simulation = "-simu" in sys.argv
-
-robot_ip_address_rpi = "192.168.1.52"
-robot_ip_address_gazebo = "127.0.0.1"
-robot_ip_address = robot_ip_address_gazebo if simulation else robot_ip_address_rpi
+robot_ip_address = "127.0.0.1"
 port = 9090
 
 

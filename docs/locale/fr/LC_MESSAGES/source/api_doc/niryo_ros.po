@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../../source/api_doc/niryo_ros.rst:2
 msgid "NiryoRos"
-msgstr ""
+msgstr "Niryo Ros"
 
 #: ../../source/api_doc/niryo_ros.rst:4
 msgid ""
@@ -30,51 +30,55 @@ msgid ""
 "via roslibpy. It adds an overlay to manage the versions of the robot and "
 "a recognition of the API by the robot which is necessary for the use of "
 "certain functions."
-msgstr ""
+msgstr "La classe NiryoRos hérite des attributs et des fonctions de roslibpy.Ros."
+" Il permet la connexion du programme au ROS Master du robot via "
+"roslibpy. Il ajoute une surcouche pour gérer les versions du "
+"robot et une reconnaissance de l'API par le robot nécessaire "
+"à l'utilisation de certaines fonctions."
 
 #: of pyniryo2.niryo_ros.NiryoRos:1
 msgid "Connect to your computer to ros: ::"
-msgstr ""
+msgstr "Connectez votre ordinateur à ros : ::"
 
 #: of pyniryo2.niryo_ros.NiryoRos:9
 msgid ""
 "Based on the roslibpy ROS client: "
 "https://roslibpy.readthedocs.io/en/latest/reference/index.html#roslibpy.Ros"
-msgstr ""
+msgstr "Basé sur le client ROS roslibpy : https://roslibpy.readthedocs.io/en/latest/reference/index.html#roslibpy.Ros"
 
 #: of pyniryo2.niryo_ros.NiryoRos
 msgid "Parameters"
-msgstr ""
+msgstr "Paramètres"
 
 #: of pyniryo2.niryo_ros.NiryoRos:11
 msgid "ip of the ros master"
-msgstr ""
+msgstr "ip du ROS Master"
 
 #: of pyniryo2.niryo_ros.NiryoRos:13
 msgid "usually 9090"
-msgstr ""
+msgstr "généralement 9090"
 
 #: of pyniryo2.niryo_ros.NiryoRos.close:1
 msgid "Disconnect from ROS."
-msgstr ""
+msgstr "Déconnection à ROS."
 
 #: of pyniryo2.niryo_ros.NiryoRos.terminate:1
 msgid "Signals the termination of the main event loop."
-msgstr ""
+msgstr "Signale la fin de la boucle d'événements principale."
 
 #: of pyniryo2.niryo_ros.NiryoRos.hardware_version:1
 msgid "Get the hardware version of the robot (one, ned, ned2)"
-msgstr ""
+msgstr "Obtenir la version matérielle du robot (one, ned, ned2)"
 
 #: of pyniryo2.niryo_ros.NiryoRos.hardware_version
 msgid "Returns"
-msgstr ""
+msgstr "Retour"
 
 #: of pyniryo2.niryo_ros.NiryoRos.hardware_version:3
 msgid "The hardware version of the robot (one, ned, ned2)"
-msgstr ""
+msgstr "La version matérielle du robot (one, ned, ned2)"
 
 #: of pyniryo2.niryo_ros.NiryoRos.hardware_version
 msgid "Return type"
-msgstr ""
+msgstr "Type de retour"
 

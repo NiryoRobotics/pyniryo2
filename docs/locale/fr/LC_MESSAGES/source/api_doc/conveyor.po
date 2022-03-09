@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-07 15:36+0000\n"
+"POT-Creation-Date: 2022-03-08 17:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -166,7 +166,7 @@ msgstr ""
 
 #: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:26
 msgid "# Example 2"
-msgstr ""
+msgstr "# Exemple 2"
 
 #: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:18
 msgid ""
@@ -174,10 +174,13 @@ msgid ""
 "seconds # It this second example, we control the conveyor at a speed of "
 "30% and in the backward direction"
 msgstr ""
+"# équipe le convoyeur et obtenir son identifiant, le contrôle et l'arrête"
+" après 3 secondes. # Dans ce deuxième exemple, nous contrôlons le "
+"convoyeur à une vitesse de 30% et dans le sens inverse."
 
 #: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:21
 msgid "import time"
-msgstr ""
+msgstr "import time"
 
 #: of pyniryo2.conveyor.conveyor.Conveyor.control_conveyor:23
 msgid ""
@@ -294,8 +297,26 @@ msgid ":class:`~.conveyor.objects.ConveyorStatus`"
 msgstr ":class:`~.conveyor.objects.ConveyorStatus`"
 
 #: of pyniryo2.conveyor.enums.ConveyorID:1
-msgid "Enumeration of the different Conveyor Ids"
-msgstr "Enumeration des différents identifiants des convoyeurs"
+msgid ""
+"ConveyorID to be able to have CAN (id 12 and 13) and TTL (id 9 and 10) "
+"conveyor in any possible combination"
+msgstr "ConveyorID pour être capable de contrôler à la convoyeurs avec une interface TTL (id 9 et  10) et/ou CAN (id 12 et 13)"
+
+#: of pyniryo2.conveyor.enums.ConveyorID:3
+msgid ""
+"ID_1 = 12   # One, Ned ID_2 = 13   # One, Ned ID_3 = 9    # Ned2 ID_4 = "
+"10   # Ned2"
+msgstr ""
+"ID_1 = 12   # One, Ned ID_2 = 13   # One, Ned ID_3 = 9    # Ned2 ID_4 = "
+"10   # Ned2"
+
+#: of pyniryo2.conveyor.enums.ConveyorCan:1
+msgid "ConveyorID to control conveyors with CAN interface"
+msgstr "ConveyorID pour contrôler les convoyeurs avec un interface CAN"
+
+#: of pyniryo2.conveyor.enums.ConveyorTTL:1
+msgid "ConveyorID to control conveyors with TTL interface"
+msgstr "ConveyorID pour contrôler les convoyeurs avec un interface TTL"
 
 #: of pyniryo2.conveyor.enums.ConveyorDirection:1
 msgid "Enumeration of the directions of the conveyor"
@@ -313,7 +334,8 @@ msgstr "Convoyeur - Namedtuple"
 msgid ""
 "Create new instance of ConveyorInfo(conveyor_id, running, speed, "
 "direction)"
-msgstr "Crée une nouvelle instance de ConveyorInfo(conveyor_id, running, speed, "
+msgstr ""
+"Crée une nouvelle instance de ConveyorInfo(conveyor_id, running, speed, "
 "direction)"
 
 #: ../../docstring of pyniryo2.conveyor.objects.ConveyorInfo.conveyor_id:1
@@ -353,4 +375,7 @@ msgstr "Alias pour le champ numéro 2"
 #~ " Namedtuple` available with the  API "
 #~ "du Bras"
 #~ msgstr ""
+
+#~ msgid "Enumeration of the different Conveyor Ids"
+#~ msgstr "Enumeration des différents identifiants des convoyeurs"
 

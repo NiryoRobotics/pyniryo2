@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-07 15:36+0000\n"
+"POT-Creation-Date: 2022-03-08 17:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,8 +28,7 @@ msgid ""
 "This file presents the different :ref:`functions "
 "<source/api_doc/sound:Sound - Command functions>`, :ref:`enums "
 "<source/api_doc/sound:Sound - Enums>` and :ref:`topics "
-"<source/api_doc/sound:Sound - Niryo Topics>` available with the Led Ring "
-"API"
+"<source/api_doc/sound:Sound - Niryo Topics>` available with the Sound API"
 msgstr ""
 
 #: ../../source/api_doc/sound.rst:9
@@ -47,18 +46,32 @@ msgstr ""
 msgid "List of functions:"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:33
+#: of pyniryo2.sound.sound.Sound:1
+msgid "Sound robot functions"
+msgstr ""
+
+#: of pyniryo2.sound.sound.Sound:3 pyniryo2.sound.sound.Sound.delete:3
+#: pyniryo2.sound.sound.Sound.play:3 pyniryo2.sound.sound.Sound.save:6
+#: pyniryo2.sound.sound.Sound.set_volume:5 pyniryo2.sound.sound.Sound.stop:3
+msgid "Example: ::"
+msgstr ""
+
+#: of pyniryo2.sound.sound.Sound pyniryo2.sound.sound.Sound.delete
+#: pyniryo2.sound.sound.Sound.play pyniryo2.sound.sound.Sound.save
+#: pyniryo2.sound.sound.Sound.say pyniryo2.sound.sound.Sound.set_volume
+msgid "Parameters"
+msgstr ""
+
+#: of pyniryo2.sound.sound.Sound:8
+msgid "Niryo ROS client"
+msgstr ""
+
+#: ../../source/api_doc/sound.rst:34
 msgid "Sound - Play"
 msgstr ""
 
 #: of pyniryo2.sound.sound.Sound.play:1
 msgid "Play a sound that as already been imported by the user on the robot."
-msgstr ""
-
-#: of pyniryo2.sound.sound.Sound.delete:3 pyniryo2.sound.sound.Sound.play:3
-#: pyniryo2.sound.sound.Sound.save:6 pyniryo2.sound.sound.Sound.set_volume:5
-#: pyniryo2.sound.sound.Sound.stop:3
-msgid "Example: ::"
 msgstr ""
 
 #: of pyniryo2.sound.sound.Sound.play
@@ -67,12 +80,6 @@ msgstr ""
 
 #: of pyniryo2.sound.sound.Sound.play:22
 msgid "sound_name: Name of the sound that will be played"
-msgstr ""
-
-#: of pyniryo2.sound.sound.Sound.delete pyniryo2.sound.sound.Sound.play
-#: pyniryo2.sound.sound.Sound.save pyniryo2.sound.sound.Sound.say
-#: pyniryo2.sound.sound.Sound.set_volume
-msgid "Parameters"
 msgstr ""
 
 #: of pyniryo2.sound.sound.Sound.play:24
@@ -87,7 +94,7 @@ msgstr ""
 msgid "end the sound at this value in seconds"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:71 of pyniryo2.sound.Sound.sounds
+#: ../../source/api_doc/sound.rst:72 of pyniryo2.sound.Sound.sounds
 #: pyniryo2.sound.Sound.state pyniryo2.sound.Sound.volume
 #: pyniryo2.sound.sound.Sound.delete
 #: pyniryo2.sound.sound.Sound.get_sound_duration
@@ -148,7 +155,7 @@ msgstr ""
 msgid "language of the text"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:41
+#: ../../source/api_doc/sound.rst:42
 msgid "Sound - Volume"
 msgstr ""
 
@@ -183,7 +190,7 @@ msgstr ""
 msgid "Between O and 100 (0 sound off and 100 sound maximum)"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:48
+#: ../../source/api_doc/sound.rst:49
 msgid "Sound - Manage"
 msgstr ""
 
@@ -201,16 +208,20 @@ msgid ""
 " file. You also need to give the name of the sound you want to import."
 msgstr ""
 
-#: of pyniryo2.sound.sound.Sound.delete:8 pyniryo2.sound.sound.Sound.save:13
-msgid "For example, test.wav"
+#: of pyniryo2.sound.sound.Sound.save:16
+msgid "For example, test.wav. Il will be the nome of the sound in the robot"
 msgstr ""
 
-#: of pyniryo2.sound.sound.Sound.save:15
-msgid "encoded data from a sound (type can be wav or mp3)"
+#: of pyniryo2.sound.sound.Sound.save:18
+msgid "absolute path to the sound file"
 msgstr ""
 
 #: of pyniryo2.sound.sound.Sound.delete:1
 msgid "Delete a sound imported on the robot"
+msgstr ""
+
+#: of pyniryo2.sound.sound.Sound.delete:8
+msgid "For example, test.wav"
 msgstr ""
 
 #: of pyniryo2.sound.sound.Sound.get_sound_duration:1
@@ -221,78 +232,78 @@ msgstr ""
 msgid "Returns the duration of a sound in seconds"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:58
+#: ../../source/api_doc/sound.rst:59
 msgid "Sound - Niryo Topics"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:60
+#: ../../source/api_doc/sound.rst:61
 msgid ""
 "The use of these functions is explained in the :ref:`NiryoTopics "
 "<source/api_doc/niryo_topics:NiryoTopic>`, section. They allow the "
 "acquisition of data in real time by callbacks or by direct call."
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:63
-msgid "Led Ring's Niryo Topics"
-msgstr ""
-
-#: ../../source/api_doc/sound.rst:69
-msgid "Name"
+#: ../../source/api_doc/sound.rst:64
+msgid "Sound's Niryo Topics"
 msgstr ""
 
 #: ../../source/api_doc/sound.rst:70
+msgid "Name"
+msgstr ""
+
+#: ../../source/api_doc/sound.rst:71
 msgid "Function"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:72
+#: ../../source/api_doc/sound.rst:73
 msgid "``/niryo_robot_sound/sound``"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:73
+#: ../../source/api_doc/sound.rst:74
 msgid ":attr:`~.sound.Sound.state`"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:74
+#: ../../source/api_doc/sound.rst:75
 msgid ":exc:`str`"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:75
+#: ../../source/api_doc/sound.rst:76
 msgid "``/niryo_robot_sound/sound_database``"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:76
+#: ../../source/api_doc/sound.rst:77
 msgid ":attr:`~.sound.Sound.sounds`"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:77
+#: ../../source/api_doc/sound.rst:78
 msgid ":exc:`dict`"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:78
+#: ../../source/api_doc/sound.rst:79
 msgid "``/niryo_robot_sound/volume``"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:79
+#: ../../source/api_doc/sound.rst:80
 msgid ":attr:`~.sound.Sound.volume`"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:80
+#: ../../source/api_doc/sound.rst:81
 msgid ":exc:`int`"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:83
+#: ../../source/api_doc/sound.rst:84
 msgid "Sound - Enums"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:85
+#: ../../source/api_doc/sound.rst:86
 msgid "List of enums:"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:87
+#: ../../source/api_doc/sound.rst:88
 msgid ":class:`~.sound.enums.ManageSound`"
 msgstr ""
 
-#: ../../source/api_doc/sound.rst:88
+#: ../../source/api_doc/sound.rst:89
 msgid ":class:`~.sound.enums.Language`"
 msgstr ""
 
@@ -303,4 +314,20 @@ msgstr ""
 #: of pyniryo2.sound.enums.Language:1
 msgid "Enumeration of the Text To Speech languages"
 msgstr ""
+
+#~ msgid ""
+#~ "This file presents the different "
+#~ ":ref:`functions <source/api_doc/sound:Sound - "
+#~ "Command functions>`, :ref:`enums "
+#~ "<source/api_doc/sound:Sound - Enums>` and "
+#~ ":ref:`topics <source/api_doc/sound:Sound - Niryo "
+#~ "Topics>` available with the Led Ring "
+#~ "API"
+#~ msgstr ""
+
+#~ msgid "Led Ring's Niryo Topics"
+#~ msgstr ""
+
+#~ msgid "encoded data from a sound (type can be wav or mp3)"
+#~ msgstr ""
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import unittest
 import time
+import random
 
 from pyniryo2.exceptions import RobotCommandException
 from pyniryo2.niryo_ros import NiryoRos
@@ -35,12 +36,12 @@ class TestSound(BaseTest):
         self.assertEqual(self.sound.sounds, self.sound.get_sounds())
 
         sound_names = self.sound.sounds
-        random_sound_name = sound_names[0]
+        random_sound_name = sound_names[random.randint(0,len(sound_names)-1)]
         self.assertTrue(0 < self.sound.get_sound_duration(random_sound_name))
 
         start_time = time.time()
-        self.assertIsNone(self.sound.play(random_sound_name, True, 0.5, 1.5))
-        self.assertTrue(1 <= time.time() - start_time <= 1.5)
+        self.assertIsNone(self.sound.play(random_sound_name, True, 0.2, 1.2))
+        self.assertTrue(0.5 <= time.time() - start_time <= 3.5)
 
         start_time = time.time()
         self.assertIsNone(self.sound.play(random_sound_name, False))
@@ -78,8 +79,8 @@ class TestSound(BaseTest):
         self.assertIsNone(self.sound.set_volume(50))
         self.assertEqual(self.sound.volume(), 50)
 
-        self.assertIsNone(self.sound.set_volume(100))
-        self.assertEqual(self.sound.volume(), 100)
+        self.assertIsNone(self.sound.set_volume(10))
+        self.assertEqual(self.sound.volume(), 10)
 
         with self.assertRaises(RobotCommandException):
             self.sound.set_volume(-100)

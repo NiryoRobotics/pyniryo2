@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../../source/api_doc/niryo_robot.rst:2
 msgid "NiryoRobot"
-msgstr ""
+msgstr "NiryoRobot"
 
 #: ../../source/api_doc/niryo_robot.rst:4
 msgid ""

@@ -210,7 +210,6 @@ msgid "Going back to step 5's pose."
 msgstr "Retourne à la position de l'étape 5"
 
 #: ../../source/examples/examples_tool_action.rst:104
-#, fuzzy
 msgid ""
 "There is a plenty of ways to perform a pick and place with PyNiryo. "
 "Methods will be presented from the lowest to highest level"

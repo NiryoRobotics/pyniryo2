@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../../source/api_doc/io.rst:2
 msgid "I/Os"
-msgstr ""
+msgstr "I/OS"
 
 #: ../../source/api_doc/io.rst:4
 msgid ""

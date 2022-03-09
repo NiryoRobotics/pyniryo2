@@ -35,57 +35,7 @@ Computer and Robot Connected on the same router
 You will need to find the robot address using ``nmap``, or you can also use search button
 of Niryo Studio to see which robots are available
 
-*TODO: faire plus clair via des images/screenshots*
-
-You can also :ref:`make the IP permanent <source/setup/ip_address:Make IP permanent>` so that
-you won't have to search for it next time
-
-
-Make IP permanent
--------------------
-Step 1
-^^^^^^^^^^^^^^^^^^
-Firstly, you need to be connected to your robot via SSH.
-
-On Ubuntu, use the command line ::
-
-    ssh niryo@<robot_ip_address>
-
-The password is ``robotics``
-
-On Windows, you can use `Putty <https://www.putty.org/>`_. Robot username is ``niyro``
-and password is ``robotics``
-
-Step 2
-^^^^^^^^^^^^^^^^^^^^
-Find your proxy key ::
-
-    ifconfig
-
-Your proxy key is written on the first line
-and should look something like ``eth0``.
-
-Step 3
-^^^^^^^^^^^^^^^^^^^^
-Select arbitrarily a number between 50 & 255. It will be your IP address' last number
-
-Then, edit the file ``/etc/network/interfaces`` ::
-
-     sudo nano /etc/network/interfaces
-
-And add to its end ::
-
-    auto <robot_proxy_key>
-    iface <robot_proxy_key> inet static
-        address 192.168.1.<your_ip_address_last_number>
-        broadcast 192.168.1.255
-        netmask 255.255.255.0
-        gateway 192.168.1.1
-        dns-nameservers 192.168.1.1
-
-
-From its next reboot, the robot will appear under
-the IP ``192.168.1.<your_ip_address_last_number>``
+You can also make IP permanent so that you won't have to search for it next time
 
 .. |link_ethernet| replace:: Connect to Ned via Ethernet on Ubuntu
 .. _link_ethernet: https://niryo.com/docs/niryo-one/developer-tutorials/connect-to-niryo-one-via-ethernet-on-ubuntu/

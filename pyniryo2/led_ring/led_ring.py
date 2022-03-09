@@ -28,6 +28,17 @@ def check_ned2_version(func):
 class LedRing(RobotCommander):
     # --- Public functions --- #
     def __init__(self, client):
+        """
+        LedRing robot functions
+
+        Example: ::
+
+            ros_instance = NiryoRos("10.10.10.10") # Hotspot
+            led_ring_interface = LedRing(ros_instance)
+
+        :param client: Niryo ROS client
+        :type client: NiryoRos
+        """
         super(LedRing, self).__init__(client)
 
         self._services = LedRingServices(self._client)
@@ -554,6 +565,26 @@ class LedRing(RobotCommander):
 
             led_list = [[i / 30. * 255 , 0, 255 - i / 30.] for i in range(30)]
             led_ring.custom(led_list)
+
+            run_flag = True
+
+            def french_flag_moving():
+                colors = []
+                colors += [[255, 255, 255] for _ in range(2)]
+                colors += [[0, 0, 255] for _ in range(11)]
+                colors += [[255, 255, 255] for _ in range(4)]
+                colors += [[255, 0, 0] for _ in range(11)]
+                colors += [[255, 255, 255] for _ in range(2)]
+
+                rate = 10
+                while run_flag:
+                    for i in range(len(colors)):
+                        led_ring.custom(colors[i:] + colors[:i])
+                        time.sleep(1/rate)
+                        if not run_flag:
+                            return
+
+            french_flag_moving()
 
         :param led_colors: List of size 30 of led color in a list of size 3[R, G, B].
                 RGB channels from 0 to 255.

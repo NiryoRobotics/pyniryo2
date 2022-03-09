@@ -1,6 +1,7 @@
 # Communication imports
 import functools
-from pyniryo2.robot_commander import RobotCommander
+import base64
+from pyniryo2.robot_commander import RobotCommander, RobotCommandException
 
 from .services import SoundServices
 from .topics import SoundTopics
@@ -27,6 +28,17 @@ def check_ned2_version(func):
 class Sound(RobotCommander):
     # --- Public functions --- #
     def __init__(self, client):
+        """
+        Sound robot functions
+
+        Example: ::
+
+            ros_instance = NiryoRos("127.0.0.1") # Hotspot
+            sound_interface = Sound(ros_instance)
+
+        :param client: Niryo ROS client
+        :type client: NiryoRos
+        """
         super(Sound, self).__init__(client)
 
         if self._client.hardware_version == 'ned2':
@@ -244,7 +256,7 @@ class Sound(RobotCommander):
         self._check_result_status(resp)
 
     @check_ned2_version
-    def save(self, sound_name, sound_data):
+    def save(self, sound_name, sound_path):
         """
         Import a sound on the RaspberryPi of the robot. To do that,
         you will need the encoded data from a wav or mp3 sound.
@@ -254,17 +266,30 @@ class Sound(RobotCommander):
         Example: ::
 
             sound_name = "test_import_sound.wav"
-            with open(sound_name, 'r') as f:
-                sound_data = f.read()
-            sound.save(sound_name, sound_data)
+            sound_path = "/home/niryo/test_sound.wav"
 
-        :param sound_name: For example, test.wav
+            ros_instance = pyniryo2.NiryoRos("10.10.10.10")
+            sound = pyniryo2.Sound(ros_instance)
+            sound.save(sound_name, sound_path)
+            sound.play(sound_name)
+
+
+        :param sound_name: For example, test.wav. Il will be the nome of the sound in the robot
         :type sound_name: string
-        :param sound_data: encoded data from a sound (type can be wav or mp3)
-        :type sound_data: string
+        :param sound_path: absolute path to the sound file
+        :type sound_path: string
         :rtype: None
         """
-        req = self._services.import_sound_request(sound_name, sound_data)
+        if not sound_name.endswith('.mp3') and not sound_name.endswith('.wav'):
+            raise RobotCommandException("The sound name {} must end with the suffix .mp3 or .wav.".format(sound_name))
+
+        with open(sound_path, 'rb') as f:
+            sound_data = f.read()
+
+        base64_bytes = base64.b64encode(sound_data)
+        base64_message = base64_bytes.decode('ascii')
+
+        req = self._services.import_sound_request(sound_name, base64_message)
         resp = self._services.manage_sound_service.call(req)
         self._check_result_status(resp)
 

@@ -65,23 +65,23 @@ msgstr "Paramètres"
 
 #: of pyniryo2.niryo_topic.NiryoTopic:4
 msgid "Instance of the ROS connection."
-msgstr ""
+msgstr "Instance le la connection à ROS."
 
 #: of pyniryo2.niryo_topic.NiryoTopic:6
 msgid "Topic name."
-msgstr ""
+msgstr "Nom du topic."
 
 #: of pyniryo2.niryo_topic.NiryoTopic:8
 msgid "Topic type."
-msgstr ""
+msgstr "Type du topic."
 
 #: of pyniryo2.niryo_topic.NiryoTopic:10
 msgid "convert the response of the topic in a specific type."
-msgstr ""
+msgstr "Convertir la réponse du topic dans type spécifique."
 
 #: of pyniryo2.niryo_topic.NiryoTopic:12
 msgid "Timeout while waiting a message."
-msgstr ""
+msgstr "Expiration du délais d'attente d'un message"
 
 #: of pyniryo2.niryo_topic.NiryoTopic.is_subscribed:1
 msgid "Return the topic connection status."

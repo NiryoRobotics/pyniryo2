@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-07 15:36+0000\n"
+"POT-Creation-Date: 2022-03-08 17:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -262,7 +262,23 @@ msgid ":class:`~.conveyor.objects.ConveyorStatus`"
 msgstr ""
 
 #: of pyniryo2.conveyor.enums.ConveyorID:1
-msgid "Enumeration of the different Conveyor Ids"
+msgid ""
+"ConveyorID to be able to have CAN (id 12 and 13) and TTL (id 9 and 10) "
+"conveyor in any possible combination"
+msgstr ""
+
+#: of pyniryo2.conveyor.enums.ConveyorID:3
+msgid ""
+"ID_1 = 12   # One, Ned ID_2 = 13   # One, Ned ID_3 = 9    # Ned2 ID_4 = "
+"10   # Ned2"
+msgstr ""
+
+#: of pyniryo2.conveyor.enums.ConveyorCan:1
+msgid "ConveyorID to control conveyors with CAN interface"
+msgstr ""
+
+#: of pyniryo2.conveyor.enums.ConveyorTTL:1
+msgid "ConveyorID to control conveyors with TTL interface"
 msgstr ""
 
 #: of pyniryo2.conveyor.enums.ConveyorDirection:1
@@ -298,4 +314,7 @@ msgstr ""
 #: ../../docstring of pyniryo2.conveyor.objects.ConveyorInfo.speed:1
 msgid "Alias for field number 2"
 msgstr ""
+
+#~ msgid "Enumeration of the different Conveyor Ids"
+#~ msgstr ""
 

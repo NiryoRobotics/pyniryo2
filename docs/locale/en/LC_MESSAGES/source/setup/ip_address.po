@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"POT-Creation-Date: 2022-03-08 13:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,76 +82,85 @@ msgid ""
 msgstr ""
 
 #: ../../source/setup/ip_address.rst:38
-msgid "*TODO: faire plus clair via des images/screenshots*"
-msgstr ""
-
-#: ../../source/setup/ip_address.rst:40
 msgid ""
-"You can also :ref:`make the IP permanent <source/setup/ip_address:Make IP"
-" permanent>` so that you won't have to search for it next time"
+"You can also make IP permanent so that you won't have to search for it "
+"next time"
 msgstr ""
 
-#: ../../source/setup/ip_address.rst:45
-msgid "Make IP permanent"
-msgstr ""
+#~ msgid "Make IP permanent"
+#~ msgstr ""
 
-#: ../../source/setup/ip_address.rst:47
-msgid "Step 1"
-msgstr ""
+#~ msgid "Step 1"
+#~ msgstr ""
 
-#: ../../source/setup/ip_address.rst:48
-msgid "Firstly, you need to be connected to your robot via SSH."
-msgstr ""
+#~ msgid "Firstly, you need to be connected to your robot via SSH."
+#~ msgstr ""
 
-#: ../../source/setup/ip_address.rst:50
-msgid "On Ubuntu, use the command line ::"
-msgstr ""
+#~ msgid "On Ubuntu, use the command line ::"
+#~ msgstr ""
 
-#: ../../source/setup/ip_address.rst:54
-msgid "The password is ``robotics``"
-msgstr ""
+#~ msgid "The password is ``robotics``"
+#~ msgstr ""
 
-#: ../../source/setup/ip_address.rst:56
-msgid ""
-"On Windows, you can use `Putty <https://www.putty.org/>`_. Robot username"
-" is ``niyro`` and password is ``robotics``"
-msgstr ""
+#~ msgid ""
+#~ "On Windows, you can use `Putty "
+#~ "<https://www.putty.org/>`_. Robot username is "
+#~ "``niyro`` and password is ``robotics``"
+#~ msgstr ""
 
-#: ../../source/setup/ip_address.rst:60
-msgid "Step 2"
-msgstr ""
+#~ msgid "Step 2"
+#~ msgstr ""
 
-#: ../../source/setup/ip_address.rst:61
-msgid "Find your proxy key ::"
-msgstr ""
+#~ msgid "Find your proxy key ::"
+#~ msgstr ""
 
-#: ../../source/setup/ip_address.rst:65
-msgid ""
-"Your proxy key is written on the first line and should look something "
-"like ``eth0``."
-msgstr ""
+#~ msgid ""
+#~ "Your proxy key is written on the"
+#~ " first line and should look something"
+#~ " like ``eth0``."
+#~ msgstr ""
 
-#: ../../source/setup/ip_address.rst:69
-msgid "Step 3"
-msgstr ""
+#~ msgid "Step 3"
+#~ msgstr ""
 
-#: ../../source/setup/ip_address.rst:70
-msgid ""
-"Select arbitrarily a number between 50 & 255. It will be your IP address'"
-" last number"
-msgstr ""
+#~ msgid ""
+#~ "Select arbitrarily a number between 50"
+#~ " & 255. It will be your IP "
+#~ "address' last number"
+#~ msgstr ""
 
-#: ../../source/setup/ip_address.rst:72
-msgid "Then, edit the file ``/etc/network/interfaces`` ::"
-msgstr ""
+#~ msgid "Then, edit the file ``/etc/network/interfaces`` ::"
+#~ msgstr ""
 
-#: ../../source/setup/ip_address.rst:76
-msgid "And add to its end ::"
-msgstr ""
+#~ msgid "And add to its end ::"
+#~ msgstr ""
 
-#: ../../source/setup/ip_address.rst:87
-msgid ""
-"From its next reboot, the robot will appear under the IP "
-"``192.168.1.<your_ip_address_last_number>``"
-msgstr ""
+#~ msgid ""
+#~ "From its next reboot, the robot "
+#~ "will appear under the IP "
+#~ "``192.168.1.<your_ip_address_last_number>``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The reader should note that he may"
+#~ " has to change his wired settings "
+#~ "to allow the connection. See how "
+#~ "|link_ethernet|_"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The reader should note that he may"
+#~ " has to change his wired settings "
+#~ "to allow the connection."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You can also :ref:`make the IP "
+#~ "permanent <source/setup/ip_address:Make IP "
+#~ "permanent>` so that you won't have "
+#~ "to search for it next time"
+#~ msgstr ""
+
+#~ msgid "*TODO: faire plus clair via des images/screenshots*"
+#~ msgstr ""
 

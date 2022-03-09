@@ -271,6 +271,7 @@ class Sound(RobotCommander):
             ros_instance = pyniryo2.NiryoRos("10.10.10.10")
             sound = pyniryo2.Sound(ros_instance)
             sound.save(sound_name, sound_path)
+            sound.play(sound_name)
 
 
         :param sound_name: For example, test.wav. Il will be the nome of the sound in the robot

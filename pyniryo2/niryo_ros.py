@@ -64,6 +64,6 @@ class NiryoRos(roslibpy.Ros):
         Get the hardware version of the robot (one, ned, ned2)
 
         :return: The hardware version of the robot (one, ned, ned2)
-        :rtype: string
+        :rtype: str
         """
         return self._hardware_version

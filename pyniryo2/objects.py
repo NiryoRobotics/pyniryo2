@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 
+from time import time
 import numpy as np
 
 
@@ -167,3 +168,15 @@ class PoseObject:
         yaw = np.arctan2(t3, t4)
 
         return roll, pitch, yaw
+
+
+class TrajectoryObject():
+
+    def __init__(self, name, description, joint_names, points, accelerations, velocities, time_from_start):
+        self.name = name
+        self.description = description
+        self.joint_names = joint_names
+        self.points = points
+        self.accelerations = accelerations
+        self.velocities = velocities
+        self.time_from_start = time_from_start

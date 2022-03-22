@@ -33,7 +33,7 @@ class SoundServices(object):
         """
 
         :param sound_name:
-        :type sound_name: string
+        :type sound_name: str
         param start_time_sec:
         :type start_time_sec: float
         :param end_time_sec:
@@ -71,9 +71,9 @@ class SoundServices(object):
         """
 
         :param sound_name:
-        :type sound_name: string
+        :type sound_name: str
         :param sound_data:
-        :type sound_data: string
+        :type sound_data: str
         :return:
         :rtype: ServiceRequest
         """
@@ -85,7 +85,7 @@ class SoundServices(object):
         """
 
         :param sound_name:
-        :type sound_name: string
+        :type sound_name: str
         :return:
         :rtype: ServiceRequest
         """

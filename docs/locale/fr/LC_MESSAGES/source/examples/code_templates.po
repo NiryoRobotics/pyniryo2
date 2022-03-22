@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"POT-Creation-Date: 2022-03-15 13:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,8 +28,8 @@ msgid ""
 "As code structures are always the same, we wrote down few templates for "
 "you to start your code file with a good form"
 msgstr ""
-"Les structure de code étant toujours similaires, nous en avons écrit quelques uns "
-"pour vous permettre de commencer à coder dans le bon format"
+"Les structure de code étant toujours similaires, nous en avons écrit "
+"quelques uns pour vous permettre de commencer à coder dans le bon format"
 
 #: ../../source/examples/code_templates.rst:8
 msgid "The short template"
@@ -37,7 +37,7 @@ msgstr "Les modèles courts"
 
 #: ../../source/examples/code_templates.rst:10
 msgid "Very simple, straightforward ::"
-msgstr "Simpliste, direct"
+msgstr "Simple, basique"
 
 #: ../../source/examples/code_templates.rst:27
 msgid "Advanced template"
@@ -49,9 +49,9 @@ msgid ""
 "connection, calibration, tool equipping, and make the robot go to sleep "
 "at the end ::"
 msgstr ""
-"Ce modèle permet à l'utilisateur de définir son propre processus mais gère "
-"la connexion, la calibration, l'équipement d'outil, et met le robot en veille "
-"à la fin ::"
+"Ce modèle permet à l'utilisateur de définir son propre processus mais "
+"gère la connexion, la calibration, l'équipement d'outil, et met le robot "
+"en veille à la fin ::"
 
 #: ../../source/examples/code_templates.rst:63
 msgid "Advanced template for conveyor"
@@ -62,8 +62,8 @@ msgid ""
 "Same as :ref:`source/examples/code_templates:Advanced template` but with "
 "a conveyor ::"
 msgstr ""
-"Comme le :ref:`source/examples/code_templates:Advanced template` mais avec "
-"un convoyeur ::"
+"Comme le :ref:`source/examples/code_templates:Advanced template` mais "
+"avec un convoyeur ::"
 
 #: ../../source/examples/code_templates.rst:102
 msgid "Advanced template for vision"
@@ -72,4 +72,12 @@ msgstr "Modèle avancé pour la vision"
 #: ../../source/examples/code_templates.rst:104
 msgid "Huge template for vision users ! ::"
 msgstr "Modèle conséquent pour les utilisateurs de vision ! ::"
+
+#: ../../source/examples/code_templates.rst:160
+msgid "Callbacks Templates"
+msgstr "Modèle de callback"
+
+#: ../../source/examples/code_templates.rst:162
+msgid "Template for event integration ! ::"
+msgstr "Modèle d'intégration d'évènements! ::"
 

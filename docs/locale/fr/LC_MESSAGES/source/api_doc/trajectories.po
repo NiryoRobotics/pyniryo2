@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 17:48+0000\n"
+"POT-Creation-Date: 2022-03-15 13:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,11 +43,11 @@ msgid ""
 "which include"
 msgstr ""
 "Cette section fait référence à toutes les fonctions de contrôle du robot "
-"existante, ce qui inclut"
+"existante, ce qui inclut:"
 
 #: ../../source/api_doc/trajectories.rst:16
 msgid "Playing smoothed waypointed trajectories"
-msgstr "Effectue une trajectoire par points d'intérêts lissée"
+msgstr "Effectuer une trajectoire par points d'intérêts lissée"
 
 #: ../../source/api_doc/trajectories.rst:17
 msgid "Managing saved trajectories"
@@ -77,7 +77,7 @@ msgstr "Liste des fonctions de sous-sections"
 msgid "Trajectories functions"
 msgstr "Fonctions de Trajectoires"
 
-#: of pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved:1
+#: of pyniryo2.trajectories.trajectories.Trajectories.get_saved_trajectory:1
 msgid ""
 "Get saved trajectory from robot intern storage Will raise error if "
 "position does not exist"
@@ -85,51 +85,59 @@ msgstr ""
 "Obtient la trajectoire sauvegardée dans la mémoire interne du robot. "
 "Génère une erreur si la trajectoire n'existe pas"
 
-#: of pyniryo2.trajectories.trajectories.Trajectories.delete_trajectory:3
+#: of pyniryo2.trajectories.trajectories.Trajectories.clean_trajectory_memory:3
+#: pyniryo2.trajectories.trajectories.Trajectories.delete_trajectory:3
+#: pyniryo2.trajectories.trajectories.Trajectories.get_saved_trajectory:4
 #: pyniryo2.trajectories.trajectories.Trajectories.get_saved_trajectory_list:3
-#: pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved:4
+#: pyniryo2.trajectories.trajectories.Trajectories.update_trajectory_infos:3
 msgid "Example: ::"
 msgstr "Exemple: ::"
 
 #: of
+#: pyniryo2.trajectories.trajectories.Trajectories.execute_registered_trajectory
 #: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_from_poses
-#: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_saved
-#: pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved
+#: pyniryo2.trajectories.trajectories.Trajectories.get_saved_trajectory
+#: pyniryo2.trajectories.trajectories.Trajectories.save_last_learned_trajectory
 #: pyniryo2.trajectories.trajectories.Trajectories.save_trajectory
+#: pyniryo2.trajectories.trajectories.Trajectories.update_trajectory_infos
 msgid "Parameters"
 msgstr "Paramètres"
 
-#: of pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved:8
+#: of pyniryo2.trajectories.trajectories.Trajectories.get_saved_trajectory:8
 msgid "name of the trajectory"
 msgstr "nom de la trajectoire"
 
-#: of pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved
+#: of pyniryo2.trajectories.trajectories.Trajectories.get_saved_trajectory
 msgid "Raises"
 msgstr "Appelle"
 
-#: of pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved:10
-msgid "Raise RobotCommandException if trajectory file doesn't exist"
-msgstr "Appelle RobotCommandException si le fichier de trajectoire n'existe pas."
+#: of pyniryo2.trajectories.trajectories.Trajectories.get_saved_trajectory:10
+msgid "If trajectory file doesn't exist"
+msgstr "Si le fichier de trajectoire n'existe pas."
 
-#: of pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved
+#: of pyniryo2.trajectories.trajectories.Trajectories.get_saved_trajectory
+#: pyniryo2.trajectories.trajectories.Trajectories.get_saved_trajectory_list
 msgid "Returns"
 msgstr "Retourne"
 
-#: of pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved:11
-msgid "list of [x, y, z, qx, qy, qz, qw]"
-msgstr "liste de [x, y, z, qx, qy, qz, qw]"
+#: of pyniryo2.trajectories.trajectories.Trajectories.get_saved_trajectory:11
+msgid "list of [j1, j2, j3, j4, j5, j6] in rad"
+msgstr "list de [j1, j2, j3, j4, j5, j6] en radians"
 
-#: of pyniryo2.trajectories.trajectories.Trajectories.delete_trajectory
+#: of pyniryo2.trajectories.trajectories.Trajectories.clean_trajectory_memory
+#: pyniryo2.trajectories.trajectories.Trajectories.delete_trajectory
+#: pyniryo2.trajectories.trajectories.Trajectories.execute_registered_trajectory
 #: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_from_poses
-#: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_saved
+#: pyniryo2.trajectories.trajectories.Trajectories.get_saved_trajectory
 #: pyniryo2.trajectories.trajectories.Trajectories.get_saved_trajectory_list
-#: pyniryo2.trajectories.trajectories.Trajectories.get_trajectory_saved
+#: pyniryo2.trajectories.trajectories.Trajectories.save_last_learned_trajectory
 #: pyniryo2.trajectories.trajectories.Trajectories.save_trajectory
+#: pyniryo2.trajectories.trajectories.Trajectories.update_trajectory_infos
 msgid "Return type"
 msgstr "Type de retour"
 
 #: of
-#: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_saved:1
+#: pyniryo2.trajectories.trajectories.Trajectories.execute_registered_trajectory:1
 msgid ""
 "Execute trajectory from Ned's memory If a callback function is not passed"
 " in parameter, the function will be blocking. Otherwise, the callback "
@@ -141,23 +149,18 @@ msgstr ""
 " est terminée."
 
 #: of
+#: pyniryo2.trajectories.trajectories.Trajectories.execute_registered_trajectory:5
 #: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_from_poses:5
-#: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_saved:5
+#: pyniryo2.trajectories.trajectories.Trajectories.save_last_learned_trajectory:3
 #: pyniryo2.trajectories.trajectories.Trajectories.save_trajectory:3
 msgid "Examples: ::"
 msgstr "Exemples: ::"
 
 #: of
+#: pyniryo2.trajectories.trajectories.Trajectories.execute_registered_trajectory:20
 #: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_from_poses:30
-#: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_saved:21
 msgid "Callback invoked on successful execution."
 msgstr "Fonction de rappel lancée en cas de réussite lors de l'exécutio"
-
-#: of
-#: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_from_poses:34
-#: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_saved:23
-msgid "Distance from waypoints before smoothing trajectory"
-msgstr "Distance avec les points d'intérêts avant lissage de la trajectoire"
 
 #: of
 #: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_from_poses:1
@@ -173,17 +176,47 @@ msgstr ""
 
 #: of
 #: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_from_poses:32
-#: pyniryo2.trajectories.trajectories.Trajectories.save_trajectory:16
 msgid "List of: [x,y,z,qx,qy,qz,qw] or [x,y,z,roll,pitch,yaw] or PoseObject"
 msgstr "Liste de: [x,y,z,qx,qy,qz,qw] ou [x,y,z,roll,pitch,yaw] ou PoseObject"
+
+#: of
+#: pyniryo2.trajectories.trajectories.Trajectories.execute_trajectory_from_poses:34
+msgid "Distance from waypoints before smoothing trajectory"
+msgstr "Distance de lissage de la trajectoire des points d epassage"
 
 #: of pyniryo2.trajectories.trajectories.Trajectories.save_trajectory:1
 msgid "Save trajectory in robot's memory"
 msgstr "Sauvegarde la trajectoire dans la mémoire du robot"
 
+#: of pyniryo2.trajectories.trajectories.Trajectories.save_trajectory:12
+msgid "list of joints positions the robot needs to pass by in the trajectory"
+msgstr "liste des positions des articulations par lesquelles le robot"
+"doit passer dans la trajectoire"
+
+#: of
+#: pyniryo2.trajectories.trajectories.Trajectories.save_last_learned_trajectory:7
+#: pyniryo2.trajectories.trajectories.Trajectories.save_trajectory:14
+msgid "name you give trajectory in the robot's memory"
+msgstr "nom que vous donnez trajectoire dans la mémoire du robot"
+
+#: of
+#: pyniryo2.trajectories.trajectories.Trajectories.save_last_learned_trajectory:9
+#: pyniryo2.trajectories.trajectories.Trajectories.save_trajectory:16
+msgid "description you give trajectory in the robot's memory"
+msgstr "description que vous donnez trajectoire dans la mémoire du robot"
+
+#: of
+#: pyniryo2.trajectories.trajectories.Trajectories.save_last_learned_trajectory:1
+msgid "Save last executed trajectory in robot's memory"
+msgstr "Sauvegarde la dernière trajectoire apprise, dans la mémoire du robot"
+
 #: of pyniryo2.trajectories.trajectories.Trajectories.delete_trajectory:1
 msgid "Delete trajectory from robot's memory"
 msgstr "Supprime la trajectoire de la mémoire du robot"
+
+#: of pyniryo2.trajectories.trajectories.Trajectories.clean_trajectory_memory:1
+msgid "Delete all trajectories from robot's memory"
+msgstr "Supprime toutes les trajectoires de la mémoire du robot"
 
 #: of
 #: pyniryo2.trajectories.trajectories.Trajectories.get_saved_trajectory_list:1
@@ -191,4 +224,29 @@ msgid "Get list of trajectories' name saved in robot memory"
 msgstr ""
 "Obtient la liste des noms des trajectoires présentent dans la mémoire du "
 "robot"
+
+#: of
+#: pyniryo2.trajectories.trajectories.Trajectories.get_saved_trajectory_list:8
+msgid "list of tuple(trajectory name, trajectory definition)"
+msgstr "liste de tuple (nom de la trajectoire, définition de la trajectoire)"
+
+#: of pyniryo2.trajectories.trajectories.Trajectories.update_trajectory_infos:1
+msgid "Update the trajectory informations: name and description"
+msgstr "Mettre à jour les informations de la trajectoire : nom et description"
+
+#: of pyniryo2.trajectories.trajectories.Trajectories.update_trajectory_infos:7
+msgid "name of the trajectory you want to change infos"
+msgstr "nom de la trajectoire dont vous souhaitez modifier les infos"
+
+#: of pyniryo2.trajectories.trajectories.Trajectories.update_trajectory_infos:9
+msgid "new name you want to give to the trajectory"
+msgstr "nouveau nom que vous voulez donner à la trajectoire"
+
+#: of
+#: pyniryo2.trajectories.trajectories.Trajectories.update_trajectory_infos:11
+msgid "new description you want to give to the trajectory"
+msgstr "nouvelle description que vous voulez donner à la trajectoire"
+
+#~ msgid "list of [x, y, z, qx, qy, qz, qw]"
+#~ msgstr "liste de [x, y, z, qx, qy, qz, qw]"
 

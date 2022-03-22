@@ -397,8 +397,18 @@ class Arm(RobotCommander):
             def move_callback(_):
                 print("Move completed")
 
-            robot.move_joints([0.2, 0.1, 0.3, 0.0, 0.5, 0.0], move_callback)
+            robot.move_joints([0chronous use
+arm.calibrate(CalibrateMode.MANUAL)
+arm.calibrate(CalibrateMode.AUTO)
 
+# Asynchronous use
+def calibration_callback(result):
+    if result["status"] < RobotErrors.SUCCESS.value:
+        print("Calibration failed")
+    else:
+        print("Calibration completed with success")
+
+arm.calibrate(CalibrateMode.AUTO, calibration_callback)
         :param callback: Callback invoked on successful execution.
         :type callback: function
         :param joints: a list of 6 joints

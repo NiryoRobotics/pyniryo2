@@ -1,6 +1,6 @@
 import sys
-
 import os
+from sphinx.builders.html import StandaloneHTMLBuilder
 
 sys.path.append(os.path.abspath('..'))
 # Kindda hack the import to import shared config file
@@ -22,6 +22,13 @@ release = u'v1.0.0a'
 # -- General configuration ---------------------------------------------------
 
 extensions = base_conf.extensions
+
+StandaloneHTMLBuilder.supported_image_types = [
+    'image/svg+xml',
+    'image/gif',
+    'image/png',
+    'image/jpeg'
+]
 
 # Avoid autosection label to trigger warning on low level titles
 autosectionlabel_maxdepth = 3
@@ -100,3 +107,6 @@ gettext_compact = False  # optional.
 intersphinx_mapping = {
     'https://docs.python.org/': None,
 }
+
+# Toggle button text
+togglebutton_hint = ""

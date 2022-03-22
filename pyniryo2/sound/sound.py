@@ -248,7 +248,7 @@ class Sound(RobotCommander):
 
 
         :param sound_name: For example, test.wav
-        :type sound_name: string
+        :type sound_name: str
         :rtype: None
         """
         req = self._services.delete_sound_request(sound_name)
@@ -275,9 +275,9 @@ class Sound(RobotCommander):
 
 
         :param sound_name: For example, test.wav. Il will be the name of the sound in the robot
-        :type sound_name: string
+        :type sound_name: str
         :param sound_path: absolute path to the sound file
-        :type sound_path: string
+        :type sound_path: str
         :rtype: None
         """
         if not sound_name.endswith('.mp3') and not sound_name.endswith('.wav'):
@@ -314,7 +314,7 @@ class Sound(RobotCommander):
 
 
         :param text: Text that needs to be spoken < 100 char
-        :type text: string
+        :type text: str
         :param language: language of the text
         :type language: Language
         :rtype: None

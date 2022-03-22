@@ -113,7 +113,7 @@ msgid ""
 ":meth:`~.vision.Vision.vision_pick` function : ::"
 msgstr ""
 "Ce court exemple montre comment réaliser votre première saisie par vision"
-" en utilisant :meth:`~.vision.Vision.vision_pick` function : ::"
+" en utilisant la fonction :meth:`~.vision.Vision.vision_pick`: ::"
 
 #: ../../source/examples/examples_vision.rst:85
 msgid "Code Details - Simple Vision Pick and Place"
@@ -133,7 +133,7 @@ msgid ""
 ":meth:`~.vision.Vision.vision_pick` function ::"
 msgstr ""
 "Ensuite, nous essayons de réaliser un pick par vision dans le workspace "
-"avec la fonction :meth:`~.vision.Vision.vision_pick` function ::"
+"avec la fonction :meth:`~.vision.Vision.vision_pick` ::"
 
 #: ../../source/examples/examples_vision.rst:98
 msgid ""
@@ -159,7 +159,7 @@ msgstr ""
 
 #: ../../source/examples/examples_vision.rst:110
 msgid "Finally, we turn learning mode on::"
-msgstr "Enfin, on ative le mode apprentissage"
+msgstr "Enfin, on désactive le couple des moteurs."
 
 #: ../../source/examples/examples_vision.rst:116
 msgid "If you ``obj_found`` variable indicates ``False``, check that :"
@@ -336,7 +336,7 @@ msgid ""
 "robot has caught ``max_catch_count`` objects ::"
 msgstr ""
 "On active la connexion avec le convoyeur et on démarre une boucle jusqu'à"
-" ce quele robot ait attrapé ``max_catch_count`` objets ::"
+" ce que le robot ait attrapé ``max_catch_count`` objets ::"
 
 #: ../../source/examples/examples_vision.rst:387
 msgid ""

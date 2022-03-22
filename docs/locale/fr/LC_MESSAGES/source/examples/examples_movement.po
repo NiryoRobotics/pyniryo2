@@ -193,5 +193,5 @@ msgstr ""
 "simple que de copier une liste et de modifier seulement 1 ou 2 valeurs. "
 "Par exemple, imaginez que vous souhaitez décaler la position de dépôt de "
 "5 centimètres à chaque itération dans une boucle for, vous pouvez "
-"utilisez :meth:`~.objects.PoseObject.copy_with_offsets` method::"
+"utilisez la méthode :meth:`~.objects.PoseObject.copy_with_offsets`.::"
 

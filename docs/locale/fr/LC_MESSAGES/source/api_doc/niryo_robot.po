@@ -37,7 +37,7 @@ msgstr ""
 
 #: ../../source/api_doc/niryo_robot.rst:9
 msgid "NiryoRobot - Command functions"
-msgstr "NiryoRobot - Fonctions de contrôl"
+msgstr "NiryoRobot - Fonctions de contrôle"
 
 #: ../../source/api_doc/niryo_robot.rst:15
 msgid ""

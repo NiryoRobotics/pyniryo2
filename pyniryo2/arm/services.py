@@ -46,6 +46,10 @@ class ArmServices(object):
                                                  '/niryo_robot_arm_commander/stop_command',
                                                  'niryo_robot_msgs/Trigger')
 
+        self.get_transform_pose_service = roslibpy.Service(self.__client,
+                                                           '/niryo_robot_poses_handlers/get_transform_pose',
+                                                           'niryo_robot_msgs/GetTransformPose')
+
     @staticmethod
     def get_trigger_request():
         return roslibpy.ServiceRequest()
@@ -74,3 +78,7 @@ class ArmServices(object):
     def get_inverse_kinematics_request(pose_list):
         pose_msg = pose_list_to_dict(pose_list)
         return roslibpy.ServiceRequest({"pose": pose_msg})
+
+    @staticmethod
+    def get_transform_pose_request(source_frame, local_frame, position, rpy):
+        return roslibpy.ServiceRequest({"source_frame": source_frame, "local_frame": local_frame, "position": position, "rpy": rpy})

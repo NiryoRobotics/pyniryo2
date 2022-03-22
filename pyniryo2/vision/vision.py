@@ -59,7 +59,7 @@ class Vision(RobotCommander):
         Examples: ::
 
             vision.get_camera_intrinsics()
-            vision.get_camera_intrinsics.value
+            vision.get_camera_intrinsics().value
 
             def camera_info_callback(camera_info):
                 print(camera_info.intrinsics)

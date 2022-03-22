@@ -12,6 +12,7 @@ from .trajectories.trajectories import Trajectories
 from .vision.vision import Vision
 from .led_ring.led_ring import LedRing
 from .sound.sound import Sound
+from .frames.frames import Frames
 
 from .enums import *
 from .arm.enums import *
@@ -23,6 +24,7 @@ from .trajectories.enums import *
 from .vision.enums import *
 from .led_ring.enums import *
 from .sound.enums import *
+from .frames.enums import *
 
 from .objects import PoseObject
 from .arm.objects import HardwareStatusObject, JointStateObject

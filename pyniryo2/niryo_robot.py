@@ -15,6 +15,7 @@ from .trajectories.trajectories import Trajectories
 from .vision.vision import Vision
 from .led_ring.led_ring import LedRing
 from .sound.sound import Sound
+from .frames.frames import Frames
 from .niryo_ros import NiryoRos
 
 
@@ -48,6 +49,7 @@ class NiryoRobot(object):
         self.__conveyor = None
         self.__arm = None
         self.__led_ring = None
+        self.__frames = None
 
         self.__arm = Arm(self.__client)
         self.__conveyor = Conveyor(self.__client)
@@ -56,6 +58,7 @@ class NiryoRobot(object):
         self.__sound = Sound(self.__client)
         self.__tool = Tool(self.__client)
         self.__trajectories = Trajectories(self.__client)
+        self.__frames = Frames(self.__client)
         self.__pick_place = PickPlace(self.__client, self.__arm, self.__tool, self.__trajectories)
         self.__vision = Vision(self.__client, self.__arm, self.__tool)
         self.__led_ring = LedRing(self.__client)
@@ -70,6 +73,7 @@ class NiryoRobot(object):
         del self.__io
         del self.__conveyor
         del self.__arm
+        del self.__frames
 
         self.end()
 
@@ -267,3 +271,16 @@ class NiryoRobot(object):
         :rtype: LedRing
         """
         return self.__led_ring
+
+    @property
+    def frames(self):
+        """
+        Access to the frame API
+
+        Example: ::
+
+            robot = NiryoRobot(<robot_ip_address>)
+
+        :rtype: Frames
+        """
+        return self.__frames

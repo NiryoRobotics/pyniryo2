@@ -39,8 +39,7 @@ Trajectories functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: Trajectories
-    :members: get_trajectory_saved, execute_trajectory_from_poses, execute_trajectory_saved,
-              save_trajectory, delete_trajectory, get_saved_trajectory_list
+    :members:
     :member-order: bysource
 
 

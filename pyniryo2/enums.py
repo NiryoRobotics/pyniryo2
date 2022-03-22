@@ -102,13 +102,16 @@ class ArmMoveCommandType(Enum):
     """
     Enumeration of Arm Move Command : it used for move commands
     """
-    JOINTS = 0  # uses joints
-    POSE = 1  # uses position and rpy
-    POSITION = 2  # uses position
-    RPY = 3  # uses rpy
-    POSE_QUAT = 4  # uses position and orientation
-    LINEAR_POSE = 5  # uses position and rpy
-    SHIFT_POSE = 6  # uses shift
-    SHIFT_LINEAR_POSE = 7  # uses shift
-    EXECUTE_TRAJ = 8  # uses dist_smoothing, list_poses
+    JOINTS = 0            # uses joints 
+    POSE = 1              # uses position and rpy 
+    POSITION = 2          # uses position
+    RPY = 3               # uses rpy
+    POSE_QUAT = 4         # uses position and orientation
+    LINEAR_POSE = 5       # uses position and rpy
+    SHIFT_POSE = 6        # uses shift
+    SHIFT_LINEAR_POSE = 7 # uses shift
+    EXECUTE_TRAJ = 8      # uses dist_smoothing, list_poses
     DRAW_SPIRAL = 9
+    DRAW_CIRCLE = 10
+    EXECUTE_FULL_TRAJ = 11
+    EXECUTE_RAW_TRAJ = 12

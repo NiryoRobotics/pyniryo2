@@ -2,6 +2,7 @@ import roslibpy.actionlib
 
 from pyniryo2.enums import ArmMoveCommandType
 
+
 class TrajectoriesActions(object):
 
     def __init__(self, client):

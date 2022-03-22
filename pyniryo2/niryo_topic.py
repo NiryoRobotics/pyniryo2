@@ -16,9 +16,9 @@ class NiryoTopic(object):
         :param client: Instance of the ROS connection.
         :type client: roslibpy.Ros
         :param topic_name: Topic name.
-        :type topic_name: string
+        :type topic_name: str
         :param topic_type: Topic type.
-        :type topic_type: string
+        :type topic_type: str
         :param conversion_function: convert the response of the topic in a specific type.
         :type conversion_function: function
         :param timeout: Timeout while waiting a message.

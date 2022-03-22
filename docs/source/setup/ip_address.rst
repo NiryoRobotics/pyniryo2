@@ -35,7 +35,7 @@ Computer and Robot Connected on the same router
 You will need to find the robot address using ``nmap``, or you can also use search button
 of Niryo Studio to see which robots are available
 
-You can also make IP permanent so that you won't have to search for it next time
+You can also `make IP permanent <https://docs.niryo.com/product/niryo-studio/source/settings.html#network-settings>`_ so that you won't have to search for it next time.
 
 .. |link_ethernet| replace:: Connect to Ned via Ethernet on Ubuntu
 .. _link_ethernet: https://niryo.com/docs/niryo-one/developer-tutorials/connect-to-niryo-one-via-ethernet-on-ubuntu/

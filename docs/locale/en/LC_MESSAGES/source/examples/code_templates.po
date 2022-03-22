@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 15:44+0000\n"
+"POT-Creation-Date: 2022-03-15 13:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,5 +64,13 @@ msgstr ""
 
 #: ../../source/examples/code_templates.rst:104
 msgid "Huge template for vision users ! ::"
+msgstr ""
+
+#: ../../source/examples/code_templates.rst:160
+msgid "Callbacks Templates"
+msgstr ""
+
+#: ../../source/examples/code_templates.rst:162
+msgid "Template for event integration ! ::"
 msgstr ""
 

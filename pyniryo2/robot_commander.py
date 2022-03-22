@@ -90,8 +90,8 @@ class RobotCommander(object):
                 raise RobotCommandException("Error Code : {}\nMessage : {}".format(result["status"], result["message"]))
         elif "success" in result:
             if not result["success"]:
-                raise RobotCommandException("Success : Failure\nMessage : {}".format(result["status"], result["message"]))
-
+                raise RobotCommandException(
+                    "Success : Failure\nMessage : {}".format(result["status"], result["message"]))
 
     def _map_list(self, list_, type_):
         """

@@ -60,7 +60,7 @@ msgid ""
 "class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
 msgstr ""
 "Toutes les fonctions de contrôle du robot sont accessiblent grâce à une "
-"istance class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
+"instance class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
 
 #: ../../source/api_doc/conveyor.rst:28
 msgid ""

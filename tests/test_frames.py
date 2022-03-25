@@ -68,7 +68,7 @@ class TestFrames(BaseTest):
         new_list_name = [frame for frame in base_list_name]
         new_list_desc = [desc for desc in base_list_desc]
 
-        # Create frame by pose
+        # Create frame by poses
         list_saved = []
         for i in range(4):
             if (i < 2):

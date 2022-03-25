@@ -22,9 +22,9 @@ class Frames(RobotCommander):
 
         Example: ::
 
-        list_frame, list_desc = robot.frames.get_saved_dynamic_frame_list()
-        print(list_frame)
-        print(list_desc)
+            list_frame, list_desc = robot.frames.get_saved_dynamic_frame_list()
+            print(list_frame)
+            print(list_desc)
 
         :return: list of dynamic frames name, list of description of dynamic frames
         :rtype: list[str], list[str]
@@ -39,12 +39,12 @@ class Frames(RobotCommander):
 
         Example: ::
 
-        frame = robot.frames.get_saved_dynamic_frame("default_frame")
+            frame = robot.frames.get_saved_dynamic_frame("default_frame")
 
         :param frame_name: name of the frame
         :type frame_name: str
-        :return: pose of a frame
-        :rtype: geometry_msgs/Pose
+        :return: name, description, position and orientation of a frame
+        :rtype: list[str, str, list[float]]
         """
         self._check_type(frame_name, str)
         req = self._services.get_dynamic_frame_from_name_request(frame_name)
@@ -59,11 +59,11 @@ class Frames(RobotCommander):
 
         Example: ::
 
-        pose_o = [0.1, 0.1, 0.1, 0, 0, 0]
-        pose_x = [0.2, 0.1, 0.1, 0, 0, 0]
-        pose_y = [0.1, 0.2, 0.1, 0, 0, 0]
+            pose_o = [0.1, 0.1, 0.1, 0, 0, 0]
+            pose_x = [0.2, 0.1, 0.1, 0, 0, 0]
+            pose_y = [0.1, 0.2, 0.1, 0, 0, 0]
 
-        robot.frames.save_dynamic_frame_from_poses("name", "une description test", pose_o, pose_x, pose_y)
+            robot.frames.save_dynamic_frame_from_poses("name", "une description test", pose_o, pose_x, pose_y)
 
         :param frame_name: name of the frame
         :type frame_name: str
@@ -100,11 +100,11 @@ class Frames(RobotCommander):
 
         Example: ::
 
-        point_o = [-0.1, -0.1, 0.1]
-        point_x = [-0.2, -0.1, 0.1]
-        point_y = [-0.1, -0.2, 0.1]
+            point_o = [-0.1, -0.1, 0.1]
+            point_x = [-0.2, -0.1, 0.1]
+            point_y = [-0.1, -0.2, 0.1]
 
-        robot.frames.save_dynamic_frame_from_points("name", "une description test", point_o, point_x, point_y)
+            robot.frames.save_dynamic_frame_from_points("name", "une description test", point_o, point_x, point_y)
 
         :param frame_name: name of the frame
         :type frame_name: str
@@ -141,7 +141,7 @@ class Frames(RobotCommander):
 
         Example: ::
 
-        robot.frames.edit_dynamic_frame("name", "new_name", "new description")
+            robot.frames.edit_dynamic_frame("name", "new_name", "new description")
 
         :param frame_name: name of the frame
         :type frame_name: str
@@ -167,7 +167,7 @@ class Frames(RobotCommander):
 
         Example: ::
 
-        robot.frames.delete_saved_dynamic_frame("name")
+            robot.frames.delete_saved_dynamic_frame("name")
 
         :param frame_name: name of the frame to remove
         :type frame_name: str

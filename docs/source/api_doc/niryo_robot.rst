@@ -52,7 +52,7 @@ NiryoRobot properties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: NiryoRobot
-   :members: arm, conveyor, io, pick_place, saved_poses, tool, trajectories, vision, led_ring, sound
+   :members: arm, conveyor, io, pick_place, saved_poses, tool, trajectories, frames vision, led_ring, sound
    :member-order: bysource
    :noindex:
 

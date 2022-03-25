@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-25 09:27+0000\n"
+"POT-Creation-Date: 2022-03-25 08:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,6 +119,7 @@ msgstr ""
 #: pyniryo2.niryo_robot.NiryoRobot.client
 #: pyniryo2.niryo_robot.NiryoRobot.conveyor pyniryo2.niryo_robot.NiryoRobot.end
 #: pyniryo2.niryo_robot.NiryoRobot.io pyniryo2.niryo_robot.NiryoRobot.led_ring
+#: pyniryo2.niryo_robot.NiryoRobot.frames pyniryo2.niryo_robot.NiryoRobot.io
 #: pyniryo2.niryo_robot.NiryoRobot.pick_place
 #: pyniryo2.niryo_robot.NiryoRobot.saved_poses
 #: pyniryo2.niryo_robot.NiryoRobot.sound pyniryo2.niryo_robot.NiryoRobot.tool
@@ -155,6 +156,7 @@ msgstr ""
 
 #: of pyniryo2.niryo_robot.NiryoRobot.arm:3
 #: pyniryo2.niryo_robot.NiryoRobot.conveyor:3
+#: pyniryo2.niryo_robot.NiryoRobot.frames:3
 #: pyniryo2.niryo_robot.NiryoRobot.io:3
 #: pyniryo2.niryo_robot.NiryoRobot.led_ring:3
 #: pyniryo2.niryo_robot.NiryoRobot.pick_place:3
@@ -200,6 +202,8 @@ msgstr ""
 
 #: of pyniryo2.niryo_robot.NiryoRobot.led_ring:1
 msgid "Access to the Led Ring API"
+#: of pyniryo2.niryo_robot.NiryoRobot.frames:1
+msgid "Access to the frame API"
 msgstr ""
 
 #: ../../source/api_doc/niryo_robot.rst:61

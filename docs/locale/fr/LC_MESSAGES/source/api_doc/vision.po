@@ -46,7 +46,7 @@ msgid ""
 "This section reference all existing functions to control your robot arm, "
 "which include"
 msgstr ""
-"Cette section fait référende à toutes les fonctions de contrôle du bras "
+"Cette section fait référence à toutes les fonctions de contrôle du bras "
 "robotique existantes, ce qui inclut"
 
 #: ../../source/api_doc/vision.rst:18
@@ -67,7 +67,7 @@ msgid ""
 "class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
 msgstr ""
 "Toutes les fonctions de contrôle du bras sont accessibles grâce à une "
-"instance declass :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
+"instance de classe :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
 
 #: ../../source/api_doc/vision.rst:32
 msgid ""

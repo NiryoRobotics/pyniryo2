@@ -155,4 +155,3 @@ Huge template for vision users ! ::
         robot.arm.go_to_sleep()
         # Releasing connection
         robot.end()
-

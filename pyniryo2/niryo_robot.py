@@ -197,6 +197,11 @@ class NiryoRobot(object):
 
         Example: ::
 
+            robot = NiryoRobot(<robot_ip_address>)
+            sound.play_sound_user("test_sound.wav")
+            sound_name = sound.get_sounds()[0]
+            sound_duration = sound.play(sound_name)
+
         :rtype: Sound
         """
         return self.__sound
@@ -252,6 +257,7 @@ class NiryoRobot(object):
     def led_ring(self):
         """
         Access to the Led Ring API
+
         Example: ::
 
             robot = NiryoRobot(<robot_ip_address>)

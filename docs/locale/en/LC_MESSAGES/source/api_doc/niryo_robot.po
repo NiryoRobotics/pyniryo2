@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-07 15:36+0000\n"
+"POT-Creation-Date: 2022-03-25 09:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -118,10 +118,10 @@ msgstr ""
 #: of pyniryo2.niryo_robot.NiryoRobot.arm
 #: pyniryo2.niryo_robot.NiryoRobot.client
 #: pyniryo2.niryo_robot.NiryoRobot.conveyor pyniryo2.niryo_robot.NiryoRobot.end
-#: pyniryo2.niryo_robot.NiryoRobot.io
+#: pyniryo2.niryo_robot.NiryoRobot.io pyniryo2.niryo_robot.NiryoRobot.led_ring
 #: pyniryo2.niryo_robot.NiryoRobot.pick_place
 #: pyniryo2.niryo_robot.NiryoRobot.saved_poses
-#: pyniryo2.niryo_robot.NiryoRobot.tool
+#: pyniryo2.niryo_robot.NiryoRobot.sound pyniryo2.niryo_robot.NiryoRobot.tool
 #: pyniryo2.niryo_robot.NiryoRobot.trajectories
 #: pyniryo2.niryo_robot.NiryoRobot.vision pyniryo2.niryo_robot.NiryoRobot.wait
 #: pyniryo2.objects.PoseObject.copy_with_offsets
@@ -156,8 +156,10 @@ msgstr ""
 #: of pyniryo2.niryo_robot.NiryoRobot.arm:3
 #: pyniryo2.niryo_robot.NiryoRobot.conveyor:3
 #: pyniryo2.niryo_robot.NiryoRobot.io:3
+#: pyniryo2.niryo_robot.NiryoRobot.led_ring:3
 #: pyniryo2.niryo_robot.NiryoRobot.pick_place:3
 #: pyniryo2.niryo_robot.NiryoRobot.saved_poses:3
+#: pyniryo2.niryo_robot.NiryoRobot.sound:3
 #: pyniryo2.niryo_robot.NiryoRobot.tool:3
 #: pyniryo2.niryo_robot.NiryoRobot.trajectories:3
 #: pyniryo2.niryo_robot.NiryoRobot.vision:3
@@ -180,6 +182,10 @@ msgstr ""
 msgid "Access to the SavedPoses API"
 msgstr ""
 
+#: of pyniryo2.niryo_robot.NiryoRobot.sound:1
+msgid "Access to the Sound API"
+msgstr ""
+
 #: of pyniryo2.niryo_robot.NiryoRobot.tool:1
 msgid "Access to the Tool API"
 msgstr ""
@@ -190,6 +196,10 @@ msgstr ""
 
 #: of pyniryo2.niryo_robot.NiryoRobot.vision:1
 msgid "Access to the Vision API"
+msgstr ""
+
+#: of pyniryo2.niryo_robot.NiryoRobot.led_ring:1
+msgid "Access to the Led Ring API"
 msgstr ""
 
 #: ../../source/api_doc/niryo_robot.rst:61
@@ -322,5 +332,8 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "ROS client"
+#~ msgstr ""
+
+#~ msgid "Access to the Led Ring API Example: ::"
 #~ msgstr ""
 

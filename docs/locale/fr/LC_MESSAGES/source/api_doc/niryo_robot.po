@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-07 15:36+0000\n"
+"POT-Creation-Date: 2022-03-25 09:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,10 +128,10 @@ msgstr "Client NiryoRos"
 #: of pyniryo2.niryo_robot.NiryoRobot.arm
 #: pyniryo2.niryo_robot.NiryoRobot.client
 #: pyniryo2.niryo_robot.NiryoRobot.conveyor pyniryo2.niryo_robot.NiryoRobot.end
-#: pyniryo2.niryo_robot.NiryoRobot.io
+#: pyniryo2.niryo_robot.NiryoRobot.io pyniryo2.niryo_robot.NiryoRobot.led_ring
 #: pyniryo2.niryo_robot.NiryoRobot.pick_place
 #: pyniryo2.niryo_robot.NiryoRobot.saved_poses
-#: pyniryo2.niryo_robot.NiryoRobot.tool
+#: pyniryo2.niryo_robot.NiryoRobot.sound pyniryo2.niryo_robot.NiryoRobot.tool
 #: pyniryo2.niryo_robot.NiryoRobot.trajectories
 #: pyniryo2.niryo_robot.NiryoRobot.vision pyniryo2.niryo_robot.NiryoRobot.wait
 #: pyniryo2.objects.PoseObject.copy_with_offsets
@@ -166,8 +166,10 @@ msgstr "Accède à l'API du Bras"
 #: of pyniryo2.niryo_robot.NiryoRobot.arm:3
 #: pyniryo2.niryo_robot.NiryoRobot.conveyor:3
 #: pyniryo2.niryo_robot.NiryoRobot.io:3
+#: pyniryo2.niryo_robot.NiryoRobot.led_ring:3
 #: pyniryo2.niryo_robot.NiryoRobot.pick_place:3
 #: pyniryo2.niryo_robot.NiryoRobot.saved_poses:3
+#: pyniryo2.niryo_robot.NiryoRobot.sound:3
 #: pyniryo2.niryo_robot.NiryoRobot.tool:3
 #: pyniryo2.niryo_robot.NiryoRobot.trajectories:3
 #: pyniryo2.niryo_robot.NiryoRobot.vision:3
@@ -190,6 +192,10 @@ msgstr "Accède à l'API de Pick&Place"
 msgid "Access to the SavedPoses API"
 msgstr "Accède à l'API des SavedPoses"
 
+#: of pyniryo2.niryo_robot.NiryoRobot.sound:1
+msgid "Access to the Sound API"
+msgstr "Accède à l'API du son"
+
 #: of pyniryo2.niryo_robot.NiryoRobot.tool:1
 msgid "Access to the Tool API"
 msgstr "Accède à l'API de l'Outil"
@@ -201,6 +207,10 @@ msgstr "Accède à l'API des Trajectoires"
 #: of pyniryo2.niryo_robot.NiryoRobot.vision:1
 msgid "Access to the Vision API"
 msgstr "Accède à l'API de Vision"
+
+#: of pyniryo2.niryo_robot.NiryoRobot.led_ring:1
+msgid "Access to the Led Ring API"
+msgstr "Accède à l'API de l'anneau LED"
 
 #: ../../source/api_doc/niryo_robot.rst:61
 msgid "Globals Enums"
@@ -292,7 +302,9 @@ msgstr "quaternion [qx, qy, qz, qw]"
 
 #: of pyniryo2.objects.PoseObject.quaternion_pose:1
 msgid "Return the position and the quaternion in a list [x, y, z, qx, qy, qz, qw]"
-msgstr "Retourne la positions et le quaternion dans une liste [x, y, z, qx, qy, qz, qw]"
+msgstr ""
+"Retourne la positions et le quaternion dans une liste [x, y, z, qx, qy, "
+"qz, qw]"
 
 #: of pyniryo2.objects.PoseObject.quaternion_pose:3
 msgid "position [x, y, z] + quaternion [qx, qy, qz, qw]"

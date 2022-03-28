@@ -315,8 +315,8 @@ class Arm(RobotCommander):
         Get joints value in radians
         You can also use a getter ::
 
-            joints = robot.get_joints()
-            joints = robot.joints
+            joints = arm.get_joints()
+            joints = arm.joints
 
         :return: List of joints value
         :rtype: list[float]
@@ -331,9 +331,9 @@ class Arm(RobotCommander):
 
         You can also use a getter ::
 
-            pose = robot.pose
-            pose_list = robot.pose.to_list()
-            x, y, z, roll, pitch, yaw = robot.pose.to_list()
+            pose = arm.pose
+            pose_list = arm.pose.to_list()
+            x, y, z, roll, pitch, yaw = arm.pose.to_list()
 
         :return: end effector link pose
         :rtype: PoseObject
@@ -392,24 +392,25 @@ class Arm(RobotCommander):
 
         All lines of the next example realize the same operation: ::
 
-            robot.joints = [0.2, 0.1, 0.3, 0.0, 0.5, 0.0]
-            robot.move_joints([0.2, 0.1, 0.3, 0.0, 0.5, 0.0])
+            arm.joints = [0.2, 0.1, 0.3, 0.0, 0.5, 0.0]
+            arm.move_joints([0.2, 0.1, 0.3, 0.0, 0.5, 0.0])
 
             def move_callback(_):
                 print("Move completed")
 
-            robot.move_joints([0chronous use
-arm.calibrate(CalibrateMode.MANUAL)
-arm.calibrate(CalibrateMode.AUTO)
+            arm.move_joints([0chronous use
+            arm.calibrate(CalibrateMode.MANUAL)
+            arm.calibrate(CalibrateMode.AUTO)
 
-# Asynchronous use
-def calibration_callback(result):
-    if result["status"] < RobotErrors.SUCCESS.value:
-        print("Calibration failed")
-    else:
-        print("Calibration completed with success")
+            # Asynchronous use
+            def calibration_callback(result):
+                if result["status"] < RobotErrors.SUCCESS.value:
+                    print("Calibration failed")
+                else:
+                    print("Calibration completed with success")
 
-arm.calibrate(CalibrateMode.AUTO, calibration_callback)
+            arm.calibrate(CalibrateMode.AUTO, calibration_callback)
+
         :param callback: Callback invoked on successful execution.
         :type callback: function
         :param joints: a list of 6 joints
@@ -459,19 +460,23 @@ arm.calibrate(CalibrateMode.AUTO, calibration_callback)
 
         All lines of the next example realize the same operation: ::
 
-            robot.pose = [0.2, 0.1, 0.3, 0.0, 0.5, 0.0]
-            robot.move_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0])
-            robot.move_pose(PoseObject(0.2, 0.1, 0.3, 0.0, 0.5, 0.0))
+            arm.pose = [0.2, 0.1, 0.3, 0.0, 0.5, 0.0]
+            arm.move_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0])
+            arm.move_pose(PoseObject(0.2, 0.1, 0.3, 0.0, 0.5, 0.0))
+            arm.move_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0], "default_frame")
+            arm.move_pose(PoseObject(0.2, 0.1, 0.3, 0.0, 0.5, 0.0), "default_frame")
 
             def move_callback(_):
                 print("Move completed")
 
-            robot.move_joints([0.2, 0.1, 0.3, 0.0, 0.5, 0.0], callback=move_callback)
+            arm.move_joints([0.2, 0.1, 0.3, 0.0, 0.5, 0.0], callback=move_callback)
 
         :param callback: Callback invoked on successful execution.
         :type callback: function
         :param pose: either a list of 6 coordinates or a ``PoseObject``
         :type pose: Union[tuple[float], list[float], PoseObject]
+        :param frame: name of the frame
+        :type param: str
 
         :rtype: None
         """
@@ -525,19 +530,23 @@ arm.calibrate(CalibrateMode.AUTO, calibration_callback)
 
         All lines of the next example realize the same operation: ::
 
-            robot.move_linear_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0])
-            robot.move_linear_pose(PoseObject(0.2, 0.1, 0.3, 0.0, 0.5, 0.0))
+            arm.move_linear_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0])
+            arm.move_linear_pose(PoseObject(0.2, 0.1, 0.3, 0.0, 0.5, 0.0))
+            arm.move_linear_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0], "default_frame")
+            arm.move_linear_pose(PoseObject(0.2, 0.1, 0.3, 0.0, 0.5, 0.0), "default_frame")
 
             def move_callback(_):
                 print("Move completed")
 
-            robot.move_linear_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0], callback=move_callback)
+            arm.move_linear_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0], callback=move_callback)
 
         :param callback: Callback invoked on successful execution.
         :type callback: function
         :param pose: either or a list of 6 coordinates or a PoseObject
         :type pose: Union[tuple[float], list[float], PoseObject]
         :rtype: None
+        :param frame: name of the frame
+        :type param: str
         """
         if (frame != ""):
             position = {}
@@ -644,9 +653,9 @@ arm.calibrate(CalibrateMode.AUTO, calibration_callback)
 
         Example: ::
 
-        robot.frames.move_relative("default_frame", [0.05, 0.05, 0.05, 0.3, 0, 0])
+            arm.move_relative("default_frame", [0.05, 0.05, 0.05, 0.3, 0, 0])
 
-        :param frame_name : name of local frame
+        :param frame_name: name of local frame
         :type frame_name: str
         :param offset: list which contains offset of x, y, z, roll, pitch, yaw
         :type offset: list[float]
@@ -666,9 +675,9 @@ arm.calibrate(CalibrateMode.AUTO, calibration_callback)
 
         Example: ::
 
-        robot.frames.move_linear_relative("default_frame", [0.05, 0.05, 0.05, 0.3, 0, 0])
+            arm.move_linear_relative("default_frame", [0.05, 0.05, 0.05, 0.3, 0, 0])
 
-        :param frame_name : name of local frame
+        :param frame_name: name of local frame
         :type frame_name: str
         :param offset: list which contains offset of x, y, z, roll, pitch, yaw
         :type offset: list[float]

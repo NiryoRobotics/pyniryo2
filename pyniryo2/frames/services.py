@@ -34,16 +34,19 @@ class FramesServices(object):
         return [name, description, position, orientation]
 
     @staticmethod
-    def save_dynamic_frame_from_points_request(dynamic_frame):
-        return roslibpy.ServiceRequest({"cmd": ManageFrames.SAVE_WITH_POINTS.value, "dynamic_frame": dynamic_frame})
+    def save_dynamic_frame_from_points_request(frame_name, description, points_list):
+        dynamic_frame = {"name": frame_name, "description": description, "points": points_list}
+        return roslibpy.ServiceRequest(
+            {"cmd": ManageFrames.SAVE_WITH_POINTS.value, "dynamic_frame": dynamic_frame})
 
     @staticmethod
-    def edit_dynamic_frame_request(dynamic_frame):
+    def edit_dynamic_frame_request(frame_name, new_frame_name, new_description):
+        dynamic_frame = {"name": frame_name, "new_name": new_frame_name, "description": new_description}
         return roslibpy.ServiceRequest({"cmd": ManageFrames.EDIT.value, "dynamic_frame": dynamic_frame})
 
     @staticmethod
-    def delete_dynamic_frame_request(dynamic_frame):
-        return roslibpy.ServiceRequest({"cmd": ManageFrames.DELETE.value, "dynamic_frame": dynamic_frame})
+    def delete_dynamic_frame_request(frame_name):
+        return roslibpy.ServiceRequest({"cmd": ManageFrames.DELETE.value, "dynamic_frame": {"name": frame_name}})
 
     @staticmethod
     def get_saved_dynamic_frame_list_request():

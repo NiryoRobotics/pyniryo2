@@ -1,12 +1,10 @@
 # - Imports
-import numpy as np
-import roslibpy
-import time
-
 from pyniryo2.robot_commander import RobotCommander
 from pyniryo2.utils import point_list_to_dict
+from pyniryo2.objects import PoseObject
 
 from .services import FramesServices
+
 
 class Frames(RobotCommander):
     # --- Public functions --- #
@@ -80,17 +78,14 @@ class Frames(RobotCommander):
         """
         self._check_type(frame_name, str)
         self._check_type(description, str)
-        self._check_type(pose_origin, list)
-        self._check_type(pose_x, list)
-        self._check_type(pose_y, list)
+        self._check_instance(pose_origin, (list, PoseObject))
+        self._check_instance(pose_x, (list, PoseObject))
+        self._check_instance(pose_y, (list, PoseObject))
 
         pose_list = [self._args_pose_to_list(pose) for pose in (pose_origin, pose_x, pose_y)]
-
         points_list = [point_list_to_dict(point) for point in pose_list]
 
-        dynamic_frame = {"name": frame_name, "description": description, "points": points_list}
-
-        req = self._services.save_dynamic_frame_from_points_request(dynamic_frame)
+        req = self._services.save_dynamic_frame_from_points_request(frame_name, description, points_list)
         response = self._services.manage_frame_service.call(req)
         self._check_result_status(response)
 
@@ -126,16 +121,13 @@ class Frames(RobotCommander):
         self._check_type(point_y, list)
 
         points_list_raw = [point_origin, point_x, point_y]
-
         points_list = [point_list_to_dict(point) for point in points_list_raw]
 
-        dynamic_frame = {"name": frame_name, "description": description, "points": points_list}
-
-        req = self._services.save_dynamic_frame_from_points_request(dynamic_frame)
+        req = self._services.save_dynamic_frame_from_points_request(frame_name, description, points_list)
         response = self._services.manage_frame_service.call(req)
         self._check_result_status(response)
 
-    def edit_dynamic_frame(self, frame_name, new_frame_name,  new_description):
+    def edit_dynamic_frame(self, frame_name, new_frame_name, new_description):
         """
         Modify a dynamic frame
 
@@ -156,8 +148,7 @@ class Frames(RobotCommander):
         self._check_type(new_frame_name, str)
         self._check_type(new_description, str)
 
-        dynamic_frame = {"name": frame_name, "new_name": new_frame_name, "description": new_description}
-        req = self._services.edit_dynamic_frame_request(dynamic_frame)
+        req = self._services.edit_dynamic_frame_request(frame_name, new_frame_name, new_description)
         response = self._services.manage_frame_service.call(req)
         self._check_result_status(response)
 
@@ -176,7 +167,6 @@ class Frames(RobotCommander):
         """
         self._check_type(frame_name, str)
 
-        dynamic_frame = {"name": frame_name}
-        req = self._services.delete_dynamic_frame_request(dynamic_frame)
+        req = self._services.delete_dynamic_frame_request(frame_name)
         response = self._services.manage_frame_service.call(req)
         self._check_result_status(response)

@@ -29,7 +29,7 @@ class BaseTest(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         cls.arm.go_to_sleep()
-        cls.client.close()
+        #cls.client.close()
 
     @staticmethod
     def assertAlmostEqualVector(a, b, decimal=1):

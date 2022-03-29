@@ -6,8 +6,8 @@ PyNiryo2 Documentation
    :align: center
 
 
-This documentation presents Ned's PyPi package, which is a
-TCP API made with Python.
+This documentation presents Ned's PyPi package, which is the second version of the python API Pyniryo for the robots:
+Niryo One, Ned and Ned2. It is based on the roslibpy library and allows a more complete programming of the robots.
 
 It offers a simple way for developers to create programs for robot and
 to control them via remote communication from their computers.
@@ -24,6 +24,28 @@ This API is based on `roslibpy <https://roslibpy.readthedocs.io/en/latest/index.
    :align: center
 
    Niryo Ned
+
+.. list-table::
+   :header-rows: 1
+   :widths: auto
+   :stub-columns: 0
+   :align: center
+
+   *  - Functionality
+      - PyNiryo
+      - PyNiryo2
+   *  - Robot control
+      - **YES**
+      - **YES**
+   *  - Callbacks functions
+      - **NO**
+      - **YES**
+   *  - Parallelism of commands
+      - **NO**
+      - **YES**
+   *  - Asynchronous functions
+      - **NO**
+      - **YES**
 
 
 Before getting started

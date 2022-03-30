@@ -1,7 +1,9 @@
 import roslibpy
 
-from .enums import ManageFrames
+from pyniryo2.utils import pose_list_to_dict, point_list_to_dict
 
+from .enums import ManageFrames
+from .objects import DynamicFrameInfo
 
 class FramesServices(object):
 
@@ -25,13 +27,18 @@ class FramesServices(object):
         return roslibpy.ServiceRequest({"name": frame_name})
 
     @staticmethod
-    def get_dynamic_frame_from_name_response_to_list(response):
+    def get_dynamic_frame_from_name_response_to_named_tuple(response):
         response = response["dynamic_frame"]
-        name = response["name"]
-        description = response["description"]
-        position = [response["position"]["x"], response["position"]["y"], response["position"]["z"]]
-        orientation = [response["rpy"]["roll"], response["rpy"]["pitch"], response["rpy"]["yaw"]]
-        return [name, description, position, orientation]
+        frame = DynamicFrameInfo(response["name"], response["description"], 
+                                 [response["position"]["x"], response["position"]["y"], response["position"]["z"]],
+                                 [response["rpy"]["roll"], response["rpy"]["pitch"], response["rpy"]["yaw"]])
+        return frame
+
+    @staticmethod
+    def save_dynamic_frame_from_poses_request(frame_name, description, poses_list):
+        dynamic_frame = {"name": frame_name, "description": description, "poses":[pose_list_to_dict(pose) for pose in poses_list]}
+        return roslibpy.ServiceRequest(
+            {"cmd": ManageFrames.SAVE.value, "dynamic_frame": dynamic_frame})
 
     @staticmethod
     def save_dynamic_frame_from_points_request(frame_name, description, points_list):
@@ -54,6 +61,9 @@ class FramesServices(object):
 
     @staticmethod
     def get_saved_dynamic_frame_list_response_to_list(response):
-        name = [str(pose_name) for pose_name in response["name_list"]]
-        desc = [str(desc) for desc in response["description_list"]]
-        return name, desc
+        list_name = response["name_list"]
+        desc_list = response["description_list"]
+        dict={}
+        for x, y in zip(list_name, desc_list):
+            dict[x] = y       
+        return dict

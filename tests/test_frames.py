@@ -64,9 +64,8 @@ class TestFrames(BaseTest):
     ]
 
     def test_creation_edition_frame(self):
-        base_list_name, base_list_desc = self.frames.get_saved_dynamic_frame_list()
-        new_list_name = [frame for frame in base_list_name]
-        new_list_desc = [desc for desc in base_list_desc]
+        base_dict =  self.frames.get_saved_dynamic_frame_list()
+        new_base_dict = base_dict.copy()
 
         # Create frame by poses
         list_saved = []
@@ -84,20 +83,15 @@ class TestFrames(BaseTest):
                 new_edit_name = 'unitEditTestFramePose_{:03d}'.format(i)
                 new_edit_desc = 'descEditTestFramePose_{:03d}'.format(i)
                 self.assertIsNone(self.frames.edit_dynamic_frame(new_name, new_edit_name, new_edit_desc))
-                self.assertEqual(self.frames.get_saved_dynamic_frame(new_edit_name)[1], new_edit_desc)
+                self.assertEqual(self.frames.get_saved_dynamic_frame(new_edit_name).description, new_edit_desc)
 
                 with self.assertRaises(RobotCommandException):
                     self.frames.get_saved_dynamic_frame(0)
 
-                if new_edit_name not in new_list_name:
-                    new_list_name.append(new_edit_name)
-                    list_saved.append(new_edit_name)
 
-                if new_edit_desc not in new_list_desc:
-                    new_list_desc.append(new_edit_desc)
+                new_base_dict[new_edit_name] = new_edit_desc
 
-                self.assertEqual(self.frames.get_saved_dynamic_frame_list()[0], new_list_name)
-                self.assertEqual(self.frames.get_saved_dynamic_frame_list()[1], new_list_desc)
+                self.assertEqual(self.frames.get_saved_dynamic_frame_list(), new_base_dict)
 
                 with self.assertRaises(RobotCommandException):
                     self.frames.save_dynamic_frame_from_poses(0, "unittest", pose_o, pose_x, pose_y)
@@ -123,15 +117,9 @@ class TestFrames(BaseTest):
                 self.assertIsNone(self.frames.edit_dynamic_frame(new_name, new_edit_name, new_edit_desc))
                 self.assertEqual(self.frames.get_saved_dynamic_frame(new_edit_name)[1], new_edit_desc)
 
-                if new_edit_name not in new_list_name:
-                    new_list_name.append(new_edit_name)
-                    list_saved.append(new_edit_name)
+                new_base_dict[new_edit_name] = new_edit_desc
 
-                if new_edit_desc not in new_list_desc:
-                    new_list_desc.append(new_edit_desc)
-
-                self.assertEqual(self.frames.get_saved_dynamic_frame_list()[0], new_list_name)
-                self.assertEqual(self.frames.get_saved_dynamic_frame_list()[1], new_list_desc)
+                self.assertEqual(self.frames.get_saved_dynamic_frame_list(), new_base_dict)
 
     def test_move_in_frame(self):
         # Move frame 000
@@ -163,16 +151,16 @@ class TestFrames(BaseTest):
             self.arm.move_linear_relative(0, [0.05, 0.05, 0.05, 0.1, 0.1, 0.1])
 
     def test_deletion(self):
-        base_list = self.frames.get_saved_dynamic_frame_list()[0]
-        new_list = [frame for frame in base_list]
+        base_dict =  self.frames.get_saved_dynamic_frame_list()
+        new_base_dict = base_dict.copy()
 
         for i in range(4):
             name_delete = 'unitEditTestFramePose_{:03d}'.format(i)
             self.assertIsNone(self.frames.delete_saved_dynamic_frame(name_delete))
 
-            new_list.remove(name_delete)
+            new_base_dict.pop(name_delete)
 
-            self.assertEqual(self.frames.get_saved_dynamic_frame_list()[0], new_list)
+            self.assertEqual(self.frames.get_saved_dynamic_frame_list(), new_base_dict)
 
 
 def suite():

@@ -25,7 +25,7 @@ class Frames(RobotCommander):
             print(list_desc)
 
         :return: list of dynamic frames name, list of description of dynamic frames
-        :rtype: list[str], list[str]
+        :rtype: dictionnaire{name:description}
         """
         req = self._services.get_saved_dynamic_frame_list_request()
         response = self._services.get_frame_list_service.call(req)
@@ -42,14 +42,14 @@ class Frames(RobotCommander):
         :param frame_name: name of the frame
         :type frame_name: str
         :return: name, description, position and orientation of a frame
-        :rtype: list[str, str, list[float]]
+        :rtype: namedtuple(name(str), description(str), position(list[float]), orientation(list[float]))
         """
         self._check_type(frame_name, str)
         req = self._services.get_dynamic_frame_from_name_request(frame_name)
         response = self._services.get_frame_from_name_service.call(req)
         self._check_result_status(response)
 
-        return self._services.get_dynamic_frame_from_name_response_to_list(response)
+        return self._services.get_dynamic_frame_from_name_response_to_named_tuple(response)
 
     def save_dynamic_frame_from_poses(self, frame_name, description, pose_origin, pose_x, pose_y):
         """
@@ -82,10 +82,12 @@ class Frames(RobotCommander):
         self._check_instance(pose_x, (list, PoseObject))
         self._check_instance(pose_y, (list, PoseObject))
 
-        pose_list = [self._args_pose_to_list(pose) for pose in (pose_origin, pose_x, pose_y)]
-        points_list = [point_list_to_dict(point) for point in pose_list]
+        self._check_length(pose_origin, 6)
+        self._check_length(pose_x, 6)
+        self._check_length(pose_y, 6)
 
-        req = self._services.save_dynamic_frame_from_points_request(frame_name, description, points_list)
+        pose_list = [self._args_pose_to_list(pose) for pose in (pose_origin, pose_x, pose_y)]
+        req = self._services.save_dynamic_frame_from_poses_request(frame_name, description, pose_list)
         response = self._services.manage_frame_service.call(req)
         self._check_result_status(response)
 
@@ -119,6 +121,10 @@ class Frames(RobotCommander):
         self._check_type(point_origin, list)
         self._check_type(point_x, list)
         self._check_type(point_y, list)
+
+        self._check_length(point_origin, 3)
+        self._check_length(point_x, 3)
+        self._check_length(point_y, 3)
 
         points_list_raw = [point_origin, point_x, point_y]
         points_list = [point_list_to_dict(point) for point in points_list_raw]

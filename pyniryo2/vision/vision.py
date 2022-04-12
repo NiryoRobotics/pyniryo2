@@ -376,8 +376,8 @@ class Vision(RobotCommander):
         :rtype: None
         """
         self._check_type(workspace_name, str)
-        point_list = [self._args_pose_to_list(pose) for pose in (pose_origin, pose_2, pose_3, pose_4)]
-        req = self._services.add_workspace_from_points_request(workspace_name, point_list)
+        pose_list = [self._args_pose_to_list(pose) for pose in (pose_origin, pose_2, pose_3, pose_4)]
+        req = self._services.add_workspace_from_poses_request(workspace_name, pose_list)
         _resp = self._services.manage_workspace_service.call(req)
 
     def save_workspace_from_points(self, workspace_name, point_origin, point_2, point_3, point_4):

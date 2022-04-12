@@ -49,6 +49,23 @@ Calibration functions
 .. automethod:: Arm.reset_calibration
 .. automethod:: Arm.need_calibration
 
+Robot move functions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: Arm.set_arm_max_velocity
+.. automethod:: Arm.go_to_sleep
+.. automethod:: Arm.stop_move
+.. automethod:: Arm.move_to_home_pose
+.. automethod:: Arm.move_joints
+.. automethod:: Arm.move_pose
+.. automethod:: Arm.move_linear_pose
+.. automethod:: Arm.shift_pose
+.. automethod:: Arm.move_relative
+.. automethod:: Arm.move_linear_relative
+.. automethod:: Arm.set_jog_control
+.. automethod:: Arm.jog_joints
+.. automethod:: Arm.jog_pose
+
 
 Robot status functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -1,0 +1,179 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Niryo All rights reserved. No part of this document
+# may be reproduced or transmitted in any form or by any means without prior
+# written consent of Niryo SAS
+# This file is distributed under the same license as the PyNiryo2 package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyNiryo2 v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-25 08:56+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/api_doc/frames.rst:2
+msgid "Frames"
+msgstr "Repères"
+
+#: ../../source/api_doc/frames.rst:4
+msgid ""
+"This file presents the different :ref:`source/api_doc/frames:Frames - "
+"Command functions` available with the Frames API"
+msgstr ""
+"Ce fichier présente les différentes :ref:`source/api_doc/frames:Frames - "
+"Command functions` disponible avec l’API du Bras"
+
+#: ../../source/api_doc/frames.rst:6
+msgid ""
+"All functions to control the robot are accessible via an instance of the "
+"class :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
+msgstr ""
+"Toutes les fonctions de contrôle du robot sont accessible grâce à une "
+"instance de classe :ref:`source/api_doc/niryo_robot:NiryoRobot` ::"
+
+#: ../../source/api_doc/frames.rst:16
+msgid "Frames - Command functions"
+msgstr "Repères : Fonctions de contrôle"
+
+#: ../../source/api_doc/frames.rst:23
+msgid "List of functions subsections:"
+msgstr "Liste des sous-sections des fonctions:"
+
+#: ../../source/api_doc/frames.rst:30
+msgid "Frames functions"
+msgstr "Fonctions des repères"
+
+#: of pyniryo2.frames.frames.Frames.get_saved_dynamic_frame_list:1
+msgid "Get list of saved dynamic frames"
+msgstr "Obtient la liste des repères dynamiques"
+
+#: of pyniryo2.frames.frames.Frames.delete_saved_dynamic_frame:3
+#: pyniryo2.frames.frames.Frames.edit_dynamic_frame:3
+#: pyniryo2.frames.frames.Frames.get_saved_dynamic_frame:3
+#: pyniryo2.frames.frames.Frames.get_saved_dynamic_frame_list:3
+#: pyniryo2.frames.frames.Frames.save_dynamic_frame_from_points:3
+#: pyniryo2.frames.frames.Frames.save_dynamic_frame_from_poses:3
+msgid "Example: ::"
+msgstr "Exemple: ::"
+
+#: of pyniryo2.frames.frames.Frames.delete_saved_dynamic_frame
+#: pyniryo2.frames.frames.Frames.edit_dynamic_frame
+#: pyniryo2.frames.frames.Frames.get_saved_dynamic_frame
+#: pyniryo2.frames.frames.Frames.get_saved_dynamic_frame_list
+#: pyniryo2.frames.frames.Frames.save_dynamic_frame_from_points
+#: pyniryo2.frames.frames.Frames.save_dynamic_frame_from_poses
+msgid "Returns"
+msgstr "Renvoie"
+
+#: of pyniryo2.frames.frames.Frames.get_saved_dynamic_frame_list:9
+msgid "list of dynamic frames name, list of description of dynamic frames"
+msgstr ""
+"la liste des noms des repères dynamiques, la liste des descriptions des "
+"repères dynamiques"
+
+#: of pyniryo2.frames.frames.Frames.delete_saved_dynamic_frame
+#: pyniryo2.frames.frames.Frames.edit_dynamic_frame
+#: pyniryo2.frames.frames.Frames.get_saved_dynamic_frame
+#: pyniryo2.frames.frames.Frames.get_saved_dynamic_frame_list
+#: pyniryo2.frames.frames.Frames.save_dynamic_frame_from_points
+#: pyniryo2.frames.frames.Frames.save_dynamic_frame_from_poses
+msgid "Return type"
+msgstr "Type renvoyé"
+
+#: of pyniryo2.frames.frames.Frames.get_saved_dynamic_frame:1
+msgid "Get name, description and pose of a dynamic frame"
+msgstr "Obtient le nom, la description et la position d'un repère dynamique"
+
+#: of pyniryo2.frames.frames.Frames.delete_saved_dynamic_frame
+#: pyniryo2.frames.frames.Frames.edit_dynamic_frame
+#: pyniryo2.frames.frames.Frames.get_saved_dynamic_frame
+#: pyniryo2.frames.frames.Frames.save_dynamic_frame_from_points
+#: pyniryo2.frames.frames.Frames.save_dynamic_frame_from_poses
+msgid "Parameters"
+msgstr "Paramètres"
+
+#: of pyniryo2.frames.frames.Frames.edit_dynamic_frame:7
+#: pyniryo2.frames.frames.Frames.get_saved_dynamic_frame:7
+#: pyniryo2.frames.frames.Frames.save_dynamic_frame_from_points:11
+#: pyniryo2.frames.frames.Frames.save_dynamic_frame_from_poses:11
+msgid "name of the frame"
+msgstr "nom du repère"
+
+#: of pyniryo2.frames.frames.Frames.get_saved_dynamic_frame:9
+msgid "name, description, position and orientation of a frame"
+msgstr "Obtient le nom, la description et la position d'un repère dynamique"
+
+#: of pyniryo2.frames.frames.Frames.save_dynamic_frame_from_poses:1
+msgid "Create a dynamic frame with 3 poses (origin, x, y)"
+msgstr "Créer un repère dynamiques avec 3 positions (origine, x, y)"
+
+#: of pyniryo2.frames.frames.Frames.save_dynamic_frame_from_points:13
+#: pyniryo2.frames.frames.Frames.save_dynamic_frame_from_poses:13
+msgid "description of the frame"
+msgstr "decription du repère"
+
+#: of pyniryo2.frames.frames.Frames.save_dynamic_frame_from_poses:15
+msgid "pose of the origin of the frame"
+msgstr "position de l'origine du repère"
+
+#: of pyniryo2.frames.frames.Frames.save_dynamic_frame_from_poses:17
+msgid "pose of the point x of the frame"
+msgstr "position du point x du repère"
+
+#: of pyniryo2.frames.frames.Frames.save_dynamic_frame_from_poses:19
+msgid "pose of the point y of the frame"
+msgstr "position du point y du repère"
+
+#: of pyniryo2.frames.frames.Frames.delete_saved_dynamic_frame:9
+#: pyniryo2.frames.frames.Frames.edit_dynamic_frame:13
+#: pyniryo2.frames.frames.Frames.save_dynamic_frame_from_points:21
+#: pyniryo2.frames.frames.Frames.save_dynamic_frame_from_poses:21
+msgid "status, message"
+msgstr "status, message"
+
+#: of pyniryo2.frames.frames.Frames.save_dynamic_frame_from_points:1
+msgid "Create a dynamic frame with 3 points (origin, x, y)"
+msgstr "Créer un repère dynamique avec 3 points (origine, x, y)"
+
+#: of pyniryo2.frames.frames.Frames.save_dynamic_frame_from_points:15
+msgid "origin point of the frame"
+msgstr "point d'origine du repère"
+
+#: of pyniryo2.frames.frames.Frames.save_dynamic_frame_from_points:17
+msgid "point x of the frame"
+msgstr "point x du repère"
+
+#: of pyniryo2.frames.frames.Frames.save_dynamic_frame_from_points:19
+msgid "point y of the frame"
+msgstr "point y du repère"
+
+#: of pyniryo2.frames.frames.Frames.edit_dynamic_frame:1
+msgid "Modify a dynamic frame"
+msgstr "Modifie un repère dynamique"
+
+#: of pyniryo2.frames.frames.Frames.edit_dynamic_frame:9
+msgid "new name of the frame"
+msgstr "nouveau nom du repère"
+
+#: of pyniryo2.frames.frames.Frames.edit_dynamic_frame:11
+msgid "new description of the frame"
+msgstr "nouvelle description du repère"
+
+#: of pyniryo2.frames.frames.Frames.delete_saved_dynamic_frame:1
+msgid "Delete a dynamic frame"
+msgstr "Supprime un repère"
+
+#: of pyniryo2.frames.frames.Frames.delete_saved_dynamic_frame:7
+msgid "name of the frame to remove"
+msgstr "nom du repère à supprimer"
+
+#~ msgid "pose of a frame"
+#~ msgstr "position du repère"

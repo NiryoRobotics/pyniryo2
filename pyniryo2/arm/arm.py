@@ -1,5 +1,6 @@
 # - Imports
 from __future__ import print_function
+from numpy import isin
 
 # Python libraries
 import roslibpy
@@ -314,8 +315,8 @@ class Arm(RobotCommander):
         Get joints value in radians
         You can also use a getter ::
 
-            joints = robot.get_joints()
-            joints = robot.joints
+            joints = arm.get_joints()
+            joints = arm.joints
 
         :return: List of joints value
         :rtype: list[float]
@@ -330,9 +331,9 @@ class Arm(RobotCommander):
 
         You can also use a getter ::
 
-            pose = robot.pose
-            pose_list = robot.pose.to_list()
-            x, y, z, roll, pitch, yaw = robot.pose.to_list()
+            pose = arm.pose
+            pose_list = arm.pose.to_list()
+            x, y, z, roll, pitch, yaw = arm.pose.to_list()
 
         :return: end effector link pose
         :rtype: PoseObject
@@ -391,24 +392,25 @@ class Arm(RobotCommander):
 
         All lines of the next example realize the same operation: ::
 
-            robot.joints = [0.2, 0.1, 0.3, 0.0, 0.5, 0.0]
-            robot.move_joints([0.2, 0.1, 0.3, 0.0, 0.5, 0.0])
+            arm.joints = [0.2, 0.1, 0.3, 0.0, 0.5, 0.0]
+            arm.move_joints([0.2, 0.1, 0.3, 0.0, 0.5, 0.0])
 
             def move_callback(_):
                 print("Move completed")
 
-            robot.move_joints([0chronous use
-arm.calibrate(CalibrateMode.MANUAL)
-arm.calibrate(CalibrateMode.AUTO)
+            arm.move_joints([0chronous use
+            arm.calibrate(CalibrateMode.MANUAL)
+            arm.calibrate(CalibrateMode.AUTO)
 
-# Asynchronous use
-def calibration_callback(result):
-    if result["status"] < RobotErrors.SUCCESS.value:
-        print("Calibration failed")
-    else:
-        print("Calibration completed with success")
+            # Asynchronous use
+            def calibration_callback(result):
+                if result["status"] < RobotErrors.SUCCESS.value:
+                    print("Calibration failed")
+                else:
+                    print("Calibration completed with success")
 
-arm.calibrate(CalibrateMode.AUTO, calibration_callback)
+            arm.calibrate(CalibrateMode.AUTO, calibration_callback)
+
         :param callback: Callback invoked on successful execution.
         :type callback: function
         :param joints: a list of 6 joints
@@ -432,32 +434,68 @@ arm.calibrate(CalibrateMode.AUTO, calibration_callback)
         """
         self.move_pose(pose)
 
-    def move_pose(self, pose, callback=None):
+    def _get_transform_pose(self, source_frame, local_frame, position, rpy):
         """
-        Move robot end effector pose to a (x, y, z, roll, pitch, yaw) pose.
+        Transform a pose from a source_frame to a pose in a local_frame
+
+        :param source_frame: name of the source_frame
+        :type source_frame: str
+        :param local_frame: name of the local_frame
+        :type local_frame: str
+        :param position: position of the pose to convert
+        :type position: dict[x, y, z]
+        :param rpy: orientation of the pose to convert
+        :type rpy: dict[roll, pitch, yaw]
+        """
+        req = self._services.get_transform_pose_request(source_frame, local_frame, position, rpy)
+        response = self._services.get_transform_pose_service.call(req)
+        return response["position"], response["rpy"]
+
+    def move_pose(self, pose, frame="", callback=None):
+        """
+        Move robot end effector pose to a (x, y, z, roll, pitch, yaw) pose in the frame (frame_name) if defined.
         x, y & z are expressed in meters / roll, pitch & yaw are expressed in radians
         If a callback function is not passed in parameter, the function will be blocking.
         Otherwise, the callback will be called when the execution of the function is finished.
 
         All lines of the next example realize the same operation: ::
 
-            robot.pose = [0.2, 0.1, 0.3, 0.0, 0.5, 0.0]
-            robot.move_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0])
-            robot.move_pose(PoseObject(0.2, 0.1, 0.3, 0.0, 0.5, 0.0))
+            arm.pose = [0.2, 0.1, 0.3, 0.0, 0.5, 0.0]
+            arm.move_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0])
+            arm.move_pose(PoseObject(0.2, 0.1, 0.3, 0.0, 0.5, 0.0))
+            arm.move_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0], "default_frame")
+            arm.move_pose(PoseObject(0.2, 0.1, 0.3, 0.0, 0.5, 0.0), "default_frame")
 
             def move_callback(_):
                 print("Move completed")
 
-            robot.move_joints([0.2, 0.1, 0.3, 0.0, 0.5, 0.0], move_callback)
+            arm.move_joints([0.2, 0.1, 0.3, 0.0, 0.5, 0.0], callback=move_callback)
 
         :param callback: Callback invoked on successful execution.
         :type callback: function
         :param pose: either a list of 6 coordinates or a ``PoseObject``
         :type pose: Union[tuple[float], list[float], PoseObject]
+        :param frame: name of the frame
+        :type param: str
 
         :rtype: None
         """
-        pose_list = self.__args_pose_to_list(pose)
+        if (frame != ""):
+            position = {}
+            rpy = {}
+            if (isinstance(pose, PoseObject)):
+                position = {"x": pose.x, "y": pose.y, "z": pose.z}
+                rpy = {"roll": pose.roll, "pitch": pose.pitch, "yaw": pose.yaw}
+            else:
+                position = {"x": pose[0], "y": pose[1], "z": pose[2]}
+                rpy = {"roll": pose[3], "pitch": pose[4], "yaw": pose[5]}
+            frame_position, frame_rpy = self._get_transform_pose("world", frame, position, rpy)
+
+            pose_list = [frame_position[axis] for axis in ["x", "y", "z"]] + \
+                [frame_rpy[axis] for axis in ["roll", "pitch", "yaw"]]
+        else:
+            pose_list = self.__args_pose_to_list(pose)
+
         goal = self._actions.get_move_pose_goal(pose_list)
         goal.send(result_callback=callback)
         if callback is None:
@@ -484,29 +522,48 @@ arm.calibrate(CalibrateMode.AUTO, calibration_callback)
         self.move_to_home_pose()
         self.set_learning_mode(True)
 
-    def move_linear_pose(self, pose, callback=None):
+    def move_linear_pose(self, pose, frame="", callback=None):
         """
-        Move robot end effector pose to a (x, y, z, roll, pitch, yaw) pose in a linear way
+        Move robot end effector pose to a (x, y, z, roll, pitch, yaw) pose in a linear way, in the frame (frame_name) if defined.
         If a callback function is not passed in parameter, the function will be blocking.
         Otherwise, the callback will be called when the execution of the function is finished.
 
         All lines of the next example realize the same operation: ::
 
-            robot.move_linear_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0])
-            robot.move_linear_pose(PoseObject(0.2, 0.1, 0.3, 0.0, 0.5, 0.0))
+            arm.move_linear_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0])
+            arm.move_linear_pose(PoseObject(0.2, 0.1, 0.3, 0.0, 0.5, 0.0))
+            arm.move_linear_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0], "default_frame")
+            arm.move_linear_pose(PoseObject(0.2, 0.1, 0.3, 0.0, 0.5, 0.0), "default_frame")
 
             def move_callback(_):
                 print("Move completed")
 
-            robot.move_linear_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0], move_callback)
+            arm.move_linear_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0], callback=move_callback)
 
         :param callback: Callback invoked on successful execution.
         :type callback: function
         :param pose: either or a list of 6 coordinates or a PoseObject
         :type pose: Union[tuple[float], list[float], PoseObject]
         :rtype: None
+        :param frame: name of the frame
+        :type param: str
         """
-        pose_list = self.__args_pose_to_list(pose)
+        if (frame != ""):
+            position = {}
+            rpy = {}
+            if (isinstance(pose, PoseObject)):
+                position = {"x": pose.x, "y": pose.y, "z": pose.z}
+                rpy = {"roll": pose.roll, "pitch": pose.pitch, "yaw": pose.yaw}
+            else:
+                position = {"x": pose[0], "y": pose[1], "z": pose[2]}
+                rpy = {"roll": pose[3], "pitch": pose[4], "yaw": pose[5]}
+            frame_position, frame_rpy = self._get_transform_pose("world", frame, position, rpy)
+
+            pose_list = [frame_position[axis] for axis in ["x", "y", "z"]] + \
+                [frame_rpy[axis] for axis in ["roll", "pitch", "yaw"]]
+        else:
+            pose_list = self.__args_pose_to_list(pose)
+
         goal = self._actions.get_move_linear_pose_goal(pose_list)
         goal.send(result_callback=callback)
         _result = goal.wait(self.__action_timeout)
@@ -544,6 +601,94 @@ arm.calibrate(CalibrateMode.AUTO, calibration_callback)
         resp = self._services.stop_arm_service.call(req, callback, errback, timeout)
 
         self._check_result_status(resp)
+
+    def _calculate_relative_pose(self, frame_name, offset):
+        """
+        Calculate the pose by a relative movement (x,y,z,roll,pitch,yaw) in the frame (frame_name)
+
+        :param frame_name:, name of the frame
+        :type frame_name : str
+        :param x:
+        :type x: float
+        :param y:
+        :type y: float
+        :param z:
+        :type z: float
+        :param roll:
+        :type roll: float
+        :param pitch:
+        :type pitch: float
+        :param yaw:
+        :type yaw: float
+        :return: status, message
+        :rtype: (int, str)
+        """
+        import math
+        # Get transform
+        x, y, z, roll, pitch, yaw = self.get_pose().to_list()
+
+        position = {"x": x, "y": y, "z": z}
+        rpy = {"roll": roll, "pitch": pitch, "yaw": yaw}
+
+        frame_position, frame_rpy = self._get_transform_pose(frame_name, "world", position, rpy)
+
+        frame_position["x"] = frame_position["x"] + offset[0]
+        frame_position["y"] = frame_position["y"] + offset[1]
+        frame_position["z"] = frame_position["z"] + offset[2]
+
+        frame_rpy["roll"] = (frame_rpy["roll"] + offset[3]) % (2*math.pi)
+        frame_rpy["pitch"] = (frame_rpy["pitch"] + offset[4]) % (2*math.pi)
+        frame_rpy["yaw"] = (frame_rpy["yaw"] + offset[5]) % (2*math.pi)
+
+        world_position, world_rpy = self._get_transform_pose("world", frame_name, frame_position, frame_rpy)
+
+        pose = [world_position["x"], world_position["y"], world_position["z"],
+                world_rpy["roll"], world_rpy["pitch"], world_rpy["yaw"]]
+
+        return pose
+
+    def move_relative(self, frame_name, offset):
+        """
+        Move robot end of a offset in a frame
+
+        Example: ::
+
+            arm.move_relative("default_frame", [0.05, 0.05, 0.05, 0.3, 0, 0])
+
+        :param frame_name: name of local frame
+        :type frame_name: str
+        :param offset: list which contains offset of x, y, z, roll, pitch, yaw
+        :type offset: list[float]
+        :return: status, message
+        :rtype: (int, str)
+        """
+        self._check_type(frame_name, str)
+        self._check_type(offset, list)
+
+        pose = self._calculate_relative_pose(frame_name, offset)
+
+        self.move_pose(pose)
+
+    def move_linear_relative(self, frame_name, offset):
+        """
+        Move robot end of a offset by a linear movement in a frame
+
+        Example: ::
+
+            arm.move_linear_relative("default_frame", [0.05, 0.05, 0.05, 0.3, 0, 0])
+
+        :param frame_name: name of local frame
+        :type frame_name: str
+        :param offset: list which contains offset of x, y, z, roll, pitch, yaw
+        :type offset: list[float]
+        :return: status, message
+        :rtype: (int, str)
+        """
+        self._check_type(frame_name, str)
+        self._check_type(offset, list)
+        pose = self._calculate_relative_pose(frame_name, offset)
+
+        self.move_linear_pose(pose)
 
     @property
     def get_arm_max_velocity(self):

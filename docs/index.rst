@@ -94,6 +94,7 @@ Learn how to use the PyNiryo2 package to implement various tasks
    source/examples/examples_tool_action
    source/examples/examples_conveyor
    source/examples/examples_vision
+   source/examples/examples_frames
    source/examples/code_templates
 
 API Documentation
@@ -116,6 +117,7 @@ Master controls with PyNiryo2 with full detailed functions
    source/api_doc/saved_poses
    source/api_doc/pick_place
    source/api_doc/trajectories
+   source/api_doc/frames
    source/api_doc/led_ring
    source/api_doc/sound
 

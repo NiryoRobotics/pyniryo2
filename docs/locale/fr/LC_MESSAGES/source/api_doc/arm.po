@@ -10,14 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyNiryo2 v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-07 15:36+0000\n"
+"POT-Creation-Date: 2022-03-28 13:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Language: fr_FR\n"
+"X-Source-Language: C\n"
 
 #: ../../source/api_doc/arm.rst:2
 msgid "Arm"
@@ -27,13 +30,13 @@ msgstr "Bras"
 msgid ""
 "This file presents the different :ref:`source/api_doc/arm:Arm - Command "
 "functions`, :ref:`source/api_doc/arm:Arm - Enums`, "
-":ref:`source/api_doc/arm:Arm - Niryo Topics` & "
-":ref:`source/api_doc/arm:Arm - Objects` available with the  Arm API"
+":ref:`source/api_doc/arm:Arm - Niryo Topics` & :ref:`source/api_doc/arm:Arm "
+"- Objects` available with the  Arm API"
 msgstr ""
-"Ce fichier présente les différentes :ref:`source/api_doc/arm:Arm - "
-"Command functions`, :ref:`source/api_doc/arm:Arm - Enums`, "
-":ref:`source/api_doc/arm:Arm - Niryo Topics` & "
-":ref:`source/api_doc/arm:Arm - Objects` disponible avec l'API du Bras"
+"Ce fichier présente les différentes :ref:`source/api_doc/arm:Arm - Command "
+"functions`, :ref:`source/api_doc/arm:Arm - Enums`, "
+":ref:`source/api_doc/arm:Arm - Niryo Topics` & :ref:`source/api_doc/arm:Arm "
+"- Objects` disponible avec l'API du Bras"
 
 #: ../../source/api_doc/arm.rst:8
 msgid "Arm - Command functions"
@@ -83,24 +86,31 @@ msgstr ""
 msgid "List of functions subsections:"
 msgstr "Liste des sous-sections des fonctions :"
 
-#: of pyniryo2.arm.arm.Arm:1
+#: pyniryo2.arm.arm.Arm:1 of
 msgid "Arm robot functions"
-msgstr "Fonction de status du robot"
+msgstr "Fonction du robot"
 
-#: of pyniryo2.arm.arm.Arm:3
+#: pyniryo2.arm.arm.Arm:3 pyniryo2.arm.arm.Arm.move_linear_relative:3
+#: pyniryo2.arm.arm.Arm.move_relative:3 of
 msgid "Example: ::"
 msgstr "Exemples: ::"
 
 #: of pyniryo2.arm.arm.Arm pyniryo2.arm.arm.Arm.calibrate
 #: pyniryo2.arm.arm.Arm.calibrate_auto pyniryo2.arm.arm.Arm.forward_kinematics
-#: pyniryo2.arm.arm.Arm.inverse_kinematics
+#: pyniryo2.arm.arm.Arm.inverse_kinematics pyniryo2.arm.arm.Arm.jog_joints
+#: pyniryo2.arm.arm.Arm.jog_pose pyniryo2.arm.arm.Arm.move_joints
+#: pyniryo2.arm.arm.Arm.move_linear_pose
+#: pyniryo2.arm.arm.Arm.move_linear_relative pyniryo2.arm.arm.Arm.move_pose
+#: pyniryo2.arm.arm.Arm.move_relative pyniryo2.arm.arm.Arm.move_to_home_pose
 #: pyniryo2.arm.arm.Arm.request_new_calibration
 #: pyniryo2.arm.arm.Arm.reset_calibration
-#: pyniryo2.arm.arm.Arm.set_learning_mode
+#: pyniryo2.arm.arm.Arm.set_arm_max_velocity
+#: pyniryo2.arm.arm.Arm.set_jog_control pyniryo2.arm.arm.Arm.set_learning_mode
+#: pyniryo2.arm.arm.Arm.shift_pose pyniryo2.arm.arm.Arm.stop_move
 msgid "Parameters"
 msgstr "Paramètres"
 
-#: of pyniryo2.arm.arm.Arm:8
+#: pyniryo2.arm.arm.Arm:8 of
 msgid "Niryo ROS client"
 msgstr "Client Niryo ROS"
 
@@ -108,101 +118,314 @@ msgstr "Client Niryo ROS"
 msgid "Calibration functions"
 msgstr "Fonctions de calibration"
 
-#: of pyniryo2.arm.arm.Arm.calibrate:1
+#: pyniryo2.arm.arm.Arm.calibrate:1 of
 msgid ""
-"Calibrates (manually or automatically) motors. Automatic calibration will"
-" do nothing if motors are already calibrated"
+"Calibrates (manually or automatically) motors. Automatic calibration will do "
+"nothing if motors are already calibrated"
 msgstr ""
 "Calibre (manuellement ou automatiquement) les moteurs. La calibration "
 "automatique n'aura pas d'effet si les moteurs sont déjà calibrés"
 
-#: of pyniryo2.arm.arm.Arm.calibrate:4 pyniryo2.arm.arm.Arm.calibrate_auto:3
+#: pyniryo2.arm.arm.Arm.calibrate:4 pyniryo2.arm.arm.Arm.calibrate_auto:3
 #: pyniryo2.arm.arm.Arm.forward_kinematics:4
 #: pyniryo2.arm.arm.Arm.hardware_status:4
-#: pyniryo2.arm.arm.Arm.inverse_kinematics:3
-#: pyniryo2.arm.arm.Arm.learning_mode:5
+#: pyniryo2.arm.arm.Arm.inverse_kinematics:3 pyniryo2.arm.arm.Arm.jog_joints:7
+#: pyniryo2.arm.arm.Arm.jog_pose:8 pyniryo2.arm.arm.Arm.learning_mode:5
 #: pyniryo2.arm.arm.Arm.request_new_calibration:3
+#: pyniryo2.arm.arm.Arm.shift_pose:5 pyniryo2.arm.arm.Arm.stop_move:6 of
 msgid "Examples: ::"
 msgstr "Exemples: ::"
 
-#: of pyniryo2.arm.arm.Arm.calibrate:20
+#: pyniryo2.arm.arm.Arm.calibrate:20 of
 msgid "Auto or Manual"
 msgstr "Automatique ou Manuel"
 
-#: of pyniryo2.arm.arm.Arm.calibrate:22 pyniryo2.arm.arm.Arm.calibrate_auto:17
+#: pyniryo2.arm.arm.Arm.calibrate:22 pyniryo2.arm.arm.Arm.calibrate_auto:17
+#: pyniryo2.arm.arm.Arm.jog_joints:20 pyniryo2.arm.arm.Arm.jog_pose:21
+#: pyniryo2.arm.arm.Arm.move_joints:26
+#: pyniryo2.arm.arm.Arm.move_linear_pose:17 pyniryo2.arm.arm.Arm.move_pose:19
+#: pyniryo2.arm.arm.Arm.move_to_home_pose:5
 #: pyniryo2.arm.arm.Arm.request_new_calibration:17
+#: pyniryo2.arm.arm.Arm.shift_pose:24 pyniryo2.arm.arm.Arm.stop_move:20 of
 msgid "Callback invoked on successful execution."
 msgstr "Fonction de rappel lancée en cas de réussite lors de l'exécution"
 
-#: of pyniryo2.arm.arm.Arm.calibrate:24 pyniryo2.arm.arm.Arm.calibrate_auto:19
+#: pyniryo2.arm.arm.Arm.calibrate:24 pyniryo2.arm.arm.Arm.calibrate_auto:19
+#: pyniryo2.arm.arm.Arm.jog_joints:22 pyniryo2.arm.arm.Arm.jog_pose:23
 #: pyniryo2.arm.arm.Arm.request_new_calibration:19
+#: pyniryo2.arm.arm.Arm.stop_move:22 of
 msgid "Callback invoked on error."
 msgstr "Fonction de rappel lancée en cas d'erreur lors de l'exécution"
 
-#: of pyniryo2.arm.arm.Arm.calibrate:26 pyniryo2.arm.arm.Arm.calibrate_auto:21
+#: pyniryo2.arm.arm.Arm.calibrate:26 pyniryo2.arm.arm.Arm.calibrate_auto:21
+#: pyniryo2.arm.arm.Arm.jog_joints:24 pyniryo2.arm.arm.Arm.jog_pose:25
 #: pyniryo2.arm.arm.Arm.request_new_calibration:21
+#: pyniryo2.arm.arm.Arm.stop_move:24 of
 msgid "Timeout for the operation, in seconds. Only used if blocking."
 msgstr ""
-"Délai d'exécution de l'opération, en secondes. Utilisé seulement en cas "
-"de blocage"
+"Délai d'exécution de l'opération, en secondes. Utilisé seulement en cas de "
+"blocage"
 
-#: ../../source/api_doc/arm.rst:94 of pyniryo2.arm.arm.Arm.calibrate
+#: ../../source/api_doc/arm.rst:111 of pyniryo2.arm.arm.Arm.calibrate
 #: pyniryo2.arm.arm.Arm.calibrate_auto pyniryo2.arm.arm.Arm.forward_kinematics
 #: pyniryo2.arm.arm.Arm.get_joints pyniryo2.arm.arm.Arm.get_learning_mode
 #: pyniryo2.arm.arm.Arm.get_pose pyniryo2.arm.arm.Arm.get_pose_quat
-#: pyniryo2.arm.arm.Arm.hardware_status pyniryo2.arm.arm.Arm.inverse_kinematics
-#: pyniryo2.arm.arm.Arm.joints pyniryo2.arm.arm.Arm.joints_state
-#: pyniryo2.arm.arm.Arm.learning_mode pyniryo2.arm.arm.Arm.need_calibration
-#: pyniryo2.arm.arm.Arm.pose pyniryo2.arm.arm.Arm.request_new_calibration
+#: pyniryo2.arm.arm.Arm.go_to_sleep pyniryo2.arm.arm.Arm.hardware_status
+#: pyniryo2.arm.arm.Arm.inverse_kinematics pyniryo2.arm.arm.Arm.jog_joints
+#: pyniryo2.arm.arm.Arm.jog_pose pyniryo2.arm.arm.Arm.joints
+#: pyniryo2.arm.arm.Arm.joints_state pyniryo2.arm.arm.Arm.learning_mode
+#: pyniryo2.arm.arm.Arm.move_joints pyniryo2.arm.arm.Arm.move_linear_pose
+#: pyniryo2.arm.arm.Arm.move_linear_relative pyniryo2.arm.arm.Arm.move_pose
+#: pyniryo2.arm.arm.Arm.move_relative pyniryo2.arm.arm.Arm.move_to_home_pose
+#: pyniryo2.arm.arm.Arm.need_calibration pyniryo2.arm.arm.Arm.pose
+#: pyniryo2.arm.arm.Arm.request_new_calibration
 #: pyniryo2.arm.arm.Arm.reset_calibration
-#: pyniryo2.arm.arm.Arm.set_learning_mode
+#: pyniryo2.arm.arm.Arm.set_arm_max_velocity
+#: pyniryo2.arm.arm.Arm.set_jog_control pyniryo2.arm.arm.Arm.set_learning_mode
+#: pyniryo2.arm.arm.Arm.shift_pose pyniryo2.arm.arm.Arm.stop_move
 msgid "Return type"
 msgstr "Type Retour"
 
-#: of pyniryo2.arm.arm.Arm.calibrate_auto:1
+#: pyniryo2.arm.arm.Arm.calibrate_auto:1 of
 msgid "Starts a automatic motors calibration if motors are not calibrated yet."
 msgstr ""
 "Démarre une calibration automatique des moteurs s'ils ne sont pas déjà "
 "calibrés."
 
-#: of pyniryo2.arm.arm.Arm.request_new_calibration:1
-msgid "Starts a automatic motors calibration even if motors are calibrated yet."
+#: pyniryo2.arm.arm.Arm.request_new_calibration:1 of
+msgid ""
+"Starts a automatic motors calibration even if motors are calibrated yet."
 msgstr ""
 "Démarre une calibration automatique des moteurs même s'ils sont déjà "
 "calibrés."
 
-#: of pyniryo2.arm.arm.Arm.reset_calibration:1
+#: pyniryo2.arm.arm.Arm.reset_calibration:1 of
 msgid "Resets current calibration status. A new calibration is then necessary."
 msgstr ""
-"Réinitialise le status de la calibration courante. Une nouvelle "
-"calibration est alors nécessaire."
+"Réinitialise le status de la calibration courante. Une nouvelle calibration "
+"est alors nécessaire."
 
-#: of pyniryo2.arm.arm.Arm.reset_calibration:3
+#: pyniryo2.arm.arm.Arm.reset_calibration:3 of
 msgid "Timeout for the operation, in seconds."
 msgstr "Délai d'exécution de l'opération, en secondes."
 
-#: of pyniryo2.arm.arm.Arm.need_calibration:1
-msgid "Returns a bool indicating whereas the robot motors need to be calibrate."
+#: pyniryo2.arm.arm.Arm.need_calibration:1 of
+msgid ""
+"Returns a bool indicating whereas the robot motors need to be calibrate."
 msgstr "Retourne un booléen indiquant si les moteurs doivent être calibrés"
 
 #: of pyniryo2.arm.arm.Arm.get_joints pyniryo2.arm.arm.Arm.get_learning_mode
 #: pyniryo2.arm.arm.Arm.get_pose pyniryo2.arm.arm.Arm.get_pose_quat
-#: pyniryo2.arm.arm.Arm.hardware_status pyniryo2.arm.arm.Arm.inverse_kinematics
-#: pyniryo2.arm.arm.Arm.joints pyniryo2.arm.arm.Arm.joints_state
-#: pyniryo2.arm.arm.Arm.learning_mode pyniryo2.arm.arm.Arm.need_calibration
+#: pyniryo2.arm.arm.Arm.hardware_status
+#: pyniryo2.arm.arm.Arm.inverse_kinematics pyniryo2.arm.arm.Arm.joints
+#: pyniryo2.arm.arm.Arm.joints_state pyniryo2.arm.arm.Arm.learning_mode
+#: pyniryo2.arm.arm.Arm.move_linear_relative
+#: pyniryo2.arm.arm.Arm.move_relative pyniryo2.arm.arm.Arm.need_calibration
 #: pyniryo2.arm.arm.Arm.pose
 msgid "Returns"
 msgstr "Retourne"
 
-#: of pyniryo2.arm.arm.Arm.need_calibration:3
+#: pyniryo2.arm.arm.Arm.need_calibration:3 of
 msgid "True if calibration is needed, False otherwise."
 msgstr "Vrai si la calibration est nécessaire, Faux le cas contraire"
 
-#: ../../source/api_doc/arm.rst:54
-msgid "Robot status functions"
-msgstr "Fonction de Statut du robot"
+# Fonctions de mouvement du robot
+#: ../../source/api_doc/arm.rst:53
+msgid "Robot move functions"
+msgstr "Fonction de mouvement du robot"
 
-#: of pyniryo2.arm.arm.Arm.hardware_status:1
+#: pyniryo2.arm.arm.Arm.set_arm_max_velocity:1 of
+msgid "Limit arm max velocity to a percentage of its maximum velocity"
+msgstr ""
+"Limiter la vitesse maximum du bras à un pourcentage de sa vitesse maximum"
+
+#: pyniryo2.arm.arm.Arm.set_arm_max_velocity:3 of
+msgid "Should be between 1 & 100"
+msgstr "Doit être entre 1 et 100"
+
+#: pyniryo2.arm.arm.Arm.go_to_sleep:1 of
+msgid "Go to home pose and activate learning mode"
+msgstr ""
+"Bouge le bras jusqu'a la position home et active le mode d'apprentissage"
+
+#: pyniryo2.arm.arm.Arm.stop_move:1 of
+msgid ""
+"Stop a current execution of move_pose, move_joint or move_linear_pose. The "
+"robot will stop at its current position . If a callback function is not "
+"passed in parameter, the function will be blocking. Otherwise, the callback "
+"will be called when the execution of the function is finished."
+msgstr ""
+"Arrête l'exécution du mouvement actuel de move_pose, move_joint ou de "
+"move_linear_pose. Le robot va s'arrêter à sa position actuelle. Si une "
+"fonction de retour n'est pas passée en paramètre, la fonction sera "
+"bloquante. Sinon la fonction de retour sera appelée quand l'exécution de la "
+"fonction sera terminée."
+
+#: pyniryo2.arm.arm.Arm.move_to_home_pose:1 of
+msgid ""
+"Move to a position where the forearm lays on shoulder If a callback function "
+"is not passed in parameter, the function will be blocking. Otherwise, the "
+"callback will be called when the execution of the function is finished."
+msgstr ""
+"Bouge le robot à une position dans laquelle l’avant bras du robot repose sur "
+"son épaule. Si une fonction de retour n'est pas passée en paramètre, la "
+"fonction sera bloquante. Sinon la fonction de retour sera appelée quand "
+"l'exécution de la fonction sera terminée."
+
+#: pyniryo2.arm.arm.Arm.move_joints:1 of
+msgid ""
+"Move robot joints. Joints are expressed in radians. If a callback function "
+"is not passed in parameter, the function will be blocking. Otherwise, the "
+"callback will be called when the execution of the function is finished."
+msgstr ""
+"Réalise une action de mouvement d’axes. Les axes sont exprimés en radian. "
+"Réalise une action de déplacement de l’effecteur par glissement."
+
+#: pyniryo2.arm.arm.Arm.move_joints:5 pyniryo2.arm.arm.Arm.move_linear_pose:5
+#: pyniryo2.arm.arm.Arm.move_pose:6 of
+msgid "All lines of the next example realize the same operation: ::"
+msgstr "Toutes les lignes de l'exemple suivant réalisent la même action: ::"
+
+#: pyniryo2.arm.arm.Arm.move_joints:28 of
+msgid "a list of 6 joints"
+msgstr "Liste des noms des axes"
+
+#: pyniryo2.arm.arm.Arm.move_pose:1 of
+msgid ""
+"Move robot end effector pose to a (x, y, z, roll, pitch, yaw) pose in the "
+"frame (frame_name) if defined. x, y & z are expressed in meters / roll, "
+"pitch & yaw are expressed in radians If a callback function is not passed in "
+"parameter, the function will be blocking. Otherwise, the callback will be "
+"called when the execution of the function is finished."
+msgstr ""
+"Déplace l’effecteur à la position [x, y, z, roll, pitch, yaw], dans un "
+"repère particulier si précisé. x, y, z sont exprimés en mètres / roll, pitch "
+"& yaw sont exprimés en radian. Si une fonction de retour n'est pas passée en "
+"paramètre, la fonction sera bloquante. Sinon la fonction de retour sera "
+"appelée quand l'exécution de la fonction sera terminée."
+
+#: pyniryo2.arm.arm.Arm.move_pose:21 of
+msgid "either a list of 6 coordinates or a ``PoseObject``"
+msgstr ""
+"soit 6 arguments (1 pour chaque coordonnées) ou une liste de 6 coordonnées "
+"ou un ``PoseObject``"
+
+#: pyniryo2.arm.arm.Arm.move_linear_pose:22 pyniryo2.arm.arm.Arm.move_pose:23
+#: of
+msgid "name of the frame"
+msgstr "nom du repère"
+
+#: pyniryo2.arm.arm.Arm.move_linear_pose:1 of
+msgid ""
+"Move robot end effector pose to a (x, y, z, roll, pitch, yaw) pose in a "
+"linear way, in the frame (frame_name) if defined. If a callback function is "
+"not passed in parameter, the function will be blocking. Otherwise, the "
+"callback will be called when the execution of the function is finished."
+msgstr ""
+"Déplace l’effecteur à la position [x, y, z, roll, pitch, yaw], d'une manière "
+"linéaire, dans un repère particulier si précisé. x, y, z sont exprimés en "
+"mètres / roll, pitch & yaw sont exprimés en radian. Si une fonction de "
+"retour n'est pas passée en paramètre, la fonction sera bloquante. Sinon la "
+"fonction de retour sera appelée quand l'exécution de la fonction sera "
+"terminée."
+
+#: pyniryo2.arm.arm.Arm.move_linear_pose:19 of
+msgid "either or a list of 6 coordinates or a PoseObject"
+msgstr ""
+"soit 6 arguments (1 pour chaque coordonnées) ou une liste de 6 coordonnées "
+"ou un ``PoseObject``"
+
+#: pyniryo2.arm.arm.Arm.shift_pose:1 of
+msgid ""
+"Shift robot end effector pose along one axis If a callback function is not "
+"passed in parameter, the function will be blocking. Otherwise, the callback "
+"will be called when the execution of the function is finished."
+msgstr ""
+"Réalise une action de déplacement de l’effecteur par glissement. Réalise une "
+"action de déplacement de l’effecteur par glissement."
+
+#: pyniryo2.arm.arm.Arm.shift_pose:20 of
+msgid "Axis along which the robot is shifted"
+msgstr "Valeur de l’énumérations correspondant à l’axe de glissement"
+
+#: pyniryo2.arm.arm.Arm.shift_pose:22 of
+msgid "In meter for X/Y/Z and radians for roll/pitch/yaw"
+msgstr "En mètre pour X, Y, Z et en radian pour roll, pitch, yaw"
+
+#: pyniryo2.arm.arm.Arm.move_relative:1 of
+msgid "Move robot end of a offset in a frame"
+msgstr "Déplace l'effecteur d'un offset dans un repère"
+
+#: pyniryo2.arm.arm.Arm.move_linear_relative:7
+#: pyniryo2.arm.arm.Arm.move_relative:7 of
+msgid "name of local frame"
+msgstr "nom du repère"
+
+#: pyniryo2.arm.arm.Arm.move_linear_relative:9
+#: pyniryo2.arm.arm.Arm.move_relative:9 of
+msgid "list which contains offset of x, y, z, roll, pitch, yaw"
+msgstr "la liste qui contient les paramètres x, y, z, roulis, tangage et lacet"
+
+#: pyniryo2.arm.arm.Arm.move_linear_relative:11
+#: pyniryo2.arm.arm.Arm.move_relative:11 of
+msgid "status, message"
+msgstr "status, message"
+
+#: pyniryo2.arm.arm.Arm.move_linear_relative:1 of
+msgid "Move robot end of a offset by a linear movement in a frame"
+msgstr "Déplace l'effecteur d'un offset dans un repère de manière linéaire"
+
+#: pyniryo2.arm.arm.Arm.set_jog_control:1 of
+msgid "Set jog control mode if param is True, else turn it off"
+msgstr ""
+"Active le mode de contrôle direct si le paramètre est ``Vrai``, l'éteint le "
+"cas contraire"
+
+#: pyniryo2.arm.arm.Arm.set_jog_control:3
+#: pyniryo2.arm.arm.Arm.set_learning_mode:3 of
+msgid "``True`` or ``False``"
+msgstr "``Vrai`` ou ``Faux``"
+
+#: pyniryo2.arm.arm.Arm.jog_joints:1 of
+msgid ""
+"Jog robot joints'. Jog corresponds to a shift without motion planning. "
+"Values are expressed in radians. If a callback function is not passed in "
+"parameter, the function will be blocking. Otherwise, the callback will be "
+"called when the execution of the function is finished."
+msgstr ""
+"Réalise un control direct sur la position des axes. Les valeurs sont "
+"exprimées en radians. Si une fonction de retour n'est pas passée en "
+"paramètre, la fonction sera bloquante. Sinon la fonction de retour sera "
+"appelée quand l'exécution de la fonction sera terminée."
+
+#: pyniryo2.arm.arm.Arm.jog_joints:18 of
+msgid "a list of 6 joints offset"
+msgstr "la liste des 6 offset des axes"
+
+#: pyniryo2.arm.arm.Arm.jog_pose:1 of
+msgid ""
+"Jog robot end effector pose Jog corresponds to a shift without motion "
+"planning Arguments are [dx, dy, dz, d_roll, d_pitch, d_yaw] dx, dy & dz are "
+"expressed in meters / d_roll, d_pitch & d_yaw are expressed in radians If a "
+"callback function is not passed in parameter, the function will be blocking. "
+"Otherwise, the callback will be called when the execution of the function is "
+"finished."
+msgstr ""
+"Réalise un control direct sur l'effecteur. Les arguments sont [dx, dy, dz, "
+"d_roll, d_pitch, d_yaw], dx, dy, dz sont exprimés en mètres / d_roll, "
+"d_pitch, d_yaw sont exprimés en radians. Si une fonction de retour n'est pas "
+"passée en paramètre, la fonction sera bloquante. Sinon la fonction de retour "
+"sera appelée quand l'exécution de la fonction sera terminée."
+
+#: pyniryo2.arm.arm.Arm.jog_pose:19 of
+msgid "a list of 6 offset"
+msgstr "la liste des 6 offset"
+
+#: ../../source/api_doc/arm.rst:71
+msgid "Robot status functions"
+msgstr "Fonction de statut du robot"
+
+#: pyniryo2.arm.arm.Arm.hardware_status:1 of
 msgid ""
 "Returns the hardware state client which can be used synchronously or "
 "asynchronously to obtain the hardware state."
@@ -210,161 +433,157 @@ msgstr ""
 "Retourne le client de l'état hardware qui peut être utilisé de manière "
 "synchrone ou asynchrone pour obtenir l'état hardware"
 
-#: of pyniryo2.arm.arm.Arm.hardware_status:17
+#: pyniryo2.arm.arm.Arm.hardware_status:17 of
 msgid "hardware state topic instance"
 msgstr "Instance de topic d'état hardware"
 
-#: of pyniryo2.arm.arm.Arm.joints_state:1
+#: pyniryo2.arm.arm.Arm.joints_state:1 of
 msgid ""
-"Get the joints state topic which can be used synchronously or "
-"asynchronously to obtain the joints state. The joints state topic returns"
-" a JointStateObject."
+"Get the joints state topic which can be used synchronously or asynchronously "
+"to obtain the joints state. The joints state topic returns a "
+"JointStateObject."
 msgstr ""
 "Obtient le topic d'état des joints qui peut être utilisé de manière "
-"synchrone ou asynchrone pour obtenir l'état des joints. Le topic d'état "
-"des joints retourne un JointStateObject"
+"synchrone ou asynchrone pour obtenir l'état des joints. Le topic d'état des "
+"joints retourne un JointStateObject"
 
-#: of pyniryo2.arm.arm.Arm.joints_state:4
+#: pyniryo2.arm.arm.Arm.joints_state:4 of
 msgid "It can be used as follows:: ::"
 msgstr "Cela peut être utilisé comme ceci:: ::"
 
-#: of pyniryo2.arm.arm.Arm.joints_state:21
+#: pyniryo2.arm.arm.Arm.joints_state:21 of
 msgid "Joint states topic."
 msgstr "Topic de l'état des joints"
 
-#: of pyniryo2.arm.arm.Arm.get_joints:1
+#: pyniryo2.arm.arm.Arm.get_joints:1 of
 msgid "Get joints value in radians You can also use a getter ::"
 msgstr ""
 "Obtient la valeur des axes en radians. Vous pouvez également utiliser un "
 "getter"
 
-#: of pyniryo2.arm.arm.Arm.get_joints:7
-#: pyniryo2.arm.arm.Arm.inverse_kinematics:11 pyniryo2.arm.arm.Arm.joints:3
+#: pyniryo2.arm.arm.Arm.get_joints:7
+#: pyniryo2.arm.arm.Arm.inverse_kinematics:11 pyniryo2.arm.arm.Arm.joints:3 of
 msgid "List of joints value"
 msgstr "Liste des valeurs des axes"
 
-#: of pyniryo2.arm.arm.Arm.joints:1
+#: pyniryo2.arm.arm.Arm.joints:1 of
 msgid "Get joints value in radians"
 msgstr "Obtient la valeur des axes en radians."
 
-#: of pyniryo2.arm.arm.Arm.pose:1
+#: pyniryo2.arm.arm.Arm.pose:1 of
 msgid ""
 "Get end effector link pose as [x, y, z, roll, pitch, yaw]. x, y & z are "
 "expressed in meters / roll, pitch & yaw are expressed in radians"
 msgstr ""
 "Obtient la position de l'effecteur sous la forme [x, y, z, roll, pitch, "
-"yaw]. x, y & z sont exprimés en mètres / roll, pitch & yaw sont exprimés "
-"en radians"
+"yaw]. x, y & z sont exprimés en mètres / roll, pitch & yaw sont exprimés en "
+"radians"
 
-#: of pyniryo2.arm.arm.Arm.pose:4
+#: pyniryo2.arm.arm.Arm.pose:4 of
 msgid "You can also use a getter ::"
 msgstr "Il est également possible d'utiliser un getter ::"
 
-#: of pyniryo2.arm.arm.Arm.pose:10
+#: pyniryo2.arm.arm.Arm.pose:10 of
 msgid "end effector link pose"
 msgstr "Position de l'effecteur"
 
-#: of pyniryo2.arm.arm.Arm.get_pose:1
+#: pyniryo2.arm.arm.Arm.get_pose:1 of
 msgid ""
 "Get the end effector link pose topic which can be used synchronously or "
-"asynchronously to obtain the end effector link pose. The joints state "
-"topic returns a PoseObject. x, y & z are expressed in meters / roll, "
-"pitch & yaw are expressed in radians"
+"asynchronously to obtain the end effector link pose. The joints state topic "
+"returns a PoseObject. x, y & z are expressed in meters / roll, pitch & yaw "
+"are expressed in radians"
 msgstr ""
 "Obtient le topic de la postion de l'effecteur qui peut être utilisé de "
-"manière synchrone ou asynchrone pour obtenir la position de l'effecteur. "
-"Le topic de l'état des axes retourne un PoseObject. x, y & z sont "
-"exprimés en mètres / roll, pitch & yaw sont exprimés en radians"
+"manière synchrone ou asynchrone pour obtenir la position de l'effecteur. Le "
+"topic de l'état des axes retourne un PoseObject. x, y & z sont exprimés en "
+"mètres / roll, pitch & yaw sont exprimés en radians"
 
-#: of pyniryo2.arm.arm.Arm.get_pose:6
+#: pyniryo2.arm.arm.Arm.get_pose:6 of
 msgid "See below some usage ::"
 msgstr "Voir ci-dessous quelques utilisations"
 
-#: of pyniryo2.arm.arm.Arm.get_pose:16
+#: pyniryo2.arm.arm.Arm.get_pose:16 of
 msgid "end effector link pose topic"
 msgstr "Topic de position de l'effecteur"
 
-#: of pyniryo2.arm.arm.Arm.get_pose_quat:1
+#: pyniryo2.arm.arm.Arm.get_pose_quat:1 of
 msgid "Get end effector link pose in Quaternion coordinates"
 msgstr "Obtient la positon de l'effecteur en coordonnées quaternion"
 
-#: of pyniryo2.arm.arm.Arm.get_pose_quat:3
+#: pyniryo2.arm.arm.Arm.get_pose_quat:3 of
 msgid ""
-"Position and quaternion coordinates concatenated in a list : [x, y, z, "
-"qx, qy, qz, qw]"
+"Position and quaternion coordinates concatenated in a list : [x, y, z, qx, "
+"qy, qz, qw]"
 msgstr ""
-"Positions et coordonnées quaternion concaténées dans une liste [x, y, z, "
-"qx, qy, qz, qw]"
+"Positions et coordonnées quaternion concaténées dans une liste [x, y, z, qx, "
+"qy, qz, qw]"
 
-#: ../../source/api_doc/arm.rst:66
+#: ../../source/api_doc/arm.rst:83
 msgid "Learning mode functions"
 msgstr "Fonctions du mode apprentissage"
 
-#: of pyniryo2.arm.arm.Arm.learning_mode:1
+#: pyniryo2.arm.arm.Arm.learning_mode:1 of
 msgid ""
 "Returns the learning mode client which can be used synchronously or "
-"asynchronously to obtain the learning mode state. The learning mode "
-"client returns a boolean value."
+"asynchronously to obtain the learning mode state. The learning mode client "
+"returns a boolean value."
 msgstr ""
-"Retourne le client du mode apprentissage qui peut être utilisé de manière"
-" synchrone ou asynchrone pour obtenir l'état du mode apprentissage. Le "
-"client du mode apprentissage retourne une valeur booléene"
+"Retourne le client du mode apprentissage qui peut être utilisé de manière "
+"synchrone ou asynchrone pour obtenir l'état du mode apprentissage. Le client "
+"du mode apprentissage retourne une valeur booléene"
 
-#: of pyniryo2.arm.arm.Arm.learning_mode:19
+#: pyniryo2.arm.arm.Arm.learning_mode:19 of
 msgid "learning mode state topic instance"
 msgstr "Instance du topic du mode apprentissage"
 
-#: of pyniryo2.arm.arm.Arm.get_learning_mode:1
+#: pyniryo2.arm.arm.Arm.get_learning_mode:1 of
 msgid "Get learning mode state."
 msgstr "Obtient l'état du mode apprentissage"
 
-#: of pyniryo2.arm.arm.Arm.get_learning_mode:3
+#: pyniryo2.arm.arm.Arm.get_learning_mode:3 of
 msgid "``True`` if learning mode is on"
 msgstr "``Vrai`` si le mode apprentissage est activé"
 
-#: of pyniryo2.arm.arm.Arm.set_learning_mode:1
+#: pyniryo2.arm.arm.Arm.set_learning_mode:1 of
 msgid "Set learning mode if param is ``True``, else turn it off"
 msgstr ""
-"Active le mode apprentissage si le paramètre est ``Vrai``, l'éteint le "
-"cas contraire"
+"Active le mode apprentissage si le paramètre est ``Vrai``, l'éteint le cas "
+"contraire"
 
-#: of pyniryo2.arm.arm.Arm.set_learning_mode:3
-msgid "``True`` or ``False``"
-msgstr "``Vrai`` ou ``Faux``"
-
-#: ../../source/api_doc/arm.rst:74
+#: ../../source/api_doc/arm.rst:91
 msgid "Kinematics functions"
 msgstr "Fonctions cinématiques"
 
-#: of pyniryo2.arm.arm.Arm.forward_kinematics:1
+#: pyniryo2.arm.arm.Arm.forward_kinematics:1 of
 msgid ""
 "Compute forward kinematics of a given joints configuration and give the "
 "associated spatial pose"
 msgstr ""
-"Cacule la cinématique directe pour une configuration d'axes donnée et "
-"donne la position spatiale associé"
+"Cacule la cinématique directe pour une configuration d'axes donnée et donne "
+"la position spatiale associé"
 
-#: of pyniryo2.arm.arm.Arm.forward_kinematics:9
+#: pyniryo2.arm.arm.Arm.forward_kinematics:9 of
 msgid "either 6 args (1 for each joints) or a list of 6 joints"
 msgstr "soit 6 arguments (1 pour chaque axe) ou une liste de 6 axes"
 
-#: of pyniryo2.arm.arm.Arm.inverse_kinematics:1
+#: pyniryo2.arm.arm.Arm.inverse_kinematics:1 of
 msgid "Compute inverse kinematics"
 msgstr "Calcule la cinématique inverse"
 
-#: of pyniryo2.arm.arm.Arm.inverse_kinematics:9
+#: pyniryo2.arm.arm.Arm.inverse_kinematics:9 of
 msgid ""
 "either 6 args (1 for each coordinates) or a list of 6 coordinates or a "
 "``PoseObject``"
 msgstr ""
-"soit 6 arguments (1 pour chaque coordonnées) ou une liste de 6 "
-"coordonnées ou un ``PoseObject``"
+"soit 6 arguments (1 pour chaque coordonnées) ou une liste de 6 coordonnées "
+"ou un ``PoseObject``"
 
-#: ../../source/api_doc/arm.rst:81
+#: ../../source/api_doc/arm.rst:98
 msgid "Arm - Niryo Topics"
 msgstr "Bras - Topics Niryo"
 
-#: ../../source/api_doc/arm.rst:83
+#: ../../source/api_doc/arm.rst:100
 msgid ""
 "The use of these functions is explained in the "
 ":ref:`source/api_doc/niryo_topics:NiryoTopic` section. They allow the "
@@ -372,124 +591,124 @@ msgid ""
 msgstr ""
 "L'utilisation de ces fonctions est expliquée dans la section "
 ":ref:`source/api_doc/niryo_topics:NiryoTopic`. Elles permettent "
-"l'acquisition de données en temps réel par des fonctions de rappel ou des"
-" appels directs."
+"l'acquisition de données en temps réel par des fonctions de rappel ou des "
+"appels directs."
 
-#: ../../source/api_doc/arm.rst:86
+#: ../../source/api_doc/arm.rst:103
 msgid "Arm's Niryo Topics"
 msgstr "Topics du bras Niryo"
 
-#: ../../source/api_doc/arm.rst:92
+#: ../../source/api_doc/arm.rst:109
 msgid "Name"
 msgstr "Nom"
 
-#: ../../source/api_doc/arm.rst:93
+#: ../../source/api_doc/arm.rst:110
 msgid "Function"
 msgstr "Fonctions"
 
-#: ../../source/api_doc/arm.rst:95
+#: ../../source/api_doc/arm.rst:112
 msgid "``/joint_states``"
 msgstr "``/joint_states``"
 
-#: ../../source/api_doc/arm.rst:96
+#: ../../source/api_doc/arm.rst:113
 msgid ":attr:`~.arm.Arm.joints_state`"
 msgstr ":attr:`~.arm.Arm.joints_state`"
 
-#: ../../source/api_doc/arm.rst:97
+#: ../../source/api_doc/arm.rst:114
 msgid ":class:`~.arm.objects.JointStateObject`"
 msgstr ":class:`~.arm.objects.JointStateObject`"
 
-#: ../../source/api_doc/arm.rst:98
+#: ../../source/api_doc/arm.rst:115
 msgid "``/niryo_robot/robot_state``"
 msgstr "``/niryo_robot/robot_state``"
 
-#: ../../source/api_doc/arm.rst:99
+#: ../../source/api_doc/arm.rst:116
 msgid ":attr:`~.arm.Arm.get_pose`"
 msgstr ":attr:`~.arm.Arm.get_pose`"
 
-#: ../../source/api_doc/arm.rst:100 ../../source/api_doc/arm.rst:138
+#: ../../source/api_doc/arm.rst:117 ../../source/api_doc/arm.rst:155
 msgid ":class:`~.objects.PoseObject`"
 msgstr ":class:`~.objects.PoseObject`"
 
-#: ../../source/api_doc/arm.rst:101
+#: ../../source/api_doc/arm.rst:118
 msgid "``/niryo_robot_hardware_interface/hardware_status``"
 msgstr "``/niryo_robot_hardware_interface/hardware_status``"
 
-#: ../../source/api_doc/arm.rst:102
+#: ../../source/api_doc/arm.rst:119
 msgid ":attr:`~.arm.Arm.hardware_status`"
 msgstr ":attr:`~.arm.Arm.hardware_status`"
 
-#: ../../source/api_doc/arm.rst:103
+#: ../../source/api_doc/arm.rst:120
 msgid ":class:`~.arm.objects.HardwareStatusObject`"
 msgstr ":class:`~.arm.objects.HardwareStatusObject`"
 
-#: ../../source/api_doc/arm.rst:104
+#: ../../source/api_doc/arm.rst:121
 msgid "``/niryo_robot/learning_mode/state``"
 msgstr "``/niryo_robot/learning_mode/state``"
 
-#: ../../source/api_doc/arm.rst:105
+#: ../../source/api_doc/arm.rst:122
 msgid ":attr:`~.arm.Arm.learning_mode`"
 msgstr ":attr:`~.arm.Arm.learning_mode`"
 
-#: ../../source/api_doc/arm.rst:106
+#: ../../source/api_doc/arm.rst:123
 msgid ":exc:`bool`"
 msgstr ":exc:`bool`"
 
-#: ../../source/api_doc/arm.rst:107
+#: ../../source/api_doc/arm.rst:124
 msgid "``/niryo_robot/max_velocity_scaling_factor``"
 msgstr "``/niryo_robot/max_velocity_scaling_factor``"
 
-#: ../../source/api_doc/arm.rst:108
+#: ../../source/api_doc/arm.rst:125
 msgid ":attr:`~.arm.Arm.get_arm_max_velocity`"
 msgstr ":attr:`~.arm.Arm.get_arm_max_velocity`"
 
-#: ../../source/api_doc/arm.rst:109
+#: ../../source/api_doc/arm.rst:126
 msgid ":exc:`float`"
 msgstr ":exc:`float`"
 
-#: ../../source/api_doc/arm.rst:112
+#: ../../source/api_doc/arm.rst:129
 msgid "Arm - Enums"
 msgstr "Bras - Enumerations"
 
-#: ../../source/api_doc/arm.rst:114
+#: ../../source/api_doc/arm.rst:131
 msgid "List of enums:"
 msgstr "Liste d'enumerations"
 
-#: ../../source/api_doc/arm.rst:116
+#: ../../source/api_doc/arm.rst:133
 msgid ":class:`~.arm.enums.CalibrateMode`"
 msgstr ":class:`~.arm.enums.CalibrateMode`"
 
-#: ../../source/api_doc/arm.rst:117
+#: ../../source/api_doc/arm.rst:134
 msgid ":class:`~.arm.enums.RobotAxis`"
 msgstr ":class:`~.arm.enums.RobotAxis`"
 
-#: ../../source/api_doc/arm.rst:118
+#: ../../source/api_doc/arm.rst:135
 msgid ":class:`~.arm.enums.JogShift`"
 msgstr ":class:`~.arm.enums.JogShift`"
 
-#: of pyniryo2.arm.enums.CalibrateMode:1
+#: pyniryo2.arm.enums.CalibrateMode:1 of
 msgid "Enumeration of Calibration Modes"
 msgstr "Enumerations des modes de calibration"
 
-#: of pyniryo2.arm.enums.RobotAxis:1
+#: pyniryo2.arm.enums.RobotAxis:1 of
 msgid "Enumeration of Robot Axis : it used for Shift command"
-msgstr "Enumeration des axes du robot : utilsé pour les commandes par glissement"
+msgstr ""
+"Enumeration des axes du robot : utilsé pour les commandes par glissement"
 
-#: of pyniryo2.arm.enums.JogShift:1
+#: pyniryo2.arm.enums.JogShift:1 of
 msgid "Enumeration of Jog Shift : it used for Jog commands"
 msgstr ""
-"Enumeration des translations : utilisée pour les commandes par "
-"translations"
+"Enumeration des translations : utilisée pour les commandes par translations"
 
-#: ../../source/api_doc/arm.rst:127
+#: ../../source/api_doc/arm.rst:144
 msgid "Arm - Objects"
 msgstr "Bras - Objets"
 
-#: ../../source/api_doc/arm.rst:129
+#: ../../source/api_doc/arm.rst:146
 msgid ":class:`HardwareStatusObject`"
 msgstr ":class:`HardwareStatusObject`"
 
-#: of pyniryo2.arm.objects.HardwareStatusObject:1
+#: pyniryo2.arm.objects.HardwareStatusObject:1 of
 msgid "Object used to store every hardware information"
 msgstr "Objet utilisé pour sauvegarder toute les informations hardware"
 
@@ -498,103 +717,103 @@ msgstr "Objet utilisé pour sauvegarder toute les informations hardware"
 msgid "Variables"
 msgstr "Attributs"
 
-#: of pyniryo2.arm.objects.HardwareStatusObject:3
+#: pyniryo2.arm.objects.HardwareStatusObject:3 of
 msgid "Number representing the rpi temperature"
 msgstr "Nombre représentant la température de la raspberry"
 
-#: of pyniryo2.arm.objects.HardwareStatusObject:5
+#: pyniryo2.arm.objects.HardwareStatusObject:5 of
 msgid "Number representing the hardware version"
 msgstr "Nombre représentant la version du matériel"
 
-#: of pyniryo2.arm.objects.HardwareStatusObject:7
+#: pyniryo2.arm.objects.HardwareStatusObject:7 of
 msgid "Boolean indicating if the connection with the robot is up"
 msgstr "Booléen indicant si la connection avec le robot est faite"
 
-#: of pyniryo2.arm.objects.HardwareStatusObject:9
+#: pyniryo2.arm.objects.HardwareStatusObject:9 of
 msgid "Error message status on error"
 msgstr "Message du status d'erreur "
 
-#: of pyniryo2.arm.objects.HardwareStatusObject:11
+#: pyniryo2.arm.objects.HardwareStatusObject:11 of
 msgid "Boolean indicating if a calibration is needed"
 msgstr "Booléen "
 
-#: of pyniryo2.arm.objects.HardwareStatusObject:13
+#: pyniryo2.arm.objects.HardwareStatusObject:13 of
 msgid "Boolean indicating if calibration is in progress"
 msgstr "Booléen indicant une la calibration est en cours"
 
-#: of pyniryo2.arm.objects.HardwareStatusObject:15
+#: pyniryo2.arm.objects.HardwareStatusObject:15 of
 msgid "List of motor names"
 msgstr "Liste des noms des moteurs"
 
-#: of pyniryo2.arm.objects.HardwareStatusObject:17
+#: pyniryo2.arm.objects.HardwareStatusObject:17 of
 msgid "List of motor types"
 msgstr "Liste des types de moteurs"
 
-#: of pyniryo2.arm.objects.HardwareStatusObject:19
+#: pyniryo2.arm.objects.HardwareStatusObject:19 of
 msgid "List of motors_temperature"
 msgstr "Liste de la température des moteurs en degrés celsius"
 
-#: of pyniryo2.arm.objects.HardwareStatusObject:21
+#: pyniryo2.arm.objects.HardwareStatusObject:21 of
 msgid "List of motors_voltage"
 msgstr "Liste de la tension des moteurs en volt"
 
-#: of pyniryo2.arm.objects.HardwareStatusObject:23
+#: pyniryo2.arm.objects.HardwareStatusObject:23 of
 msgid "List of hardware errors"
 msgstr "Liste des codes erreurs moteur"
 
-#: of pyniryo2.arm.objects.HardwareStatusObject:25
+#: pyniryo2.arm.objects.HardwareStatusObject:25 of
 msgid "List of hardware error messages"
 msgstr "Liste des textes d'erreurs moteurs"
 
-#: ../../source/api_doc/arm.rst:134
+#: ../../source/api_doc/arm.rst:151
 msgid ":class:`JointStateObject`"
 msgstr ":class:`JointStateObject`"
 
-#: of pyniryo2.arm.objects.JointStateObject:1
+#: pyniryo2.arm.objects.JointStateObject:1 of
 msgid "Object used to store every joint state information"
 msgstr "Objet utilisé pour sauvegarder toute les informations des axes"
 
-#: of pyniryo2.arm.objects.JointStateObject:3
+#: pyniryo2.arm.objects.JointStateObject:3 of
 msgid "List of joint names"
 msgstr "Liste des noms des axes"
 
-#: of pyniryo2.arm.objects.JointStateObject:5
+#: pyniryo2.arm.objects.JointStateObject:5 of
 msgid "List of joint positions"
 msgstr "Liste des positions des axes"
 
-#: of pyniryo2.arm.objects.JointStateObject:7
+#: pyniryo2.arm.objects.JointStateObject:7 of
 msgid "List of joint velocities"
 msgstr "Liste des vitesses des axes"
 
-#: of pyniryo2.arm.objects.JointStateObject:9
+#: pyniryo2.arm.objects.JointStateObject:9 of
 msgid "List of joint efforts"
 msgstr "Liste des effors des axes"
 
-#: of pyniryo2.objects.PoseObject:1
+#: pyniryo2.objects.PoseObject:1 of
 msgid "Pose object which stores x, y, z, roll, pitch & yaw parameters"
-msgstr "Objet Pose qui contient les paramètres x, y, z, roulis, tangage et lacet."
+msgstr ""
+"Objet Pose qui contient les paramètres x, y, z, roulis, tangage et lacet."
 
-#: of pyniryo2.objects.PoseObject:3
+#: pyniryo2.objects.PoseObject:3 of
 msgid "X (meter)"
 msgstr "X (mètres)"
 
-#: of pyniryo2.objects.PoseObject:5
+#: pyniryo2.objects.PoseObject:5 of
 msgid "Y (meter)"
 msgstr "Y (mètres)"
 
-#: of pyniryo2.objects.PoseObject:7
+#: pyniryo2.objects.PoseObject:7 of
 msgid "Z (meter)"
 msgstr "Z (mètres)"
 
-#: of pyniryo2.objects.PoseObject:9
+#: pyniryo2.objects.PoseObject:9 of
 msgid "Roll (radian)"
 msgstr "Roulis (radian)"
 
-#: of pyniryo2.objects.PoseObject:11
+#: pyniryo2.objects.PoseObject:11 of
 msgid "Pitch (radian)"
 msgstr "Tangage (radian)"
 
-#: of pyniryo2.objects.PoseObject:13
+#: pyniryo2.objects.PoseObject:13 of
 msgid "Yaw (radian)"
 msgstr "Lacet (radian)"
-

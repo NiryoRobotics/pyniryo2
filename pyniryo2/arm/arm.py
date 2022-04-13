@@ -647,46 +647,46 @@ class Arm(RobotCommander):
 
         return pose
 
-    def move_relative(self, frame_name, offset):
+    def move_relative(self, offset, frame="world"):
         """
         Move robot end of a offset in a frame
 
         Example: ::
 
-            arm.move_relative("default_frame", [0.05, 0.05, 0.05, 0.3, 0, 0])
+            arm.move_relative([0.05, 0.05, 0.05, 0.3, 0, 0], "default_frame")
 
-        :param frame_name: name of local frame
-        :type frame_name: str
         :param offset: list which contains offset of x, y, z, roll, pitch, yaw
         :type offset: list[float]
+        :param frame: name of local frame
+        :type frame: str
         :return: status, message
         :rtype: (int, str)
         """
-        self._check_type(frame_name, str)
+        self._check_type(frame, str)
         self._check_type(offset, list)
 
-        pose = self._calculate_relative_pose(frame_name, offset)
+        pose = self._calculate_relative_pose(frame, offset)
 
         self.move_pose(pose)
 
-    def move_linear_relative(self, frame_name, offset):
+    def move_linear_relative(self, offset, frame="world"):
         """
         Move robot end of a offset by a linear movement in a frame
 
         Example: ::
 
-            arm.move_linear_relative("default_frame", [0.05, 0.05, 0.05, 0.3, 0, 0])
+            arm.move_linear_relative([0.05, 0.05, 0.05, 0.3, 0, 0], "default_frame")
 
-        :param frame_name: name of local frame
-        :type frame_name: str
         :param offset: list which contains offset of x, y, z, roll, pitch, yaw
         :type offset: list[float]
+        :param frame: name of local frame
+        :type frame: str
         :return: status, message
         :rtype: (int, str)
         """
-        self._check_type(frame_name, str)
+        self._check_type(frame, str)
         self._check_type(offset, list)
-        pose = self._calculate_relative_pose(frame_name, offset)
+        pose = self._calculate_relative_pose(frame, offset)
 
         self.move_linear_pose(pose)
 

@@ -135,23 +135,27 @@ class TestFrames(BaseTest):
         # Move frame 002
         pose2 = (0, 0, 0, 0, 1.57, 0)
         self.assertIsNone(self.arm.move_pose(pose2, "unitEditTestFramePose_002"))
-        self.assertIsNone(self.arm.move_relative("unitEditTestFramePose_002", [0.05, 0.05, 0.05, 0.1, 0.1, 0.1]))
-        self.assertIsNone(self.arm.move_linear_relative("unitEditTestFramePose_002", [-0.05, -0.05, -0.05, 0, 0, 0]))
+        self.assertIsNone(self.arm.move_relative([0.05, 0.05, 0.05, 0.1, 0.1, 0.1], "unitEditTestFramePose_002"))
+        self.assertIsNone(self.arm.move_linear_relative([-0.05, -0.05, -0.05, 0, 0, 0], "unitEditTestFramePose_002"))
 
         # Move frame 003
         pose3 = PoseObject(0, 0, 0, 0, 1.57, 0)
         self.assertIsNone(self.arm.move_pose(pose3, "unitEditTestFramePose_003"))
-        self.assertIsNone(self.arm.move_relative("unitEditTestFramePose_003", [0.05, 0.05, 0.05, 0.1, 0.1, 0.1]))
-        self.assertIsNone(self.arm.move_linear_relative("unitEditTestFramePose_003", [-0.05, -0.05, -0.05, 0, 0, 0]))
+        self.assertIsNone(self.arm.move_relative([0.05, 0.05, 0.05, 0.1, 0.1, 0.1], "unitEditTestFramePose_003"))
+        self.assertIsNone(self.arm.move_linear_relative([-0.05, -0.05, -0.05, 0, 0, 0], "unitEditTestFramePose_003"))
+
+        # Test default world
+        self.assertIsNone(self.arm.move_linear_relative([0.1, 0.1, 0.1, 0, 0, 0]))
+        self.assertIsNone(self.arm.move_linear_relative([0, 0, -0.1, 0, 0, 0]))
 
         with self.assertRaises(RobotCommandException):
-            self.arm.move_relative(0, [0.05, 0.05, 0.05, 0.1, 0.1, 0.1])
+            self.arm.move_relative([0.05, 0.05, 0.05, 0.1, 0.1, 0.1], 0)
 
         with self.assertRaises(RobotCommandException):
-            self.arm.move_linear_relative(0, [0.05, 0.05, 0.05, 0.1, 0.1, 0.1])
+            self.arm.move_linear_relative([0.05, 0.05, 0.05, 0.1, 0.1, 0.1], 0)
 
     def test_deletion(self):
-        base_dict =  self.frames.get_saved_dynamic_frame_list()
+        base_dict = self.frames.get_saved_dynamic_frame_list()
         new_base_dict = base_dict.copy()
 
         for i in range(4):

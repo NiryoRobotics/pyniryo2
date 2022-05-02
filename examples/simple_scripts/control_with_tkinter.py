@@ -151,12 +151,12 @@ class TkinterController(Tk.Tk):
 
     def open_gripper(self):
         self.niyro_robot.arm.set_jog_control(False)
-        self.niyro_robot.arm.open_gripper()
+        self.niyro_robot.tool.open_gripper()
         self.niyro_robot.arm.set_jog_control(True)
 
     def close_gripper(self):
         self.niyro_robot.arm.set_jog_control(False)
-        self.niyro_robot.arm.close_gripper()
+        self.niyro_robot.tool.close_gripper()
         self.niyro_robot.arm.set_jog_control(True)
 
 
@@ -181,8 +181,8 @@ if __name__ == '__main__':
     # Calibrate robot if robot needs calibration
     robot.arm.calibrate_auto()
     # Update tool
-    robot.arm.update_tool()
+    robot.tool.update_tool()
     # Launching main process
     process(robot)
-    # Terminate
+    # Close
     robot.end()

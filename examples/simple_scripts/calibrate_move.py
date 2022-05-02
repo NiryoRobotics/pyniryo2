@@ -35,13 +35,13 @@ niryo_robot.arm.set_learning_mode(True)
 
 if not simulation_mode:
     # Getting hardware information
-    digital_pin_array = niryo_robot.io.get_digital_io_state()
+    digital_pin_array = niryo_robot.io.get_digital_io_states()
     for digital_pin in digital_pin_array:
         print(digital_pin)
 
-    hardware_data = niryo_robot.arm.get_hardware_status()
+    hardware_data = niryo_robot.arm.hardware_status()
     print(hardware_data)
 
-# Terminate
+# Close
 niryo_robot.arm.set_learning_mode(True)
 niryo_robot.end()

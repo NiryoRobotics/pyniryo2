@@ -28,6 +28,8 @@ stages:
   - release_gitlab
 
 include:
+  ## See https://docs.gitlab.com/ee/user/project/merge_requests/code_quality.html
+  - template: Code-Quality.gitlab-ci.yml
   # Build documentation
   - project: 'niryo/admin/gitlab-ci-ressources'
     ref: master
@@ -48,8 +50,7 @@ include:
   - project: 'niryo/admin/gitlab-ci-ressources'
     ref: master
     file: 'various/release_gitlab/release_gitlab_config.yml'
-  ## See https://docs.gitlab.com/ee/user/project/merge_requests/code_quality.html
-  - template: Code-Quality.gitlab-ci.yml
+
 
 build_doc_job:
   script:
@@ -59,10 +60,12 @@ build_doc_job:
     - mv docs/${DOCUMENTATION_OUTPUT_FOLDER} ${DOCUMENTATION_OUTPUT_FOLDER}
 
 code_quality:
-  tags:
-    - dind
   artifacts:
     paths: [gl-code-quality-report.json]
+  # Authenticate with account to not be limited by docker hub pull rate limit
+  before_script:
+   - docker login -u ${DOCKER_HUB_DOCKER_ID} -p ${DOCKER_HUB_PASSWORD}
+
 
 code_quality_html:
   extends: code_quality

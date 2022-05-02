@@ -13,7 +13,7 @@ Python 2.7/3.5+
 
 .. code-block:: bash
 
-    $ pip install pyniryo
+    $ pip install pyniryo2
 
 Documentation
 -----------------
@@ -31,11 +31,11 @@ PyNiryo2 allows to write simple script in Python in order to control Ned
     ned.arm.move_joints([0.2, -0.3, 0.1, 0.0, 0.5, -0.8])
 
 To see more examples or learn more about the available functions,
-full documentation is available at http://docs.niryo.com/dev/pyniryo
+full documentation is available at http://docs.niryo.com/dev/pyniryo2
 
 
 License
 -------
 
-PyNiryo is distributed under the terms of
+PyNiryo2 is distributed under the terms of
 `GNU General Public License v3.0 <https://choosealicense.com/licenses/gpl-3.0>`_

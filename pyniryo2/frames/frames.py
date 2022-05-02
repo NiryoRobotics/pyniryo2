@@ -51,7 +51,8 @@ class Frames(RobotCommander):
 
         return self._services.get_dynamic_frame_from_name_response_to_named_tuple(response)
 
-    def save_dynamic_frame_from_poses(self, frame_name, description, pose_origin, pose_x, pose_y):
+    def save_dynamic_frame_from_poses(self, frame_name, description, pose_origin, pose_x, pose_y,
+                                      belong_to_workspace=False):
         """
         Create a dynamic frame with 3 poses (origin, x, y)
 
@@ -73,11 +74,14 @@ class Frames(RobotCommander):
         :type pose_x: list[float] [x, y, z, roll, pitch, yaw]
         :param pose_y: pose of the point y of the frame
         :type pose_y: list[float] [x, y, z, roll, pitch, yaw]
+        :param belong_to_workspace: indicate if the frame belong to a workspace
+        :type belong_to_workspace: boolean
         :return: status, message
         :rtype: (int, str)
         """
         self._check_type(frame_name, str)
         self._check_type(description, str)
+        self._check_type(belong_to_workspace, bool)
         self._check_instance(pose_origin, (list, PoseObject))
         self._check_instance(pose_x, (list, PoseObject))
         self._check_instance(pose_y, (list, PoseObject))
@@ -87,11 +91,13 @@ class Frames(RobotCommander):
         self._check_length(pose_y, 6)
 
         pose_list = [self._args_pose_to_list(pose) for pose in (pose_origin, pose_x, pose_y)]
-        req = self._services.save_dynamic_frame_from_poses_request(frame_name, description, pose_list)
+        req = self._services.save_dynamic_frame_from_poses_request(frame_name, description, pose_list,
+                                                                   belong_to_workspace)
         response = self._services.manage_frame_service.call(req)
         self._check_result_status(response)
 
-    def save_dynamic_frame_from_points(self, frame_name, description, point_origin, point_x, point_y):
+    def save_dynamic_frame_from_points(self, frame_name, description, point_origin, point_x, point_y,
+                                       belong_to_workspace=False):
         """
         Create a dynamic frame with 3 points (origin, x, y)
 
@@ -113,11 +119,14 @@ class Frames(RobotCommander):
         :type point_x: list[float] [x, y, z]
         :param point_y: point y of the frame
         :type point_y: list[float] [x, y, z]
+        :param belong_to_workspace: indicate if the frame belong to a workspace
+        :type belong_to_workspace: boolean
         :return: status, message
         :rtype: (int, str)
         """
         self._check_type(frame_name, str)
         self._check_type(description, str)
+        self._check_type(belong_to_workspace, bool)
         self._check_type(point_origin, list)
         self._check_type(point_x, list)
         self._check_type(point_y, list)
@@ -129,7 +138,8 @@ class Frames(RobotCommander):
         points_list_raw = [point_origin, point_x, point_y]
         points_list = [point_list_to_dict(point) for point in points_list_raw]
 
-        req = self._services.save_dynamic_frame_from_points_request(frame_name, description, points_list)
+        req = self._services.save_dynamic_frame_from_points_request(frame_name, description, points_list,
+                                                                    belong_to_workspace)
         response = self._services.manage_frame_service.call(req)
         self._check_result_status(response)
 
@@ -158,7 +168,7 @@ class Frames(RobotCommander):
         response = self._services.manage_frame_service.call(req)
         self._check_result_status(response)
 
-    def delete_saved_dynamic_frame(self, frame_name):
+    def delete_saved_dynamic_frame(self, frame_name, belong_to_workspace=False):
         """
         Delete a dynamic frame
 
@@ -168,11 +178,14 @@ class Frames(RobotCommander):
 
         :param frame_name: name of the frame to remove
         :type frame_name: str
+        :param belong_to_workspace: indicate if the frame belong to a workspace
+        :type belong_to_workspace: boolean
         :return: status, message
         :rtype: (int, str)
         """
         self._check_type(frame_name, str)
+        self._check_type(belong_to_workspace, bool)
 
-        req = self._services.delete_dynamic_frame_request(frame_name)
+        req = self._services.delete_dynamic_frame_request(frame_name, belong_to_workspace)
         response = self._services.manage_frame_service.call(req)
         self._check_result_status(response)

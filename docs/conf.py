@@ -17,7 +17,7 @@ author = shared_conf.author
 # The short X.Y version
 version = u'v1.0'
 # The full version, including alpha/beta/rc tags
-release = u'v1.0.0a'
+release = u'v1.0.0'
 
 # -- General configuration ---------------------------------------------------
 
@@ -62,7 +62,7 @@ translation_object["en"]["PROJECT_NAME"] = "PyNiryo2"
 
 html_context = {}
 
-html_context["BASE_FOLDER_URL"] = "https://docs.niryo.com/dev/pyniryo2g"
+html_context["BASE_FOLDER_URL"] = "https://docs.niryo.com/dev/pyniryo2"
 
 
 html_context["TRANSLATION"] = translation_object[language if language is not None else 'en']

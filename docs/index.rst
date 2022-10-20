@@ -132,4 +132,4 @@ Indices and tables
 * :ref:`search`
 
 .. |ros_doc| replace:: Ned's Software documentation
-.. _ros_doc: https://docs.niryo.com/ros-doc/
+.. _ros_doc: https://docs.niryo.com/dev/ros

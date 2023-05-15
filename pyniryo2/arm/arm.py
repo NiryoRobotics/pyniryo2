@@ -566,7 +566,8 @@ class Arm(RobotCommander):
 
         goal = self._actions.get_move_linear_pose_goal(pose_list)
         goal.send(result_callback=callback)
-        _result = goal.wait(self.__action_timeout)
+        if callback is None:
+            _result = goal.wait(self.__action_timeout)
 
     def stop_move(self, callback=None, errback=None, timeout=None):
         """

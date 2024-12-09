@@ -8,8 +8,8 @@
 *.egg-info/
 build/
 dist/
-docs/build/
-docs/_build
+docs_old/build/
+docs_old/_build
 venv/
 wheelhouse/
 

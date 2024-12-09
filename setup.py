@@ -1,13 +1,10 @@
 # coding=utf-8
 
 from io import open
-import sys
 from setuptools import find_packages, setup
 
-version = '1.0.0'
+version = '1.0.1'
 
-SETUPTOOLS = "setuptools~=46.0.0"
-TEST_REQUIRES = ['coverage', 'pytest']
 
 with open('README.rst', 'r', encoding='utf-8') as f:
     readme = f.read()
@@ -43,9 +40,7 @@ kwargs = {
         'Programming Language :: Python :: 3.8',
         "Topic :: Education",
     ],
-    'setup_requires': [SETUPTOOLS],
-    'tests_require': TEST_REQUIRES,
-    'extras_require': {"test": TEST_REQUIRES, "setup": [SETUPTOOLS]},
+    'tests_require': ['coverage', 'pytest'],
     'packages': find_packages(exclude=('tests', 'tests.*')),
 
 }

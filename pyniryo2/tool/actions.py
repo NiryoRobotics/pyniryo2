@@ -29,10 +29,10 @@ class ToolActions(object):
 
         return roslibpy.actionlib.Goal(self.tool_action, roslibpy.Message({'cmd': cmd}))
 
-    def get_vacuum_pump_action_goal(self, tool_cmd):
+    def get_vacuum_pump_action_goal(self, tool_cmd, tool_id):
         self._check_instance(tool_cmd, ToolCommand)
 
-        cmd = {'cmd_type': tool_cmd.value, 'tool_id': ToolID.VACUUM_PUMP_1.value,
+        cmd = {'cmd_type': tool_cmd.value, 'tool_id': tool_id.value,
                'activate': tool_cmd == ToolCommand.PULL_AIR_VACUUM_PUMP}
 
         return roslibpy.actionlib.Goal(self.tool_action, roslibpy.Message({'cmd': cmd}))

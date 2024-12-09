@@ -127,7 +127,7 @@ class Tool(RobotCommander):
 
         if tool_id in (ToolID.GRIPPER_1, ToolID.GRIPPER_2, ToolID.GRIPPER_3, ToolID.GRIPPER_4):
             return self.close_gripper(callback=callback)
-        elif tool_id == ToolID.VACUUM_PUMP_1:
+        elif tool_id in (ToolID.VACUUM_PUMP_1, ToolID.VACUUM_PUMP_2):
             return self.pull_air_vacuum_pump(callback=callback)
         elif tool_id == ToolID.ELECTROMAGNET_1:
             return self.activate_electromagnet(callback=callback)
@@ -160,7 +160,7 @@ class Tool(RobotCommander):
 
         if tool_id in (ToolID.GRIPPER_1, ToolID.GRIPPER_2, ToolID.GRIPPER_3, ToolID.GRIPPER_4):
             return self.open_gripper(callback=callback)
-        elif tool_id == ToolID.VACUUM_PUMP_1:
+        elif tool_id in (ToolID.VACUUM_PUMP_1, ToolID.VACUUM_PUMP_2):
             return self.push_air_vacuum_pump(callback=callback)
         elif tool_id == ToolID.ELECTROMAGNET_1:
             return self.deactivate_electromagnet(callback=callback)
@@ -294,10 +294,10 @@ class Tool(RobotCommander):
         :rtype: None
         """
         tool_id = self.get_current_tool_id()
-        if tool_id not in [ToolID.VACUUM_PUMP_1]:
+        if tool_id not in [ToolID.VACUUM_PUMP_1, ToolID.VACUUM_PUMP_2]:
             raise RobotCommandException("Call update_tool before using the pull_air_vacuum_pump function")
 
-        goal = self._actions.get_vacuum_pump_action_goal(ToolCommand.PULL_AIR_VACUUM_PUMP)
+        goal = self._actions.get_vacuum_pump_action_goal(ToolCommand.PULL_AIR_VACUUM_PUMP, tool_id)
         goal.send(result_callback=callback)
 
         if callback is None:
@@ -325,10 +325,10 @@ class Tool(RobotCommander):
         :rtype: None
         """
         tool_id = self.get_current_tool_id()
-        if tool_id not in [ToolID.VACUUM_PUMP_1]:
+        if tool_id not in [ToolID.VACUUM_PUMP_1, ToolID.VACUUM_PUMP_2]:
             raise RobotCommandException("Call update_tool before using the push_air_vacuum_pump function")
 
-        goal = self._actions.get_vacuum_pump_action_goal(ToolCommand.PUSH_AIR_VACUUM_PUMP)
+        goal = self._actions.get_vacuum_pump_action_goal(ToolCommand.PUSH_AIR_VACUUM_PUMP, tool_id)
         goal.send(result_callback=callback)
 
         if callback is None:

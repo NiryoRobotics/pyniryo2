@@ -1,10 +1,25 @@
 PyNiryo2 Documentation
 ================================
 
-.. image:: _static/PyNiryo_logo_2.png
+.. image:: images/PyNiryo_logo_2.png
    :width: 600px
    :align: center
 
+|
+|
+|
+|
+
+.. toctree::
+   :hidden:
+   other/deprecated
+
+.. admonition:: 🚨 **Project Deprecated** 🚨
+    :class: warning
+
+    **This project is officially marked as deprecated and will no longer be maintained or receive updates starting 1st June 2025. We recommend users migrate to** `PyNiryo <https://github.com/NiryoRobotics/pyniryo>`_. **To learn more about the deprecation, please refer to the** :doc:`other/deprecated`.
+
+|
 
 This documentation presents Ned's PyPi package, which is the second version of the python API Pyniryo for the robots:
 Niryo One, Ned and Ned2. It is based on the roslibpy library and allows a more complete programming of the robots.
@@ -69,16 +84,16 @@ Setup
 
 Install & Setup your environment in order to use Ned with PyNiryo2.
 
-Firstly, follow :doc:`Installation instructions <source/setup/installation>`,
-then :doc:`find your Robot IP address <source/setup/ip_address>` to be ready.
+Firstly, follow :doc:`Installation instructions <setup/installation>`,
+then :doc:`find your Robot IP address <setup/ip_address>` to be ready.
 
 .. toctree::
    :caption: Setup
    :hidden:
 
-   source/setup/installation
-   source/setup/ip_address
-   source/setup/verify_setup
+   setup/installation
+   setup/ip_address
+   setup/verify_setup
 
 Examples
 ^^^^^^^^^^^^^^^
@@ -89,37 +104,37 @@ Learn how to use the PyNiryo2 package to implement various tasks
    :hidden:
    :caption: Examples
 
-   source/examples/examples_basics
-   source/examples/examples_movement
-   source/examples/examples_tool_action
-   source/examples/examples_conveyor
-   source/examples/examples_vision
-   source/examples/examples_frames
-   source/examples/code_templates
+   examples/examples_basics
+   examples/examples_movement
+   examples/examples_tool_action
+   examples/examples_conveyor
+   examples/examples_vision
+   examples/examples_frames
+   examples/code_templates
 
 API Documentation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Master controls with PyNiryo2 with full detailed functions
-:doc:`here <source/api_doc/niryo_robot>`
+:doc:`here <api_doc/niryo_robot>`
 
 .. toctree::
    :caption: API Documentation
 
-   source/api_doc/niryo_robot
-   source/api_doc/niryo_topics
-   source/api_doc/niryo_ros
-   source/api_doc/arm
-   source/api_doc/tool
-   source/api_doc/vision
-   source/api_doc/io
-   source/api_doc/conveyor
-   source/api_doc/saved_poses
-   source/api_doc/pick_place
-   source/api_doc/trajectories
-   source/api_doc/frames
-   source/api_doc/led_ring
-   source/api_doc/sound
+   api_doc/niryo_robot
+   api_doc/niryo_topics
+   api_doc/niryo_ros
+   api_doc/arm
+   api_doc/tool
+   api_doc/vision
+   api_doc/io
+   api_doc/conveyor
+   api_doc/saved_poses
+   api_doc/pick_place
+   api_doc/trajectories
+   api_doc/frames
+   api_doc/led_ring
+   api_doc/sound
 
 
 
@@ -132,4 +147,4 @@ Indices and tables
 * :ref:`search`
 
 .. |ros_doc| replace:: Ned's Software documentation
-.. _ros_doc: https://docs.niryo.com/ros-doc/
+.. _ros_doc: https://docs.niryo.com/dev/ros

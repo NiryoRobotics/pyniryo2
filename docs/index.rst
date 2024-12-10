@@ -5,6 +5,21 @@ PyNiryo2 Documentation
    :width: 600px
    :align: center
 
+|
+|
+|
+|
+
+.. toctree::
+   :hidden:
+   other/deprecated
+
+.. admonition:: 🚨 **Project Deprecated** 🚨
+    :class: warning
+
+    **This project is officially marked as deprecated and will no longer be maintained or receive updates starting 1st June 2025. We recommend users migrate to** `PyNiryo <https://github.com/NiryoRobotics/pyniryo>`_. **To learn more about the deprecation, please refer to the** :doc:`other/deprecated`.
+
+|
 
 This documentation presents Ned's PyPi package, which is the second version of the python API Pyniryo for the robots:
 Niryo One, Ned and Ned2. It is based on the roslibpy library and allows a more complete programming of the robots.

@@ -23,8 +23,8 @@ pages:
   artifacts:
     paths:
       - public
-#  rules:
-#    - if: $CI_COMMIT_BRANCH == "develop"
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
   variables:
     GIT_STRATEGY: "clone"
 

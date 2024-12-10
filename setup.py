@@ -6,7 +6,7 @@ from setuptools import find_packages, setup
 version = '1.0.1'
 
 
-with open('README.rst', 'r', encoding='utf-8') as f:
+with open('README.md', 'r', encoding='utf-8') as f:
     readme = f.read()
 
 with open('requirements.txt', 'r') as f:
@@ -40,9 +40,7 @@ kwargs = {
         'Programming Language :: Python :: 3.8',
         "Topic :: Education",
     ],
-    'tests_require': ['coverage', 'pytest'],
     'packages': find_packages(exclude=('tests', 'tests.*')),
-
 }
 
 setup(**kwargs)

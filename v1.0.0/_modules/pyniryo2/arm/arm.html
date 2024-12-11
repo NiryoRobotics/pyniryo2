@@ -1,0 +1,1690 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyniryo2.arm.arm &mdash; PyNiryo2 v1.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/_rst_properties.css?v=754ff73a" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=d29a5c0e"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyNiryo2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/setup/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/setup/installation.html#installation-with-pip">Installation with pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/setup/installation.html#uninstall">Uninstall</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/setup/ip_address.html">Find your Robot’s IP address</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/setup/ip_address.html#hotspot-mode">Hotspot mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/setup/ip_address.html#simulation-or-directly-on-the-robot">Simulation or directly on the robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/setup/ip_address.html#direct-ethernet-connection">Direct Ethernet connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/setup/ip_address.html#computer-and-robot-connected-on-the-same-router">Computer and Robot Connected on the same router</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/setup/verify_setup.html">Verify your Setup and Get Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/examples/examples_basics.html">Examples: Basics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/examples_basics.html#your-first-move-joint">Your first move joint</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_basics.html#code-details-first-move-j">Code Details - First Move J</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/examples_basics.html#your-first-pick-and-place">Your first pick and place</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_basics.html#code-details-first-pick-and-place">Code Details - First Pick And Place</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/examples_basics.html#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/examples/examples_movement.html">Examples: Movement</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/examples_movement.html#joints">Joints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_movement.html#move-joints">Move Joints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_movement.html#get-joints">Get Joints</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/examples_movement.html#pose">Pose</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_movement.html#move-pose">Move Pose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_movement.html#get-pose">Get Pose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_movement.html#how-to-use-the-poseobject">How to use the PoseObject</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/examples/examples_tool_action.html">Examples: Tool Action</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/examples_tool_action.html#tool-control">Tool control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_tool_action.html#equip-tool">Equip Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_tool_action.html#grasping">Grasping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_tool_action.html#releasing">Releasing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/examples_tool_action.html#pick-place-with-tools">Pick &amp; Place with tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_tool_action.html#code-baseline">Code Baseline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_tool_action.html#first-solution-the-heaviest">First Solution : the heaviest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_tool_action.html#second-solution-use-of-poseobject">Second Solution : Use of PoseObject</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_tool_action.html#third-solution-pick-from-pose-place-from-pose-functions">Third Solution : Pick from pose &amp; Place from pose functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_tool_action.html#fourth-solution-all-in-one">Fourth Solution : All in one</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/examples/examples_conveyor.html">Examples: Conveyor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/examples_conveyor.html#simple-conveyor-control">Simple Conveyor control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/examples_conveyor.html#advanced-conveyor-control">Advanced Conveyor control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/examples/examples_vision.html">Examples: Vision</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/examples_vision.html#needed-piece-of-code">Needed piece of code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/examples_vision.html#simple-vision-pick-place">Simple Vision Pick &amp; Place</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_vision.html#code-details-simple-vision-pick-and-place">Code Details - Simple Vision Pick and Place</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/examples_vision.html#first-conditioning-via-vision">First conditioning via Vision</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_vision.html#code-details-first-conditioning-via-vision">Code Details - First Conditioning via Vision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/examples_vision.html#multi-reference-conditioning">Multi Reference Conditioning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_vision.html#code-details-multi-reference-conditioning">Code Details - Multi Reference Conditioning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/examples_vision.html#sorting-pick-with-conveyor">Sorting Pick with Conveyor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/examples/examples_vision.html#code-details-sort-picking">Code Details - Sort Picking</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/examples/examples_frames.html">Examples: Dynamic frames</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/examples_frames.html#simple-dynamic-frame-control">Simple dynamic frame control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/examples/code_templates.html">Code templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/code_templates.html#the-short-template">The short template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/code_templates.html#advanced-template">Advanced template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/code_templates.html#advanced-template-for-conveyor">Advanced template for conveyor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/code_templates.html#advanced-template-for-vision">Advanced template for vision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/examples/code_templates.html#callbacks-templates">Callbacks Templates</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html">NiryoRobot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#niryorobot-command-functions">NiryoRobot - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#niryorobot-functions">NiryoRobot functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.niryo_robot.NiryoRobot"><code class="docutils literal notranslate"><span class="pre">NiryoRobot</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#niryorobot-properties">NiryoRobot properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#globals-enums">Globals Enums</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors"><code class="docutils literal notranslate"><span class="pre">RobotErrors</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.SUCCESS"><code class="docutils literal notranslate"><span class="pre">RobotErrors.SUCCESS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.CANCELLED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.CANCELLED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.PREEMPTED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PREEMPTED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.ABORTED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.ABORTED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.STOPPED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.STOPPED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.ROS_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.ROS_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.FILE_ALREADY_EXISTS"><code class="docutils literal notranslate"><span class="pre">RobotErrors.FILE_ALREADY_EXISTS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.UNKNOWN_COMMAND"><code class="docutils literal notranslate"><span class="pre">RobotErrors.UNKNOWN_COMMAND</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.NOT_IMPLEMENTED_COMMAND"><code class="docutils literal notranslate"><span class="pre">RobotErrors.NOT_IMPLEMENTED_COMMAND</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.INVALID_PARAMETERS"><code class="docutils literal notranslate"><span class="pre">RobotErrors.INVALID_PARAMETERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.HARDWARE_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.HARDWARE_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.HARDWARE_NOT_OK"><code class="docutils literal notranslate"><span class="pre">RobotErrors.HARDWARE_NOT_OK</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.LEARNING_MODE_ON"><code class="docutils literal notranslate"><span class="pre">RobotErrors.LEARNING_MODE_ON</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.CALIBRATION_NOT_DONE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.CALIBRATION_NOT_DONE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.DIGITAL_IO_PANEL_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.DIGITAL_IO_PANEL_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.LED_MANAGER_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.LED_MANAGER_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.BUTTON_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.BUTTON_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.WRONG_MOTOR_TYPE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.WRONG_MOTOR_TYPE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.DXL_WRITE_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.DXL_WRITE_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.DXL_READ_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.DXL_READ_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.CAN_WRITE_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.CAN_WRITE_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.CAN_READ_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.CAN_READ_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.NO_CONVEYOR_LEFT"><code class="docutils literal notranslate"><span class="pre">RobotErrors.NO_CONVEYOR_LEFT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.NO_CONVEYOR_FOUND"><code class="docutils literal notranslate"><span class="pre">RobotErrors.NO_CONVEYOR_FOUND</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.CONVEYOR_ID_INVALID"><code class="docutils literal notranslate"><span class="pre">RobotErrors.CONVEYOR_ID_INVALID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.CALIBRATION_IN_PROGRESS"><code class="docutils literal notranslate"><span class="pre">RobotErrors.CALIBRATION_IN_PROGRESS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.VIDEO_STREAM_ON_OFF_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.VIDEO_STREAM_ON_OFF_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.VIDEO_STREAM_NOT_RUNNING"><code class="docutils literal notranslate"><span class="pre">RobotErrors.VIDEO_STREAM_NOT_RUNNING</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.OBJECT_NOT_FOUND"><code class="docutils literal notranslate"><span class="pre">RobotErrors.OBJECT_NOT_FOUND</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.MARKERS_NOT_FOUND"><code class="docutils literal notranslate"><span class="pre">RobotErrors.MARKERS_NOT_FOUND</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.ARM_COMMANDER_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.ARM_COMMANDER_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.GOAL_STILL_ACTIVE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.GOAL_STILL_ACTIVE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.JOG_CONTROLLER_ENABLED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.JOG_CONTROLLER_ENABLED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.CONTROLLER_PROBLEMS"><code class="docutils literal notranslate"><span class="pre">RobotErrors.CONTROLLER_PROBLEMS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.SHOULD_RESTART"><code class="docutils literal notranslate"><span class="pre">RobotErrors.SHOULD_RESTART</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.JOG_CONTROLLER_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.JOG_CONTROLLER_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.PLAN_FAILED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PLAN_FAILED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.NO_PLAN_AVAILABLE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.NO_PLAN_AVAILABLE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.INVERT_KINEMATICS_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.INVERT_KINEMATICS_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.TOOL_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.TOOL_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.TOOL_ID_INVALID"><code class="docutils literal notranslate"><span class="pre">RobotErrors.TOOL_ID_INVALID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.TOOL_NOT_CONNECTED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.TOOL_NOT_CONNECTED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.TOOL_ROS_INTERFACE_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.TOOL_ROS_INTERFACE_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.POSES_HANDLER_CREATION_FAILED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.POSES_HANDLER_CREATION_FAILED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.POSES_HANDLER_REMOVAL_FAILED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.POSES_HANDLER_REMOVAL_FAILED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.POSES_HANDLER_READ_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.POSES_HANDLER_READ_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.POSES_HANDLER_COMPUTE_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.POSES_HANDLER_COMPUTE_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.WORKSPACE_CREATION_FAILED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.WORKSPACE_CREATION_FAILED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_READ_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_READ_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_UNKNOWN_LANGUAGE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_UNKNOWN_LANGUAGE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_NOT_RUNNABLE_LANGUAGE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_NOT_RUNNABLE_LANGUAGE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_EXECUTION_FAILED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_EXECUTION_FAILED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_STOPPING_FAILED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_STOPPING_FAILED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_AUTORUN_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_AUTORUN_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_WRITING_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_WRITING_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_FILE_ALREADY_EXISTS"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_FILE_ALREADY_EXISTS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_FILE_DOES_NOT_EXIST"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_FILE_DOES_NOT_EXIST</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.SERIAL_FILE_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.SERIAL_FILE_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.SERIAL_UNKNOWN_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.SERIAL_UNKNOWN_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.MQTT_PUBLISH_FUNCTION_DOESNT_EXIST"><code class="docutils literal notranslate"><span class="pre">RobotErrors.MQTT_PUBLISH_FUNCTION_DOESNT_EXIST</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.MQTT_PUBLISH_FUNCTION_INVALID_ARGUMENTS"><code class="docutils literal notranslate"><span class="pre">RobotErrors.MQTT_PUBLISH_FUNCTION_INVALID_ARGUMENTS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.SYSTEM_API_CLIENT_UNKNOWN_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.SYSTEM_API_CLIENT_UNKNOWN_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.SYSTEM_API_CLIENT_INVALID_ROBOT_NAME"><code class="docutils literal notranslate"><span class="pre">RobotErrors.SYSTEM_API_CLIENT_INVALID_ROBOT_NAME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.RobotErrors.SYSTEM_API_CLIENT_REQUEST_FAILED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.SYSTEM_API_CLIENT_REQUEST_FAILED</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.ArmMoveCommandType"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.JOINTS"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.JOINTS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.POSE"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.POSE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.POSITION"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.POSITION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.RPY"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.RPY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.POSE_QUAT"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.POSE_QUAT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.LINEAR_POSE"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.LINEAR_POSE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.SHIFT_POSE"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.SHIFT_POSE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.SHIFT_LINEAR_POSE"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.SHIFT_LINEAR_POSE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.EXECUTE_TRAJ"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.EXECUTE_TRAJ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.DRAW_SPIRAL"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.DRAW_SPIRAL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.DRAW_CIRCLE"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.DRAW_CIRCLE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.EXECUTE_FULL_TRAJ"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.EXECUTE_FULL_TRAJ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.EXECUTE_RAW_TRAJ"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.EXECUTE_RAW_TRAJ</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/niryo_robot.html#globals-objects">Globals Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/api_doc/niryo_topics.html">NiryoTopic</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/niryo_topics.html#niryotopic-usage">NiryoTopic - Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/niryo_topics.html#niryotopic-class">NiryoTopic - Class</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/niryo_topics.html#pyniryo2.niryo_topic.NiryoTopic"><code class="docutils literal notranslate"><span class="pre">NiryoTopic</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_topics.html#pyniryo2.niryo_topic.NiryoTopic.is_subscribed"><code class="docutils literal notranslate"><span class="pre">NiryoTopic.is_subscribed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_topics.html#pyniryo2.niryo_topic.NiryoTopic.value"><code class="docutils literal notranslate"><span class="pre">NiryoTopic.value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_topics.html#pyniryo2.niryo_topic.NiryoTopic.subscribe"><code class="docutils literal notranslate"><span class="pre">NiryoTopic.subscribe()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_topics.html#pyniryo2.niryo_topic.NiryoTopic.unsubscribe"><code class="docutils literal notranslate"><span class="pre">NiryoTopic.unsubscribe()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/niryo_topics.html#pyniryo2.niryo_topic.NiryoTopic.publish"><code class="docutils literal notranslate"><span class="pre">NiryoTopic.publish()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/api_doc/niryo_ros.html">NiryoRos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/niryo_ros.html#pyniryo2.niryo_ros.NiryoRos"><code class="docutils literal notranslate"><span class="pre">NiryoRos</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/niryo_ros.html#pyniryo2.niryo_ros.NiryoRos.close"><code class="docutils literal notranslate"><span class="pre">NiryoRos.close()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/niryo_ros.html#pyniryo2.niryo_ros.NiryoRos.terminate"><code class="docutils literal notranslate"><span class="pre">NiryoRos.terminate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/niryo_ros.html#pyniryo2.niryo_ros.NiryoRos.hardware_version"><code class="docutils literal notranslate"><span class="pre">NiryoRos.hardware_version</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/niryo_ros.html#pyniryo2.niryo_ros.NiryoRosTimeoutException"><code class="docutils literal notranslate"><span class="pre">NiryoRosTimeoutException</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/api_doc/arm.html">Arm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/arm.html#arm-command-functions">Arm - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm"><code class="docutils literal notranslate"><span class="pre">Arm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/arm.html#calibration-functions">Calibration functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.calibrate"><code class="docutils literal notranslate"><span class="pre">Arm.calibrate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.calibrate_auto"><code class="docutils literal notranslate"><span class="pre">Arm.calibrate_auto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.request_new_calibration"><code class="docutils literal notranslate"><span class="pre">Arm.request_new_calibration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.reset_calibration"><code class="docutils literal notranslate"><span class="pre">Arm.reset_calibration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.need_calibration"><code class="docutils literal notranslate"><span class="pre">Arm.need_calibration()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/arm.html#robot-move-functions">Robot move functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.set_arm_max_velocity"><code class="docutils literal notranslate"><span class="pre">Arm.set_arm_max_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.go_to_sleep"><code class="docutils literal notranslate"><span class="pre">Arm.go_to_sleep()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.stop_move"><code class="docutils literal notranslate"><span class="pre">Arm.stop_move()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.move_to_home_pose"><code class="docutils literal notranslate"><span class="pre">Arm.move_to_home_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.move_joints"><code class="docutils literal notranslate"><span class="pre">Arm.move_joints()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.move_pose"><code class="docutils literal notranslate"><span class="pre">Arm.move_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.move_linear_pose"><code class="docutils literal notranslate"><span class="pre">Arm.move_linear_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.shift_pose"><code class="docutils literal notranslate"><span class="pre">Arm.shift_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.move_relative"><code class="docutils literal notranslate"><span class="pre">Arm.move_relative()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.move_linear_relative"><code class="docutils literal notranslate"><span class="pre">Arm.move_linear_relative()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.set_jog_control"><code class="docutils literal notranslate"><span class="pre">Arm.set_jog_control()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.jog_joints"><code class="docutils literal notranslate"><span class="pre">Arm.jog_joints()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.jog_pose"><code class="docutils literal notranslate"><span class="pre">Arm.jog_pose()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/arm.html#robot-status-functions">Robot status functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.hardware_status"><code class="docutils literal notranslate"><span class="pre">Arm.hardware_status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.joints_state"><code class="docutils literal notranslate"><span class="pre">Arm.joints_state</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.get_joints"><code class="docutils literal notranslate"><span class="pre">Arm.get_joints()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.joints"><code class="docutils literal notranslate"><span class="pre">Arm.joints</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.pose"><code class="docutils literal notranslate"><span class="pre">Arm.pose</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.get_pose"><code class="docutils literal notranslate"><span class="pre">Arm.get_pose</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.get_pose_quat"><code class="docutils literal notranslate"><span class="pre">Arm.get_pose_quat()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/arm.html#learning-mode-functions">Learning mode functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.learning_mode"><code class="docutils literal notranslate"><span class="pre">Arm.learning_mode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.get_learning_mode"><code class="docutils literal notranslate"><span class="pre">Arm.get_learning_mode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.set_learning_mode"><code class="docutils literal notranslate"><span class="pre">Arm.set_learning_mode()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/arm.html#kinematics-functions">Kinematics functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.forward_kinematics"><code class="docutils literal notranslate"><span class="pre">Arm.forward_kinematics()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.inverse_kinematics"><code class="docutils literal notranslate"><span class="pre">Arm.inverse_kinematics()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/arm.html#arm-niryo-topics">Arm - Niryo Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/arm.html#arm-enums">Arm - Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/arm.html#arm-objects">Arm - Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.objects.HardwareStatusObject"><code class="docutils literal notranslate"><span class="pre">HardwareStatusObject</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.arm.objects.JointStateObject"><code class="docutils literal notranslate"><span class="pre">JointStateObject</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/arm.html#pyniryo2.objects.PoseObject"><code class="docutils literal notranslate"><span class="pre">PoseObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/api_doc/tool.html">Tool</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/tool.html#tool-command-functions">Tool - Command Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/tool.html#pyniryo2.tool.tool.Tool"><code class="docutils literal notranslate"><span class="pre">Tool</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/tool.html#tool-functions">Tool functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/tool.html#pyniryo2.tool.tool.Tool.update_tool"><code class="docutils literal notranslate"><span class="pre">Tool.update_tool()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/tool.html#pyniryo2.tool.tool.Tool.tool"><code class="docutils literal notranslate"><span class="pre">Tool.tool</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/tool.html#pyniryo2.tool.tool.Tool.get_current_tool_id"><code class="docutils literal notranslate"><span class="pre">Tool.get_current_tool_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/tool.html#pyniryo2.tool.tool.Tool.grasp_with_tool"><code class="docutils literal notranslate"><span class="pre">Tool.grasp_with_tool()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/tool.html#pyniryo2.tool.tool.Tool.release_with_tool"><code class="docutils literal notranslate"><span class="pre">Tool.release_with_tool()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/tool.html#grippers-functions">Grippers functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/tool.html#pyniryo2.tool.tool.Tool.open_gripper"><code class="docutils literal notranslate"><span class="pre">Tool.open_gripper()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/tool.html#pyniryo2.tool.tool.Tool.close_gripper"><code class="docutils literal notranslate"><span class="pre">Tool.close_gripper()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/tool.html#vacuum-pump-functions">Vacuum pump functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/tool.html#pyniryo2.tool.tool.Tool.pull_air_vacuum_pump"><code class="docutils literal notranslate"><span class="pre">Tool.pull_air_vacuum_pump()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/tool.html#pyniryo2.tool.tool.Tool.push_air_vacuum_pump"><code class="docutils literal notranslate"><span class="pre">Tool.push_air_vacuum_pump()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/tool.html#electromagnet-functions">Electromagnet functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/tool.html#pyniryo2.tool.tool.Tool.setup_electromagnet"><code class="docutils literal notranslate"><span class="pre">Tool.setup_electromagnet()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/tool.html#pyniryo2.tool.tool.Tool.activate_electromagnet"><code class="docutils literal notranslate"><span class="pre">Tool.activate_electromagnet()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/tool.html#pyniryo2.tool.tool.Tool.deactivate_electromagnet"><code class="docutils literal notranslate"><span class="pre">Tool.deactivate_electromagnet()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/tool.html#tcp-functions">TCP functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/tool.html#pyniryo2.tool.tool.Tool.enable_tcp"><code class="docutils literal notranslate"><span class="pre">Tool.enable_tcp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/tool.html#pyniryo2.tool.tool.Tool.set_tcp"><code class="docutils literal notranslate"><span class="pre">Tool.set_tcp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/tool.html#pyniryo2.tool.tool.Tool.reset_tcp"><code class="docutils literal notranslate"><span class="pre">Tool.reset_tcp()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/tool.html#tool-niryo-topics">Tool - Niryo Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/tool.html#tool-enums">Tool - Enums</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/api_doc/vision.html">Vision</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/vision.html#vision-command-functions">Vision - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/vision.html#pyniryo2.vision.vision.Vision"><code class="docutils literal notranslate"><span class="pre">Vision</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/vision.html#camera-functions">Camera functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/vision.html#pyniryo2.vision.vision.Vision.get_img_compressed"><code class="docutils literal notranslate"><span class="pre">Vision.get_img_compressed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/vision.html#pyniryo2.vision.vision.Vision.get_camera_intrinsics"><code class="docutils literal notranslate"><span class="pre">Vision.get_camera_intrinsics</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/vision.html#pyniryo2.vision.vision.Vision.get_image_parameters"><code class="docutils literal notranslate"><span class="pre">Vision.get_image_parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/vision.html#pyniryo2.vision.vision.Vision.set_brightness"><code class="docutils literal notranslate"><span class="pre">Vision.set_brightness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/vision.html#pyniryo2.vision.vision.Vision.set_contrast"><code class="docutils literal notranslate"><span class="pre">Vision.set_contrast()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/vision.html#pyniryo2.vision.vision.Vision.set_saturation"><code class="docutils literal notranslate"><span class="pre">Vision.set_saturation()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/vision.html#detection-functions">Detection functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/vision.html#pyniryo2.vision.vision.Vision.get_target_pose_from_cam"><code class="docutils literal notranslate"><span class="pre">Vision.get_target_pose_from_cam()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/vision.html#pyniryo2.vision.vision.Vision.vision_pick"><code class="docutils literal notranslate"><span class="pre">Vision.vision_pick()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/vision.html#pyniryo2.vision.vision.Vision.move_to_object"><code class="docutils literal notranslate"><span class="pre">Vision.move_to_object()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/vision.html#pyniryo2.vision.vision.Vision.detect_object"><code class="docutils literal notranslate"><span class="pre">Vision.detect_object()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/vision.html#workspace-functions">Workspace functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/vision.html#pyniryo2.vision.vision.Vision.get_target_pose_from_rel"><code class="docutils literal notranslate"><span class="pre">Vision.get_target_pose_from_rel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/vision.html#pyniryo2.vision.vision.Vision.save_workspace_from_robot_poses"><code class="docutils literal notranslate"><span class="pre">Vision.save_workspace_from_robot_poses()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/vision.html#pyniryo2.vision.vision.Vision.save_workspace_from_points"><code class="docutils literal notranslate"><span class="pre">Vision.save_workspace_from_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/vision.html#pyniryo2.vision.vision.Vision.delete_workspace"><code class="docutils literal notranslate"><span class="pre">Vision.delete_workspace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/vision.html#pyniryo2.vision.vision.Vision.get_workspace_ratio"><code class="docutils literal notranslate"><span class="pre">Vision.get_workspace_ratio()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/vision.html#pyniryo2.vision.vision.Vision.get_workspace_list"><code class="docutils literal notranslate"><span class="pre">Vision.get_workspace_list()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/vision.html#vision-niryo-topics">Vision - Niryo Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/vision.html#vision-enums">Vision - Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/vision.html#vision-namedtuple">Vision - Namedtuple</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/api_doc/io.html">I/Os</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/io.html#i-os-command-functions">I/Os - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/io.html#pyniryo2.io.io.IO"><code class="docutils literal notranslate"><span class="pre">IO</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/io.html#state-functions">State functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/io.html#pyniryo2.io.io.IO.digital_io_states"><code class="docutils literal notranslate"><span class="pre">IO.digital_io_states</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/io.html#pyniryo2.io.io.IO.get_digital_io_states"><code class="docutils literal notranslate"><span class="pre">IO.get_digital_io_states</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/io.html#pyniryo2.io.io.IO.get_digital_io_state"><code class="docutils literal notranslate"><span class="pre">IO.get_digital_io_state()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/io.html#read-write-functions">Read &amp; Write functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/io.html#pyniryo2.io.io.IO.set_pin_mode"><code class="docutils literal notranslate"><span class="pre">IO.set_pin_mode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/io.html#pyniryo2.io.io.IO.digital_write"><code class="docutils literal notranslate"><span class="pre">IO.digital_write()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/io.html#pyniryo2.io.io.IO.digital_read"><code class="docutils literal notranslate"><span class="pre">IO.digital_read()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/io.html#i-os-niryo-topics">I/Os - Niryo Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/io.html#i-os-enums">I/Os - Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/io.html#i-os-objects">I/Os - Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/api_doc/conveyor.html">Conveyor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/conveyor.html#conveyor-command-functions">Conveyor - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/conveyor.html#conveyor-functions">Conveyor functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/conveyor.html#pyniryo2.conveyor.conveyor.Conveyor"><code class="docutils literal notranslate"><span class="pre">Conveyor</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/conveyor.html#conveyor-niryo-topics">Conveyor - Niryo Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/conveyor.html#conveyor-enums">Conveyor - Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/conveyor.html#conveyor-namedtuple">Conveyor - Namedtuple</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/api_doc/saved_poses.html">Saved poses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/saved_poses.html#saved-poses-command-functions">Saved poses - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/saved_poses.html#saved-poses-functions">Saved poses functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/saved_poses.html#pyniryo2.saved_poses.saved_poses.SavedPoses"><code class="docutils literal notranslate"><span class="pre">SavedPoses</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/api_doc/pick_place.html">Pick &amp; Place</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/pick_place.html#pick-place-command-functions">Pick &amp; Place - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/pick_place.html#pick-place-functions">Pick &amp; Place functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/pick_place.html#pyniryo2.pick_place.pick_place.PickPlace"><code class="docutils literal notranslate"><span class="pre">PickPlace</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/api_doc/trajectories.html">Trajectories</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/trajectories.html#trajectories-command-functions">Trajectories - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/trajectories.html#trajectories-functions">Trajectories functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/trajectories.html#pyniryo2.trajectories.trajectories.Trajectories"><code class="docutils literal notranslate"><span class="pre">Trajectories</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/api_doc/frames.html">Frames</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/frames.html#frames-command-functions">Frames - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/frames.html#frames-functions">Frames functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/frames.html#pyniryo2.frames.frames.Frames"><code class="docutils literal notranslate"><span class="pre">Frames</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/api_doc/led_ring.html">Led Ring</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/led_ring.html#module-pyniryo2.led_ring">Led Ring - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.LedRing"><code class="docutils literal notranslate"><span class="pre">LedRing</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.LedRing.status"><code class="docutils literal notranslate"><span class="pre">LedRing.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.LedRing.get_status"><code class="docutils literal notranslate"><span class="pre">LedRing.get_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.LedRing.solid"><code class="docutils literal notranslate"><span class="pre">LedRing.solid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.LedRing.turn_off"><code class="docutils literal notranslate"><span class="pre">LedRing.turn_off()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.LedRing.flash"><code class="docutils literal notranslate"><span class="pre">LedRing.flash()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.LedRing.alternate"><code class="docutils literal notranslate"><span class="pre">LedRing.alternate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.LedRing.chase"><code class="docutils literal notranslate"><span class="pre">LedRing.chase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.LedRing.wipe"><code class="docutils literal notranslate"><span class="pre">LedRing.wipe()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.LedRing.go_up"><code class="docutils literal notranslate"><span class="pre">LedRing.go_up()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.LedRing.go_up_down"><code class="docutils literal notranslate"><span class="pre">LedRing.go_up_down()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.LedRing.breath"><code class="docutils literal notranslate"><span class="pre">LedRing.breath()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.LedRing.snake"><code class="docutils literal notranslate"><span class="pre">LedRing.snake()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.LedRing.rainbow"><code class="docutils literal notranslate"><span class="pre">LedRing.rainbow()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.LedRing.rainbow_cycle"><code class="docutils literal notranslate"><span class="pre">LedRing.rainbow_cycle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.LedRing.rainbow_chase"><code class="docutils literal notranslate"><span class="pre">LedRing.rainbow_chase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.LedRing.custom"><code class="docutils literal notranslate"><span class="pre">LedRing.custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.LedRing.set_led_color"><code class="docutils literal notranslate"><span class="pre">LedRing.set_led_color()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/led_ring.html#led-ring-niryo-topics">Led Ring - Niryo Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/led_ring.html#led-ring-enums">Led Ring - Enums</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.AnimationMode"><code class="docutils literal notranslate"><span class="pre">AnimationMode</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.AnimationMode.NONE"><code class="docutils literal notranslate"><span class="pre">AnimationMode.NONE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.AnimationMode.UNKNOWN"><code class="docutils literal notranslate"><span class="pre">AnimationMode.UNKNOWN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.AnimationMode.SOLID"><code class="docutils literal notranslate"><span class="pre">AnimationMode.SOLID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.AnimationMode.FLASHING"><code class="docutils literal notranslate"><span class="pre">AnimationMode.FLASHING</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.AnimationMode.ALTERNATE"><code class="docutils literal notranslate"><span class="pre">AnimationMode.ALTERNATE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.AnimationMode.CHASE"><code class="docutils literal notranslate"><span class="pre">AnimationMode.CHASE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.AnimationMode.COLOR_WIPE"><code class="docutils literal notranslate"><span class="pre">AnimationMode.COLOR_WIPE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.AnimationMode.RAINBOW"><code class="docutils literal notranslate"><span class="pre">AnimationMode.RAINBOW</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.AnimationMode.RAINBOW_CYLE"><code class="docutils literal notranslate"><span class="pre">AnimationMode.RAINBOW_CYLE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.AnimationMode.RAINBOW_CHASE"><code class="docutils literal notranslate"><span class="pre">AnimationMode.RAINBOW_CHASE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.AnimationMode.GO_UP"><code class="docutils literal notranslate"><span class="pre">AnimationMode.GO_UP</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.AnimationMode.GO_UP_AND_DOWN"><code class="docutils literal notranslate"><span class="pre">AnimationMode.GO_UP_AND_DOWN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.AnimationMode.BREATH"><code class="docutils literal notranslate"><span class="pre">AnimationMode.BREATH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.AnimationMode.SNAKE"><code class="docutils literal notranslate"><span class="pre">AnimationMode.SNAKE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.AnimationMode.CUSTOM"><code class="docutils literal notranslate"><span class="pre">AnimationMode.CUSTOM</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.LedMode"><code class="docutils literal notranslate"><span class="pre">LedMode</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.LedMode.NONE"><code class="docutils literal notranslate"><span class="pre">LedMode.NONE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.LedMode.UNKNOWN"><code class="docutils literal notranslate"><span class="pre">LedMode.UNKNOWN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.LedMode.ROBOT_STATUS"><code class="docutils literal notranslate"><span class="pre">LedMode.ROBOT_STATUS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.enums.LedMode.USER"><code class="docutils literal notranslate"><span class="pre">LedMode.USER</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/led_ring.html#module-pyniryo2.led_ring.objects">Led Ring - Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/led_ring.html#pyniryo2.led_ring.objects.LedRingStatusObject"><code class="docutils literal notranslate"><span class="pre">LedRingStatusObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/api_doc/sound.html">Sound</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/sound.html#module-pyniryo2.sound">Sound - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.Sound"><code class="docutils literal notranslate"><span class="pre">Sound</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/sound.html#sound-play">Sound - Play</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.Sound.play"><code class="docutils literal notranslate"><span class="pre">Sound.play()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.Sound.stop"><code class="docutils literal notranslate"><span class="pre">Sound.stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.Sound.state"><code class="docutils literal notranslate"><span class="pre">Sound.state</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.Sound.say"><code class="docutils literal notranslate"><span class="pre">Sound.say()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/sound.html#sound-volume">Sound - Volume</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.Sound.volume"><code class="docutils literal notranslate"><span class="pre">Sound.volume</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.Sound.get_volume"><code class="docutils literal notranslate"><span class="pre">Sound.get_volume()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.Sound.set_volume"><code class="docutils literal notranslate"><span class="pre">Sound.set_volume()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/sound.html#sound-manage">Sound - Manage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.Sound.sounds"><code class="docutils literal notranslate"><span class="pre">Sound.sounds</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.Sound.get_sounds"><code class="docutils literal notranslate"><span class="pre">Sound.get_sounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.Sound.save"><code class="docutils literal notranslate"><span class="pre">Sound.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.Sound.delete"><code class="docutils literal notranslate"><span class="pre">Sound.delete()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.Sound.get_sound_duration"><code class="docutils literal notranslate"><span class="pre">Sound.get_sound_duration()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/sound.html#sound-niryo-topics">Sound - Niryo Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/api_doc/sound.html#sound-enums">Sound - Enums</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.enums.ManageSound"><code class="docutils literal notranslate"><span class="pre">ManageSound</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.enums.ManageSound.ADD"><code class="docutils literal notranslate"><span class="pre">ManageSound.ADD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.enums.ManageSound.DELETE"><code class="docutils literal notranslate"><span class="pre">ManageSound.DELETE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.enums.Language"><code class="docutils literal notranslate"><span class="pre">Language</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.enums.Language.ENGLISH"><code class="docutils literal notranslate"><span class="pre">Language.ENGLISH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.enums.Language.FRENCH"><code class="docutils literal notranslate"><span class="pre">Language.FRENCH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.enums.Language.SPANISH"><code class="docutils literal notranslate"><span class="pre">Language.SPANISH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.enums.Language.MANDARIN"><code class="docutils literal notranslate"><span class="pre">Language.MANDARIN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../source/api_doc/sound.html#pyniryo2.sound.enums.Language.PORTUGUESE"><code class="docutils literal notranslate"><span class="pre">Language.PORTUGUESE</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyNiryo2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pyniryo2.arm.arm</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pyniryo2.arm.arm</h1><div class="highlight"><pre>
+<span></span><span class="c1"># - Imports</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">isin</span>
+
+<span class="c1"># Python libraries</span>
+<span class="kn">import</span> <span class="nn">roslibpy</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># Communication imports</span>
+<span class="kn">from</span> <span class="nn">pyniryo2.robot_commander</span> <span class="kn">import</span> <span class="n">RobotCommander</span>
+<span class="kn">from</span> <span class="nn">pyniryo2.enums</span> <span class="kn">import</span> <span class="n">RobotErrors</span>
+<span class="kn">from</span> <span class="nn">pyniryo2.objects</span> <span class="kn">import</span> <span class="n">PoseObject</span>
+<span class="kn">from</span> <span class="nn">pyniryo2.utils</span> <span class="kn">import</span> <span class="n">pose_dict_to_list</span>
+<span class="kn">from</span> <span class="nn">pyniryo2.exceptions</span> <span class="kn">import</span> <span class="n">RobotCommandException</span>
+
+<span class="kn">from</span> <span class="nn">.enums</span> <span class="kn">import</span> <span class="n">CalibrateMode</span><span class="p">,</span> <span class="n">RobotAxis</span><span class="p">,</span> <span class="n">JogShift</span>
+<span class="kn">from</span> <span class="nn">.services</span> <span class="kn">import</span> <span class="n">ArmServices</span>
+<span class="kn">from</span> <span class="nn">.topics</span> <span class="kn">import</span> <span class="n">ArmTopics</span>
+<span class="kn">from</span> <span class="nn">.actions</span> <span class="kn">import</span> <span class="n">ArmActions</span>
+
+
+<div class="viewcode-block" id="Arm">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm">[docs]</a>
+<span class="k">class</span> <span class="nc">Arm</span><span class="p">(</span><span class="n">RobotCommander</span><span class="p">):</span>
+    <span class="c1"># --- Public functions --- #</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Arm robot functions</span>
+
+<span class="sd">        Example: ::</span>
+
+<span class="sd">            ros_instance = NiryoRos(&quot;10.10.10.10&quot;) # Hotspot</span>
+<span class="sd">            arm_interface = Arm(ros_instance)</span>
+
+<span class="sd">        :param client: Niryo ROS client</span>
+<span class="sd">        :type client: NiryoRos</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Arm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_services</span> <span class="o">=</span> <span class="n">ArmServices</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span> <span class="o">=</span> <span class="n">ArmTopics</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span> <span class="o">=</span> <span class="n">ArmActions</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__action_timeout</span> <span class="o">=</span> <span class="mi">10</span>
+
+    <span class="c1"># - Main purpose</span>
+    <span class="c1"># -- Calibration</span>
+
+<div class="viewcode-block" id="Arm.calibrate">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.calibrate">[docs]</a>
+    <span class="k">def</span> <span class="nf">calibrate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calibrate_mode</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calibrates (manually or automatically) motors. Automatic calibration will do nothing</span>
+<span class="sd">        if motors are already calibrated</span>
+
+<span class="sd">        Examples: ::</span>
+
+<span class="sd">            # Synchronous use</span>
+<span class="sd">            arm.calibrate(CalibrateMode.MANUAL)</span>
+<span class="sd">            arm.calibrate(CalibrateMode.AUTO)</span>
+
+<span class="sd">            # Asynchronous use</span>
+<span class="sd">            def calibration_callback(result):</span>
+<span class="sd">                if result[&quot;status&quot;] &lt; RobotErrors.SUCCESS.value:</span>
+<span class="sd">                    print(&quot;Calibration failed&quot;)</span>
+<span class="sd">                else:</span>
+<span class="sd">                    print(&quot;Calibration completed with success&quot;)</span>
+
+<span class="sd">            arm.calibrate(CalibrateMode.AUTO, calibration_callback)</span>
+
+
+<span class="sd">        :param calibrate_mode: Auto or Manual</span>
+<span class="sd">        :type calibrate_mode: CalibrateMode</span>
+<span class="sd">        :param callback: Callback invoked on successful execution.</span>
+<span class="sd">        :type callback: function</span>
+<span class="sd">        :param errback: Callback invoked on error.</span>
+<span class="sd">        :type errback: function</span>
+<span class="sd">        :param timeout: Timeout for the operation, in seconds. Only used if blocking.</span>
+<span class="sd">        :type timeout: float</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">wait_calibration_end</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">):</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+                <span class="n">hardware_status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="o">.</span><span class="n">hardware_status_topic</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">hardware_status</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span>
+                        <span class="n">hardware_status</span><span class="o">.</span><span class="n">calibration_in_progress</span> <span class="ow">or</span> <span class="n">hardware_status</span><span class="o">.</span><span class="n">calibration_needed</span><span class="p">):</span>
+                    <span class="k">return</span>
+            <span class="k">raise</span> <span class="n">RobotCommandException</span><span class="p">(</span><span class="s2">&quot;Calibration timeout&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_enum_belonging</span><span class="p">(</span><span class="n">calibrate_mode</span><span class="p">,</span> <span class="n">CalibrateMode</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">roslibpy</span><span class="o">.</span><span class="n">ServiceRequest</span><span class="p">()</span>
+        <span class="n">request</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">calibrate_mode</span><span class="o">.</span><span class="n">value</span>
+
+        <span class="k">if</span> <span class="n">callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">request_calibration_service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="n">errback</span><span class="p">,</span>
+                                                            <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">request_calibration_service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="n">errback</span><span class="p">,</span>
+                                                                   <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_result_status</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">wait_calibration_end</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Arm.calibrate_auto">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.calibrate_auto">[docs]</a>
+    <span class="k">def</span> <span class="nf">calibrate_auto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Starts a automatic motors calibration if motors are not calibrated yet.</span>
+
+<span class="sd">        Examples: ::</span>
+
+<span class="sd">            # Synchronous use</span>
+<span class="sd">            arm.calibrate_auto()</span>
+
+<span class="sd">            # Asynchronous use</span>
+<span class="sd">            def calibration_callback(result):</span>
+<span class="sd">                if result[&quot;status&quot;] &lt; RobotErrors.SUCCESS.value:</span>
+<span class="sd">                    print(&quot;Calibration failed&quot;)</span>
+<span class="sd">                else:</span>
+<span class="sd">                    print(&quot;Calibration completed with success&quot;)</span>
+
+<span class="sd">            arm.calibrate_auto(calibration_callback)</span>
+
+<span class="sd">        :param callback: Callback invoked on successful execution.</span>
+<span class="sd">        :type callback: function</span>
+<span class="sd">        :param errback: Callback invoked on error.</span>
+<span class="sd">        :type errback: function</span>
+<span class="sd">        :param timeout: Timeout for the operation, in seconds. Only used if blocking.</span>
+<span class="sd">        :type timeout: float</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrate</span><span class="p">(</span><span class="n">CalibrateMode</span><span class="o">.</span><span class="n">AUTO</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Arm.request_new_calibration">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.request_new_calibration">[docs]</a>
+    <span class="k">def</span> <span class="nf">request_new_calibration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Starts a automatic motors calibration even if motors are calibrated yet.</span>
+
+<span class="sd">        Examples: ::</span>
+
+<span class="sd">            # Synchronous use</span>
+<span class="sd">            arm.request_new_calibration()</span>
+
+<span class="sd">            # Asynchronous use</span>
+<span class="sd">            def calibration_callback(result):</span>
+<span class="sd">                if result[&quot;status&quot;] &lt; RobotErrors.SUCCESS.value:</span>
+<span class="sd">                    print(&quot;Calibration failed&quot;)</span>
+<span class="sd">                else:</span>
+<span class="sd">                    print(&quot;Calibration completed with success&quot;)</span>
+
+<span class="sd">            arm.request_new_calibration(calibration_callback)</span>
+
+<span class="sd">        :param callback: Callback invoked on successful execution.</span>
+<span class="sd">        :type callback: function</span>
+<span class="sd">        :param errback: Callback invoked on error.</span>
+<span class="sd">        :type errback: function</span>
+<span class="sd">        :param timeout: Timeout for the operation, in seconds. Only used if blocking.</span>
+<span class="sd">        :type timeout: float</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_calibration</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrate_auto</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Arm.reset_calibration">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.reset_calibration">[docs]</a>
+    <span class="k">def</span> <span class="nf">reset_calibration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resets current calibration status. A new calibration is then necessary.</span>
+
+<span class="sd">        :param timeout: Timeout for the operation, in seconds.</span>
+<span class="sd">        :type timeout: float</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">get_trigger_request</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">request_new_calibration_service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">while</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">&lt;</span> <span class="n">timeout</span><span class="p">:</span>
+            <span class="n">hardware_status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="o">.</span><span class="n">hardware_status_topic</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">hardware_status</span> <span class="ow">and</span> <span class="n">hardware_status</span><span class="o">.</span><span class="n">calibration_needed</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Arm.need_calibration">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.need_calibration">[docs]</a>
+    <span class="k">def</span> <span class="nf">need_calibration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a bool indicating whereas the robot motors need to be calibrate.</span>
+
+<span class="sd">        :return: True if calibration is needed, False otherwise.</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">hardware_status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="o">.</span><span class="n">hardware_status_topic</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">hardware_status</span><span class="o">.</span><span class="n">calibration_needed</span></div>
+
+
+    <span class="c1"># - Hardware Status</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">hardware_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the hardware state client which can be used synchronously or asynchronously</span>
+<span class="sd">        to obtain the hardware state.</span>
+
+<span class="sd">        Examples: ::</span>
+
+<span class="sd">            # Get last value</span>
+<span class="sd">            arm.hardware_status()</span>
+<span class="sd">            arm.hardware_status.value</span>
+
+<span class="sd">            # Subscribe a callback</span>
+<span class="sd">            def hs_callback(msg):</span>
+<span class="sd">                print msg.voltage</span>
+
+<span class="sd">            arm.hardware_status.subscribe(hs_callback)</span>
+<span class="sd">            arm.hardware_status.unsubscribe()</span>
+
+<span class="sd">        :return: hardware state topic instance</span>
+<span class="sd">        :rtype: NiryoTopic</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="o">.</span><span class="n">hardware_status_topic</span>
+
+    <span class="c1"># -- Learning mode</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">learning_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the learning mode client which can be used synchronously or asynchronously</span>
+<span class="sd">        to obtain the learning mode state.</span>
+<span class="sd">        The learning mode client returns a boolean value.</span>
+
+<span class="sd">        Examples: ::</span>
+
+<span class="sd">            # Get last value</span>
+<span class="sd">            arm.learning_mode()</span>
+<span class="sd">            if arm.learning_mode.value:</span>
+<span class="sd">                print(&quot;Learning mode enabled&quot;))</span>
+
+<span class="sd">            # Subscribe a callback</span>
+<span class="sd">            def lm_callback(is_learning_mode_enabled):</span>
+<span class="sd">                print is_learning_mode_enabled</span>
+
+<span class="sd">            arm.learning_mode.subscribe(lm_callback)</span>
+<span class="sd">            arm.learning_mode.unsubscribe()</span>
+
+<span class="sd">        :return: learning mode state topic instance</span>
+<span class="sd">        :rtype: NiryoTopic</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="o">.</span><span class="n">learning_mode_state_topic</span>
+
+<div class="viewcode-block" id="Arm.get_learning_mode">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.get_learning_mode">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_learning_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get learning mode state.</span>
+
+<span class="sd">        :return: ``True`` if learning mode is on</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="o">.</span><span class="n">learning_mode_state_topic</span><span class="p">()</span></div>
+
+
+    <span class="nd">@learning_mode</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">learning_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enabled</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set learning mode if param is ``True``, else turn it off</span>
+
+<span class="sd">        :param enabled: ``True`` or ``False``</span>
+<span class="sd">        :type enabled: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_learning_mode</span><span class="p">(</span><span class="n">enabled</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Arm.set_learning_mode">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.set_learning_mode">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_learning_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enabled</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set learning mode if param is ``True``, else turn it off</span>
+
+<span class="sd">        :param enabled: ``True`` or ``False``</span>
+<span class="sd">        :type enabled: bool</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_type</span><span class="p">(</span><span class="n">enabled</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+        <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">get_learning_mode_request</span><span class="p">(</span><span class="n">enabled</span><span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">activate_learning_mode_service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_result_status</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span></div>
+
+
+    <span class="c1"># - Get Joints/Pose</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">joints_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the joints state topic which can be used synchronously or asynchronously to obtain the joints state.</span>
+<span class="sd">        The joints state topic returns a JointStateObject.</span>
+
+<span class="sd">        It can be used as follows:: ::</span>
+
+<span class="sd">            # Get last joint state</span>
+<span class="sd">            joint_state = arm.joints_state()</span>
+<span class="sd">            joint_state = arm.joints_state.value</span>
+
+<span class="sd">            joint_names = arm.joints_state().name</span>
+<span class="sd">            joint_positions = arm.joints_state().position</span>
+<span class="sd">            joint_velocities = arm.joints_state.value.velocity</span>
+
+<span class="sd">            # Raise a callback at each new value</span>
+<span class="sd">            from __future__ import print_function</span>
+
+<span class="sd">            arm.joints_state.subscribe(lambda message: print(message.position))</span>
+<span class="sd">            arm.joints_state.unsubscribe()</span>
+
+
+<span class="sd">        :return: Joint states topic.</span>
+<span class="sd">        :rtype: NiryoTopic</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="o">.</span><span class="n">joint_states_topic</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">joints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get joints value in radians</span>
+
+<span class="sd">        :return: List of joints value</span>
+<span class="sd">        :rtype: list[float]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_joints</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Arm.get_joints">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.get_joints">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_joints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get joints value in radians</span>
+<span class="sd">        You can also use a getter ::</span>
+
+<span class="sd">            joints = arm.get_joints()</span>
+<span class="sd">            joints = arm.joints</span>
+
+<span class="sd">        :return: List of joints value</span>
+<span class="sd">        :rtype: list[float]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="o">.</span><span class="n">joint_states_topic</span><span class="p">()</span><span class="o">.</span><span class="n">position</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">pose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get end effector link pose as [x, y, z, roll, pitch, yaw].</span>
+<span class="sd">        x, y &amp; z are expressed in meters / roll, pitch &amp; yaw are expressed in radians</span>
+
+<span class="sd">        You can also use a getter ::</span>
+
+<span class="sd">            pose = arm.pose</span>
+<span class="sd">            pose_list = arm.pose.to_list()</span>
+<span class="sd">            x, y, z, roll, pitch, yaw = arm.pose.to_list()</span>
+
+<span class="sd">        :return: end effector link pose</span>
+<span class="sd">        :rtype: PoseObject</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="o">.</span><span class="n">robot_state_topic</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">get_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the end effector link pose topic which can be used synchronously or asynchronously</span>
+<span class="sd">        to obtain the end effector link pose.</span>
+<span class="sd">        The joints state topic returns a PoseObject.</span>
+<span class="sd">        x, y &amp; z are expressed in meters / roll, pitch &amp; yaw are expressed in radians</span>
+
+<span class="sd">        See below some usage ::</span>
+
+<span class="sd">            pose = arm.get_pose()</span>
+<span class="sd">            pose = arm.get_pose.value</span>
+<span class="sd">            pose_list = arm.get_pose().to_list()</span>
+<span class="sd">            x, y, z, roll, pitch, yaw = arm.get_pose().to_list()</span>
+
+<span class="sd">            arm.get_pose.subscribe(callback)</span>
+<span class="sd">            arm.get_pose.unsubscribe()</span>
+
+<span class="sd">        :return: end effector link pose topic</span>
+<span class="sd">        :rtype: NiryoTopic</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="o">.</span><span class="n">robot_state_topic</span>
+
+<div class="viewcode-block" id="Arm.get_pose_quat">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.get_pose_quat">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_pose_quat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get end effector link pose in Quaternion coordinates</span>
+
+<span class="sd">        :return: Position and quaternion coordinates concatenated in a list : [x, y, z, qx, qy, qz, qw]</span>
+<span class="sd">        :rtype: list[float]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="o">.</span><span class="n">robot_state_topic</span><span class="p">()</span><span class="o">.</span><span class="n">quaternion</span></div>
+
+
+    <span class="c1"># --  Simple Move</span>
+
+    <span class="nd">@joints</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">joints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joints</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move robot joints. Joints are expressed in radians.</span>
+
+<span class="sd">        :param joints: a list of 6 joints</span>
+<span class="sd">        :type joints: Union[list[float], tuple[float]]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">move_joints</span><span class="p">(</span><span class="n">joints</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Arm.move_joints">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.move_joints">[docs]</a>
+    <span class="k">def</span> <span class="nf">move_joints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joints</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move robot joints. Joints are expressed in radians.</span>
+<span class="sd">        If a callback function is not passed in parameter, the function will be blocking.</span>
+<span class="sd">        Otherwise, the callback will be called when the execution of the function is finished.</span>
+
+<span class="sd">        All lines of the next example realize the same operation: ::</span>
+
+<span class="sd">            arm.joints = [0.2, 0.1, 0.3, 0.0, 0.5, 0.0]</span>
+<span class="sd">            arm.move_joints([0.2, 0.1, 0.3, 0.0, 0.5, 0.0])</span>
+
+<span class="sd">            def move_callback(_):</span>
+<span class="sd">                print(&quot;Move completed&quot;)</span>
+
+<span class="sd">            arm.move_joints([0chronous use</span>
+<span class="sd">            arm.calibrate(CalibrateMode.MANUAL)</span>
+<span class="sd">            arm.calibrate(CalibrateMode.AUTO)</span>
+
+<span class="sd">            # Asynchronous use</span>
+<span class="sd">            def calibration_callback(result):</span>
+<span class="sd">                if result[&quot;status&quot;] &lt; RobotErrors.SUCCESS.value:</span>
+<span class="sd">                    print(&quot;Calibration failed&quot;)</span>
+<span class="sd">                else:</span>
+<span class="sd">                    print(&quot;Calibration completed with success&quot;)</span>
+
+<span class="sd">            arm.calibrate(CalibrateMode.AUTO, calibration_callback)</span>
+
+<span class="sd">        :param callback: Callback invoked on successful execution.</span>
+<span class="sd">        :type callback: function</span>
+<span class="sd">        :param joints: a list of 6 joints</span>
+<span class="sd">        :type joints: Union[list[float], tuple[float]]</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">joint_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_args_joints_to_list</span><span class="p">(</span><span class="n">joints</span><span class="p">)</span>
+        <span class="n">goal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span><span class="o">.</span><span class="n">get_move_joints_goal</span><span class="p">(</span><span class="n">joint_list</span><span class="p">)</span>
+        <span class="n">goal</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">result_callback</span><span class="o">=</span><span class="n">callback</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">callback</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_result</span> <span class="o">=</span> <span class="n">goal</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__action_timeout</span><span class="p">)</span></div>
+
+
+    <span class="nd">@pose</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">pose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move robot end effector pose to a (x, y, z, roll, pitch, yaw) pose.</span>
+<span class="sd">        x, y &amp; z are expressed in meters / roll, pitch &amp; yaw are expressed in radians</span>
+
+<span class="sd">        :param pose: either a list of 6 coordinates or a ``PoseObject``</span>
+<span class="sd">        :type pose: Union[tuple[float], list[float], PoseObject]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">move_pose</span><span class="p">(</span><span class="n">pose</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_transform_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_frame</span><span class="p">,</span> <span class="n">local_frame</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">rpy</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Transform a pose from a source_frame to a pose in a local_frame</span>
+
+<span class="sd">        :param source_frame: name of the source_frame</span>
+<span class="sd">        :type source_frame: str</span>
+<span class="sd">        :param local_frame: name of the local_frame</span>
+<span class="sd">        :type local_frame: str</span>
+<span class="sd">        :param position: position of the pose to convert</span>
+<span class="sd">        :type position: dict[x, y, z]</span>
+<span class="sd">        :param rpy: orientation of the pose to convert</span>
+<span class="sd">        :type rpy: dict[roll, pitch, yaw]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">get_transform_pose_request</span><span class="p">(</span><span class="n">source_frame</span><span class="p">,</span> <span class="n">local_frame</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">rpy</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">get_transform_pose_service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;position&quot;</span><span class="p">],</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;rpy&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Arm.move_pose">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.move_pose">[docs]</a>
+    <span class="k">def</span> <span class="nf">move_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move robot end effector pose to a (x, y, z, roll, pitch, yaw) pose in the frame (frame_name) if defined.</span>
+<span class="sd">        x, y &amp; z are expressed in meters / roll, pitch &amp; yaw are expressed in radians</span>
+<span class="sd">        If a callback function is not passed in parameter, the function will be blocking.</span>
+<span class="sd">        Otherwise, the callback will be called when the execution of the function is finished.</span>
+
+<span class="sd">        All lines of the next example realize the same operation: ::</span>
+
+<span class="sd">            arm.pose = [0.2, 0.1, 0.3, 0.0, 0.5, 0.0]</span>
+<span class="sd">            arm.move_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0])</span>
+<span class="sd">            arm.move_pose(PoseObject(0.2, 0.1, 0.3, 0.0, 0.5, 0.0))</span>
+<span class="sd">            arm.move_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0], &quot;default_frame&quot;)</span>
+<span class="sd">            arm.move_pose(PoseObject(0.2, 0.1, 0.3, 0.0, 0.5, 0.0), &quot;default_frame&quot;)</span>
+
+<span class="sd">            def move_callback(_):</span>
+<span class="sd">                print(&quot;Move completed&quot;)</span>
+
+<span class="sd">            arm.move_joints([0.2, 0.1, 0.3, 0.0, 0.5, 0.0], callback=move_callback)</span>
+
+<span class="sd">        :param callback: Callback invoked on successful execution.</span>
+<span class="sd">        :type callback: function</span>
+<span class="sd">        :param pose: either a list of 6 coordinates or a ``PoseObject``</span>
+<span class="sd">        :type pose: Union[tuple[float], list[float], PoseObject]</span>
+<span class="sd">        :param frame: name of the frame</span>
+<span class="sd">        :type param: str</span>
+
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">frame</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
+            <span class="n">position</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">rpy</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">pose</span><span class="p">,</span> <span class="n">PoseObject</span><span class="p">)):</span>
+                <span class="n">position</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="o">.</span><span class="n">z</span><span class="p">}</span>
+                <span class="n">rpy</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;roll&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="o">.</span><span class="n">roll</span><span class="p">,</span> <span class="s2">&quot;pitch&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="o">.</span><span class="n">pitch</span><span class="p">,</span> <span class="s2">&quot;yaw&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="o">.</span><span class="n">yaw</span><span class="p">}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">position</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="p">[</span><span class="mi">2</span><span class="p">]}</span>
+                <span class="n">rpy</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;roll&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;pitch&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="s2">&quot;yaw&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="p">[</span><span class="mi">5</span><span class="p">]}</span>
+            <span class="n">frame_position</span><span class="p">,</span> <span class="n">frame_rpy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_transform_pose</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">rpy</span><span class="p">)</span>
+
+            <span class="n">pose_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">frame_position</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">]]</span> <span class="o">+</span> \
+                <span class="p">[</span><span class="n">frame_rpy</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;roll&quot;</span><span class="p">,</span> <span class="s2">&quot;pitch&quot;</span><span class="p">,</span> <span class="s2">&quot;yaw&quot;</span><span class="p">]]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pose_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args_pose_to_list</span><span class="p">(</span><span class="n">pose</span><span class="p">)</span>
+
+        <span class="n">goal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span><span class="o">.</span><span class="n">get_move_pose_goal</span><span class="p">(</span><span class="n">pose_list</span><span class="p">)</span>
+        <span class="n">goal</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">result_callback</span><span class="o">=</span><span class="n">callback</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">callback</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_result</span> <span class="o">=</span> <span class="n">goal</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__action_timeout</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Arm.move_to_home_pose">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.move_to_home_pose">[docs]</a>
+    <span class="k">def</span> <span class="nf">move_to_home_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move to a position where the forearm lays on shoulder</span>
+<span class="sd">        If a callback function is not passed in parameter, the function will be blocking.</span>
+<span class="sd">        Otherwise, the callback will be called when the execution of the function is finished.</span>
+
+<span class="sd">        :param callback: Callback invoked on successful execution.</span>
+<span class="sd">        :type callback: function</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">move_joints</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">callback</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Arm.go_to_sleep">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.go_to_sleep">[docs]</a>
+    <span class="k">def</span> <span class="nf">go_to_sleep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Go to home pose and activate learning mode</span>
+
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">move_to_home_pose</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_learning_mode</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Arm.move_linear_pose">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.move_linear_pose">[docs]</a>
+    <span class="k">def</span> <span class="nf">move_linear_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move robot end effector pose to a (x, y, z, roll, pitch, yaw) pose in a linear way, in the frame (frame_name) if defined.</span>
+<span class="sd">        If a callback function is not passed in parameter, the function will be blocking.</span>
+<span class="sd">        Otherwise, the callback will be called when the execution of the function is finished.</span>
+
+<span class="sd">        All lines of the next example realize the same operation: ::</span>
+
+<span class="sd">            arm.move_linear_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0])</span>
+<span class="sd">            arm.move_linear_pose(PoseObject(0.2, 0.1, 0.3, 0.0, 0.5, 0.0))</span>
+<span class="sd">            arm.move_linear_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0], &quot;default_frame&quot;)</span>
+<span class="sd">            arm.move_linear_pose(PoseObject(0.2, 0.1, 0.3, 0.0, 0.5, 0.0), &quot;default_frame&quot;)</span>
+
+<span class="sd">            def move_callback(_):</span>
+<span class="sd">                print(&quot;Move completed&quot;)</span>
+
+<span class="sd">            arm.move_linear_pose([0.2, 0.1, 0.3, 0.0, 0.5, 0.0], callback=move_callback)</span>
+
+<span class="sd">        :param callback: Callback invoked on successful execution.</span>
+<span class="sd">        :type callback: function</span>
+<span class="sd">        :param pose: either or a list of 6 coordinates or a PoseObject</span>
+<span class="sd">        :type pose: Union[tuple[float], list[float], PoseObject]</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        :param frame: name of the frame</span>
+<span class="sd">        :type param: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">frame</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
+            <span class="n">position</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">rpy</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">pose</span><span class="p">,</span> <span class="n">PoseObject</span><span class="p">)):</span>
+                <span class="n">position</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="o">.</span><span class="n">z</span><span class="p">}</span>
+                <span class="n">rpy</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;roll&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="o">.</span><span class="n">roll</span><span class="p">,</span> <span class="s2">&quot;pitch&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="o">.</span><span class="n">pitch</span><span class="p">,</span> <span class="s2">&quot;yaw&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="o">.</span><span class="n">yaw</span><span class="p">}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">position</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="p">[</span><span class="mi">2</span><span class="p">]}</span>
+                <span class="n">rpy</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;roll&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;pitch&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="s2">&quot;yaw&quot;</span><span class="p">:</span> <span class="n">pose</span><span class="p">[</span><span class="mi">5</span><span class="p">]}</span>
+            <span class="n">frame_position</span><span class="p">,</span> <span class="n">frame_rpy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_transform_pose</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">rpy</span><span class="p">)</span>
+
+            <span class="n">pose_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">frame_position</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">]]</span> <span class="o">+</span> \
+                <span class="p">[</span><span class="n">frame_rpy</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;roll&quot;</span><span class="p">,</span> <span class="s2">&quot;pitch&quot;</span><span class="p">,</span> <span class="s2">&quot;yaw&quot;</span><span class="p">]]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pose_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args_pose_to_list</span><span class="p">(</span><span class="n">pose</span><span class="p">)</span>
+
+        <span class="n">goal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span><span class="o">.</span><span class="n">get_move_linear_pose_goal</span><span class="p">(</span><span class="n">pose_list</span><span class="p">)</span>
+        <span class="n">goal</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">result_callback</span><span class="o">=</span><span class="n">callback</span><span class="p">)</span>
+        <span class="n">_result</span> <span class="o">=</span> <span class="n">goal</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__action_timeout</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Arm.stop_move">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.stop_move">[docs]</a>
+    <span class="k">def</span> <span class="nf">stop_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Stop a current execution of move_pose, move_joint or move_linear_pose.</span>
+<span class="sd">        The robot will stop at its current position .</span>
+<span class="sd">        If a callback function is not passed in parameter, the function will be blocking.</span>
+<span class="sd">        Otherwise, the callback will be called when the execution of the function is finished.</span>
+
+<span class="sd">        Examples: ::</span>
+
+<span class="sd">            # Synchronous use</span>
+<span class="sd">            arm.stop_move()</span>
+
+<span class="sd">            # Asynchronous use</span>
+<span class="sd">            def stop_callback(result):</span>
+<span class="sd">                if result[&quot;status&quot;] &lt; RobotErrors.SUCCESS.value:</span>
+<span class="sd">                    print(&quot;Succeeded&quot;)</span>
+<span class="sd">                else:</span>
+<span class="sd">                    print(&quot;Failed&quot;)</span>
+
+<span class="sd">            arm.stop_move(stop_callback)</span>
+
+<span class="sd">        :param callback: Callback invoked on successful execution.</span>
+<span class="sd">        :type callback: function</span>
+<span class="sd">        :param errback: Callback invoked on error.</span>
+<span class="sd">        :type errback: function</span>
+<span class="sd">        :param timeout: Timeout for the operation, in seconds. Only used if blocking.</span>
+<span class="sd">        :type timeout: float</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">get_trigger_request</span><span class="p">()</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">stop_arm_service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_result_status</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_calculate_relative_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_name</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate the pose by a relative movement (x,y,z,roll,pitch,yaw) in the frame (frame_name)</span>
+
+<span class="sd">        :param frame_name:, name of the frame</span>
+<span class="sd">        :type frame_name : str</span>
+<span class="sd">        :param x:</span>
+<span class="sd">        :type x: float</span>
+<span class="sd">        :param y:</span>
+<span class="sd">        :type y: float</span>
+<span class="sd">        :param z:</span>
+<span class="sd">        :type z: float</span>
+<span class="sd">        :param roll:</span>
+<span class="sd">        :type roll: float</span>
+<span class="sd">        :param pitch:</span>
+<span class="sd">        :type pitch: float</span>
+<span class="sd">        :param yaw:</span>
+<span class="sd">        :type yaw: float</span>
+<span class="sd">        :return: status, message</span>
+<span class="sd">        :rtype: (int, str)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">math</span>
+        <span class="c1"># Get transform</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">roll</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">yaw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_pose</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+
+        <span class="n">position</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="n">z</span><span class="p">}</span>
+        <span class="n">rpy</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;roll&quot;</span><span class="p">:</span> <span class="n">roll</span><span class="p">,</span> <span class="s2">&quot;pitch&quot;</span><span class="p">:</span> <span class="n">pitch</span><span class="p">,</span> <span class="s2">&quot;yaw&quot;</span><span class="p">:</span> <span class="n">yaw</span><span class="p">}</span>
+
+        <span class="n">frame_position</span><span class="p">,</span> <span class="n">frame_rpy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_transform_pose</span><span class="p">(</span><span class="n">frame_name</span><span class="p">,</span> <span class="s2">&quot;world&quot;</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">rpy</span><span class="p">)</span>
+
+        <span class="n">frame_position</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_position</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">offset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">frame_position</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_position</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">offset</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">frame_position</span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_position</span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">offset</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="n">frame_rpy</span><span class="p">[</span><span class="s2">&quot;roll&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">frame_rpy</span><span class="p">[</span><span class="s2">&quot;roll&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">offset</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+        <span class="n">frame_rpy</span><span class="p">[</span><span class="s2">&quot;pitch&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">frame_rpy</span><span class="p">[</span><span class="s2">&quot;pitch&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">offset</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+        <span class="n">frame_rpy</span><span class="p">[</span><span class="s2">&quot;yaw&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">frame_rpy</span><span class="p">[</span><span class="s2">&quot;yaw&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">offset</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
+        <span class="n">world_position</span><span class="p">,</span> <span class="n">world_rpy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_transform_pose</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">,</span> <span class="n">frame_name</span><span class="p">,</span> <span class="n">frame_position</span><span class="p">,</span> <span class="n">frame_rpy</span><span class="p">)</span>
+
+        <span class="n">pose</span> <span class="o">=</span> <span class="p">[</span><span class="n">world_position</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span> <span class="n">world_position</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="n">world_position</span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">],</span>
+                <span class="n">world_rpy</span><span class="p">[</span><span class="s2">&quot;roll&quot;</span><span class="p">],</span> <span class="n">world_rpy</span><span class="p">[</span><span class="s2">&quot;pitch&quot;</span><span class="p">],</span> <span class="n">world_rpy</span><span class="p">[</span><span class="s2">&quot;yaw&quot;</span><span class="p">]]</span>
+
+        <span class="k">return</span> <span class="n">pose</span>
+
+<div class="viewcode-block" id="Arm.move_relative">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.move_relative">[docs]</a>
+    <span class="k">def</span> <span class="nf">move_relative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;world&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move robot end of a offset in a frame</span>
+
+<span class="sd">        Example: ::</span>
+
+<span class="sd">            arm.move_relative([0.05, 0.05, 0.05, 0.3, 0, 0], &quot;default_frame&quot;)</span>
+
+<span class="sd">        :param offset: list which contains offset of x, y, z, roll, pitch, yaw</span>
+<span class="sd">        :type offset: list[float]</span>
+<span class="sd">        :param frame: name of local frame</span>
+<span class="sd">        :type frame: str</span>
+<span class="sd">        :return: status, message</span>
+<span class="sd">        :rtype: (int, str)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_type</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_type</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+
+        <span class="n">pose</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_relative_pose</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">offset</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">move_pose</span><span class="p">(</span><span class="n">pose</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Arm.move_linear_relative">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.move_linear_relative">[docs]</a>
+    <span class="k">def</span> <span class="nf">move_linear_relative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;world&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move robot end of a offset by a linear movement in a frame</span>
+
+<span class="sd">        Example: ::</span>
+
+<span class="sd">            arm.move_linear_relative([0.05, 0.05, 0.05, 0.3, 0, 0], &quot;default_frame&quot;)</span>
+
+<span class="sd">        :param offset: list which contains offset of x, y, z, roll, pitch, yaw</span>
+<span class="sd">        :type offset: list[float]</span>
+<span class="sd">        :param frame: name of local frame</span>
+<span class="sd">        :type frame: str</span>
+<span class="sd">        :return: status, message</span>
+<span class="sd">        :rtype: (int, str)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_type</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_type</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="n">pose</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_relative_pose</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">offset</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">move_linear_pose</span><span class="p">(</span><span class="n">pose</span><span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">get_arm_max_velocity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the arm max velocity client which can be used synchronously or asynchronously</span>
+<span class="sd">        to obtain the arm max velocity.</span>
+<span class="sd">        The arm max velocity client returns an integer value.</span>
+
+<span class="sd">        Examples: ::</span>
+
+<span class="sd">            # Get last value</span>
+<span class="sd">            arm.get_arm_max_velocity()</span>
+<span class="sd">            arm.get_arm_max_velocity.value</span>
+
+<span class="sd">            # Subscribe a callback</span>
+<span class="sd">            def velocity_callback(velocity_percentage):</span>
+<span class="sd">                print velocity_percentage</span>
+
+<span class="sd">            arm.get_arm_max_velocity.subscribe(velocity_callback)</span>
+<span class="sd">            arm.get_arm_max_velocity.unsubscribe()</span>
+
+<span class="sd">        :return: arm velocity topic instance</span>
+<span class="sd">        :rtype: NiryoTopic</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topics</span><span class="o">.</span><span class="n">max_velocity_scaling_factor_topic</span>
+
+<div class="viewcode-block" id="Arm.set_arm_max_velocity">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.set_arm_max_velocity">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_arm_max_velocity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">percentage_speed</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Limit arm max velocity to a percentage of its maximum velocity</span>
+
+<span class="sd">        :param percentage_speed: Should be between 1 &amp; 100</span>
+<span class="sd">        :type percentage_speed: int</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_range_belonging</span><span class="p">(</span><span class="n">percentage_speed</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">get_max_velocity_scaling_factor_request</span><span class="p">(</span><span class="n">percentage_speed</span><span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">set_max_velocity_scaling_factor_service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_result_status</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span></div>
+
+
+    <span class="c1"># - Shift Pose</span>
+
+<div class="viewcode-block" id="Arm.shift_pose">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.shift_pose">[docs]</a>
+    <span class="k">def</span> <span class="nf">shift_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">shift_value</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Shift robot end effector pose along one axis</span>
+<span class="sd">        If a callback function is not passed in parameter, the function will be blocking.</span>
+<span class="sd">        Otherwise, the callback will be called when the execution of the function is finished.</span>
+
+<span class="sd">        Examples: ::</span>
+
+<span class="sd">            self.arm.shift_pose(RobotAxis.X, 0.05)</span>
+<span class="sd">            self.arm.shift_pose(RobotAxis.Y, -0.05)</span>
+<span class="sd">            self.arm.shift_pose(RobotAxis.Z, 0.1)</span>
+<span class="sd">            self.arm.shift_pose(RobotAxis.ROLL, 1.57)</span>
+<span class="sd">            self.arm.shift_pose(RobotAxis.PITCH, -1.57)</span>
+<span class="sd">            self.arm.shift_pose(RobotAxis.YAW, 0.78)</span>
+
+<span class="sd">            def move_callback(_):</span>
+<span class="sd">                print(&quot;Move completed&quot;)</span>
+
+<span class="sd">            self.arm.shift_pose(RobotAxis.X, 0.1, move_callback)</span>
+
+
+<span class="sd">        :param axis: Axis along which the robot is shifted</span>
+<span class="sd">        :type axis: RobotAxis</span>
+<span class="sd">        :param shift_value: In meter for X/Y/Z and radians for roll/pitch/yaw</span>
+<span class="sd">        :type shift_value: float</span>
+<span class="sd">        :param callback: Callback invoked on successful execution.</span>
+<span class="sd">        :type callback: function</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_enum_belonging</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">RobotAxis</span><span class="p">)</span>
+        <span class="n">shift_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform_to_type</span><span class="p">(</span><span class="n">shift_value</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+
+        <span class="n">goal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span><span class="o">.</span><span class="n">get_shift_pose_goal</span><span class="p">(</span><span class="n">axis</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">shift_value</span><span class="p">)</span>
+        <span class="n">goal</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">result_callback</span><span class="o">=</span><span class="n">callback</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">callback</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_result</span> <span class="o">=</span> <span class="n">goal</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__action_timeout</span><span class="p">)</span></div>
+
+
+    <span class="c1"># - Jog</span>
+
+<div class="viewcode-block" id="Arm.set_jog_control">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.set_jog_control">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_jog_control</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enabled</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set jog control mode if param is True, else turn it off</span>
+
+<span class="sd">        :param enabled: ``True`` or ``False``</span>
+<span class="sd">        :type enabled: Bool</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_type</span><span class="p">(</span><span class="n">enabled</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+        <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">get_enable_jog_request</span><span class="p">(</span><span class="n">enabled</span><span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">enable_jog_controller_service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_result_status</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Arm.jog_joints">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.jog_joints">[docs]</a>
+    <span class="k">def</span> <span class="nf">jog_joints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joints_offset</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Jog robot joints&#39;.</span>
+<span class="sd">        Jog corresponds to a shift without motion planning.</span>
+<span class="sd">        Values are expressed in radians.</span>
+<span class="sd">        If a callback function is not passed in parameter, the function will be blocking.</span>
+<span class="sd">        Otherwise, the callback will be called when the execution of the function is finished.</span>
+
+<span class="sd">        Examples: ::</span>
+
+<span class="sd">            arm.jog_joints([0.1, 0.0, 0.5, 0.0, 0.0, -1.57])</span>
+
+<span class="sd">            def jog_callback(_):</span>
+<span class="sd">                print(&quot;Jog completed&quot;)</span>
+<span class="sd">                arm.set_jog_control(False) # Disable Jog interface</span>
+
+<span class="sd">            arm.jog_joints([0.1, 0.0, 0.5, 0.0, 0.0, -1.57], jog_callback)</span>
+
+
+<span class="sd">        :param joints_offset: a list of 6 joints offset</span>
+<span class="sd">        :type joints_offset: Union[list[float], tuple[float]]</span>
+<span class="sd">        :param callback: Callback invoked on successful execution.</span>
+<span class="sd">        :type callback: function</span>
+<span class="sd">        :param errback: Callback invoked on error.</span>
+<span class="sd">        :type errback: function</span>
+<span class="sd">        :param timeout: Timeout for the operation, in seconds. Only used if blocking.</span>
+<span class="sd">        :type timeout: float</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">joints_off</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args_joints_to_list</span><span class="p">(</span><span class="n">joints_offset</span><span class="p">)</span>
+        <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">get_jog_request</span><span class="p">(</span><span class="n">JogShift</span><span class="o">.</span><span class="n">JOINTS_SHIFT</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">joints_off</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">jog_shift_service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Arm.jog_pose">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.jog_pose">[docs]</a>
+    <span class="k">def</span> <span class="nf">jog_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose_offset</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Jog robot end effector pose</span>
+<span class="sd">        Jog corresponds to a shift without motion planning</span>
+<span class="sd">        Arguments are [dx, dy, dz, d_roll, d_pitch, d_yaw]</span>
+<span class="sd">        dx, dy &amp; dz are expressed in meters / d_roll, d_pitch &amp; d_yaw are expressed in radians</span>
+<span class="sd">        If a callback function is not passed in parameter, the function will be blocking.</span>
+<span class="sd">        Otherwise, the callback will be called when the execution of the function is finished.</span>
+
+<span class="sd">        Examples: ::</span>
+
+<span class="sd">            arm.jog_pose([0.01, 0.0, 0.05, 0.0, 0.0, -1.57])</span>
+
+<span class="sd">            def jog_callback(_):</span>
+<span class="sd">                print(&quot;Jog completed&quot;)</span>
+<span class="sd">                arm.set_jog_control(False) # Disable Jog interface</span>
+
+<span class="sd">            arm.jog_pose([0.1, 0.0, 0.5, 0.0, 0.0, -1.57], jog_callback)</span>
+
+
+<span class="sd">        :param pose_offset: a list of 6 offset</span>
+<span class="sd">        :type pose_offset: Union[list[float], tuple[float]]</span>
+<span class="sd">        :param callback: Callback invoked on successful execution.</span>
+<span class="sd">        :type callback: function</span>
+<span class="sd">        :param errback: Callback invoked on error.</span>
+<span class="sd">        :type errback: function</span>
+<span class="sd">        :param timeout: Timeout for the operation, in seconds. Only used if blocking.</span>
+<span class="sd">        :type timeout: float</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pose_offset_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args_pose_to_list</span><span class="p">(</span><span class="n">pose_offset</span><span class="p">)</span>
+        <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">get_jog_request</span><span class="p">(</span><span class="n">JogShift</span><span class="o">.</span><span class="n">POSE_SHIFT</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">pose_offset_list</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">jog_shift_service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span></div>
+
+
+    <span class="c1"># -- Kinematics</span>
+
+<div class="viewcode-block" id="Arm.forward_kinematics">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.forward_kinematics">[docs]</a>
+    <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute forward kinematics of a given joints configuration and give the</span>
+<span class="sd">        associated spatial pose</span>
+
+<span class="sd">        Examples: ::</span>
+
+<span class="sd">            pose_obj = arm.forward_kinematics(1.57, 0.0, 0.0, 0.78, 0.0, -1.57)</span>
+<span class="sd">            pose_obj = arm.forward_kinematics([1.57, 0.0, 0.0, 0.78, 0.0, -1.57])</span>
+
+<span class="sd">        :param args: either 6 args (1 for each joints) or a list of 6 joints</span>
+<span class="sd">        :type args: Union[list[float], tuple[float]]</span>
+<span class="sd">        :rtype: PoseObject</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">joints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args_joints_to_list</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">get_forward_kinematics_request</span><span class="p">(</span><span class="n">joints</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">forward_kinematics_service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+        <span class="n">pose_array</span> <span class="o">=</span> <span class="n">pose_dict_to_list</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;pose&quot;</span><span class="p">])</span>
+        <span class="n">pose_object</span> <span class="o">=</span> <span class="n">PoseObject</span><span class="p">(</span><span class="o">*</span><span class="n">pose_array</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pose_object</span></div>
+
+
+<div class="viewcode-block" id="Arm.inverse_kinematics">
+<a class="viewcode-back" href="../../../source/api_doc/arm.html#pyniryo2.arm.arm.Arm.inverse_kinematics">[docs]</a>
+    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute inverse kinematics</span>
+
+<span class="sd">        Examples: ::</span>
+
+<span class="sd">            joint_list = arm.inverse_kinematics(0.2, 0.0, 0.3, 0.0, 1.57, 0.0)</span>
+<span class="sd">            joint_list = arm.inverse_kinematics([0.2, 0.0, 0.3, 0.0, 1.57, 0.0])</span>
+<span class="sd">            joint_list = arm.inverse_kinematics(PoseObject(0.2, 0.0, 0.3, 0.0, 1.57, 0.0))</span>
+
+<span class="sd">        :param args: either 6 args (1 for each coordinates) or a list of 6 coordinates or a ``PoseObject``</span>
+<span class="sd">        :type args: Union[tuple[float], list[float], PoseObject]</span>
+<span class="sd">        :return: List of joints value</span>
+<span class="sd">        :rtype: list[float]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pose_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args_pose_to_list</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">get_inverse_kinematics_request</span><span class="p">(</span><span class="n">pose_list</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_services</span><span class="o">.</span><span class="n">inverse_kinematics_service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;joints&quot;</span><span class="p">]</span></div>
+
+
+    <span class="c1"># -- Useful functions</span>
+    <span class="k">def</span> <span class="nf">__args_pose_to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">arg</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">PoseObject</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">arg</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pose_list</span> <span class="o">=</span> <span class="n">arg</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pose_list</span> <span class="o">=</span> <span class="n">args</span>
+
+        <span class="n">pose_list_float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map_list</span><span class="p">(</span><span class="n">pose_list</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pose_list_float</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_raise_exception</span><span class="p">(</span><span class="s2">&quot;A pose should contain 6 elements (x, y, z, roll, pitch, yaw)&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pose_list_float</span>
+
+    <span class="k">def</span> <span class="nf">__args_joints_to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert args into a list</span>
+<span class="sd">        Either if args = (1.1,5.6,-6.7) or args = ([1.1,5.6,-6.7],) , the</span>
+<span class="sd">        function will return (1.1,5.6,-6.7)</span>
+
+<span class="sd">        :param args: Union[list, tuple]</span>
+<span class="sd">        :return: list of float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">joints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map_list</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">joints</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_raise_exception</span><span class="p">(</span><span class="s2">&quot;The robot has 6 joints&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">joints</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Niryo All rights reserved. No part of this document may be reproduced or transmitted in any form or by any means without prior written consent of Niryo SAS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="injected">
+  <div class="rst-versions " data-toggle="rst-versions" role="note"
+    aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book">&nbsp;&nbsp;Other versions&nbsp;&nbsp;</span>
+      v: v1.0.0
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Tags</dt>
+        <dd class="">
+          <a href="../../../../v1.0.1/index.html">v1.0.1</a>
+        </dd>
+        <dd class="rtd-current-item">
+          <a href="../../../../v1.0.0/index.html">v1.0.0</a>
+        </dd>
+      </dl>
+      <dl>
+        <dt>Search</dt>
+        <dd>
+          <div style="padding: 6px;">
+            <form id="flyout-search-form" class="wy-form" target="_blank" action="../../../
+              ../v1.0.0/index.html/../search.html" method="get">
+              <input type="text" name="q" aria-label="Search docs" placeholder="Search docs">
+            </form>
+          </div>
+        </dd>
+      </dl>
+    </div>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-85632199-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-85632199-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

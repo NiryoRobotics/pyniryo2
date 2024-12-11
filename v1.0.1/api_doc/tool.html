@@ -1,0 +1,1247 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tool &mdash; PyNiryo2 1.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/_rst_properties.css?v=754ff73a" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=292eb321"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Vision" href="vision.html" />
+    <link rel="prev" title="Arm" href="arm.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PyNiryo2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../setup/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../setup/installation.html#installation-with-pip">Installation with pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup/installation.html#uninstall">Uninstall</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../setup/ip_address.html">Find your Robot’s IP address</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../setup/ip_address.html#hotspot-mode">Hotspot mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup/ip_address.html#simulation-or-directly-on-the-robot">Simulation or directly on the robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup/ip_address.html#direct-ethernet-connection">Direct Ethernet connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup/ip_address.html#computer-and-robot-connected-on-the-same-router">Computer and Robot Connected on the same router</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../setup/verify_setup.html">Verify your Setup and Get Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples_basics.html">Examples: Basics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_basics.html#your-first-move-joint">Your first move joint</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_basics.html#code-details-first-move-j">Code Details - First Move J</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_basics.html#your-first-pick-and-place">Your first pick and place</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_basics.html#code-details-first-pick-and-place">Code Details - First Pick And Place</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_basics.html#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples_movement.html">Examples: Movement</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_movement.html#joints">Joints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_movement.html#move-joints">Move Joints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_movement.html#get-joints">Get Joints</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_movement.html#pose">Pose</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_movement.html#move-pose">Move Pose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_movement.html#get-pose">Get Pose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_movement.html#how-to-use-the-poseobject">How to use the PoseObject</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples_tool_action.html">Examples: Tool Action</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_tool_action.html#tool-control">Tool control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_tool_action.html#equip-tool">Equip Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_tool_action.html#grasping">Grasping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_tool_action.html#releasing">Releasing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_tool_action.html#pick-place-with-tools">Pick &amp; Place with tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_tool_action.html#code-baseline">Code Baseline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_tool_action.html#first-solution-the-heaviest">First Solution : the heaviest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_tool_action.html#second-solution-use-of-poseobject">Second Solution : Use of PoseObject</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_tool_action.html#third-solution-pick-from-pose-place-from-pose-functions">Third Solution : Pick from pose &amp; Place from pose functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_tool_action.html#fourth-solution-all-in-one">Fourth Solution : All in one</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples_conveyor.html">Examples: Conveyor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_conveyor.html#simple-conveyor-control">Simple Conveyor control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_conveyor.html#advanced-conveyor-control">Advanced Conveyor control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples_vision.html">Examples: Vision</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_vision.html#needed-piece-of-code">Needed piece of code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_vision.html#simple-vision-pick-place">Simple Vision Pick &amp; Place</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_vision.html#code-details-simple-vision-pick-and-place">Code Details - Simple Vision Pick and Place</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_vision.html#first-conditioning-via-vision">First conditioning via Vision</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_vision.html#code-details-first-conditioning-via-vision">Code Details - First Conditioning via Vision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_vision.html#multi-reference-conditioning">Multi Reference Conditioning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_vision.html#code-details-multi-reference-conditioning">Code Details - Multi Reference Conditioning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_vision.html#sorting-pick-with-conveyor">Sorting Pick with Conveyor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples_vision.html#code-details-sort-picking">Code Details - Sort Picking</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples_frames.html">Examples: Dynamic frames</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_frames.html#simple-dynamic-frame-control">Simple dynamic frame control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/code_templates.html">Code templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/code_templates.html#the-short-template">The short template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/code_templates.html#advanced-template">Advanced template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/code_templates.html#advanced-template-for-conveyor">Advanced template for conveyor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/code_templates.html#advanced-template-for-vision">Advanced template for vision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/code_templates.html#callbacks-templates">Callbacks Templates</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="niryo_robot.html">NiryoRobot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="niryo_robot.html#niryorobot-command-functions">NiryoRobot - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="niryo_robot.html#niryorobot-functions">NiryoRobot functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.niryo_robot.NiryoRobot"><code class="docutils literal notranslate"><span class="pre">NiryoRobot</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="niryo_robot.html#niryorobot-properties">NiryoRobot properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="niryo_robot.html#globals-enums">Globals Enums</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors"><code class="docutils literal notranslate"><span class="pre">RobotErrors</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.SUCCESS"><code class="docutils literal notranslate"><span class="pre">RobotErrors.SUCCESS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.CANCELLED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.CANCELLED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.PREEMPTED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PREEMPTED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.ABORTED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.ABORTED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.STOPPED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.STOPPED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.ROS_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.ROS_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.FILE_ALREADY_EXISTS"><code class="docutils literal notranslate"><span class="pre">RobotErrors.FILE_ALREADY_EXISTS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.UNKNOWN_COMMAND"><code class="docutils literal notranslate"><span class="pre">RobotErrors.UNKNOWN_COMMAND</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.NOT_IMPLEMENTED_COMMAND"><code class="docutils literal notranslate"><span class="pre">RobotErrors.NOT_IMPLEMENTED_COMMAND</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.INVALID_PARAMETERS"><code class="docutils literal notranslate"><span class="pre">RobotErrors.INVALID_PARAMETERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.HARDWARE_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.HARDWARE_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.HARDWARE_NOT_OK"><code class="docutils literal notranslate"><span class="pre">RobotErrors.HARDWARE_NOT_OK</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.LEARNING_MODE_ON"><code class="docutils literal notranslate"><span class="pre">RobotErrors.LEARNING_MODE_ON</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.CALIBRATION_NOT_DONE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.CALIBRATION_NOT_DONE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.DIGITAL_IO_PANEL_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.DIGITAL_IO_PANEL_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.LED_MANAGER_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.LED_MANAGER_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.BUTTON_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.BUTTON_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.WRONG_MOTOR_TYPE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.WRONG_MOTOR_TYPE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.DXL_WRITE_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.DXL_WRITE_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.DXL_READ_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.DXL_READ_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.CAN_WRITE_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.CAN_WRITE_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.CAN_READ_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.CAN_READ_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.NO_CONVEYOR_LEFT"><code class="docutils literal notranslate"><span class="pre">RobotErrors.NO_CONVEYOR_LEFT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.NO_CONVEYOR_FOUND"><code class="docutils literal notranslate"><span class="pre">RobotErrors.NO_CONVEYOR_FOUND</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.CONVEYOR_ID_INVALID"><code class="docutils literal notranslate"><span class="pre">RobotErrors.CONVEYOR_ID_INVALID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.CALIBRATION_IN_PROGRESS"><code class="docutils literal notranslate"><span class="pre">RobotErrors.CALIBRATION_IN_PROGRESS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.VIDEO_STREAM_ON_OFF_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.VIDEO_STREAM_ON_OFF_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.VIDEO_STREAM_NOT_RUNNING"><code class="docutils literal notranslate"><span class="pre">RobotErrors.VIDEO_STREAM_NOT_RUNNING</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.OBJECT_NOT_FOUND"><code class="docutils literal notranslate"><span class="pre">RobotErrors.OBJECT_NOT_FOUND</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.MARKERS_NOT_FOUND"><code class="docutils literal notranslate"><span class="pre">RobotErrors.MARKERS_NOT_FOUND</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.ARM_COMMANDER_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.ARM_COMMANDER_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.GOAL_STILL_ACTIVE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.GOAL_STILL_ACTIVE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.JOG_CONTROLLER_ENABLED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.JOG_CONTROLLER_ENABLED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.CONTROLLER_PROBLEMS"><code class="docutils literal notranslate"><span class="pre">RobotErrors.CONTROLLER_PROBLEMS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.SHOULD_RESTART"><code class="docutils literal notranslate"><span class="pre">RobotErrors.SHOULD_RESTART</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.JOG_CONTROLLER_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.JOG_CONTROLLER_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.PLAN_FAILED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PLAN_FAILED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.NO_PLAN_AVAILABLE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.NO_PLAN_AVAILABLE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.INVERT_KINEMATICS_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.INVERT_KINEMATICS_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.TOOL_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.TOOL_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.TOOL_ID_INVALID"><code class="docutils literal notranslate"><span class="pre">RobotErrors.TOOL_ID_INVALID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.TOOL_NOT_CONNECTED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.TOOL_NOT_CONNECTED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.TOOL_ROS_INTERFACE_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.TOOL_ROS_INTERFACE_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.POSES_HANDLER_CREATION_FAILED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.POSES_HANDLER_CREATION_FAILED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.POSES_HANDLER_REMOVAL_FAILED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.POSES_HANDLER_REMOVAL_FAILED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.POSES_HANDLER_READ_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.POSES_HANDLER_READ_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.POSES_HANDLER_COMPUTE_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.POSES_HANDLER_COMPUTE_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.WORKSPACE_CREATION_FAILED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.WORKSPACE_CREATION_FAILED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_READ_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_READ_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_UNKNOWN_LANGUAGE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_UNKNOWN_LANGUAGE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_NOT_RUNNABLE_LANGUAGE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_NOT_RUNNABLE_LANGUAGE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_EXECUTION_FAILED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_EXECUTION_FAILED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_STOPPING_FAILED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_STOPPING_FAILED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_AUTORUN_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_AUTORUN_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_WRITING_FAILURE"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_WRITING_FAILURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_FILE_ALREADY_EXISTS"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_FILE_ALREADY_EXISTS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.PROGRAMS_MANAGER_FILE_DOES_NOT_EXIST"><code class="docutils literal notranslate"><span class="pre">RobotErrors.PROGRAMS_MANAGER_FILE_DOES_NOT_EXIST</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.SERIAL_FILE_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.SERIAL_FILE_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.SERIAL_UNKNOWN_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.SERIAL_UNKNOWN_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.MQTT_PUBLISH_FUNCTION_DOESNT_EXIST"><code class="docutils literal notranslate"><span class="pre">RobotErrors.MQTT_PUBLISH_FUNCTION_DOESNT_EXIST</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.MQTT_PUBLISH_FUNCTION_INVALID_ARGUMENTS"><code class="docutils literal notranslate"><span class="pre">RobotErrors.MQTT_PUBLISH_FUNCTION_INVALID_ARGUMENTS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.SYSTEM_API_CLIENT_UNKNOWN_ERROR"><code class="docutils literal notranslate"><span class="pre">RobotErrors.SYSTEM_API_CLIENT_UNKNOWN_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.SYSTEM_API_CLIENT_INVALID_ROBOT_NAME"><code class="docutils literal notranslate"><span class="pre">RobotErrors.SYSTEM_API_CLIENT_INVALID_ROBOT_NAME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.RobotErrors.SYSTEM_API_CLIENT_REQUEST_FAILED"><code class="docutils literal notranslate"><span class="pre">RobotErrors.SYSTEM_API_CLIENT_REQUEST_FAILED</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.ArmMoveCommandType"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.JOINTS"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.JOINTS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.POSE"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.POSE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.POSITION"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.POSITION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.RPY"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.RPY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.POSE_QUAT"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.POSE_QUAT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.LINEAR_POSE"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.LINEAR_POSE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.SHIFT_POSE"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.SHIFT_POSE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.SHIFT_LINEAR_POSE"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.SHIFT_LINEAR_POSE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.EXECUTE_TRAJ"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.EXECUTE_TRAJ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.DRAW_SPIRAL"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.DRAW_SPIRAL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.DRAW_CIRCLE"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.DRAW_CIRCLE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.EXECUTE_FULL_TRAJ"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.EXECUTE_FULL_TRAJ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_robot.html#pyniryo2.enums.ArmMoveCommandType.EXECUTE_RAW_TRAJ"><code class="docutils literal notranslate"><span class="pre">ArmMoveCommandType.EXECUTE_RAW_TRAJ</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="niryo_robot.html#globals-objects">Globals Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="niryo_topics.html">NiryoTopic</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="niryo_topics.html#niryotopic-usage">NiryoTopic - Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="niryo_topics.html#niryotopic-class">NiryoTopic - Class</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="niryo_topics.html#pyniryo2.niryo_topic.NiryoTopic"><code class="docutils literal notranslate"><span class="pre">NiryoTopic</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="niryo_topics.html#pyniryo2.niryo_topic.NiryoTopic.is_subscribed"><code class="docutils literal notranslate"><span class="pre">NiryoTopic.is_subscribed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_topics.html#pyniryo2.niryo_topic.NiryoTopic.value"><code class="docutils literal notranslate"><span class="pre">NiryoTopic.value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_topics.html#pyniryo2.niryo_topic.NiryoTopic.subscribe"><code class="docutils literal notranslate"><span class="pre">NiryoTopic.subscribe()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_topics.html#pyniryo2.niryo_topic.NiryoTopic.unsubscribe"><code class="docutils literal notranslate"><span class="pre">NiryoTopic.unsubscribe()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="niryo_topics.html#pyniryo2.niryo_topic.NiryoTopic.publish"><code class="docutils literal notranslate"><span class="pre">NiryoTopic.publish()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="niryo_ros.html">NiryoRos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="niryo_ros.html#pyniryo2.niryo_ros.NiryoRos"><code class="docutils literal notranslate"><span class="pre">NiryoRos</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="niryo_ros.html#pyniryo2.niryo_ros.NiryoRos.close"><code class="docutils literal notranslate"><span class="pre">NiryoRos.close()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="niryo_ros.html#pyniryo2.niryo_ros.NiryoRos.terminate"><code class="docutils literal notranslate"><span class="pre">NiryoRos.terminate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="niryo_ros.html#pyniryo2.niryo_ros.NiryoRos.hardware_version"><code class="docutils literal notranslate"><span class="pre">NiryoRos.hardware_version</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="niryo_ros.html#pyniryo2.niryo_ros.NiryoRosTimeoutException"><code class="docutils literal notranslate"><span class="pre">NiryoRosTimeoutException</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="arm.html">Arm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="arm.html#arm-command-functions">Arm - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm"><code class="docutils literal notranslate"><span class="pre">Arm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="arm.html#calibration-functions">Calibration functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.calibrate"><code class="docutils literal notranslate"><span class="pre">Arm.calibrate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.calibrate_auto"><code class="docutils literal notranslate"><span class="pre">Arm.calibrate_auto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.request_new_calibration"><code class="docutils literal notranslate"><span class="pre">Arm.request_new_calibration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.reset_calibration"><code class="docutils literal notranslate"><span class="pre">Arm.reset_calibration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.need_calibration"><code class="docutils literal notranslate"><span class="pre">Arm.need_calibration()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="arm.html#robot-move-functions">Robot move functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.set_arm_max_velocity"><code class="docutils literal notranslate"><span class="pre">Arm.set_arm_max_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.go_to_sleep"><code class="docutils literal notranslate"><span class="pre">Arm.go_to_sleep()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.stop_move"><code class="docutils literal notranslate"><span class="pre">Arm.stop_move()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.move_to_home_pose"><code class="docutils literal notranslate"><span class="pre">Arm.move_to_home_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.move_joints"><code class="docutils literal notranslate"><span class="pre">Arm.move_joints()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.move_pose"><code class="docutils literal notranslate"><span class="pre">Arm.move_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.move_linear_pose"><code class="docutils literal notranslate"><span class="pre">Arm.move_linear_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.shift_pose"><code class="docutils literal notranslate"><span class="pre">Arm.shift_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.move_relative"><code class="docutils literal notranslate"><span class="pre">Arm.move_relative()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.move_linear_relative"><code class="docutils literal notranslate"><span class="pre">Arm.move_linear_relative()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.set_jog_control"><code class="docutils literal notranslate"><span class="pre">Arm.set_jog_control()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.jog_joints"><code class="docutils literal notranslate"><span class="pre">Arm.jog_joints()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.jog_pose"><code class="docutils literal notranslate"><span class="pre">Arm.jog_pose()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="arm.html#robot-status-functions">Robot status functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.hardware_status"><code class="docutils literal notranslate"><span class="pre">Arm.hardware_status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.joints_state"><code class="docutils literal notranslate"><span class="pre">Arm.joints_state</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.get_joints"><code class="docutils literal notranslate"><span class="pre">Arm.get_joints()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.joints"><code class="docutils literal notranslate"><span class="pre">Arm.joints</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.pose"><code class="docutils literal notranslate"><span class="pre">Arm.pose</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.get_pose"><code class="docutils literal notranslate"><span class="pre">Arm.get_pose</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.get_pose_quat"><code class="docutils literal notranslate"><span class="pre">Arm.get_pose_quat()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="arm.html#learning-mode-functions">Learning mode functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.learning_mode"><code class="docutils literal notranslate"><span class="pre">Arm.learning_mode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.get_learning_mode"><code class="docutils literal notranslate"><span class="pre">Arm.get_learning_mode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.set_learning_mode"><code class="docutils literal notranslate"><span class="pre">Arm.set_learning_mode()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="arm.html#kinematics-functions">Kinematics functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.forward_kinematics"><code class="docutils literal notranslate"><span class="pre">Arm.forward_kinematics()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="arm.html#pyniryo2.arm.arm.Arm.inverse_kinematics"><code class="docutils literal notranslate"><span class="pre">Arm.inverse_kinematics()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="arm.html#arm-niryo-topics">Arm - Niryo Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arm.html#arm-enums">Arm - Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arm.html#arm-objects">Arm - Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="arm.html#pyniryo2.arm.objects.HardwareStatusObject"><code class="docutils literal notranslate"><span class="pre">HardwareStatusObject</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="arm.html#pyniryo2.arm.objects.JointStateObject"><code class="docutils literal notranslate"><span class="pre">JointStateObject</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="arm.html#pyniryo2.objects.PoseObject"><code class="docutils literal notranslate"><span class="pre">PoseObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tool</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tool-command-functions">Tool - Command Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyniryo2.tool.tool.Tool"><code class="docutils literal notranslate"><span class="pre">Tool</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tool-functions">Tool functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyniryo2.tool.tool.Tool.update_tool"><code class="docutils literal notranslate"><span class="pre">Tool.update_tool()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyniryo2.tool.tool.Tool.tool"><code class="docutils literal notranslate"><span class="pre">Tool.tool</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyniryo2.tool.tool.Tool.get_current_tool_id"><code class="docutils literal notranslate"><span class="pre">Tool.get_current_tool_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyniryo2.tool.tool.Tool.grasp_with_tool"><code class="docutils literal notranslate"><span class="pre">Tool.grasp_with_tool()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyniryo2.tool.tool.Tool.release_with_tool"><code class="docutils literal notranslate"><span class="pre">Tool.release_with_tool()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#grippers-functions">Grippers functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyniryo2.tool.tool.Tool.open_gripper"><code class="docutils literal notranslate"><span class="pre">Tool.open_gripper()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyniryo2.tool.tool.Tool.close_gripper"><code class="docutils literal notranslate"><span class="pre">Tool.close_gripper()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#vacuum-pump-functions">Vacuum pump functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyniryo2.tool.tool.Tool.pull_air_vacuum_pump"><code class="docutils literal notranslate"><span class="pre">Tool.pull_air_vacuum_pump()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyniryo2.tool.tool.Tool.push_air_vacuum_pump"><code class="docutils literal notranslate"><span class="pre">Tool.push_air_vacuum_pump()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#electromagnet-functions">Electromagnet functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyniryo2.tool.tool.Tool.setup_electromagnet"><code class="docutils literal notranslate"><span class="pre">Tool.setup_electromagnet()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyniryo2.tool.tool.Tool.activate_electromagnet"><code class="docutils literal notranslate"><span class="pre">Tool.activate_electromagnet()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyniryo2.tool.tool.Tool.deactivate_electromagnet"><code class="docutils literal notranslate"><span class="pre">Tool.deactivate_electromagnet()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tcp-functions">TCP functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyniryo2.tool.tool.Tool.enable_tcp"><code class="docutils literal notranslate"><span class="pre">Tool.enable_tcp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyniryo2.tool.tool.Tool.set_tcp"><code class="docutils literal notranslate"><span class="pre">Tool.set_tcp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyniryo2.tool.tool.Tool.reset_tcp"><code class="docutils literal notranslate"><span class="pre">Tool.reset_tcp()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tool-niryo-topics">Tool - Niryo Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tool-enums">Tool - Enums</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vision.html">Vision</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vision.html#vision-command-functions">Vision - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vision.html#pyniryo2.vision.vision.Vision"><code class="docutils literal notranslate"><span class="pre">Vision</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="vision.html#camera-functions">Camera functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="vision.html#pyniryo2.vision.vision.Vision.get_img_compressed"><code class="docutils literal notranslate"><span class="pre">Vision.get_img_compressed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="vision.html#pyniryo2.vision.vision.Vision.get_camera_intrinsics"><code class="docutils literal notranslate"><span class="pre">Vision.get_camera_intrinsics</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="vision.html#pyniryo2.vision.vision.Vision.get_image_parameters"><code class="docutils literal notranslate"><span class="pre">Vision.get_image_parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="vision.html#pyniryo2.vision.vision.Vision.set_brightness"><code class="docutils literal notranslate"><span class="pre">Vision.set_brightness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="vision.html#pyniryo2.vision.vision.Vision.set_contrast"><code class="docutils literal notranslate"><span class="pre">Vision.set_contrast()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="vision.html#pyniryo2.vision.vision.Vision.set_saturation"><code class="docutils literal notranslate"><span class="pre">Vision.set_saturation()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="vision.html#detection-functions">Detection functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="vision.html#pyniryo2.vision.vision.Vision.get_target_pose_from_cam"><code class="docutils literal notranslate"><span class="pre">Vision.get_target_pose_from_cam()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="vision.html#pyniryo2.vision.vision.Vision.vision_pick"><code class="docutils literal notranslate"><span class="pre">Vision.vision_pick()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="vision.html#pyniryo2.vision.vision.Vision.move_to_object"><code class="docutils literal notranslate"><span class="pre">Vision.move_to_object()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="vision.html#pyniryo2.vision.vision.Vision.detect_object"><code class="docutils literal notranslate"><span class="pre">Vision.detect_object()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="vision.html#workspace-functions">Workspace functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="vision.html#pyniryo2.vision.vision.Vision.get_target_pose_from_rel"><code class="docutils literal notranslate"><span class="pre">Vision.get_target_pose_from_rel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="vision.html#pyniryo2.vision.vision.Vision.save_workspace_from_robot_poses"><code class="docutils literal notranslate"><span class="pre">Vision.save_workspace_from_robot_poses()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="vision.html#pyniryo2.vision.vision.Vision.save_workspace_from_points"><code class="docutils literal notranslate"><span class="pre">Vision.save_workspace_from_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="vision.html#pyniryo2.vision.vision.Vision.delete_workspace"><code class="docutils literal notranslate"><span class="pre">Vision.delete_workspace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="vision.html#pyniryo2.vision.vision.Vision.get_workspace_ratio"><code class="docutils literal notranslate"><span class="pre">Vision.get_workspace_ratio()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="vision.html#pyniryo2.vision.vision.Vision.get_workspace_list"><code class="docutils literal notranslate"><span class="pre">Vision.get_workspace_list()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vision.html#vision-niryo-topics">Vision - Niryo Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision.html#vision-enums">Vision - Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision.html#vision-namedtuple">Vision - Namedtuple</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="io.html">I/Os</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="io.html#i-os-command-functions">I/Os - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="io.html#pyniryo2.io.io.IO"><code class="docutils literal notranslate"><span class="pre">IO</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="io.html#state-functions">State functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="io.html#pyniryo2.io.io.IO.digital_io_states"><code class="docutils literal notranslate"><span class="pre">IO.digital_io_states</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="io.html#pyniryo2.io.io.IO.get_digital_io_states"><code class="docutils literal notranslate"><span class="pre">IO.get_digital_io_states</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="io.html#pyniryo2.io.io.IO.get_digital_io_state"><code class="docutils literal notranslate"><span class="pre">IO.get_digital_io_state()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="io.html#read-write-functions">Read &amp; Write functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="io.html#pyniryo2.io.io.IO.set_pin_mode"><code class="docutils literal notranslate"><span class="pre">IO.set_pin_mode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="io.html#pyniryo2.io.io.IO.digital_write"><code class="docutils literal notranslate"><span class="pre">IO.digital_write()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="io.html#pyniryo2.io.io.IO.digital_read"><code class="docutils literal notranslate"><span class="pre">IO.digital_read()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="io.html#i-os-niryo-topics">I/Os - Niryo Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="io.html#i-os-enums">I/Os - Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="io.html#i-os-objects">I/Os - Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="conveyor.html">Conveyor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="conveyor.html#conveyor-command-functions">Conveyor - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="conveyor.html#conveyor-functions">Conveyor functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="conveyor.html#pyniryo2.conveyor.conveyor.Conveyor"><code class="docutils literal notranslate"><span class="pre">Conveyor</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="conveyor.html#conveyor-niryo-topics">Conveyor - Niryo Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conveyor.html#conveyor-enums">Conveyor - Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conveyor.html#conveyor-namedtuple">Conveyor - Namedtuple</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="saved_poses.html">Saved poses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="saved_poses.html#saved-poses-command-functions">Saved poses - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="saved_poses.html#saved-poses-functions">Saved poses functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="saved_poses.html#pyniryo2.saved_poses.saved_poses.SavedPoses"><code class="docutils literal notranslate"><span class="pre">SavedPoses</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pick_place.html">Pick &amp; Place</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pick_place.html#pick-place-command-functions">Pick &amp; Place - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pick_place.html#pick-place-functions">Pick &amp; Place functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pick_place.html#pyniryo2.pick_place.pick_place.PickPlace"><code class="docutils literal notranslate"><span class="pre">PickPlace</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="trajectories.html">Trajectories</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trajectories.html#trajectories-command-functions">Trajectories - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trajectories.html#trajectories-functions">Trajectories functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="trajectories.html#pyniryo2.trajectories.trajectories.Trajectories"><code class="docutils literal notranslate"><span class="pre">Trajectories</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="frames.html">Frames</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="frames.html#frames-command-functions">Frames - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="frames.html#frames-functions">Frames functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="frames.html#pyniryo2.frames.frames.Frames"><code class="docutils literal notranslate"><span class="pre">Frames</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="led_ring.html">Led Ring</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="led_ring.html#module-pyniryo2.led_ring">Led Ring - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.LedRing"><code class="docutils literal notranslate"><span class="pre">LedRing</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.LedRing.status"><code class="docutils literal notranslate"><span class="pre">LedRing.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.LedRing.get_status"><code class="docutils literal notranslate"><span class="pre">LedRing.get_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.LedRing.solid"><code class="docutils literal notranslate"><span class="pre">LedRing.solid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.LedRing.turn_off"><code class="docutils literal notranslate"><span class="pre">LedRing.turn_off()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.LedRing.flash"><code class="docutils literal notranslate"><span class="pre">LedRing.flash()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.LedRing.alternate"><code class="docutils literal notranslate"><span class="pre">LedRing.alternate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.LedRing.chase"><code class="docutils literal notranslate"><span class="pre">LedRing.chase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.LedRing.wipe"><code class="docutils literal notranslate"><span class="pre">LedRing.wipe()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.LedRing.go_up"><code class="docutils literal notranslate"><span class="pre">LedRing.go_up()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.LedRing.go_up_down"><code class="docutils literal notranslate"><span class="pre">LedRing.go_up_down()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.LedRing.breath"><code class="docutils literal notranslate"><span class="pre">LedRing.breath()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.LedRing.snake"><code class="docutils literal notranslate"><span class="pre">LedRing.snake()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.LedRing.rainbow"><code class="docutils literal notranslate"><span class="pre">LedRing.rainbow()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.LedRing.rainbow_cycle"><code class="docutils literal notranslate"><span class="pre">LedRing.rainbow_cycle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.LedRing.rainbow_chase"><code class="docutils literal notranslate"><span class="pre">LedRing.rainbow_chase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.LedRing.custom"><code class="docutils literal notranslate"><span class="pre">LedRing.custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.LedRing.set_led_color"><code class="docutils literal notranslate"><span class="pre">LedRing.set_led_color()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="led_ring.html#led-ring-niryo-topics">Led Ring - Niryo Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="led_ring.html#led-ring-enums">Led Ring - Enums</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.AnimationMode"><code class="docutils literal notranslate"><span class="pre">AnimationMode</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.AnimationMode.NONE"><code class="docutils literal notranslate"><span class="pre">AnimationMode.NONE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.AnimationMode.UNKNOWN"><code class="docutils literal notranslate"><span class="pre">AnimationMode.UNKNOWN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.AnimationMode.SOLID"><code class="docutils literal notranslate"><span class="pre">AnimationMode.SOLID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.AnimationMode.FLASHING"><code class="docutils literal notranslate"><span class="pre">AnimationMode.FLASHING</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.AnimationMode.ALTERNATE"><code class="docutils literal notranslate"><span class="pre">AnimationMode.ALTERNATE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.AnimationMode.CHASE"><code class="docutils literal notranslate"><span class="pre">AnimationMode.CHASE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.AnimationMode.COLOR_WIPE"><code class="docutils literal notranslate"><span class="pre">AnimationMode.COLOR_WIPE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.AnimationMode.RAINBOW"><code class="docutils literal notranslate"><span class="pre">AnimationMode.RAINBOW</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.AnimationMode.RAINBOW_CYLE"><code class="docutils literal notranslate"><span class="pre">AnimationMode.RAINBOW_CYLE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.AnimationMode.RAINBOW_CHASE"><code class="docutils literal notranslate"><span class="pre">AnimationMode.RAINBOW_CHASE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.AnimationMode.GO_UP"><code class="docutils literal notranslate"><span class="pre">AnimationMode.GO_UP</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.AnimationMode.GO_UP_AND_DOWN"><code class="docutils literal notranslate"><span class="pre">AnimationMode.GO_UP_AND_DOWN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.AnimationMode.BREATH"><code class="docutils literal notranslate"><span class="pre">AnimationMode.BREATH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.AnimationMode.SNAKE"><code class="docutils literal notranslate"><span class="pre">AnimationMode.SNAKE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.AnimationMode.CUSTOM"><code class="docutils literal notranslate"><span class="pre">AnimationMode.CUSTOM</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.LedMode"><code class="docutils literal notranslate"><span class="pre">LedMode</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.LedMode.NONE"><code class="docutils literal notranslate"><span class="pre">LedMode.NONE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.LedMode.UNKNOWN"><code class="docutils literal notranslate"><span class="pre">LedMode.UNKNOWN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.LedMode.ROBOT_STATUS"><code class="docutils literal notranslate"><span class="pre">LedMode.ROBOT_STATUS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.enums.LedMode.USER"><code class="docutils literal notranslate"><span class="pre">LedMode.USER</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="led_ring.html#module-pyniryo2.led_ring.objects">Led Ring - Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="led_ring.html#pyniryo2.led_ring.objects.LedRingStatusObject"><code class="docutils literal notranslate"><span class="pre">LedRingStatusObject</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sound.html">Sound</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sound.html#module-pyniryo2.sound">Sound - Command functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sound.html#pyniryo2.sound.Sound"><code class="docutils literal notranslate"><span class="pre">Sound</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sound.html#sound-play">Sound - Play</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.Sound.play"><code class="docutils literal notranslate"><span class="pre">Sound.play()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.Sound.stop"><code class="docutils literal notranslate"><span class="pre">Sound.stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.Sound.state"><code class="docutils literal notranslate"><span class="pre">Sound.state</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.Sound.say"><code class="docutils literal notranslate"><span class="pre">Sound.say()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sound.html#sound-volume">Sound - Volume</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.Sound.volume"><code class="docutils literal notranslate"><span class="pre">Sound.volume</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.Sound.get_volume"><code class="docutils literal notranslate"><span class="pre">Sound.get_volume()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.Sound.set_volume"><code class="docutils literal notranslate"><span class="pre">Sound.set_volume()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sound.html#sound-manage">Sound - Manage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.Sound.sounds"><code class="docutils literal notranslate"><span class="pre">Sound.sounds</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.Sound.get_sounds"><code class="docutils literal notranslate"><span class="pre">Sound.get_sounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.Sound.save"><code class="docutils literal notranslate"><span class="pre">Sound.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.Sound.delete"><code class="docutils literal notranslate"><span class="pre">Sound.delete()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.Sound.get_sound_duration"><code class="docutils literal notranslate"><span class="pre">Sound.get_sound_duration()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sound.html#sound-niryo-topics">Sound - Niryo Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sound.html#sound-enums">Sound - Enums</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sound.html#pyniryo2.sound.enums.ManageSound"><code class="docutils literal notranslate"><span class="pre">ManageSound</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.enums.ManageSound.ADD"><code class="docutils literal notranslate"><span class="pre">ManageSound.ADD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.enums.ManageSound.DELETE"><code class="docutils literal notranslate"><span class="pre">ManageSound.DELETE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sound.html#pyniryo2.sound.enums.Language"><code class="docutils literal notranslate"><span class="pre">Language</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.enums.Language.ENGLISH"><code class="docutils literal notranslate"><span class="pre">Language.ENGLISH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.enums.Language.FRENCH"><code class="docutils literal notranslate"><span class="pre">Language.FRENCH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.enums.Language.SPANISH"><code class="docutils literal notranslate"><span class="pre">Language.SPANISH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.enums.Language.MANDARIN"><code class="docutils literal notranslate"><span class="pre">Language.MANDARIN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sound.html#pyniryo2.sound.enums.Language.PORTUGUESE"><code class="docutils literal notranslate"><span class="pre">Language.PORTUGUESE</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyNiryo2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Tool</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api_doc/tool.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tool">
+<h1>Tool<a class="headerlink" href="#tool" title="Link to this heading"></a></h1>
+<p>This file presents the different <span class="xref std std-ref">api_doc/tool:Tool - Command functions</span>,
+<span class="xref std std-ref">api_doc/tool:Tool - Enums</span> &amp; <span class="xref std std-ref">api_doc/tool:Tool - Niryo Topics</span> available with the Tool API</p>
+<section id="tool-command-functions">
+<h2>Tool - Command Functions<a class="headerlink" href="#tool-command-functions" title="Link to this heading"></a></h2>
+<p>This section reference all existing functions to control your robot, which include</p>
+<ul class="simple">
+<li><p>Using tools</p></li>
+<li><p>Using grippers</p></li>
+<li><p>Using the vacuum pump</p></li>
+<li><p>Using the electromagnet</p></li>
+<li><p>Management of the TCP</p></li>
+</ul>
+<p>All functions to control the robot are accessible via an instance of
+the class <span class="xref std std-ref">api_doc/niryo_robot:NiryoRobot</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot</span> <span class="o">=</span> <span class="n">NiryoRobot</span><span class="p">(</span><span class="o">&lt;</span><span class="n">robot_ip_address</span><span class="o">&gt;</span><span class="p">)</span>
+
+<span class="n">robot</span><span class="o">.</span><span class="n">tool</span><span class="o">.</span><span class="n">update_tool</span><span class="p">()</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">tool</span><span class="o">.</span><span class="n">grasp_with_tool</span><span class="p">()</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">tool</span><span class="o">.</span><span class="n">release_with_tool</span><span class="p">()</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>See examples on <span class="xref std std-ref">Examples Section</span></p>
+<p>List of functions subsections:</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#tool-functions" id="id2">Tool functions</a></p></li>
+<li><p><a class="reference internal" href="#grippers-functions" id="id3">Grippers functions</a></p></li>
+<li><p><a class="reference internal" href="#vacuum-pump-functions" id="id4">Vacuum pump functions</a></p></li>
+<li><p><a class="reference internal" href="#electromagnet-functions" id="id5">Electromagnet functions</a></p></li>
+<li><p><a class="reference internal" href="#tcp-functions" id="id6">TCP functions</a></p></li>
+</ul>
+</nav>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyniryo2.tool.tool.Tool">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyniryo2.tool.tool.</span></span><span class="sig-name descname"><span class="pre">Tool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyniryo2.tool.tool.Tool" title="Link to this definition"></a></dt>
+<dd><p>Tool robot functions</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros_instance</span> <span class="o">=</span> <span class="n">NiryoRos</span><span class="p">(</span><span class="s2">&quot;10.10.10.10&quot;</span><span class="p">)</span> <span class="c1"># Hotspot</span>
+<span class="n">tool_interface</span> <span class="o">=</span> <span class="n">Tool</span><span class="p">(</span><span class="n">ros_instance</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>client</strong> (<a class="reference internal" href="niryo_ros.html#pyniryo2.niryo_ros.NiryoRos" title="pyniryo2.niryo_ros.NiryoRos"><em>NiryoRos</em></a>) – Niryo ROS client</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="tool-functions">
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">Tool functions</a><a class="headerlink" href="#tool-functions" title="Link to this heading"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyniryo2.tool.tool.Tool.update_tool">
+<span class="sig-prename descclassname"><span class="pre">Tool.</span></span><span class="sig-name descname"><span class="pre">update_tool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyniryo2.tool.tool.Tool.update_tool" title="Link to this definition"></a></dt>
+<dd><p>Update equipped tool</p>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Synchronous use</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">update_tool</span><span class="p">()</span>
+
+<span class="c1"># Asynchronous use</span>
+<span class="k">def</span> <span class="nf">update_tool_callback</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">RobotErrors</span><span class="o">.</span><span class="n">SUCCESS</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Update failed&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Update completed with success&quot;</span><span class="p">)</span>
+
+<span class="n">tool</span><span class="o">.</span><span class="n">update_tool</span><span class="p">(</span><span class="n">update_tool_callback</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>callback</strong> (<em>function</em>) – Callback invoked on successful execution.</p></li>
+<li><p><strong>errback</strong> (<em>function</em>) – Callback invoked on error.</p></li>
+<li><p><strong>timeout</strong> – Timeout for the operation, in seconds. Only used if blocking.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyniryo2.tool.tool.Tool.tool">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Tool.</span></span><span class="sig-name descname"><span class="pre">tool</span></span><a class="headerlink" href="#pyniryo2.tool.tool.Tool.tool" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The equipped tool ID</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>ToolID</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyniryo2.tool.tool.Tool.get_current_tool_id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Tool.</span></span><span class="sig-name descname"><span class="pre">get_current_tool_id</span></span><a class="headerlink" href="#pyniryo2.tool.tool.Tool.get_current_tool_id" title="Link to this definition"></a></dt>
+<dd><p>Returns the equipped tool Id client which can be used synchronously or asynchronously
+to obtain the equipped tool Id.
+The topic returns a attribute of the ToolID enum.</p>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get last value</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">get_current_tool_id</span><span class="p">()</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">get_current_tool_id</span><span class="o">.</span><span class="n">value</span>
+
+<span class="c1"># Subscribe a callback</span>
+<span class="k">def</span> <span class="nf">tool_id_callback</span><span class="p">(</span><span class="n">tool_id_object</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="n">tool_id_object</span>
+
+<span class="n">tool</span><span class="o">.</span><span class="n">get_current_tool_id</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">tool_id_callback</span><span class="p">)</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">get_current_tool_id</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the equipped tool Id topic instance.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="niryo_topics.html#pyniryo2.niryo_topic.NiryoTopic" title="pyniryo2.niryo_topic.NiryoTopic">NiryoTopic</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyniryo2.tool.tool.Tool.grasp_with_tool">
+<span class="sig-prename descclassname"><span class="pre">Tool.</span></span><span class="sig-name descname"><span class="pre">grasp_with_tool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyniryo2.tool.tool.Tool.grasp_with_tool" title="Link to this definition"></a></dt>
+<dd><p>Grasp with tool
+This action correspond to
+* Close gripper for Grippers
+* Pull Air for Vacuum pump
+* Activate for Electromagnet
+If a callback function is not passed in parameter, the function will be blocking.
+Otherwise, the callback will be called when the execution of the function is finished.</p>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tool</span><span class="o">.</span><span class="n">update_tool</span><span class="p">()</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">grasp_with_tool</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">tool_callback</span><span class="p">(</span><span class="n">_msg</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grasped&quot;</span><span class="p">)</span> 
+
+<span class="n">tool</span><span class="o">.</span><span class="n">grasp_with_tool</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">tool_callback</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>callback</strong> (<em>function</em>) – Callback invoked on successful execution.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyniryo2.tool.tool.Tool.release_with_tool">
+<span class="sig-prename descclassname"><span class="pre">Tool.</span></span><span class="sig-name descname"><span class="pre">release_with_tool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyniryo2.tool.tool.Tool.release_with_tool" title="Link to this definition"></a></dt>
+<dd><p>Release with tool
+This action correspond to
+* Open gripper for Grippers
+* Push Air for Vacuum pump
+* Deactivate for Electromagnet
+If a callback function is not passed in parameter, the function will be blocking.
+Otherwise, the callback will be called when the execution of the function is finished.</p>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tool</span><span class="o">.</span><span class="n">update_tool</span><span class="p">()</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">release_with_tool</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">tool_callback</span><span class="p">(</span><span class="n">_msg</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Released&quot;</span><span class="p">)</span>
+
+<span class="n">tool</span><span class="o">.</span><span class="n">release_with_tool</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">tool_callback</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>callback</strong> (<em>function</em>) – Callback invoked on successful execution.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="grippers-functions">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Grippers functions</a><a class="headerlink" href="#grippers-functions" title="Link to this heading"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyniryo2.tool.tool.Tool.open_gripper">
+<span class="sig-prename descclassname"><span class="pre">Tool.</span></span><span class="sig-name descname"><span class="pre">open_gripper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_torque_percentage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hold_torque_percentage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyniryo2.tool.tool.Tool.open_gripper" title="Link to this definition"></a></dt>
+<dd><p>Open gripper associated to the equipped gripper.
+If a callback function is not passed in parameter, the function will be blocking.
+Otherwise, the callback will be called when the execution of the function is finished.</p>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tool</span><span class="o">.</span><span class="n">update_tool</span><span class="p">()</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">open_gripper</span><span class="p">()</span>
+
+<span class="c1"># Niryo One and Ned</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">open_gripper</span><span class="p">(</span><span class="n">speed</span><span class="o">=</span><span class="mi">850</span><span class="p">)</span>
+
+<span class="c1"># Ned2</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">open_gripper</span><span class="p">(</span><span class="n">max_torque_percentage</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">hold_torque_percentage</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">tool_callback</span><span class="p">(</span><span class="n">_msg</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Released&quot;</span><span class="p">)</span>
+
+<span class="n">tool</span><span class="o">.</span><span class="n">open_gripper</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">tool_callback</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>speed</strong> (<em>int</em>) – Between 100 &amp; 1000 (only for Niryo One and Ned1)</p></li>
+<li><p><strong>max_torque_percentage</strong> (<em>int</em>) – Closing torque percentage (only for Ned2)</p></li>
+<li><p><strong>hold_torque_percentage</strong> (<em>int</em>) – Hold torque percentage after closing (only for Ned2)</p></li>
+<li><p><strong>callback</strong> (<em>function</em>) – Callback invoked on successful execution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyniryo2.tool.tool.Tool.close_gripper">
+<span class="sig-prename descclassname"><span class="pre">Tool.</span></span><span class="sig-name descname"><span class="pre">close_gripper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_torque_percentage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hold_torque_percentage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyniryo2.tool.tool.Tool.close_gripper" title="Link to this definition"></a></dt>
+<dd><p>Close gripper associated to ‘gripper_id’ with a speed ‘speed’
+If a callback function is not passed in parameter, the function will be blocking.
+Otherwise, the callback will be called when the execution of the function is finished.</p>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tool</span><span class="o">.</span><span class="n">update_tool</span><span class="p">()</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">close_gripper</span><span class="p">()</span>
+
+<span class="c1"># Niryo One and Ned</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">close_gripper</span><span class="p">(</span><span class="n">speed</span><span class="o">=</span><span class="mi">850</span><span class="p">)</span>
+
+<span class="c1"># Ned2</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">close_gripper</span><span class="p">(</span><span class="n">max_torque_percentage</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">hold_torque_percentage</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">tool_callback</span><span class="p">(</span><span class="n">_msg</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grasped&quot;</span><span class="p">)</span>
+
+<span class="n">tool</span><span class="o">.</span><span class="n">close_gripper</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">tool_callback</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>speed</strong> (<em>int</em>) – Between 100 &amp; 1000 (only for Niryo One and Ned1)</p></li>
+<li><p><strong>max_torque_percentage</strong> (<em>int</em>) – Opening torque percentage (only for Ned2)</p></li>
+<li><p><strong>hold_torque_percentage</strong> (<em>int</em>) – Hold torque percentage after opening (only for Ned2)</p></li>
+<li><p><strong>callback</strong> (<em>function</em>) – Callback invoked on successful execution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="vacuum-pump-functions">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Vacuum pump functions</a><a class="headerlink" href="#vacuum-pump-functions" title="Link to this heading"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyniryo2.tool.tool.Tool.pull_air_vacuum_pump">
+<span class="sig-prename descclassname"><span class="pre">Tool.</span></span><span class="sig-name descname"><span class="pre">pull_air_vacuum_pump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyniryo2.tool.tool.Tool.pull_air_vacuum_pump" title="Link to this definition"></a></dt>
+<dd><p>Pull air of vacuum pump
+If a callback function is not passed in parameter, the function will be blocking.
+Otherwise, the callback will be called when the execution of the function is finished.</p>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tool</span><span class="o">.</span><span class="n">update_tool</span><span class="p">()</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">pull_air_vacuum_pump</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">tool_callback</span><span class="p">(</span><span class="n">_msg</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grasped&quot;</span><span class="p">)</span>
+
+<span class="n">tool</span><span class="o">.</span><span class="n">pull_air_vacuum_pump</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">tool_callback</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>callback</strong> (<em>function</em>) – Callback invoked on successful execution.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyniryo2.tool.tool.Tool.push_air_vacuum_pump">
+<span class="sig-prename descclassname"><span class="pre">Tool.</span></span><span class="sig-name descname"><span class="pre">push_air_vacuum_pump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyniryo2.tool.tool.Tool.push_air_vacuum_pump" title="Link to this definition"></a></dt>
+<dd><p>Push air of vacuum pump
+If a callback function is not passed in parameter, the function will be blocking.
+Otherwise, the callback will be called when the execution of the function is finished.</p>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tool</span><span class="o">.</span><span class="n">update_tool</span><span class="p">()</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">push_air_vacuum_pump</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">tool_callback</span><span class="p">(</span><span class="n">_msg</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Released&quot;</span><span class="p">)</span>
+
+<span class="n">tool</span><span class="o">.</span><span class="n">push_air_vacuum_pump</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">tool_callback</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>callback</strong> (<em>function</em>) – Callback invoked on successful execution.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="electromagnet-functions">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Electromagnet functions</a><a class="headerlink" href="#electromagnet-functions" title="Link to this heading"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyniryo2.tool.tool.Tool.setup_electromagnet">
+<span class="sig-prename descclassname"><span class="pre">Tool.</span></span><span class="sig-name descname"><span class="pre">setup_electromagnet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pin_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyniryo2.tool.tool.Tool.setup_electromagnet" title="Link to this definition"></a></dt>
+<dd><p>Setup electromagnet on pin</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tool</span><span class="o">.</span><span class="n">setup_electromagnet</span><span class="p">(</span><span class="n">PinID</span><span class="o">.</span><span class="n">GPIO_1A</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pin_id</strong> (<em>PinID</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyniryo2.tool.tool.Tool.activate_electromagnet">
+<span class="sig-prename descclassname"><span class="pre">Tool.</span></span><span class="sig-name descname"><span class="pre">activate_electromagnet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pin_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyniryo2.tool.tool.Tool.activate_electromagnet" title="Link to this definition"></a></dt>
+<dd><p>Activate electromagnet associated to electromagnet_id on pin_id
+If a callback function is not passed in parameter, the function will be blocking.
+Otherwise, the callback will be called when the execution of the function is finished.</p>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tool</span><span class="o">.</span><span class="n">setup_electromagnet</span><span class="p">(</span><span class="n">PinID</span><span class="o">.</span><span class="n">GPIO_1A</span><span class="p">)</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">activate_electromagnet</span><span class="p">()</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">activate_electromagnet</span><span class="p">(</span><span class="n">PinID</span><span class="o">.</span><span class="n">GPIO_1A</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">tool_callback</span><span class="p">(</span><span class="n">_msg</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grasped&quot;</span><span class="p">)</span> 
+
+<span class="n">tool</span><span class="o">.</span><span class="n">activate_electromagnet</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">tool_callback</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pin_id</strong> (<em>PinID</em>)</p></li>
+<li><p><strong>callback</strong> (<em>function</em>) – Callback invoked on successful execution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyniryo2.tool.tool.Tool.deactivate_electromagnet">
+<span class="sig-prename descclassname"><span class="pre">Tool.</span></span><span class="sig-name descname"><span class="pre">deactivate_electromagnet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pin_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyniryo2.tool.tool.Tool.deactivate_electromagnet" title="Link to this definition"></a></dt>
+<dd><p>Deactivate electromagnet associated to electromagnet_id on pin_id
+If a callback function is not passed in parameter, the function will be blocking.
+Otherwise, the callback will be called when the execution of the function is finished.</p>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tool</span><span class="o">.</span><span class="n">setup_electromagnet</span><span class="p">(</span><span class="n">PinID</span><span class="o">.</span><span class="n">GPIO_1A</span><span class="p">)</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">deactivate_electromagnet</span><span class="p">()</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">deactivate_electromagnet</span><span class="p">(</span><span class="n">PinID</span><span class="o">.</span><span class="n">GPIO_1A</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">tool_callback</span><span class="p">(</span><span class="n">_msg</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Deactivated&quot;</span><span class="p">)</span>
+
+<span class="n">tool</span><span class="o">.</span><span class="n">deactivate_electromagnet</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">tool_callback</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pin_id</strong> (<em>PinID</em>)</p></li>
+<li><p><strong>callback</strong> (<em>function</em>) – Callback invoked on successful execution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="tcp-functions">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">TCP functions</a><a class="headerlink" href="#tcp-functions" title="Link to this heading"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyniryo2.tool.tool.Tool.enable_tcp">
+<span class="sig-prename descclassname"><span class="pre">Tool.</span></span><span class="sig-name descname"><span class="pre">enable_tcp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyniryo2.tool.tool.Tool.enable_tcp" title="Link to this definition"></a></dt>
+<dd><p>Enables or disables the TCP function (Tool Center Point).
+If activation is requested, the last recorded TCP value will be applied.
+The default value depends on the gripper equipped.
+If deactivation is requested, the TCP will be coincident with the tool_link.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>enable</strong> (<em>Bool</em>) – True to enable, False otherwise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyniryo2.tool.tool.Tool.set_tcp">
+<span class="sig-prename descclassname"><span class="pre">Tool.</span></span><span class="sig-name descname"><span class="pre">set_tcp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyniryo2.tool.tool.Tool.set_tcp" title="Link to this definition"></a></dt>
+<dd><p>Activates the TCP function (Tool Center Point)
+and defines the transformation between the tool_link frame and the TCP frame.</p>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tool</span><span class="o">.</span><span class="n">set_tcp</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.57</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">set_tcp</span><span class="p">([</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.57</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="n">tool</span><span class="o">.</span><span class="n">set_tcp</span><span class="p">(</span><span class="n">PoseObject</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.57</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>args</strong> (<em>Union</em><em>[</em><em>tuple</em><em>[</em><em>float</em><em>]</em><em>, </em><em>list</em><em>[</em><em>float</em><em>]</em><em>, </em><a class="reference internal" href="arm.html#pyniryo2.objects.PoseObject" title="pyniryo2.objects.PoseObject"><em>PoseObject</em></a><em>]</em>) – either 6 args (1 for each coordinates) or a list of 6 coordinates or a <code class="docutils literal notranslate"><span class="pre">PoseObject</span></code></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyniryo2.tool.tool.Tool.reset_tcp">
+<span class="sig-prename descclassname"><span class="pre">Tool.</span></span><span class="sig-name descname"><span class="pre">reset_tcp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyniryo2.tool.tool.Tool.reset_tcp" title="Link to this definition"></a></dt>
+<dd><p>Reset the TCP (Tool Center Point) transformation.
+The PCO will be reset according to the tool equipped.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="tool-niryo-topics">
+<h2>Tool - Niryo Topics<a class="headerlink" href="#tool-niryo-topics" title="Link to this heading"></a></h2>
+<p>The use of these functions is explained in the <span class="xref std std-ref">api_doc/niryo_topics:NiryoTopic</span> section.
+They allow the acquisition of data in real time by callbacks or by direct call.</p>
+<table class="docutils align-center" id="id1">
+<caption><span class="caption-text">Tool’s Niryo Topics</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Function</p></th>
+<th class="head"><p>Return type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/niryo_robot_tools_commander/current_id</span></code></p></td>
+<td><p><a class="reference internal" href="#pyniryo2.tool.tool.Tool.get_current_tool_id" title="pyniryo2.tool.tool.Tool.get_current_tool_id"><code class="xref py py-attr docutils literal notranslate"><span class="pre">get_current_tool_id</span></code></a></p></td>
+<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ToolID</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tool-enums">
+<h2>Tool - Enums<a class="headerlink" href="#tool-enums" title="Link to this heading"></a></h2>
+<p>List of enums:</p>
+<ul class="simple">
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ToolID</span></code></p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ToolCommand</span></code></p></li>
+</ul>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyniryo2.tool.enums.</span></span><span class="sig-name descname"><span class="pre">ToolID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names=&lt;not</span> <span class="pre">given&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=None</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Enumeration of Tools IDs</p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">NONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">GRIPPER_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">11</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">GRIPPER_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">12</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">GRIPPER_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">13</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">GRIPPER_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">14</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">ELECTROMAGNET_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">30</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">VACUUM_PUMP_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">31</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">VACUUM_PUMP_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyniryo2.tool.enums.</span></span><span class="sig-name descname"><span class="pre">ToolCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names=&lt;not</span> <span class="pre">given&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=None</span></span></em><span class="sig-paren">)</span></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">OPEN_GRIPPER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">CLOSE_GRIPPER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">PULL_AIR_VACUUM_PUMP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">PUSH_AIR_VACUUM_PUMP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">11</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">SETUP_DIGITAL_IO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">20</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">ACTIVATE_DIGITAL_IO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">21</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">DEACTIVATE_DIGITAL_IO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">22</span></em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="arm.html" class="btn btn-neutral float-left" title="Arm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vision.html" class="btn btn-neutral float-right" title="Vision" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Niryo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="injected">
+  <div class="rst-versions " data-toggle="rst-versions" role="note"
+    aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book">&nbsp;&nbsp;Other versions&nbsp;&nbsp;</span>
+      v: v1.0.1
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Tags</dt>
+        <dd class="rtd-current-item">
+          <a href="../../v1.0.1/index.html">v1.0.1</a>
+        </dd>
+        <dd class="">
+          <a href="../../v1.0.0/index.html">v1.0.0</a>
+        </dd>
+      </dl>
+      <dl>
+        <dt>Search</dt>
+        <dd>
+          <div style="padding: 6px;">
+            <form id="flyout-search-form" class="wy-form" target="_blank" action="../
+              ../v1.0.1/index.html/../search.html" method="get">
+              <input type="text" name="q" aria-label="Search docs" placeholder="Search docs">
+            </form>
+          </div>
+        </dd>
+      </dl>
+    </div>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

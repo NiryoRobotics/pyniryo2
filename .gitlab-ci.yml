@@ -49,7 +49,6 @@ upload_package:
     - twine upload -u __token__ -p $PYPI_TOKEN --repository-url $PYPI_UPLOAD_URL dist/*
   rules:
     - if: $CI_COMMIT_TAG && $CI_COMMIT_REF_PROTECTED == "true"
-  when: manual
   variables:
     PYPI_UPLOAD_URL: https://upload.pypi.org/legacy/
 

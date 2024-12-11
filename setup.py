@@ -17,6 +17,7 @@ kwargs = {
     'version': version,
     'description': 'Package to control Niryo Robot "Ned" through TCP',
     'long_description': readme,
+    'long_description_content_type': 'text/markdown',
     'author': 'Niryo',
     'author_email': 'v.pitre@niryo.com',
     'maintainer': 'Valentin Pitre',

@@ -58,7 +58,7 @@ mirror_github:
   stage: release
   dependencies: [ ]
   variables:
-    GIT_STRATEGY: clone
+    GIT_STRATEGY: empty
     GITHUB_REPOSITORY: git@github.com:NiryoRobotics/pyniryo2.git
   script:
     - eval $(ssh-agent)
@@ -66,8 +66,10 @@ mirror_github:
     - ssh-add $GITHUB_SSH_KEY
     - mkdir -p ~/.ssh
     - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-    - git remote add github $GITHUB_REPOSITORY
-    - git push -f --tags github HEAD:master
+    - git clone --bare $CI_REPOSITORY_URL
+    - cd "$NAME.git"
+    - git push $GITHUB_REPOSITORY refs/heads/master:refs/heads/master
+    - git push --tags $GITHUB_REPOSITORY
 
   rules:
     - if: $CI_COMMIT_TAG && $CI_COMMIT_REF_PROTECTED == "true"
